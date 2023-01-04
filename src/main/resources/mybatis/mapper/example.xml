@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 예시
+<mapper namespace="mybatis.mapper.example">
+	<insert id="UsersInsert" parameterType="usersDto">
+		INSERT INTO users VALUES(#{username},#{password},#{name},SYSDATE)
+	</insert>
+	<select id="UsersSelectList" resultType="usersDto">
+		SELECT * FROM users ORDER BY joindate DESC
+	</select>
+	<select id="UsersSelectOne" parameterType="String" resultType="usersDto">
+		SELECT * FROM users WHERE username=#{username}
+	</select>
+	<update id="UsersUpdate" parameterType="usersDto">
+		UPDATE users SET password=#{password},name=#{name} WHERE username=#{username}
+	</update>
+	<delete id="UsersDelete" parameterType="String">
+		DELETE users WHERE username=#{username}
+	</delete>
+</mapper>
+ -->
