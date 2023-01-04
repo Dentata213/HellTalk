@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
-
+/*
 @Configuration
 public class TilesConfig {
 	//타일즈 관련 클래스(뷰 리졸버 와 타일즈 구성용 클래스)를 자바코드로 컨테이너에 등록
@@ -25,3 +25,4 @@ public class TilesConfig {
 		return configurer;
 	}/////////////////////////////
 }
+*/

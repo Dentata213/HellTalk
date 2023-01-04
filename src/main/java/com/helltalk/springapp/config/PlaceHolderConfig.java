@@ -10,7 +10,7 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 //를 자바코드로 설정하기
 
 @Configuration
-@PropertySource({"classpath:onememo/resource/paging.properties","classpath:config/database.properties","classpath:rescs.properties","classpath:sub/rescs.properties"})
+@PropertySource({"classpath:config/database.properties"})
 public class PlaceHolderConfig {
 	
 	@Bean
