@@ -9,6 +9,10 @@ public class ModelController {
 
 	@RequestMapping("/shop-2.do")
 	public String handlerMapping() {
-		return "model/shop-2.helltalk";
+		return "payment/shop-2.helltalk";
 	}
+	
+	
+	
+	
 }
