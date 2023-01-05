@@ -22,7 +22,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-
+/
 /*
  
 	아래 클래스 작성후 해야할 작업들 순서
@@ -45,8 +45,8 @@ import com.zaxxer.hikari.HikariDataSource;
 
 //1.web.xml에서 XML기반이 아닌 어노테이션 기반 설정이 적용되도록 수정
 //2.자바코드로 스프링 씨큐리티 설정
-@Configuration
-@EnableWebSecurity
+//@Configuration
+//@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	
@@ -145,12 +145,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.passwordEncoder(passwordEncoder());
 	}////////////////////////
 	//org.springframework.security.crypto.password.PasswordEncoder
-	@Bean
+	//@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}	
 	
-	@Bean 
+	//@Bean 
 	public HikariDataSource hikariDataSource() {		
 		HikariConfig hikariConfig = new HikariConfig();
 		hikariConfig.setDriverClassName("oracle.jdbc.OracleDriver");
