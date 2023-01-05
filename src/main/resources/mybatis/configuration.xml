@@ -4,7 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
-
+	
 	<!-- 클래스 별칭 설정 :매퍼파일에서 별칭으로 사용하고자 할때 -->
 	<typeAliases>
 		<!-- 예시 <typeAlias type="com.kosmo.restapi.model.UsersDto" alias="usersDto"/> -->
