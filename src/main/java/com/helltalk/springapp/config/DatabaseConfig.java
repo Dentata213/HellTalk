@@ -46,6 +46,8 @@ public class DatabaseConfig {
 		hikariConfig.setJdbcUrl(url);
 		hikariConfig.setUsername(username);
 		hikariConfig.setPassword(password);
+		System.out.println("username:"+username);
+		System.out.println("password:"+password);
 		return new HikariDataSource(hikariConfig);
 	}
 	
