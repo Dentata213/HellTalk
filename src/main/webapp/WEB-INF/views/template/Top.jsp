@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sociala - Social Network App HTML Template </title>
+    <title>HellTalk - HealthTalk for Everyone! </title>
 
     <link rel="stylesheet" href="${path}/resources/css/themify-icons.css">
     <link rel="stylesheet" href="${path}/resources/css/feather.css">
