@@ -190,7 +190,7 @@
 		<a href="<c:url value="/model"/>" >진소희</a>
 		<a href="<c:url value="/model"/>" >조주희</a>
 		<a href="<c:url value="/model"/>" >함병완</a>
-		<a href="<c:url value="/model"/>" >김성우</a>
+		<a href="<c:url value="/home.do"/>" >김성우</a>
 		<a href="<c:url value="/model"/>" >최도원</a>
 		<a href="<c:url value="/model"/>" >최부건</a>
 		

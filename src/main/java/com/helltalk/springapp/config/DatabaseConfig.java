@@ -32,7 +32,7 @@ public class DatabaseConfig {
 	private String driverClassName;
 	@Value("${url}")
 	private String url;
-	@Value("${username}")
+	@Value("${happyuser}")
 	private String username;
 	@Value("${password}")
 	private String password;
@@ -40,8 +40,12 @@ public class DatabaseConfig {
 	
 	@Bean 
 	public HikariDataSource hikariDataSource() {
-
 		HikariConfig hikariConfig = new HikariConfig();
+		System.out.println(driverClassName);
+		System.out.println(url);
+		System.out.println(username);
+		System.out.println(password);
+		
 		hikariConfig.setDriverClassName(driverClassName);
 		hikariConfig.setJdbcUrl(url);
 		hikariConfig.setUsername(username);
