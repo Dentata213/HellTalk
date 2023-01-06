@@ -247,6 +247,13 @@
 		    <version>2.1.4</version>
 		</dependency>
 		
+		<!-- RestTemplate사용시 커넥션 풀을 사용하기 위함 -->
+		<dependency>
+		    <groupId>org.apache.httpcomponents</groupId>
+		    <artifactId>httpclient</artifactId>
+		    <version>4.5.13</version>
+		 </dependency>
+		
 		
 	</dependencies>
     <build>

@@ -60,7 +60,7 @@
                                                             <h4 class="font-xssss text-danger ls-3 fw-700 ms-0 mt-4 mb-3">TRENDING</h4>
                                                             <h2 class="fw-300 display2-size display2-md-size lh-2 text-grey-900">New Arrival Buds <br> <b class="fw-700">Collection</b></h2>
                                                             <p class="fw-500 text-grey-500 lh-26 font-xssss pe-lg-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nulla dolor, ornare at commodo non, feugiat non nisi. Phasellus faucibus mollis pharetra.</p>
-                                                            <a href="#" class="fw-700 text-white rounded-xl bg-primary-gradiant font-xsssss text-uppercase ls-3 lh-30 mt-0 text-center d-inline-block p-2 w150">Shop Now</a>
+                                                            <a href="<c:url value="/getToken.do"/>" class="fw-700 text-white rounded-xl bg-primary-gradiant font-xsssss text-uppercase ls-3 lh-30 mt-0 text-center d-inline-block p-2 w150">Shop Now</a>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6"><img src="https://via.placeholder.com/350x350.png" alt="image" class="img-fluid p-md-5 p-4"></div>
