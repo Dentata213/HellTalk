@@ -191,7 +191,7 @@
 		<a href="<c:url value="/model"/>" >조주희</a>
 		<a href="<c:url value="/model/ocr.do"/>" >함병완</a>
 		<a href="<c:url value="/home.do"/>" >김성우</a>
-		<a href="<c:url value="/model"/>" >최도원</a>
+		<a href="<c:url value="/cal/List.do"/>" >최도원</a>
 		<a href="<c:url value="/model"/>" >최부건</a>
 		
 		<!-- 추가이동경로 필요할경우 아래에 추가 -->
