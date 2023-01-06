@@ -17,7 +17,10 @@ public class ModelController {
 		return "challenge/routine/exerciseRoutine";
 	}
 	
-	
+	@RequestMapping("/ocr.do")
+	public String ocr() {
+		return "ocr/Ocr";
+	}
 	
 	
 }
