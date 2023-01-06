@@ -12,6 +12,11 @@ public class ModelController {
 		return "payment/shop-2.helltalk";
 	}
 	
+	@RequestMapping("/routine.do")
+	public String exerciseRoutine() {
+		return "challenge/routine/exerciseRoutine";
+	}
+	
 	
 	
 	
