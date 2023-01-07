@@ -54,7 +54,7 @@
 	  	{
           title:'${cald.cald_content}',
           start:'${cald.cald_startDate}T12:00',
-          end:'${cald.cald_endDate}T12:00',
+   //       end:'${cald.cald_endDate}T12:00',
           constraint:'availableForMeeting', // defined below
           color:'${cald.cald_color}' //'#257e4a'
         },
@@ -74,13 +74,17 @@
                   $("#calendarModal").modal("show"); // modal 나타내기
 
                   $("#addCalendar").on("click",function(){  // modal의 추가 버튼 클릭 시
-                      var caldcontent = $("#caldcontent").val();
+                      var caldtitle = $("#caldtitle").val();
+                	  var caldcontent = $("#caldcontent").val();
                       var caldstartDate = $("#caldstartdate").val();
-                      var caldendDate = $("#caldenddate").val();
                       var caldcolor = $("#caldcolor").val();                 
                       
                       //내용 입력 여부 확인
-                      if(caldcontent == null || caldcontent == ""){
+                      if(caldtitle == null || caldtitle == ""){
+                          alert("제목을 입력하세요.");
+                          return;
+                      }
+                      else if(caldcontent == null || caldcontent == ""){
                           alert("내용을 입력하세요.");
                           return;
                       }
@@ -88,16 +92,12 @@
                           alert("날짜를 입력하세요.");
                           return;
                       }
-                      else if(new Date(caldendDate)- new Date(caldstartDate) < 0){ // date 타입으로 변경 후 확인
-                          alert("종료일이 시작일보다 먼저입니다.");
-                          return;
-                      }
       
                       else{ // 정상적인 입력 시
                           var obj = {
+                    		  "caldtitle" : caldtitle,
                               "caldcontent" : caldcontent,
                               "caldstartDate" : caldstartDate,
-                              "caldendDate" : caldendDate,
                               "caldcolor" : caldcolor
                               
                           }//전송할 객체 생성
@@ -304,8 +304,6 @@
                       <textarea class="form-control"  rows="10"  id="caldcontent" name="caldcontent"></textarea>
                       <label for="taskId" class="col-form-label">날짜</label>
                       <input type="date" class="form-control" id="caldstartdate" name="caldstartdate">
-                      <label for="taskId" class="col-form-label">종료 날짜(없앨예정)</label>
-                      <input type="date" class="form-control" id="caldenddate" name="caldenddate">
                   </div>
 				  <div class="row">
                   <div class="col-xs-12">
