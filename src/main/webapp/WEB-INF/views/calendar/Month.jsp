@@ -52,7 +52,8 @@
    
 	<c:forEach var="cald" items="${caldList}" varStatus="loop"> 			
 	  	{
-          title:'${cald.cald_content}',
+	  		
+          title:'${cald.cald_title}',
           start:'${cald.cald_startDate}T12:00',
    //       end:'${cald.cald_endDate}T12:00',
           constraint:'availableForMeeting', // defined below
