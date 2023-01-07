@@ -11,9 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.helltalk.springapp.service.CalService;
 import com.helltalk.springapp.service.CaldDto;
@@ -42,5 +45,14 @@ public class CalController {
 		System.out.println("여기지나니?");
 		//뷰정보반환
 		return "calendar/Month";
+	}
+	
+	@PostMapping("/Write.do")
+	@ResponseBody
+	public Map write(@RequestBody Map map) {
+	 int newcald = caldService.insert(map); //입력한 행의 키 값
+	 System.out.println("dto.insert(map)"+newcald);
+	 map.put("caldno", newcald);
+	 return map;
 	}
 }

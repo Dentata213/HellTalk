@@ -74,38 +74,39 @@
                   $("#calendarModal").modal("show"); // modal 나타내기
 
                   $("#addCalendar").on("click",function(){  // modal의 추가 버튼 클릭 시
-                      var title = $("#calendar_content").val();
-                      var startDate = $("#calendar_start_date").val();
-                      var endDate = $("#calendar_end_date").val();
-                      var color = $("#edit-color").val();                 
+                      var caldcontent = $("#caldcontent").val();
+                      var caldstartDate = $("#caldstartdate").val();
+                      var caldendDate = $("#caldenddate").val();
+                      var caldcolor = $("#caldcolor").val();                 
                       
                       //내용 입력 여부 확인
-                      if(title == null || title == ""){
+                      if(caldcontent == null || caldcontent == ""){
                           alert("내용을 입력하세요.");
                           return;
                       }
-                      else if(startDate == "" || endDate ==""){
+                      else if(caldstartDate == "" || caldstartDate ==""){
                           alert("날짜를 입력하세요.");
                           return;
                       }
-                      else if(new Date(endDate)- new Date(startDate) < 0){ // date 타입으로 변경 후 확인
+                      else if(new Date(caldendDate)- new Date(caldstartDate) < 0){ // date 타입으로 변경 후 확인
                           alert("종료일이 시작일보다 먼저입니다.");
                           return;
                       }
       
                       else{ // 정상적인 입력 시
                           var obj = {
-                              "title" : title,
-                              "startdate" : startDate,
-                              "enddate" : endDate,
-                              "color" : color
+                              "caldcontent" : caldcontent,
+                              "caldstartDate" : caldstartDate,
+                              "caldendDate" : caldendDate,
+                              "caldcolor" : caldcolor
+                              
                           }//전송할 객체 생성
-                          console.log("?"+obj); //서버로 해당 객체를 전달해서 DB 연동 가능                                               
+                          console.log("?"+caldcolor); //서버로 해당 객체를 전달해서 DB 연동 가능                                               
                         var test=JSON.stringify(obj);        
                      	 }
                       
                       $.ajax({
-	              			url:"<c:url value="/fullcal/cal2/Write.do"/>",
+	              			url:"<c:url value="/cal/Write.do"/>",
 	              			method: "POST",
 	              			data:JSON.stringify(obj),
 	            			type:'json',
@@ -298,18 +299,18 @@
               <div class="modal-body">
                   <div class="form-group">
                       <label for="taskId" class="col-form-label">title</label>
-                      <input type="text" class="form-control" id="calendar_title" name="calendar_title">
+                      <input type="text" class="form-control" id="caldtitle" name="caldtitle">
                       <label for="taskId" class="col-form-label">내용(db추가해야함)</label>
-                      <textarea class="form-control"  rows="10"  id="calendar_content" name="calendar_content"></textarea>
+                      <textarea class="form-control"  rows="10"  id="caldcontent" name="caldcontent"></textarea>
                       <label for="taskId" class="col-form-label">날짜</label>
-                      <input type="date" class="form-control" id="calendar_start_date" name="calendar_start_date">
+                      <input type="date" class="form-control" id="caldstartdate" name="caldstartdate">
                       <label for="taskId" class="col-form-label">종료 날짜(없앨예정)</label>
-                      <input type="date" class="form-control" id="calendar_end_date" name="calendar_end_date">
+                      <input type="date" class="form-control" id="caldenddate" name="caldenddate">
                   </div>
 				  <div class="row">
                   <div class="col-xs-12">
-                      <label class="col-xs-4" for="edit-color" style="margin-left:20px;" >색상</label>
-                      <select class="inputModal" name="color" id="edit-color">
+                      <label class="col-xs-4" for="color" style="margin-left:20px;" >색상</label>
+                      <select class="inputModal" name="caldcolor" id="caldcolor">
                           <option value="#D25565" style="color:#D25565;">빨간색</option>
                           <option value="#9775fa" style="color:#9775fa;">보라색</option>
                           <option value="#ffa94d" style="color:#ffa94d;">주황색</option>
@@ -348,12 +349,12 @@
               <div class="modal-body">
                   <div class="form-group">
                       <label for="taskId" class="col-form-label" value="${record.title}">title</label>
-                      <input type="text" class="form-control" id="calendar_title1" name="calendar_title" disabled>
+                      <input type="text" class="form-control" id="calendar_title1" name="calendar_title1" disabled>
                        <input type="hidden" class="form-control" id="calendar_no" name="calendar_no" value="${record.no}">
                       <label for="taskId" class="col-form-label">내용(db추가해야함)</label>
-                      <textarea class="form-control"  rows="10"  id="calendar_content1" name="calendar_content" disabled></textarea>
+                      <textarea class="form-control"  rows="10"  id="calendar_content1" name="calendar_content1" disabled></textarea>
                       <label for="taskId" class="col-form-label">날짜</label>
-                      <input type="text" class="form-control" id="calendar_start_date2" name="calendar_start_date" value="${record.startdate}" disabled hidden >
+                      <input type="text" class="form-control" id="calendar_start_date2" name="calendar_start_date2" value="${record.startdate}" disabled hidden >
                       <input type="date" class="form-control" id="calendar_start_date1" name="calendar_start_date2" disabled >
                   </div>                    
               </div>            

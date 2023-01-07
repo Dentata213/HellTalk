@@ -31,8 +31,9 @@ public class CaldServiceImpl implements CalService<CaldDto> {
 
 	@Override
 	public int insert(Map map) {
-		// TODO Auto-generated method stub
-		return 0;
+	 int newcald=dao.inset(map);
+	 System.out.println("추가된 키번호:"+newcald);
+		return newcald;
 	}
 
 	@Override

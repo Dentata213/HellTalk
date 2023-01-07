@@ -6,13 +6,14 @@
 <select id="findAll" parameterType="Map" resultType="CaldDto">
 		SELECT * FROM CALDAILY ORDER BY CALD_NO DESC
 </select>
-<!--  
-<insert id="calInsert2" parameterType="Map">
-	<selectKey keyProperty="calno2" resultType="int" order="BEFORE">
-		SELECT SEQ_CAL2NO.NEXTVAL FROM DUAL
+ 
+<insert id="caldInset" parameterType="Map">
+	<selectKey keyProperty="caldno" resultType="int" order="BEFORE">
+		SELECT SEQ_CALDNO.NEXTVAL FROM DUAL
 	</selectKey>
-		INSERT INTO CAL2 VALUES(SEQ_CAL2NO.NEXTVAL,#{title},#{startdate},#{enddate},#{color},'park')
+		INSERT INTO CALDAILY VALUES(SEQ_CALDNO.NEXTVAL,'가상의회원',#{caldcontent},#{caldstartDate},#{caldendDate},#{caldcolor})
 </insert>
+<!-- 
 <select id="FindRecordByNo" parameterType="Map" resultType="Cal2Dto">
 	SELECT title=#{title},startdate=#{startdate} FROM cal2 WHERE no=#{no}
 	
