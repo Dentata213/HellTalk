@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <script src="https://js.bootpay.co.kr/bootpay-4.2.7.min.js" type="application/javascript"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script type="module" src="${path}/resources/js/payment.js" data-id="${id}" id="thisscript"></script>
 
 
@@ -177,4 +176,7 @@
             </div>            
         </div>
         <!-- main content -->
+
+    <script src="${path}/resources/js/plugin.js"></script>
+    <script src="${path}/resources/js/scripts.js"></script>
 

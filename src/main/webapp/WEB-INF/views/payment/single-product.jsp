@@ -53,6 +53,7 @@
             </div>            
         </div>
         <!-- main content -->
-
+    <script src="${path}/resources/js/plugin.js"></script>
+    <script src="${path}/resources/js/scripts.js"></script>
 
 
