@@ -18,6 +18,7 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
+@RequestMapping("/payment*")
 public class PaymentController {
 	
 	@Value("${application_id}")
@@ -26,6 +27,13 @@ public class PaymentController {
 	private String private_key;
 	@Autowired
 	private RestTemplate restTemplate;
+	
+	
+	@RequestMapping("/single-product")
+	public String singleProduct() {
+		
+		return "payment/single-product.helltalk";
+	}
 	
 	@RequestMapping("/getToken.do")
 	public String getToken() {
