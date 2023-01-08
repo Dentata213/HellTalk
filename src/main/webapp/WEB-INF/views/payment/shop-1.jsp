@@ -2,10 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<script src="https://js.bootpay.co.kr/bootpay-4.2.7.min.js" type="application/javascript"></script>
-<script type="module" src="${path}/resources/js/payment.js" data-id="${id}" id="thisscript"></script>
-
-
         <!-- main content -->
         <div class="main-content bg-white right-chat-active theme-dark-bg">
             

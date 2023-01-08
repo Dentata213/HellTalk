@@ -29,11 +29,27 @@ public class PaymentController {
 	private RestTemplate restTemplate;
 	
 	
+	@RequestMapping("/mycart")
+	public String mycart() {
+		
+		return "payment/cart.helltalk";
+	}
+	
+	
 	@RequestMapping("/single-product")
 	public String singleProduct() {
 		
 		return "payment/single-product.helltalk";
 	}
+	
+	
+	@RequestMapping("/checkout")
+	public String checkout() {
+		
+		
+		return "payment/checkout.helltalk";
+	}
+	
 	
 	@RequestMapping("/getToken.do")
 	public String getToken() {
