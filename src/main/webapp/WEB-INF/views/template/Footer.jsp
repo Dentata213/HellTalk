@@ -224,11 +224,3 @@
             </div>
         </div> 
     </div>
-    <script src="${path}/resources/js/plugin.js"></script>
-    <script src="${path}/resources/js/lightbox.js"></script>
-    <script src="${path}/resources/js/scripts.js"></script>
-
-    
-</body>
-
-</html>
