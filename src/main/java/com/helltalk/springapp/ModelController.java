@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/model*")
 public class ModelController {
 
-	@RequestMapping("/shop-2.do")
+	@RequestMapping("/shop-1.do")
 	public String handlerMapping() {
-		return "payment/shop-2.helltalk";
+		return "payment/shop-1.helltalk";
 	}
 	
 	@RequestMapping("/routine.do")

@@ -186,7 +186,7 @@
         </div>
         <!-- navigation top -->
         <div style="margin-top:100px"></div>
-		<a href="<c:url value="/model/shop-2.do"/>" >김동진</a>
+		<a href="<c:url value="/model/shop-1.do"/>" >김동진</a>
 		<a href="<c:url value="/model/routine.do"/>" >진소희</a>
 		<a href="<c:url value="/model"/>" >조주희</a>
 		<a href="<c:url value="/model/ocr.do"/>" >함병완</a>
