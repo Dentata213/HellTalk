@@ -17,6 +17,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Dongle&display=swap" rel="stylesheet">
 <style>
+
 	* {
   margin: 0px;
   padding: 0px;
@@ -26,13 +27,19 @@
 
 }
 
+
+h4{
+  margin-bottom: 40px;
+}
+
+
 body {
   background-image:#34495e;
 }
 
 .joinForm {
   position:absolute;
-  width:40%;
+  width:50%;
   height:40%;
   padding: 30px, 20px;
   background-color:#FFFFFF;
@@ -182,16 +189,16 @@ body {
     <div class="main-wrap">	
 	<div class="nav-header bg-transparent shadow-none border-0">
 	      <div class="nav-top">
-	          <a href="${path}"><i class="feather-zap text-success display1-size me-2 ms-0"></i><span class="d-inline-block fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">HellTalk</span> </a>
+	          <a href="${path}"><i class="feather-zap text-success display1-size me-2 ms-0"></i><span class="d-inline-block fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">HellTalk</span></a>
 	      </div>
 	    </div>
 	</div>
 
 	<form action="doJoin" method="POST" class="joinForm">
 	  <h1>HellTalk에 오신것을 환영합니다.</h1>
-                                                                                
+	  <h4 class="text-grey-500">혹은 이미 계정이 있으신가요?? <a href="<c:url value="/Login.do"/>" class="fw-700 ms-1">로그인하러 가기</a></h4> 
+	                                                              
       <h3>성별을 선택하여 주세요</h3>
-      
       <label class="radio-img">
 	    <input type="radio" name="gender" value="man" />
 	    <img src="${path}/resources/images/free-icon-trainer-3597951.png" title="제작자: Eucalyp - Flaticon">
@@ -205,11 +212,11 @@ body {
 	  </label>
 	  <br>
 	  <label>
-		생년월일을 선택해주세요:<input type="date" name="date" min="1950-01-01" max="2022-12-31">
+		생년월일을 선택해주세요: <input type="date" name="date" min="1950-01-01" max="2022-12-31">
 	 </label>
 	  
       <div class="textForm">
-        <input name="id" type="text" class="id" placeholder="아이디">
+        <input name="id" type="text" class="id" placeholder="아이디 (아이디는 영문자와 숫자 그리고 특수문자가 포함되어야 하며 8자 이상)">
       </div>
       <div class="textForm">
         <input name="pwd" type="password" class="pw" placeholder="비밀번호">
@@ -218,21 +225,21 @@ body {
         <input name="nickName" type="text" class="name" placeholder="닉네임">
       </div>
        <div class="textForm">
-        <input name="email" type="text" class="email" placeholder="이메일">
+        <input name="email" type="text" class="email" placeholder="이메일 (예:helltalk@naver.com)">
       </div>
       <div class="textForm">
-        <input name="phoneNo" type="text" class="cellphoneNo" placeholder="전화번호">
+        <input name="phoneNo" type="text" class="cellphoneNo" placeholder="전화번호 (예:010-1234-1234)">
       </div>
       <div class="textForm">
-        <input name="height" type="text" class="height" placeholder="신장">
+        <input name="height" type="text" class="height" placeholder="신장 (단위:cm)">
       </div>
       <div class="textForm">
-        <input name="weight" type="text" class="weight" placeholder="몸무게">
+        <input name="weight" type="text" class="weight" placeholder="몸무게 (단위:kg)">
       </div>
       
       <h3>일반회원 또는 트레이너로 가입</h3>
       <label class="radio-img">
-	    <input type="radio" name="kind" value="user" />
+	    <input type="radio" name="kind" value="user"/>
 	    <img src="${path}/resources/images/free-icon-trainer-4080026.png" title="제작자: Eucalyp - Flaticon">
 	    <h3>일반회원</h3>
 	  </label>
@@ -243,7 +250,8 @@ body {
 	    <h3>트레이너</h3>
 	  </label>
       <input type="submit" class="btn" value="회원가입"/>
-    </form>
+		
+    </form>	
     
     
     <script src="${path}/resources/js/plugin.js"></script>
