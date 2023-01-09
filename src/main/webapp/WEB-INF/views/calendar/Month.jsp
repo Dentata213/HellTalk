@@ -1,4 +1,4 @@
-<%@page import="com.helltalk.springapp.service.CaldDto"%>
+<%@page import="com.helltalk.springapp.models.CaldDto"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -128,7 +128,7 @@
                           alert("내용을 입력하세요.");
                           return;
                       }
-                      else if(caldstartDate == "" || caldstartDate ==""){
+                      else if(caldstartdate == "" || caldstartdate ==""){
                           alert("날짜를 입력하세요.");
                           return;
                       }

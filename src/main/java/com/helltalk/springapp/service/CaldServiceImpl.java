@@ -1,4 +1,4 @@
-package com.helltalk.springapp.dao;
+package com.helltalk.springapp.service;
 
 import java.util.List;
 import java.util.Map;
@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.helltalk.springapp.dao.CaldDao;
 import com.helltalk.springapp.models.CalService;
 import com.helltalk.springapp.models.CaldDto;
 
