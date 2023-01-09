@@ -9,7 +9,7 @@
 	<typeAliases>
 		<!-- 예시 <typeAlias type="com.kosmo.restapi.model.UsersDto" alias="usersDto"/> -->
 		
-		<typeAlias type="com.helltalk.springapp.service.CaldDto" alias="CaldDto"/>
+		<typeAlias type="com.helltalk.springapp.models.CaldDto" alias="CaldDto"/>
 		<typeAlias type="com.helltalk.springapp.models.PaymentDTO" alias="PaymentDTO"/>
 		
 	</typeAliases>

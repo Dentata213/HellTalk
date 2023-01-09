@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.helltalk.springapp.service.CalService;
-import com.helltalk.springapp.service.CaldDto;
+import com.helltalk.springapp.models.CalService;
+import com.helltalk.springapp.models.CaldDto;
 
 
 @Controller

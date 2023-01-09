@@ -8,8 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.helltalk.springapp.service.CalService;
-import com.helltalk.springapp.service.CaldDto;
+import com.helltalk.springapp.models.CalService;
+import com.helltalk.springapp.models.CaldDto;
+
 
 @Service("caldService")
 public class CaldServiceImpl implements CalService<CaldDto> {

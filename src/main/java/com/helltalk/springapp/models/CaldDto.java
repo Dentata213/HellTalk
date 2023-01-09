@@ -1,4 +1,4 @@
-package com.helltalk.springapp.service;
+package com.helltalk.springapp.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 

@@ -8,7 +8,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.helltalk.springapp.service.CaldDto;
+import com.helltalk.springapp.models.CaldDto;
+
 
 @Repository
 public class CaldDao {
