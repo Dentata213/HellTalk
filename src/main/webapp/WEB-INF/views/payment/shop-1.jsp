@@ -19,150 +19,34 @@
                             
                                 <div class="col-lg-12 mt-3">
                                     <h4 class="float-left font-xssss fw-700 text-grey-500 text-uppercase ls-3 mt-2 pt-1">32 Product found</h4>
-                                    <select class="searchCat float-right sort"> <option value="">Default Sorting</option><option value="151781441596 ">Fashion</option><option value="139119624252 ">- Men</option><option value="139118313532 ">- Women</option><option value="139360141372 ">Electronics</option><option value="152401903676 ">Home &amp; Garden</option><option value="138866720828 ">- Decor</option><option value="138866917436 ">- Lighting</option></select>
+                                    <select class="searchCat float-right sort">
+                                    	<option value="">Default Sorting</option>
+                                    	<option value="151781441596 ">Fashion</option>
+                                    	<option value="139119624252 ">- Men</option>
+                                    	<option value="139118313532 ">- Women</option>
+                                    	<option value="139360141372 ">Electronics</option>
+                                    	<option value="152401903676 ">Home &amp; Garden</option>
+                                    	<option value="138866720828 ">- Decor</option>
+                                    	<option value="138866917436 ">- Lighting</option>
+                                    </select>
                                 </div>
+                                
+                               	
                                 <div class="col-lg-4 col-md-6">
                                     <div class="card w-100 border-0 mt-4">
                                         <div class="card-image w-100 p-0 text-center bg-greylight rounded-3 mb-2">
-                                            <a href="#"><img src="https://via.placeholder.com/300x300.png" alt="product-image" class="w-100 mt-0 mb-0 p-5"></a>
+                                            <a href="#"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAIoAuAMBIgACEQEDEQH/xAAbAAACAgMBAAAAAAAAAAAAAAAEBQMGAAECB//EADsQAAIBAwMCAwUHAwMDBQAAAAECAwAEERIhMQVBEyJRBmFxgZEjMqGxwdHwFELhM1LxFSQlBzRicpL/xAAZAQADAQEBAAAAAAAAAAAAAAABAgMABAX/xAAjEQACAgMAAgMAAwEAAAAAAAAAAQIRAxIhMUETIlEyYXEE/9oADAMBAAIRAxEAPwB0lqFuNY3yMU2jjXwkHJzQ4GgDA5qZXKjjO+a8tnWkQy2+MaR3JqJbVY8IFwNW2O2aNDE6sHtkVrX4mMDg71qMRSRMqnSM42/GuIYdYbxMAlcE0XrLID/uH41A740+lHWwpg8NtpuSwGBnkUWlnGqZTY5z8DWnYBNQ7V0sy4520g1tTErIMDO9YbVXUqNq6QjTvzUkLg80DAA6dGJNWAPWsmsi2BnnFGzOF3HrWmcMCRwDWN4Fz25UHbfnPr612inOyg42NGuw0+b4VAGCvkbA0aRrZy8CyHzDnFStCHjwea58UayDzUwmC42rUYi8DDBjzXZgDD4128inGTWFxpBHFYxBJb4cuDjaujHrO+MVIzj5VpHGwoBOBAAfjUF1aJICGAPuNGkjn0rGANA1Fak6emrIU6D95fX61unRUZIxWVrQaNQrqTffG2aIijGAcDc0OjaTuMYNFQkBOc75rCmR2+N07bYraW+hiRutEA6SCODvUzKO3BobBoE/pQI8DvxQLxtrdWxvgr7qbggAAnjNB3IAnwOeaKkagCQN4eNJ1DnPBNcxJqhAUZyNvrRTgqrNtkEHFStCqAMp2HI9aawAqyt4ZI5G2DXH9QIxhpFUkEbtufdSfq3UpoWeONAMt5njOQRjP70nsLKS56iLiWQqijVn/FHi6w0/RcLi4UlsNkA4OD3713BLqGf7SO9BPDIsMcdoVVSMgaeayykuI2YXSZQ7a/1xSpp+A0/YzkyyYHJzig5lbwWyp23X1osghQo57GusYGWGVopgaFDuSSAxJ0gjvisFw8iDScsvr6VPeQDzPGWypGR6CoPBaKQOPKAc09gCyxyo3GRnY0RHxjfG3NbtlEkagDIPBqeO32yOQDSNjIGGzaG77Z9K5QkSlWzlaIngwQx71FMh1q6+uDQsJLG6n5+tdruF+OKGAIK47Hipo8FW3+FIw0baPc7fjWVI7Dc1lKYBhXOc/wDGaPtuWQjYb/GgLdw0xQEYYHf5Yom3kUl9+Dp/n0p2IMHGFHqGFceKvhHfJBwa5aT/ALfJ31bUCrsIyCc6h2HelCgnxcuANyTxUFxJqbWvIOKHDkuPNuK0rYLITkYzTJGO7+YQ2Us5QsyoW0jG+O2/rSi+muruxV42MB05OrBAxuRkU4nWF7UrMQI9Hnz6fzFec+0PXBIG6TYXRVEbVc3AUIukbaOdsZGT67U0YuXg2yQ7E8ckv2YLlWGVXzeu5/aiIEYJqY5Vhjb86C6W9tB0qKLpkguWPkJTG5I52+X41YukWcUUMVu0xkmCAgY4B4/Kp5KRWAnk6jcT3OY8pECclgR3praXbSLJDIyOyqWCnBzjt8aiXpijqFzHExBRR4St5gpxnf1G+KrccsnSNT3kGjqV1IwyQSFHr+NR/wAK8fktnTr1bjUgV0wNQVs8fOmcUit5ScHG4qodV/qYEjnWULKnmKb6ZB6A9qc9GvYOoW0c1vICfunJ3U+/0rpXVZzPjGLREXGUXOrY+8VOLNHYnfDgE47++twDyrnf4d6MiUAg52rWAGtrXSFUNxtij0iA7DLDJrFXExUj0qdFHhj0C4oGBpYlaIEjv+maEWPCsH7fjTGUHwpMf27j6f5oaRQY2H+7g0DICljAkZQO2PnUKMVLrnjce+j5cMsjf3A7UsmYrhvXVj6cfjQHQSCCpOcmtUG1xiIepUE5rKFGbBrFirZwf9QjftRFtL9qwJ/v0igJUeJJpozjccjYHSR+ZFT+YPGU8paUONsEjG5pyY2MmqFl2zqIHx3oWKQMQOCM4HpUUjfZ5JyNR352zxWD76suRp2Bzz+/pWSNdEwRRInvoUki4ZdxnamAH2rKq7YyuDyD/DUUiI7FxnON6bgBL7V3M0PQ7jwCFcjdscDGdvpXkdt1G5tmnaAAyXMZiYnc4J3+tev+1LQf9AuvEU6gmF95NeVdDEa9Vt3uYp3gjfU4hXUwHrjuBztvXVhrSyU+yo9G9junp0axFtPpNwR4jsg4Y7Y+QxRUivd3OLeExSDT5o30+Hjg7DLHJPcDAHvqHolzb36SHp4uCFOWleIhCPQNx8uf0tXTbdYIXlniBmLfZqvJAG/yGa87JKWzOyOtCy4LWXWFnkl1QyR+E5c/3j7p+PI+lM54Iry3Ed1ChZPMjMvcUHeWaNL9qQSJBIqDjfj8KYkEWqqOAuAfhUJWV4Vb2qh/8Q7oucKSB6GvLuldXv8Ao9+bm1kYaiNUbfdb3EV7J1WEN0ySP0Q815H1G0EcxAHlY7e4813/APJL60zlzLto9f8AZrrFt1rpqz27ASDGuI/eRhyP807jZWBHYDb8q8Q9nuoXPSr1ZoMkDGtBtqxt9cV6x0PqkXULWO5hOVO+c+7fPw3o5IavgIux6xGpTnDY3/nyolP9I5G3PyoR2U4ZeFODU8TDQCx7EZFSToJ0+PDIzkhSPjUWgeHqYDZQ30rnUfEIxkb494rlnwAC2zDT9cftQs1cBrnyQSdySRn1pNdPm3RuwJ/n4U3vX0BFb7uSCffSu4iZo3hXBOfL6YNYILKfKd+V71lRXrf088ER3ymlvcRv+tZTpCthFvw4ceYkHB3B3z+1dvACI4xg4YnJ75OcfjSqS7Jt5CNihHG2M/DvW06qVmCMmpcjJHIPrTaCbDe5QiNdBBKHb31uKUMoBULt5T7/AEriJ2mk8MHztvsc4OD+wrLlApVUJzggY4GOx9/FDgQuORHRScq2Nj332/MCtuyhVxkgjGx7EUqiumtrlI5cNrwC2Dn3jP8AN6Jnl8JQmgqMnQfX+elK+BE3tw+LCPSf9Tcmq57A2Jm9oICrIhiJkZm5HpirH11kvBZQuwAMuN+T61MnTbOwuoWgjAIGWOfwP0JrqhNRx0SkrkXq3sDH0r+nSKKREdmjCYUbknjPvoC+6k8NvGtunhq7hHkIAI9MfPvQPT+o3NzY2sTzMp0anHBPejbpYU6ZrnOyASNnvjfP4fjXJkVu0WhxUwaCBRklfMnA4yB6UVcSLDEB/tyT7xjI/Sg7q6ijWKXxMHKtkn08x/MflVc6918yX8NtAQqPIRt6BSP2qaxtlHkGM13/AOPd3OWCgn4kBh+JrzzqGXu3iUbA5U+4H/NWhrxTDdwjkoNI+C4FIpUV4nlG5PHu2H7GrwWojdifZJc6QMvXfTepz9Lvx4DFUkOdOogN6+7tXExUPpZgOSPWhSomKY5R+PdXSlfkm2evWHtLG9vE1xDJnG7IQwz+FObHqdpeqy28kZwASpOD9DVB6X053sFKSlWC8djUcsVzbSA6nDg5V1Hf9K4b7R06cs9PlcFl/t22FA3s6JpTjO+o/lVa6V12ebTDd6o5QMahjSw/Q0bPM80hmkfZCCdP1A/n60aE8BvV3IiOk4O5AO+aHhuFKSRMRrVQVOOa5uS8ucKSx39wGe/yH5etKL26MdmxUEeG2HmfAUj0z8hsN/0ZRbFbJGmVmeRiAyAuuc8nn8hWVXJ+syW0pEQZmkBOqRMgA+71x76yrKDJuQRaXDq8sZOpRgZ4zqB/xUtkYrmV/wCoHh48vm9QccfztSTptwkl3EZXASUoAfV1zg/hxTky+LYNIqLpZyW1DPmzz+H61WSJoYdNvljubt5HkwgVwxH3Q3w+P0oo9QD22nygM+cjjI/u9f8ABquRODCsayaATnSQcltgo9MDPFdXMihVkwNWoEY/uBH7fkPSoygh4sLvrnWviOclfKQBjG3I+ufjmib29l0oyjKkqyYG57D5kmq3Nf5CxowMTqdwQdTH193et3twbXq/UD4n2ZOkKm2gADJG+dtgDsdzjim+OzOdBHWeo6J4nZgwtzgnIxqO37fSma9VW4Eh1nZNPzwP0NVH2glUdKjaNhq1AlSdRHfH70u6T1Qxws8zkldgKvHGnEk5Uz1lL6KxbXKys8oVQg7elIfaD2glvraKOBtIM6s7Z2YDGkfDv79qqkXVZriQzXDnJU6R6+v7VBLcmQai532THx5qXx9KbFh6z1qe4voY4G+yUkqDwx7fLvSy1nd7xpBqd4kIT3se/wBcGlZvNUjacnQpAx7thVr9ienf1E008gIAXkjuf+KzWkbCvs6ICGgsPFkyZGX133IH70LcT6YST5VjjH11ftUvtJeJFeNFGRpDBQD207f5qvXl087yxI3kOkbUkIuXRpSrhzdzKZHyd1XTt/PfTz2Ysf6kCRgMDKtnt/Diq74ebWORtyxIY/ICr97OwrGbhLR4zqcFctwMA/tVM0tY8Bj7IslhAIYljC8DGPSprm28SPSyg7bY91LrLqCanikASWOXScnYDsaZxdQt5xK6nyxjBPHm/mK8+nZ17C2awZFfVgAAsCe1H9NdpYoxOFWTIwRsrb7/AJfjUF7IbhGW2lRoioCleS/JbfsB+tSuz21iWnwDGeV9c4p1+CPvQ26ifw/BiDBzltu533/Kqr1m7trWf+iZ1PgKAkIcecnnbOw2GSdzvzT2TqspQafvHbcnO++M/DPekcnQPHI/qF8FpS2dZCF1P9vbY1aHPJzy/ool9f3F1eybZ4yVOxPH3j25/OsqxX3s+l5dQo1xIsQA+ziTGexJ2xx+VZXUskESUZFdhvWjUqp1AkbMByP+aMh6tJ4b6iwV314U7d9qRh2VcKAD6neszJjngdxXW4RIbMdRdQKuHAwwHYfP9K099IoXYAKcqOADtxQMVtdStqEbop31MpAPf+Yo+z6XJew6YpYzNHnyHy4XknJxnmkcIBUpElnLNf3MCW1uz3SYYKoGMKdm+tWQ+zeiC86n1uVWMaGV4IpApxzgnGd9uKj9jGt7HySyhLwBohk7Eayc7/8A2x8qI9o+qx9QtLzpiho5J08NXkZmIYbg7ZGMgfKuWcm56x8F4rlsq83Q5PaO+C27xWZlYeGmk6Y17Z35x+tWG2/9KrVYF8XrUwc8ZgAB+Wc4qb2b6JcWbzSThZEBOl45SW9ecADZQNv1qxvfvJHlw7rGufDXdnwMbY2xnHH1oZc0rqI0IR8spEnsRdrMYxPEVCbuCcMfTjikvX+mjpdxHbxsXcJ5yBsDtnH1xXpLXUytmHLeXCQqfMR327b1V7qEXUjS37LCCCgxHqZu2xBORuew55pMcpt/YeWtcKVZRs0ixLgM3c1ebnrlv7L9HgRfPM8eGMZHJ7H31XpOjCScSmbw4xguZpApGO/lG2w74rqTo8P2mLkXmo4G+Rq35+OMfOrzgpfyIqTXgQdQ6y3UJnlEQUuRzyAKWx30oIxgNvv76eS9FkiIlaERqc4LYXVj3UK1lFHq1ffzuMcVaMIpcJtu+gMUspJVN87AMaNsOqXtg+q2mZc/ewe1TjpyoqyKhIPY5BX4jtUa9PVh/pyL8jvRcUwbNMIh9o7yIymNgPEbLb5zXUPtPdxhkZvERxhgTj8RQD2cYOGyN8HfGKkg6YJpUESyuM4GBmh8UfwO8v0scHtY7XBK6oZHGPPggjn+c81ZbL2gPVICjMY5sZJIJQ45yRnT2x2+HalwWVqYW8WV/FjA0qW06RwMZHmxkelbna1KKItLFicsZtORng+6pvDAdZJFzW/vHjnLxAGHJDxANqGCdiOe9KD1ufWuYysUqhkYJjtn54pTazxxjbqkUWd/BgVsHtucb99iTQ8slq10GmguETUcTqd5AOCdsH49/lQWNL0Zyb9jO56lPFIdbJITjSdO305B91ZUY6sgUQJaymIDyZh8Qr9R7/4NqytS/A9/RdF0y6a5EDW7h3UlRqAxsTnJ27U2venPaYIhuE8kb4WQOFbAyCPTOfTj5Uzt7iWW7aOZ7lJmHhlLgKVjbOQQDjBP/wAcZHfgjdz7LdVvmMlnePIF843G3fy4wT39/wAeaf5O9YuiXgR29/fPMGCO7HJZFhBV12J1A7dv1rvqPVzGrxW1i1q2BrcZzjORjPA/zxQj9LuLaeRWnlSe3IOnQy4PuY4Gd8Y2J9K3DPeStJYxeHMkqlTCYTs33gcHjJUcbDJ9aZxV2Kjmxk6lOdNrHMy45RNWQPUnmptd5qVo5P6ePGlnWdGYL31YwT8N6ItYeoGGB7W3hRywbAmjw+DthcEg8DIP0oqGwEqzASN4kqESQvMJEV9ti2ktnbnc77etK5RGUWN+jeHFZSxo0N1HOg8SPJJYkdifKNg309K3biwgKueqpEoGSryCQgceUqP1J43qGK3ihDy+M7u765I5Y1dScknc6TgZO2frUD2tj1DXLNb24keQrGqjzEAZ3xsT+NQpNlapDGbr/TT4kdxOskJUAjWDr93r/wDoVXr3rEMGodPa1kj0lMGHcqc5B7Hmu73pECRYkjYSY8mCFJ49Ac+nHek0yLHc+EyWqKNg0kh3x3wDn8Ktjx4/RObl7MimmuJCmINJH9qY/Hv22/CiobTqUaA2k8xLMAMJp1Accnj3Uzs7K0W0VzPcyCTzsYoggOB22z2FGJB/UxZjtnIH3RI+jv6UZTSAsbFJt+ouiwXE58x+6ZFUb/DejIrbp1idFxHE0pwdKvqZW7ds96NuJXtbYLDFbqUjYnxF+zAA+8cHJqHpT3qYu7pIpJTvbSrsugjdj3pNuDqCsy76i4jnNr0fQ3JMse7E87ADbvn4c1WJv+o4YvqiUbHTpUd/rTzqc3Up71I5ZfHjwWEcDeGuewY7n+c0JBY2YZhcXTGaMfaDVlYz6A8n/mqQkkhZxsr7ZYZLajyf+ayPUcLHq1+4nf5U0uuodNTEdvYGRVbdpWxqHpgc/Wg5epzPJ5QEjTJSKNdCj46cE/PNW2b9EqS9kTQEyASqwc9mXnO1Mm6a8iL4SREhfvKMjOO+/O45oE3M19JHETEjcIB5Qf0ojqFvfdOTM+k6mxhScHY+nuFBsKOXthbzqbp10EDeLvsMgAD30yEVujIRIEOCV8V9WodyBvkVqwtI26dFcyLOjTOsZWBQNZP3skjZds/PHatx22Gj8WEQFxjSsjuT67ccGpSnfspFEkLRwwu6zS3GADoHkX3AZwKyuJunQAM6TOoiPmjKjLe/J/asqfGP0sRN3JGJIZhdxMPDEahjHjuvGV77fn3fWFtOceHaaJXBB+0IG3Ddt/fsarvTp5pOpTCSWRtOnTqYnHHFMbIkdWlUHALxkj1ORXPJDIYnpNmH8R7S1juAuXmiCl88n7p7+/tSyT2Rs/6qOe3Ed06MJAk8zQhSDkYVQCTnB9KY+0UjjWA7AKwA343NQGWQ2y5dj5e595pFOS6mGkxbe201jDH/AE3T2mdyGJQppDHsCTnHw3x9aTyXHWL0MsFuLS4Q5MJChZAe+edQ5xtnnerTYyyPBdl5HY4O5bPpQN0qvfya1DefO4zTwyfqC4lbWw6tNL/3VzGsYH3o8OXG58vrya1B0SRZ8K8wjU6mk1439NI71Yb5VaBgygglsgjnzVE//tFHbJGPnVPlk0JojmSPxC0VuyDvl31b+/8AHal3hNayrAzR6ZARp07k+mnvTOIDJbG+RvSeyZn6x1RnYs0atoJOSvlXj0rKXkLQS/Up4JHV0jLIuBqBXAPuycfhXUfWHUxg2sTRqRkRODnakIP26H1GT7zmmKopj3UHLDO1UlBUIm/RHd9SumlcJHIi5/1iMlPlk1turwII2lu5rmVeVcaVPy3499b6iAlsdA07HjaoHVRJaKFAV0ywA+8cjmmjGLQrbRx1jqL3yJBAI8YDalYpg5z60ritXmRpJHwQcebn4k+lS3IH/TpDjfxhv8xTCFFETYUbse3vFUVRXBH9usXNZ+GmkmNsjJ0KTt8SMdxxR0YRLbRNHGSgwDJINQGOw9fjTeyt4Jb2SOWGN0CbKyggcdqW2gCG9CAKFbCgbY84G1bZtWFRSIrXoT3l1iDxIlA1NrU4A2PPw33/AM1bLaZBFEJYGaNANTSfebjBOQNvfQfQnczSIWbSEQhc7DJpvA7G3ZixJAfBJ+Fc+SbZSKRuG1sZkfwESGW482OPdnBBI93PwofwIYbh3ZZBcaA+ZnJV87DGBjHOKAt3Y3PTyWJ1GPO/OWXP5n61aUhieEM8SMyGTSSoJHHFc0pOLotFWrEF7KlvfMRH4itGFAC4Utjc/Hn9qyoetgRoNAC+cjbbbBrKaMFJWByaP//Z" alt="product-image" class="w-100 mt-0 mb-0 p-5"></a>
                                         </div>
                                         <div class="card-body w-100 p-0 text-center">
                                             <h2 class="mt-2 mb-1"><a href="/payment/single-product" class="text-black fw-700 font-xsss text-dark lh-26">Textured Sleeveless Camisole</a></h2>
-                                            <h6 class="font-xsss fw-600 text-grey-500 ls-2">$449</h6>
+                                            <h6 class="font-xsss fw-600 text-grey-500 ls-2">10,000원</h6>
                                         </div>                                
                                     </div>
                                 </div>
 
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="card w-100 border-0 mt-4">
-                                        <div class="card-image w-100 p-0 text-center bg-greylight rounded-3 mb-2">
-                                            <a href="#"><img src="https://via.placeholder.com/300x300.png" alt="product-image" class="w-100 mt-0 mb-0 p-5"></a>
-                                        </div>
-                                        <div class="card-body w-100 p-0 text-center">
-                                            <h2 class="mt-2 mb-1"><a href="single-product.html" class="text-black fw-700 font-xsss text-dark lh-26">Adjustable Shoulder Straps</a></h2>
-                                            <h6 class="font-xsss fw-600 text-grey-500 ls-2">$449</h6>
-                                        </div>                                
-                                    </div>
-                                </div>
 
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="card w-100 border-0 mt-4">
-                                        <div class="card-image w-100 p-0 text-center bg-greylight rounded-3 mb-2">
-                                            <a href="#"><img src="https://via.placeholder.com/300x300.png" alt="product-image" class="w-100 mt-0 mb-0 p-5"></a>
-                                        </div>
-                                        <div class="card-body w-100 p-0 text-center">
-                                            <h2 class="mt-2 mb-1"><a href="single-product.html" class="text-black fw-700 font-xsss text-dark lh-26">Neck Strappy Camisole</a></h2>
-                                            <h6 class="font-xsss fw-600 text-grey-500 ls-2">$449</h6>
-                                        </div>                                
-                                    </div>
-                                </div>
 
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="card w-100 border-0 mt-4">
-                                        <div class="card-image w-100 p-0 text-center bg-greylight rounded-3 mb-2">
-                                            <a href="#"><img src="https://via.placeholder.com/300x300.png" alt="product-image" class="w-100 mt-0 mb-0 p-5"></a>
-                                        </div>
-                                        <div class="card-body w-100 p-0 text-center">
-                                            <h2 class="mt-2 mb-1"><a href="single-product.html" class="text-black fw-700 font-xsss text-dark lh-26">Scoop-Neck Strappy</a></h2>
-                                            <h6 class="font-xsss fw-600 text-grey-500 ls-2">$449</h6>
-                                        </div>                                
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="card w-100 border-0 mt-4">
-                                        <div class="card-image w-100 p-0 text-center bg-greylight rounded-3 mb-2">
-                                            <a href="#"><img src="https://via.placeholder.com/300x300.png" alt="product-image" class="w-100 mt-0 mb-0 p-5"></a>
-                                        </div>
-                                        <div class="card-body w-100 p-0 text-center">
-                                            <h2 class="mt-2 mb-1"><a href="single-product.html" class="text-black fw-700 font-xsss text-dark lh-26">Butler Stool Ladder</a></h2>
-                                            <h6 class="font-xsss fw-600 text-grey-500 ls-2">$449</h6>
-                                        </div>                                
-                                    </div>
-                                </div>
 
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="card w-100 border-0 mt-4">
-                                        <div class="card-image w-100 p-0 text-center bg-greylight rounded-3 mb-2">
-                                            <a href="#"><img src="https://via.placeholder.com/300x300.png" alt="product-image" class="w-100 mt-0 mb-0 p-5"></a>
-                                        </div>
-                                        <div class="card-body w-100 p-0 text-center">
-                                            <h2 class="mt-2 mb-1"><a href="single-product.html" class="text-black fw-700 font-xsss text-dark lh-26">Butler Stool Ladder</a></h2>
-                                            <h6 class="font-xsss fw-600 text-grey-500 ls-2">$449</h6>
-                                        </div>                                
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="card w-100 border-0 mt-4">
-                                        <div class="card-image w-100 p-0 text-center bg-greylight rounded-3 mb-2">
-                                            <a href="#"><img src="https://via.placeholder.com/300x300.png" alt="product-image" class="w-100 mt-0 mb-0 p-5"></a>
-                                        </div>
-                                        <div class="card-body w-100 p-0 text-center">
-                                            <h2 class="mt-2 mb-1"><a href="single-product.html" class="text-black fw-700 font-xsss text-dark lh-26">Butler Stool Ladder</a></h2>
-                                            <h6 class="font-xsss fw-600 text-grey-500 ls-2">$449</h6>
-                                        </div>                                
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="card w-100 border-0 mt-4">
-                                        <div class="card-image w-100 p-0 text-center bg-greylight rounded-3 mb-2">
-                                            <a href="#"><img src="https://via.placeholder.com/300x300.png" alt="product-image" class="w-100 mt-0 mb-0 p-5"></a>
-                                        </div>
-                                        <div class="card-body w-100 p-0 text-center">
-                                            <h2 class="mt-2 mb-1"><a href="single-product.html" class="text-black fw-700 font-xsss text-dark lh-26">Butler Stool Ladder</a></h2>
-                                            <h6 class="font-xsss fw-600 text-grey-500 ls-2">$449</h6>
-                                        </div>                                
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="card w-100 border-0 mt-4">
-                                        <div class="card-image w-100 p-0 text-center bg-greylight rounded-3 mb-2">
-                                            <a href="#"><img src="https://via.placeholder.com/300x300.png" alt="product-image" class="w-100 mt-0 mb-0 p-5"></a>
-                                        </div>
-                                        <div class="card-body w-100 p-0 text-center">
-                                            <h2 class="mt-2 mb-1"><a href="single-product.html" class="text-black fw-700 font-xsss text-dark lh-26">Textured Sleeveless Camisole</a></h2>
-                                            <h6 class="font-xsss fw-600 text-grey-500 ls-2">$449</h6>
-                                        </div>                                
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="card w-100 border-0 mt-4">
-                                        <div class="card-image w-100 p-0 text-center bg-greylight rounded-3 mb-2">
-                                            <a href="#"><img src="https://via.placeholder.com/300x300.png" alt="product-image" class="w-100 mt-0 mb-0 p-5"></a>
-                                        </div>
-                                        <div class="card-body w-100 p-0 text-center">
-                                            <h2 class="mt-2 mb-1"><a href="single-product.html" class="text-black fw-700 font-xsss text-dark lh-26">Adjustable Shoulder Straps</a></h2>
-                                            <h6 class="font-xsss fw-600 text-grey-500 ls-2">$449</h6>
-                                        </div>                                
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="card w-100 border-0 mt-4">
-                                        <div class="card-image w-100 p-0 text-center bg-greylight rounded-3 mb-2">
-                                            <a href="#"><img src="https://via.placeholder.com/300x300.png" alt="product-image" class="w-100 mt-0 mb-0 p-5"></a>
-                                        </div>
-                                        <div class="card-body w-100 p-0 text-center">
-                                            <h2 class="mt-2 mb-1"><a href="single-product.html" class="text-black fw-700 font-xsss text-dark lh-26">Neck Strappy Camisole</a></h2>
-                                            <h6 class="font-xsss fw-600 text-grey-500 ls-2">$449</h6>
-                                        </div>                                
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="card w-100 border-0 mt-4">
-                                        <div class="card-image w-100 p-0 text-center bg-greylight rounded-3 mb-2">
-                                            <a href="#"><img src="https://via.placeholder.com/300x300.png" alt="product-image" class="w-100 mt-0 mb-0 p-5 mt-4 mb-4"></a>
-                                        </div>
-                                        <div class="card-body w-100 p-0 text-center">
-                                            <h2 class="mt-2 mb-1"><a href="single-product.html" class="text-black fw-700 font-xsss text-dark lh-26">Scoop-Neck Strappy</a></h2>
-                                            <h6 class="font-xsss fw-600 text-grey-500 ls-2">$449</h6>
-                                        </div>                                
-                                    </div>
-                                </div>
                                 <div class="col-lg-12 mt-3 mb-5 text-center"><a href="#" class="fw-700 text-white font-xssss text-uppercase ls-3 lh-32 rounded-3 mt-3 text-center d-inline-block p-2 bg-current w150">Load More</a></div>
                             </div>
                         </div>

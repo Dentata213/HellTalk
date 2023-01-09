@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!-- 
 <script src="https://js.bootpay.co.kr/bootpay-4.2.7.min.js" type="application/javascript"></script>
 <script type="module" src="${path}/resources/js/payment.js" data-id="${id}" id="thisscript"></script>
+ -->
   <!-- main content -->
         <div class="main-content bg-white right-chat-active">
             
@@ -35,6 +37,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                            
                                                 <tr>
                                                     <td class="product-thumbnail text-left ps-0">
                                                         <img src="https://via.placeholder.com/70x100.png" alt="Product Thumnail" class="w75 rounded-3">
@@ -61,88 +64,18 @@
                                                     </td>
                                                     <td class="product-remove text-right"><a href="#"><i class="ti-trash font-xs text-grey-500"></i></a></td>
                                                 </tr>
-                                                <tr>
-                                                    <td class="product-thumbnail text-left ps-0">
-                                                        <img src="https://via.placeholder.com/70x100.png" alt="Product Thumnail" class="w75 rounded-3">
-                                                    </td>
-                                                    <td class="product-headline text-left wide-column">
-                                                        <h3>
-                                                            <a href="#" class="text-grey-900 fw-600 font-xsss"> Jogging trousers</a>
-                                                        </h3>
-                                                    </td>
-                                                    <td class="product-p">
-                                                        <span class="product-price-wrapper">
-                                                            <span class="money text-grey-500 fw-600 font-xsss"><span class="font-xsssss">$</span> 49.00</span>
-                                                        </span>
-                                                    </td>
-                                                    <td class="product-quantity">
-                                                        <div class="quantity">
-                                                            <input type="number" class="quantity-input open-font fw-600" name="qty" id="qty-2" value="1" min="1">
-                                                        <div class="dec qtybutton">-</div><div class="inc qtybutton">+</div></div>
-                                                    </td>
-                                                    <td class="product-total-price">
-                                                        <span class="product-price-wrapper">
-                                                            <span class="money fmont"><strong><span class="font-xsssss">$ </span>49.00</strong></span>
-                                                        </span>
-                                                    </td>
-                                                    <td class="product-remove text-right"><a href="#"><i class="ti-trash font-xs text-grey-500"></i></a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="product-thumbnail text-left ps-0">
-                                                        <img src="https://via.placeholder.com/70x100.png" alt="Product Thumnail" class="w75 rounded-3">
-                                                    </td>
-                                                    <td class="product-headline text-left wide-column">
-                                                        <h3>
-                                                            <a href="#" class="text-grey-900 fw-600 font-xsss"> Grey blue leather backpack</a>
-                                                        </h3>
-                                                    </td>
-                                                    <td class="product-p">
-                                                        <span class="product-price-wrapper">
-                                                            <span class="money text-grey-500 fw-600 font-xsss"><span class="font-xsssss">$</span> 49.00</span>
-                                                        </span>
-                                                    </td>
-                                                    <td class="product-quantity">
-                                                        <div class="quantity">
-                                                            <input type="number" class="quantity-input open-font fw-600" name="qty" id="qty-3" value="1" min="1">
-                                                        <div class="dec qtybutton">-</div><div class="inc qtybutton">+</div></div>
-                                                    </td>
-                                                    <td class="product-total-price">
-                                                        <span class="product-price-wrapper">
-                                                            <span class="money fmont"><strong><span class="font-xsssss">$ </span>49.00</strong></span>
-                                                        </span>
-                                                    </td>
-                                                    <td class="product-remove text-right"><a href="#"><i class="ti-trash font-xs text-grey-500"></i></a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="product-thumbnail text-left ps-0">
-                                                        <img src="https://via.placeholder.com/70x100.png" alt="Product Thumnail" class="w75 rounded-3">
-                                                    </td>
-                                                    <td class="product-headline text-left wide-column">
-                                                        <h3>
-                                                            <a href="#" class="text-grey-900 fw-600 font-xsss">Dress with belt</a>
-                                                        </h3>
-                                                    </td>
-                                                    <td class="product-p">
-                                                        <span class="product-price-wrapper">
-                                                            <span class="money text-grey-500 fw-600 font-xsss"><span class="font-xsssss">$</span> 49.00</span>
-                                                        </span>
-                                                    </td>
-                                                    <td class="product-quantity">
-                                                        <div class="quantity">
-                                                            <input type="number" class="quantity-input open-font fw-600" name="qty" id="qty-4" value="1" min="1">
-                                                        <div class="dec qtybutton">-</div><div class="inc qtybutton">+</div></div>
-                                                    </td>
-                                                    <td class="product-total-price">
-                                                        <span class="product-price-wrapper">
-                                                            <span class="money fmont"><strong><span class="font-xsssss">$ </span>49.00</strong></span>
-                                                        </span>
-                                                    </td>
-                                                    <td class="product-remove text-right"><a href="#"><i class="ti-trash font-xs text-grey-500"></i></a></td>
-                                                </tr>
+                                                
                                             </tbody>
                                         </table>
                                     </div>
-
+                                    <table>
+									<c:forEach var="list" items="${lists}" varStatus="loop">
+										<tr>
+											<td>${list.product_no}</td>
+											<td>${list.product_quantity}</td>
+										</tr>
+									</c:forEach>
+									</table>
                                     <a href="#" class="update-cart bg-dark float-right text-white fw-600 text-uppercase font-xssss border-dark border rounded-3 border-size-md d-inline-block w175 p-3 text-center ls-3">Update Cart</a>
                                 </div>
                                 <div class="col-lg-4">

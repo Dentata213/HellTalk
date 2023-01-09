@@ -12,9 +12,7 @@ public interface PaymentService<T> {
 	//전체 결재 목록 조회
 	List<T> selectReceiptList(Map map);
 	
-	
-	//장바구니 조회 및 저장
-	T selectOneCart(Map map);
+	//장바구니 저장, 수정, 삭제
 	int insertCart(Map map);
 	int updateCart(Map map);
 	int deleteCart(Map map);
@@ -25,4 +23,9 @@ public interface PaymentService<T> {
 	int updateReceipt(Map map);
 	int deleteReceipt(Map map);
 	
+	//장바구니 존재여부 조회
+	boolean isEmpty(Map map);
+	
+
+		
 }

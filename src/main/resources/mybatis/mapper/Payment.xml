@@ -5,7 +5,7 @@
 <mapper namespace="mybatis.mapper.Payment">
 
 	<select id="selectCartList" parameterType="Map" resultType="PaymentDTO">
-			SELECT * FROM SHOPBASKET WHERE U_NO=#{U_NO}
+			SELECT PRO_NO as product_no,CART_QUANTITY as product_quantity FROM CART WHERE U_NO=#{U_NO}
 	</select>
 	
 </mapper>

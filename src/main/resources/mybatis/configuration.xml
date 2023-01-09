@@ -10,7 +10,7 @@
 		<!-- 예시 <typeAlias type="com.kosmo.restapi.model.UsersDto" alias="usersDto"/> -->
 		
 		<typeAlias type="com.helltalk.springapp.service.CaldDto" alias="CaldDto"/>
-		<!-- typeAlias type="com.helltalk.springapp.models.PaymentDTO" alias="PaymentDTO"/ -->
+		<typeAlias type="com.helltalk.springapp.models.PaymentDTO" alias="PaymentDTO"/>
 		
 	</typeAliases>
 
@@ -19,6 +19,7 @@
 		<!-- 예시 <mapper resource="mybatis/mapper/example.xml"/> -->
 		
 		<mapper resource="mybatis/mapper/Cald.xml"/> 
-		<!-- mapper resource="mybatis/mapper/Payment.xml"/ --> 
+		<mapper resource="mybatis/mapper/Payment.xml"/> 
+		
 	</mappers>
 </configuration>

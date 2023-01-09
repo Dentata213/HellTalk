@@ -12,10 +12,14 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.helltalk.springapp.models.PaymentDTO;
+import com.helltalk.springapp.service.PaymentServiceImpl;
 
 @Controller
 @RequestMapping("/payment*")
@@ -27,13 +31,18 @@ public class PaymentController {
 	private String private_key;
 	@Autowired
 	private RestTemplate restTemplate;
+	@Autowired
+	private PaymentServiceImpl service;
 	
 	
 	@RequestMapping("/mycart")
-	public String mycart() {
-		
+	public String mycart(@RequestParam Map map, Model model) {
+		List<PaymentDTO> lists = service.selectCartList(map);
+		model.addAttribute("lists", lists);
 		return "payment/cart.helltalk";
 	}
+	
+
 	
 	
 	@RequestMapping("/single-product")
@@ -48,6 +57,13 @@ public class PaymentController {
 		
 		
 		return "payment/checkout.helltalk";
+	}
+	
+	
+	@RequestMapping("/add-cart")
+	public String addcart(@RequestParam Map map,Model model) {
+		//service.insertCart(map);
+		return "payment/cart.helltalk";
 	}
 	
 	

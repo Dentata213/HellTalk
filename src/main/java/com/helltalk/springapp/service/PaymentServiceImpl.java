@@ -12,7 +12,7 @@ import com.helltalk.springapp.dao.PaymentDAO;
 import com.helltalk.springapp.models.PaymentDTO;
 import com.helltalk.springapp.models.PaymentService;
 
-//@Service
+@Service
 public class PaymentServiceImpl implements PaymentService<PaymentDTO>{
 
 	@Autowired
@@ -20,7 +20,7 @@ public class PaymentServiceImpl implements PaymentService<PaymentDTO>{
 	
 	@Override
 	public List<PaymentDTO> selectCartList(Map map) {
-		List list = dao.selectCartList(map);
+		List<PaymentDTO> list = dao.selectCartList(map);
 		return list;
 	}
 
@@ -30,16 +30,10 @@ public class PaymentServiceImpl implements PaymentService<PaymentDTO>{
 		return list;
 	}
 
-	@Override
-	public PaymentDTO selectOneCart(Map map) {
-		
-		return null;
-	}
 
 	@Override
 	public int insertCart(Map map) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.insertCart(map);
 	}
 
 	@Override
@@ -76,6 +70,11 @@ public class PaymentServiceImpl implements PaymentService<PaymentDTO>{
 	public int deleteReceipt(Map map) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public boolean isEmpty(Map map) {
+		return false;
 	}
 
 }
