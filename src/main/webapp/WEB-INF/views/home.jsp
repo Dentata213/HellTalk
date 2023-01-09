@@ -1,23 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sociala - Social Network App HTML Template </title>
+    <title>HellTalk - HealthTalk for Everyone! </title>
 
-    <link rel="stylesheet" href="resources/css/themify-icons.css">
-    <link rel="stylesheet" href="resources/css/feather.css">
+    <link rel="stylesheet" href="${path}/resources/css/themify-icons.css">
+    <link rel="stylesheet" href="${path}/resources/css/feather.css">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="resources/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="${path}/resources/images/favicon.png">
     <!-- Custom Stylesheet -->
-    <link rel="stylesheet" href="resources/css/style.css">
-    <link rel="stylesheet" href="resources/css/emoji.css">
+    <link rel="stylesheet" href="${path}/resources/css/style.css">
+    <link rel="stylesheet" href="${path}/resources/css/emoji.css">
     
-    <link rel="stylesheet" href="resources/css/lightbox.css">
+    <link rel="stylesheet" href="${path}/resources/css/lightbox.css">
 
 </head>
 
@@ -206,9 +207,9 @@
    
 
 
-    <script src="resources/js/plugin.js"></script>
-    <script src="resources/js/lightbox.js"></script>
-    <script src="resources/js/scripts.js"></script>
+    <script src="${path}/resources/js/plugin.js"></script>
+    <script src="${path}/resources/js/lightbox.js"></script>
+    <script src="${path}/resources/js/scripts.js"></script>
 
     
 </body>
