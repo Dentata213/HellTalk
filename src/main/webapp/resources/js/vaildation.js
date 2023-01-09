@@ -39,13 +39,18 @@
         var regExp = /(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,}$/
         var regExpEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/;
         var regExpPhone = /^\d{3}-\d{3,4}-\d{4}$/;
-
+		
+		
+		console.log("kind:",kind);
+		console.log("gender:",gender);
+		
+		
         //성별 체크
         isGender = false;
         gender.forEach(function(item){
             //console.log("item:",item)
             if(item.checked)isGender = true; 
-            console.log(isGender)
+            //console.log(isGender)
         });
 
         if(!isGender){
@@ -119,16 +124,15 @@
             return false;
         }
 
-        kind = false;
+        iskind = false;
         kind.forEach(function(item){
             //console.log("item:",item)
-            if(item.checked)kind = true; 
-            console.log(kind)
+            if(item.checked)iskind = true; 
+            
         });
 
-        if(!kind){
-            //console.log(!kind)
-                alert("가입유형을 선택하여 주십시요")
+        if(!iskind){
+                alert("가입유형을 선택하여 주십시요");
                 kind[0].focus();
                 return false;
             }
