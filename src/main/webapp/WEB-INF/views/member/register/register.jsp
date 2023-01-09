@@ -194,7 +194,7 @@ body {
 	    </div>
 	</div>
 
-	<form action="doJoin" method="POST" class="joinForm">
+	<form action="<c:url value="/model/Success.do"/>" method="POST" class="joinForm">
 	  <h1>HellTalk에 오신것을 환영합니다.</h1>
 	  <h4 class="text-grey-500">혹은 이미 계정이 있으신가요?? <a href="<c:url value="/Login.do"/>" class="fw-700 ms-1">로그인하러 가기</a></h4> 
 	                                                              
