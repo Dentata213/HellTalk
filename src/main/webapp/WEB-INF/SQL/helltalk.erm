@@ -11,8 +11,8 @@
 	</page_setting>
 	<category_index>0</category_index>
 	<zoom>1.0</zoom>
-	<x>296</x>
-	<y>852</y>
+	<x>1185</x>
+	<y>-12</y>
 	<default_color>
 		<r>128</r>
 		<g>128</g>
@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2023-01-03 08:54:27</creation_date>
-			<updated_date>2023-01-09 17:30:25</updated_date>
+			<updated_date>2023-01-09 19:57:57</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -1290,7 +1290,7 @@
 		</word>
 		<word>
 			<id>70</id>
-			<length>5000</length>
+			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
 			<array_dimension>null</array_dimension>
@@ -1302,7 +1302,7 @@
 			<description></description>
 			<logical_name>상품사진</logical_name>
 			<physical_name>PRO_IMG</physical_name>
-			<type>varchar(n)</type>
+			<type>clob</type>
 		</word>
 		<word>
 			<id>71</id>
@@ -7346,7 +7346,7 @@
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>varchar(n)</type>
+					<type>clob</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
