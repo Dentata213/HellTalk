@@ -25,8 +25,11 @@ public class CaldServiceImpl implements CalService<CaldDto> {
 
 	@Override
 	public CaldDto selectOne(Map map) {
-		// TODO Auto-generated method stub
-		return null;
+		 CaldDto record=dao.findRecordByno(map);
+		//줄바꿈 처리
+		record.setCald_content(record.getCald_content().replace("\r\n","<br/>"));	
+		System.out.println(record);
+		return record;
 	}
 
 	@Override

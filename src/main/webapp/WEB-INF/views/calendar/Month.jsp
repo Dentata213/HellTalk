@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,30 +33,68 @@
       navLinks: true, //// 클릭 시 상단 네이게이션 동작
       businessHours: true, // display business hours
       editable: true,
-      selectable: true,
- 
-      eventClick: function(e) {
-        	$('#calendarModalView').modal('show');
+      selectable: true,      
+     
+      eventClick: function() {
+    	  //닫기 누르면 새로고침 해줘야 함...
+    		$(document).on('click','#viewModalClose',function(){
+    			location.reload();  			
+    		}),
+    		$(document).on('click','#addModalClose',function(){
+    			location.reload();  			
+    		}),
+    		$(document).on('click','.close',function(){
+    			location.reload();  			
+    		}),   	  
+    	 //※댓글 목록의 제목 클릭시-click이벤트걸때 반드시  $(document).on('이벤트명','셀렉터',콜백함수)으로
+    	//그래야 동적으로 추가된 요소에도 이벤트가 발생한다 	  
+    	  $(document).on('click','.fc-event-title-container',function(){
+    			//먼저 각 댓글 작성자의 아이디를 Ajax로 가져온다. 
+    		//	console.log('댓글번호1:',this.viewno());
+    			var this_= $(this).children(); //클릭한 제이쿼리 객체
+    			var nos = this_.html().split("_")
+    			var no = nos[0]
+    			console.log("글번호:",no)   	  			
+       
+       $.ajax({
+   			url:"<c:url value="/cal/View.do"/>",
+   			data:"caldno="+no,
+   			dataType:'json'
+			})
+			
+			.done(function(data){         			
+				$('#viewtitle').prop('value',data.cald_title)
+				$('#viewcontent').prop('value',data.cald_content)	
+				$('#viewdate').prop('value',data.cald_startdate)				
+				console.log("data",data)				
+			}).fail(function(error){
+				console.log('글조회오류!!');
+			});		   			
+    })   	      	        
+    	        
+        	$('#calendarModalView').modal('show');  
+  
+    	  
         },   
       events: [
-    	  
+    
     <c:forEach var="cal" items="${calendarList}" varStatus="loop">
      	  { //오라클에서 불러온 데이터 연동==> 여기 클릭하면 모달창 띄워서 정보 보여주기! 
      		  // 노노 이거 하루하루 목표 완료체크용으로 변경할거..
                title:'${cal.title}',
-               start:'${cal.startDate}',  //'${today}'
-               end:'${cal.endDate}',  //'${today}'
+               start:'${cal.startdate}',  //'${today}'
+               end:'${cal.enddate}',  //'${today}'
                color:'#ff9f89' , 
            	   display:'background'         	 
 	  	   },
 	</c:forEach> 
    
 	<c:forEach var="cald" items="${caldList}" varStatus="loop"> 			
-	  	{
-	  		
-          title:'${cald.cald_title}',
-          start:'${cald.cald_startDate}T12:00',
-   //       end:'${cald.cald_endDate}T12:00',
+	  	{  		
+       
+          title:'${cald.cald_no}_${cald.cald_title}',
+          start:'${cald.cald_startdate}',
+   //     end:'${cald.cald_enddate}T12:00',
           constraint:'availableForMeeting', // defined below
           color:'${cald.cald_color}' //'#257e4a'
         },
@@ -72,12 +111,12 @@
           addEventButton: { // 추가한 버튼 설정
               text : "기록하기",  // 버튼 내용
               click : function(){ // 버튼 클릭 시 이벤트 추가
-                  $("#calendarModal").modal("show"); // modal 나타내기
+                  $("#addcalendarModal").modal("show"); // modal 나타내기
 
                   $("#addCalendar").on("click",function(){  // modal의 추가 버튼 클릭 시
                       var caldtitle = $("#caldtitle").val();
                 	  var caldcontent = $("#caldcontent").val();
-                      var caldstartDate = $("#caldstartdate").val();
+                      var caldstartdate = $("#caldstartdate").val();
                       var caldcolor = $("#caldcolor").val();                 
                       
                       //내용 입력 여부 확인
@@ -98,11 +137,9 @@
                           var obj = {
                     		  "caldtitle" : caldtitle,
                               "caldcontent" : caldcontent,
-                              "caldstartDate" : caldstartDate,
-                              "caldcolor" : caldcolor
-                              
-                          }//전송할 객체 생성
-                          console.log("?"+caldcolor); //서버로 해당 객체를 전달해서 DB 연동 가능                                               
+                              "caldstartdate" : caldstartdate,
+                              "caldcolor" : caldcolor                            
+                          }//전송할 객체 생성                                            
                         var test=JSON.stringify(obj);        
                      	 }
                       
@@ -115,7 +152,9 @@
               			})
               			.done(function(data){         
               					alert('입력되었습니다.');
+              					console.log(${caldno})
               					window.location.href ="List.do";
+              				
               			}).
               			fail(function(jqXHR, textStatus, errorThrown){
               				console.log(jqXHR)
@@ -130,17 +169,20 @@
     calendar.render();
   });
   
+
   //글 수정 클릭 시 이벤트
   $(function(){
 	  $('#calEdie').click(function(){		
-		  $('#calendar_content1').prop("disabled",false)
-		  $('#calendar_title1').prop("disabled",false)
-		  $('#calendar_start_date1').prop("disabled",false)
+		  $('#viewtitle').prop("disabled",false)
+		  $('#viewcontent').prop("disabled",false)
+		  $('#viewdate').prop("disabled",false)
+
 		//  $('#calendar_start_date').prop('hidden','true') //요게안되네...
 	
 	  })
 	  
   });
+
   
   //목표달성 버튼 
     $(function() {
@@ -191,8 +233,7 @@
                 }  	   
         })
        });
-    
-    
+   
     
 </script>
 <style>
@@ -283,16 +324,16 @@
   	<div id='calendar'></div>
  </div>  
   
- 
+
    
   
    <!--일정추가 modal 추가 -->
-  <div class="modal fade" id="calendarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  <div class="modal fade" id="addcalendarModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
       aria-hidden="true">
       <div class="modal-dialog" role="document">
           <div class="modal-content">
               <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">오늘하루를 기록하세요!</h5>
+                  <h5 class="modal-title" id="addModalLabel">오늘하루를 기록하세요!</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                   </button>
@@ -301,7 +342,7 @@
                   <div class="form-group">
                       <label for="taskId" class="col-form-label">title</label>
                       <input type="text" class="form-control" id="caldtitle" name="caldtitle">
-                      <label for="taskId" class="col-form-label">내용(db추가해야함)</label>
+                      <label for="taskId" class="col-form-label">내용</label>
                       <textarea class="form-control"  rows="10"  id="caldcontent" name="caldcontent"></textarea>
                       <label for="taskId" class="col-form-label">날짜</label>
                       <input type="date" class="form-control" id="caldstartdate" name="caldstartdate">
@@ -327,16 +368,15 @@
               <div class="modal-footer">
                   <button type="button" class="btn btn-warning" id="addCalendar" >추가</button>
                   <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                      id="sprintSettingModalClose">닫기</button>
+                      id="addModalClose">닫기</button>
               </div>
   
           </div>
       </div>
   </div>
-  
-  <!--일정수정 modal -->
+  <!--일정 상세보기 modal -->
   <div class="modal fade" id="calendarModalView" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-      aria-hidden="true">
+      aria-hidden="true" >
       <div class="modal-dialog" role="document">
           <div class="modal-content">
               <div class="modal-header">
@@ -347,14 +387,15 @@
               </div>
               <div class="modal-body">
                   <div class="form-group">
-                      <label for="taskId" class="col-form-label" value="${record.title}">title</label>
-                      <input type="text" class="form-control" id="calendar_title1" name="calendar_title1" disabled>
-                       <input type="hidden" class="form-control" id="calendar_no" name="calendar_no" value="${record.no}">
-                      <label for="taskId" class="col-form-label">내용(db추가해야함)</label>
-                      <textarea class="form-control"  rows="10"  id="calendar_content1" name="calendar_content1" disabled></textarea>
+                  	 <input type="hidden" class="form-control" id="viewno" name="viewno" />
+                      <label for="taskId" class="col-form-label">title</label>
+                      <input type="text" class="form-control" id="viewtitle" name="viewtitle" disabled />
+                      
+                      <label for="taskId" class="col-form-label">내용</label>
+                      <textarea class="form-control"  rows="10"  id="viewcontent" name="viewcontent" disabled></textarea>
                       <label for="taskId" class="col-form-label">날짜</label>
-                      <input type="text" class="form-control" id="calendar_start_date2" name="calendar_start_date2" value="${record.startdate}" disabled hidden >
-                      <input type="date" class="form-control" id="calendar_start_date1" name="calendar_start_date2" disabled >
+                      <input type="date" class="form-control" id="viewdate" name="viewdate" disabled  >
+                    
                   </div>                    
               </div>            
               <div class="modal-footer">
@@ -362,15 +403,13 @@
                   <button type="button" class="btn btn-secondary" data-dismiss="modal"
                       id="caldelete">삭제</button>
                   <button type="button" class="btn btn-warning" data-dismiss="modal"
-                      id="sprintSettingModalClose" >닫기</button>
+                      id="viewModalClose" >닫기</button>
               </div>
   
           </div>
       </div>
   </div>
+
   
-
-
-
 </body>
 </html>

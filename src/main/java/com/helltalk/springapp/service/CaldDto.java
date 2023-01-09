@@ -1,5 +1,7 @@
 package com.helltalk.springapp.service;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,10 +10,12 @@ import lombok.Setter;
 public class CaldDto {
 	
 	private String u_no;  // 
+	private String cald_no;
 	private String cald_title;
 	private String cald_content;  //erd에 추가해야 함
-	private java.sql.Date cald_startDate;
-	private java.sql.Date cald_endDate;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
+	private java.sql.Date cald_startdate;
+	private java.sql.Date cald_enddate;
 	private String cald_color;
 	private String u_id;	
 
