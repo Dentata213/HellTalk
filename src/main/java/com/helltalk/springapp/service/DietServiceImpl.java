@@ -10,8 +10,6 @@ import com.helltalk.springapp.models.DietDTO;
 @Service("dietService")
 public class DietServiceImpl implements DietService<DietDTO>{
 	
-	
-	
 	@Override
 	public List<DietDTO> selectList(Map map) {
 		// TODO Auto-generated method stub
