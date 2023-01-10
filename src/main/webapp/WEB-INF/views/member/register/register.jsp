@@ -177,7 +177,8 @@ body {
 }
 
 .radio-img  > input:checked + img{ 
-  border:2px solid orange;
+  	border:4px solid #899ef0;
+  	background-color: #e1f4ce;
 }
 </style>
 
@@ -196,7 +197,7 @@ body {
 
 	<form action="<c:url value="/model/Success.do"/>" method="POST" class="joinForm">
 	  <h1>HellTalk에 오신것을 환영합니다.</h1>
-	  <h4 class="text-grey-500">혹은 이미 계정이 있으신가요?? <a href="<c:url value="/Login.do"/>" class="fw-700 ms-1">로그인하러 가기</a></h4> 
+	  <h4 class="text-grey-500">혹은 이미 계정이 있으신가요?? <a href="<c:url value="/model/Login.do"/>" class="fw-700 ms-1">로그인하러 가기</a></h4> 
 	                                                              
       <h3>성별을 선택하여 주세요</h3>
       <label class="radio-img">
