@@ -71,8 +71,11 @@
                                     <table>
 									<c:forEach var="list" items="${lists}" varStatus="loop">
 										<tr>
+											<td>${list.product_img}</td>
 											<td>${list.product_no}</td>
 											<td>${list.product_quantity}</td>
+											<td>${list.product_name}</td>
+											<td>${list.product_price}</td>
 										</tr>
 									</c:forEach>
 									</table>
