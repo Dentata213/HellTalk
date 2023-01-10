@@ -20,6 +20,8 @@ public class PaymentServiceImpl implements PaymentService<PaymentDTO>{
 	
 	@Override
 	public List<PaymentDTO> selectCartList(Map map) {
+		//임시 데이터
+		map.put("U_NO", "KIM");
 		List<PaymentDTO> list = dao.selectCartList(map);
 		return list;
 	}

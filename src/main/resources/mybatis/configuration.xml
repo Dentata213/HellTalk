@@ -11,7 +11,11 @@
 		
 		<typeAlias type="com.helltalk.springapp.models.CaldDto" alias="CaldDto"/>
 		<typeAlias type="com.helltalk.springapp.models.PaymentDTO" alias="PaymentDTO"/>
+<<<<<<< HEAD
 		<typeAlias type="com.helltalk.springapp.models.DietDTO" alias="DietDTO"/>
+=======
+		<typeAlias type="com.helltalk.springapp.service.ExerciseDTO" alias="ExerciseDTO"/>
+>>>>>>> branch 'master' of https://github.com/Dentata213/HellTalk.git
 		
 	</typeAliases>
 
@@ -21,7 +25,11 @@
 		
 		<mapper resource="mybatis/mapper/Cald.xml"/> 
 		<mapper resource="mybatis/mapper/Payment.xml"/> 
+<<<<<<< HEAD
 		<mapper resource="mybatis/mapper/Diet.xml"/> 
+=======
+		<mapper resource="mybatis/mapper/Exer.xml"/> 
+>>>>>>> branch 'master' of https://github.com/Dentata213/HellTalk.git
 		
 	</mappers>
 </configuration>

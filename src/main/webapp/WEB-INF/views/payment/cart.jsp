@@ -37,45 +37,49 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            
+                                            <c:forEach var="list" items="${lists}" varStatus="loop">
                                                 <tr>
                                                     <td class="product-thumbnail text-left ps-0">
-                                                        <img src="https://via.placeholder.com/70x100.png" alt="Product Thumnail" class="w75 rounded-3">
+                                                        <img src="data:image/jpeg;base64,${list.product_img}" alt="Product Thumnail" class="w75 rounded-3">
                                                     </td>
                                                     <td class="product-headline text-left wide-column">
                                                         <h3>
-                                                            <a href="#" class="text-grey-900 fw-600 font-xsss">Super skinny blazer</a>
+                                                            <a href="#" class="text-grey-900 fw-600 font-xsss">${list.product_name}</a>
                                                         </h3>
                                                     </td>
                                                     <td class="product-p">
                                                         <span class="product-price-wrapper">
-                                                            <span class="money text-grey-500 fw-600 font-xsss"><span class="font-xsssss">$</span> 49.00</span>
+                                                            <span class="money text-grey-500 fw-600 font-xsss">${list.product_price}<span class="font-xsssss"> 원</span></span>
                                                         </span>
                                                     </td>
                                                     <td class="product-quantity">
                                                         <div class="quantity">
-                                                            <input type="number" class="quantity-input open-font fw-600" name="qty" id="qty-1" value="1" min="1">
+                                                            <input type="number" class="quantity-input open-font fw-600" name="qty" id="qty-1" value="${list.product_quantity}" min="1">
                                                         <div class="dec qtybutton">-</div><div class="inc qtybutton">+</div></div>
                                                     </td>
                                                     <td class="product-total-price">
                                                         <span class="product-price-wrapper">
-                                                            <span class="money fmont"><strong><span class="font-xsssss">$ </span>49.00</strong></span>
+                                                            <span class="money fmont"><strong>${list.product_price*list.product_quantity}<span class="font-xsssss"> 원</span></strong></span>
                                                         </span>
                                                     </td>
                                                     <td class="product-remove text-right"><a href="#"><i class="ti-trash font-xs text-grey-500"></i></a></td>
                                                 </tr>
-                                                
+                                                </c:forEach>
                                             </tbody>
                                         </table>
                                     </div>
-                                    <table>
+                                    <!--table>
 									<c:forEach var="list" items="${lists}" varStatus="loop">
 										<tr>
+											<td>ProductImg:${list.product_img}/</td>
+											<td>ProductName:${list.product_name}/</td>
 											<td>${list.product_no}</td>
-											<td>${list.product_quantity}</td>
+											<td>Price:${list.product_price}/</td>
+											<td>Quantity:${list.product_quantity}/</td>
+											<td>Total:${list.product_price*list.product_quantity}
 										</tr>
 									</c:forEach>
-									</table>
+									</table-->
                                     <a href="#" class="update-cart bg-dark float-right text-white fw-600 text-uppercase font-xssss border-dark border rounded-3 border-size-md d-inline-block w175 p-3 text-center ls-3">Update Cart</a>
                                 </div>
                                 <div class="col-lg-4">
@@ -120,6 +124,15 @@
         </div>
         <!-- main content -->
         
-        
+    <script>
+	    var str = '${BASE64}';
+	    var arr = str.split(',');
+	    arr[0] = arr[0].replace("[","");
+	    arr[arr.length-1] = arr[arr.length-1].replace("]","");
+	    for(i=0; i<arr.length; i++){
+	    	arr[i] = arr[i].replace(" ","");
+	    	console.log(arr[i]);
+	    }
+    </script>  
     <script src="${path}/resources/js/plugin.js"></script>
     <script src="${path}/resources/js/scripts.js"></script>
