@@ -11,14 +11,13 @@
 	<selectKey keyProperty="caldno" resultType="int" order="BEFORE">
 		SELECT SEQ_CALDNO.NEXTVAL FROM DUAL
 	</selectKey>
-		INSERT INTO CALDAILY VALUES(SEQ_CALDNO.NEXTVAL,'가상의회원',#{caldtitle},#{caldcontent},#{caldstartDate},#{caldcolor})
+		INSERT INTO CALDAILY VALUES(SEQ_CALDNO.NEXTVAL,'가상의회원',#{caldtitle},#{caldcontent},#{caldstartdate},#{caldcolor})
 </insert>
-<!-- 
-<select id="FindRecordByNo" parameterType="Map" resultType="Cal2Dto">
-	SELECT title=#{title},startdate=#{startdate} FROM cal2 WHERE no=#{no}
-	
+
+<select id="findRecordByno" parameterType="Map" resultType="CaldDto">
+	SELECT cald_title,cald_content,cald_startdate FROM CALDAILY WHERE cald_no=#{caldno}	
 </select>
--->
+
 
 
 

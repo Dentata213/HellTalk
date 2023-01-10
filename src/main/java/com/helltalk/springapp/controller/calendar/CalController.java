@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.helltalk.springapp.service.CalService;
-import com.helltalk.springapp.service.CaldDto;
+import com.helltalk.springapp.models.CalService;
+import com.helltalk.springapp.models.CaldDto;
 
 
 @Controller
@@ -47,12 +47,22 @@ public class CalController {
 		return "calendar/Month";
 	}
 	
+	//일정등록
 	@PostMapping("/Write.do")
 	@ResponseBody
+
 	public Map write(@RequestBody Map map) {
 	 int newcald = caldService.insert(map); //입력한 행의 키 값
-	 System.out.println("dto.insert(map)"+newcald);
 	 map.put("caldno", newcald);
 	 return map;
+	}
+	
+	//상세보기
+	@RequestMapping(value="/View.do")
+	@ResponseBody
+	public CaldDto view(@RequestParam Map map) {
+		CaldDto record=caldService.selectOne(map);
+		System.out.println(record.getCald_startdate());
+		return record;
 	}
 }

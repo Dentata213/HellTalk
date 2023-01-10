@@ -8,6 +8,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.helltalk.springapp.models.CaldDto;
+
+
 @Repository
 public class CaldDao {
 	
@@ -28,6 +31,10 @@ public class CaldDao {
 		template.insert("caldInset",map);		
 		//Map에 저장된 행의 키(번호)를 꺼내와서 반환
 		return Integer.parseInt(map.get("caldno").toString());
+	}
+
+	public CaldDto findRecordByno(Map map) {
+		return template.selectOne("findRecordByno",map);
 	}
 
 }
