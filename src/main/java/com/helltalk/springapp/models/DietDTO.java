@@ -42,7 +42,4 @@ public class DietDTO {
 	private String fat;
 	private String col;
 	private String na;
-	
-	
-
 }
