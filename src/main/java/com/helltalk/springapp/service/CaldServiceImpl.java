@@ -48,9 +48,8 @@ public class CaldServiceImpl implements CalService<CaldDto> {
 	}
 
 	@Override
-	public int update(Map map) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int update(Map map) {		
+		 return dao.update(map);
 	}
 
 	@Override

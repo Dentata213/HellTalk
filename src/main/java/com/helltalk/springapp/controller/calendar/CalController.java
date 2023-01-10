@@ -50,7 +50,6 @@ public class CalController {
 	//일정등록
 	@PostMapping("/Write.do")
 	@ResponseBody
-
 	public Map write(@RequestBody Map map) {
 	 int newcald = caldService.insert(map); //입력한 행의 키 값
 	 map.put("caldno", newcald);
@@ -62,7 +61,14 @@ public class CalController {
 	@ResponseBody
 	public CaldDto view(@RequestParam Map map) {
 		CaldDto record=caldService.selectOne(map);
-		System.out.println(record.getCald_startdate());
+		System.out.println(record.getCald_no());
 		return record;
+	}
+	
+	@PostMapping("/Edit.do")
+	@ResponseBody
+	public Map edit(@RequestBody Map map) {
+		caldService.update(map);
+		return map;
 	}
 }

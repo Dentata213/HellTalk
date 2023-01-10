@@ -15,8 +15,14 @@
 </insert>
 
 <select id="findRecordByno" parameterType="Map" resultType="CaldDto">
-	SELECT cald_title,cald_content,cald_startdate FROM CALDAILY WHERE cald_no=#{caldno}	
+	SELECT cald_title,cald_content,cald_startdate,cald_no FROM CALDAILY WHERE cald_no=#{caldno}	
 </select>
+
+<update id="caldUpdate" parameterType="Map">
+	UPDATE CALDAILY SET cald_title=#{viewtitle},cald_content=#{viewcontent},cald_startdate=#{viewdate},cald_color=#{editecaldcolor} WHERE cald_no=#{viewno}
+</update>
+ 
+
 
 
 

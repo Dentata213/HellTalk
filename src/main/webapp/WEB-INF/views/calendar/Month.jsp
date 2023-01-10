@@ -33,8 +33,7 @@
       navLinks: true, //// 클릭 시 상단 네이게이션 동작
       businessHours: true, // display business hours
       editable: true,
-      selectable: true,      
-     
+      selectable: true,       
       eventClick: function() {
     	  //닫기 누르면 새로고침 해줘야 함...
     		$(document).on('click','#viewModalClose',function(){
@@ -54,26 +53,23 @@
     			var this_= $(this).children(); //클릭한 제이쿼리 객체
     			var nos = this_.html().split("_")
     			var no = nos[0]
-    			console.log("글번호:",no)   	  			
-       
+    			console.log("글번호:",no)   	  			       
        $.ajax({
    			url:"<c:url value="/cal/View.do"/>",
    			data:"caldno="+no,
    			dataType:'json'
-			})
-			
+			})		
 			.done(function(data){         			
 				$('#viewtitle').prop('value',data.cald_title)
 				$('#viewcontent').prop('value',data.cald_content)	
-				$('#viewdate').prop('value',data.cald_startdate)				
+				$('#viewdate').prop('value',data.cald_startdate)
+				$('#viewno').prop('value',data.cald_no)
 				console.log("data",data)				
 			}).fail(function(error){
 				console.log('글조회오류!!');
 			});		   			
-    })   	      	        
-    	        
-        	$('#calendarModalView').modal('show');  
-  
+    })   	      	            	        
+        	$('#calendarModalView').modal('show');    
     	  
         },   
       events: [
@@ -89,6 +85,7 @@
 	  	   },
 	</c:forEach> 
    
+	//caldaily list 뿌리기
 	<c:forEach var="cald" items="${caldList}" varStatus="loop"> 			
 	  	{  		
        
@@ -169,21 +166,77 @@
     calendar.render();
   });
   
-
-  //글 수정 클릭 시 이벤트
+  //글 수정 
   $(function(){
-	  $('#calEdie').click(function(){		
+	  $('#calEdit').click(function(){		
 		  $('#viewtitle').prop("disabled",false)
 		  $('#viewcontent').prop("disabled",false)
-		  $('#viewdate').prop("disabled",false)
+		  $('#viewdate').prop("disabled",false)			  
+		  $('#calEdit').prop("hidden",true)
+		  $('#calEditok').prop("hidden",false)
+		  $('#caldelete').prop("hidden",true)	
+		  $('#editecaldcolor').prop("hidden",false)
+		  $('#editecolortitle').prop("hidden",false)
+	  });	
+	  $('#calEditok').on('click',function(){	
+			 console.log($(this).html())		
+			 console.log($("#viewtitle").val())
+  	//	$("#addCalendar").on("click",function(){  // modal의 추가 버튼 클릭 시
+            
+  			  var viewtitle = $("#viewtitle").val();
+           	  var viewcontent = $("#viewcontent").val();
+              var viewdate = $("#viewdate").val();
+              var editecaldcolor = $("#editecaldcolor").val();                 
+              var viewno =$("#viewno").val();
+              
+                 //내용 입력 여부 확인
+                 if(viewtitle == null || viewtitle == ""){
+                     alert("제목을 입력하세요.");
+                     return;
+                 }
+                 else if(viewcontent == null || viewcontent == ""){
+                     alert("내용을 입력하세요.");
+                     return;
+                 }
+                 else if(viewdate == "" || viewdate ==""){
+                     alert("날짜를 입력하세요.");
+                     return;
+                 }
+ 
+                 else{ // 정상적인 입력 시
+                     var obj = {
+		              		 "viewtitle" : viewtitle,
+		                     "viewcontent" : viewcontent,
+		                     "viewdate" : viewdate,
+		                     "editecaldcolor" : editecaldcolor,   
+		                     "viewno" : viewno
+                     }//전송할 객체 생성                                            
+                   var test=JSON.stringify(obj);        
+                	 }
+                 
+                      $.ajax({
+	              			url:"<c:url value="/cal/Edit.do"/>",
+	              			method: "POST",
+	              			data:JSON.stringify(obj),
+	            			type:'json',
+	            			contentType:"application/json; charset=utf-8",
+              			})
+              			.done(function(data){         
+              					alert('수정 되었습니다.');
+              					console.log(${caldno})
+              					window.location.href ="List.do";
+              				
+              			}).
+              			fail(function(jqXHR, textStatus, errorThrown){
+              				console.log(jqXHR)
+              		        console.log(textStatus)
+              		        console.log(errorThrown);
+            			});                      
+				  });  
 
-		//  $('#calendar_start_date').prop('hidden','true') //요게안되네...
-	
-	  })
 	  
-  });
+ 				 });
 
-  
   //목표달성 버튼 
     $(function() {
        $('#spobtn').click(function(){
@@ -324,8 +377,6 @@
   	<div id='calendar'></div>
  </div>  
   
-
-   
   
    <!--일정추가 modal 추가 -->
   <div class="modal fade" id="addcalendarModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
@@ -389,17 +440,33 @@
                   <div class="form-group">
                   	 <input type="hidden" class="form-control" id="viewno" name="viewno" />
                       <label for="taskId" class="col-form-label">title</label>
-                      <input type="text" class="form-control" id="viewtitle" name="viewtitle" disabled />
-                      
+                      <input type="text" class="form-control" id="viewtitle" name="viewtitle" disabled />                  
                       <label for="taskId" class="col-form-label">내용</label>
                       <textarea class="form-control"  rows="10"  id="viewcontent" name="viewcontent" disabled></textarea>
                       <label for="taskId" class="col-form-label">날짜</label>
-                      <input type="date" class="form-control" id="viewdate" name="viewdate" disabled  >
-                    
+                      <input type="date" class="form-control" id="viewdate" name="viewdate" disabled  >                    
                   </div>                    
-              </div>            
+              
+               <div class="row">
+                  <div class="col-xs-12">
+                      <label class="col-xs-4" for="color" style="margin-left:20px;"  id="editecolortitle" hidden>색상</label>
+                      <select class="inputModal" name="editecaldcolor" id="editecaldcolor"  hidden>
+                          <option value="#D25565" style="color:#D25565;">빨간색</option>
+                          <option value="#9775fa" style="color:#9775fa;">보라색</option>
+                          <option value="#ffa94d" style="color:#ffa94d;">주황색</option>
+                          <option value="#74c0fc" style="color:#74c0fc;">파란색</option>
+                          <option value="#f06595" style="color:#f06595;">핑크색</option>
+                          <option value="#63e6be" style="color:#63e6be;">연두색</option>
+                          <option value="#a9e34b" style="color:#a9e34b;">초록색</option>
+                          <option value="#4d638c" style="color:#4d638c;">남색</option>
+                          <option value="#495057" style="color:#495057;">검정색</option>
+                      </select>
+                  </div>
+                </div> 
+              </div>                                   
               <div class="modal-footer">
-                  <button type="button" class="btn btn-warning" id="calEdie" >수정</button>
+                  <button type="button" class="btn btn-warning" id="calEdit" >수정</button>
+                  <button type="button" class="btn btn-warning" id="calEditok" hidden >등록</button>
                   <button type="button" class="btn btn-secondary" data-dismiss="modal"
                       id="caldelete">삭제</button>
                   <button type="button" class="btn btn-warning" data-dismiss="modal"

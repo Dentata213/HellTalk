@@ -37,4 +37,9 @@ public class CaldDao {
 		return template.selectOne("findRecordByno",map);
 	}
 
+	public int update(Map map) {		
+		return template.update("caldUpdate",map);
+	}
+	
+
 }
