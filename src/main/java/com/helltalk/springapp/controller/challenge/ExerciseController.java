@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.helltalk.springapp.service.ExerciseDTO;
 import com.helltalk.springapp.service.ExerciseServiceImpl;
@@ -19,7 +20,8 @@ public class ExerciseController {
 	private ExerciseServiceImpl exerService;
 	
 	@PostMapping("/exercise.do")
-	public Map exerciseKind(@RequestParam Map map) {
+	@ResponseBody
+	public List<ExerciseDTO> exerciseKind(@RequestParam Map map) {
 		List<ExerciseDTO> listExer;
 		System.out.println("exercise컨트롤러");
 		System.out.println("map.get(\"ek_no\")"+map.get("ek_no"));
@@ -31,8 +33,8 @@ public class ExerciseController {
 		else {
 			listExer= exerService.selectExerciseListByKind(map);
 		}
-		map.put("listExer", listExer);
-		return map;
+		//map.put("data", listExer);
+		return listExer;
 		
 	}
 

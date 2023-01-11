@@ -33,28 +33,29 @@
 			<thead>
 				<tr>
 					<th class="col-1">번호</th>
-					<th>제목</th>
-					<th class="col-2">글쓴이</th>				
-					<th class="col-2">작성일</th>
+					<th>운동명</th>
+					<th class="col-2">필요기구</th>				
+					<th class="col-2">사용자기록수</th>
 				</tr>
 			</thead>
-			<tbody class="table-sm down-file-body">
-				<c:if test="" var="isEmpty">
+			<tbody class="table-sm down-file-body" id="exercise-list">
+				<%-- <c:if test="" var="isEmpty">
 					<tr>
 						<td colspan="4">등록된 글이 없습니다.</td>
 					</tr>
-				</c:if>
-				<c:if test="">
+				</c:if> 
+				<c:if test="">--%>
 					<c:forEach var="record" items="" varStatus="loop">
 						<tr>
-							<td></td>
-							<td class="text-left"><a
-								href="<c:url value="/onememo/bbs/View.do?no=&nowPage="/><c:out value="" default="1"/>"></a> <span class="badge badge-light"></span></td>
-							<td></td>						
-							<td></td>
+							<td class="exer-no"></td>
+							<td class="exer-name">
+								<a href="#"/><c:out value="" default="1"/></a> 
+								<span class="badge badge-light"></span></td>
+							<td class="exer-eq"></td>						
+							<td class="exer-count"></td>
 						</tr>
 					</c:forEach>
-				</c:if>
+				<%-- </c:if> --%>
 	
 			</tbody>
 		</table>
@@ -86,6 +87,48 @@ $(document).on('click','tr',function(){
 			})
 			.done(function(data){
 				console.log('서버로부터 받은 데이타:',data);	
+				console.log('data.e_name:',data[0].e_name);	
+				$('#exer-no').html(data[0].e_name);
+				var tr="";
+				/*var tr="<tr>
+							<td>"+data.name+"</td>
+							<td class='text-left line-comment' title='"+data.lno+"'>"+data.linecomment+"</td>
+							<td>"+getToday()+"</td>
+							<td><span class='btn btn-info btn-sm my-delete'>삭제</span></td>
+						</tr>";
+						
+						<tr>
+						<th class="col-1">번호</th>
+						<th>운동명</th>
+						<th class="col-2">필요기구</th>				
+						<th class="col-2">사용자기록수</th>
+					</tr>
+					$('#comments-list').prepend(tr);
+				*/
+				 /* var tr="<tr><td>"+data.e_no+"</td><td class='text-left line-comment' title='"+data.e_no+"'>"+data.e_name+"</td><td>"+data.e_equipment+"</td><td>"+data.e_count+"</td></tr>";
+				$('#exercise-list').prepend(tr);  */
+				
+				$.each(data,function(i,item){
+					/* if($("#exercise-list").length !=0){
+						
+						$('#exercise-list').remove();
+					} */
+					
+					//
+					 /* $('#exer-no').html(item.e_no);
+					$('#exer-name').html(item.e_name);
+					$('#exer-eq').html(item.e_equipment);
+					$('#exer-count').html(item.e_count);  */
+					
+					tr+="<tr><td>"+item.e_no+"</td><td class='text-left line-comment' title='"+item.e_no+"'>"+item.e_name+"</td><td>"+item.e_equipment+"</td><td>"+data.e_count+"</td></tr>";
+					 
+					
+				})
+								
+				$('#exercise-list').append(tr);
+				
+				
+				
 			})
 			.fail(function( request, status, error ){
 				console.log("status : " + request.status + ", message : " + request.responseText + ", error : " + error);
