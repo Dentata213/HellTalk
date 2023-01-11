@@ -254,6 +254,12 @@
 		    <version>4.5.13</version>
 		 </dependency>
 		
+		<!-- 자이썬 라이브러리(자바에서 파이썬을 쓰기 위해 사용) -->
+	<dependency>
+		<groupId>org.python</groupId>
+			<artifactId>jython-standalone</artifactId>
+			<version> 2.7.3</version>
+	</dependency>
 		
 	</dependencies>
     <build>

@@ -11,7 +11,7 @@ public interface DietService<T> {
 	//boolean isLogin(Map map);
 	
 	//목록용]
-	List<T> selectList(Map map);
+	List<T> selectList(Map map, HttpServletRequest req);
 
 	//상세보기용]
 	T selectOne(Map map);

@@ -1,5 +1,6 @@
 package com.helltalk.springapp.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -18,6 +19,10 @@ public class DietDAO {
 		@Autowired
 		private SqlSessionTemplate template;
 		
+		public List selectList(Map map) {
+			return template.selectList("dietSelectList",map);
+		}
+		
 		public int insert(Map map) {
 			return template.insert("dietInsert",map);
 		}
@@ -29,6 +34,7 @@ public class DietDAO {
 		public int delete(Map map) {		
 			return template.delete("dietDelete",map);
 		}
+
 		
 		
 }
