@@ -20,9 +20,17 @@ public class ExerciseController {
 	
 	@PostMapping("/exercise.do")
 	public Map exerciseKind(@RequestParam Map map) {
+		List<ExerciseDTO> listExer;
 		System.out.println("exercise컨트롤러");
 		System.out.println("map.get(\"ek_no\")"+map.get("ek_no"));
-		List<ExerciseDTO> listExer= exerService.selectExerciseList(map);
+		int ek_no=Integer.parseInt((String) map.get("ek_no"));
+		if(ek_no==1) {
+			System.out.println("ek_no"+ek_no);
+			listExer= exerService.selectExerciseList(map);
+		}
+		else {
+			listExer= exerService.selectExerciseListByKind(map);
+		}
 		map.put("listExer", listExer);
 		return map;
 		
