@@ -31,9 +31,5 @@ public class ModelController {
 	public String register() {
 		return "member/register/register";
 	}
-	//회원가입 성공시 이동
-	@RequestMapping("/Success.do")
-	public String successRegster() {
-		return "member/register/success.helltalk";
-	}
+	
 }
