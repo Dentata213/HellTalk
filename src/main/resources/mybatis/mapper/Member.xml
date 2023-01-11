@@ -5,11 +5,32 @@
 <mapper namespace="mybatis.mapper.Member.xml">
 
 	<select id="findAllUser" parameterType="Map" resultType="MemberDTO">
-			SELECT * FROM USERS ORDER BY DESC U_NO
+			SELECT * FROM USERS ORDER BY U_NO
 	</select>
 	
 	<select id="findUserByNo" parameterType="Map" resultType="MemberDTO">
-			
+			SELECT * FROM USERS WHERE U_NO=${u_no}
 	</select>
+	
+	<select id="idCheck" parameterType="Map" resultType="int">
+		SELECT COUNT(*) FROM USERS WHERE U_ID = #{u_id}
+	</select>
+	
+	<insert id="userInsert" parameterType="Map">
+		INSERT INTO USERS VALUES(
+		SEQ_USERNO.NEXTVAL,#{u_id},#{u_pwd},#{u_nickname},#{u_gender},
+		#{u_phoneno},#{u_email},#{u_birth},
+		#{u_height},#{u_weight},DEFAULT,#{u_status},#{u_kind},null)
+	</insert>
+	
+	<delete id="userDelete" parameterType="Map">
+		DELETE FROM USERS WHERE U_NO=${u_no}
+	</delete>
+	
+	<update id="userUpdate" parameterType="Map">
+		UPDATE USERS 
+		SET u_nickname= #{u_nickname},u_height=#{u_height},u_weight=#{u_weight} 
+		WHERE U_NO = #{u_no}
+	</update>
 	
 </mapper>
