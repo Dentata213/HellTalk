@@ -254,6 +254,14 @@
 		    <version>4.5.13</version>
 		 </dependency>
 		
+		<!-- jQuery -->
+		<!-- https://mvnrepository.com/artifact/org.webjars/jquery -->
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>jquery</artifactId>
+		    <version>3.6.3</version>
+		</dependency>
+		
 		
 	</dependencies>
     <build>
