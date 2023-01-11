@@ -20,16 +20,18 @@ public class ExerciseServiceImpl implements ExerciseService<ExerciseDTO>{
 		return listExerKind;
 	}
 
+	//운동 전체 목록 조회
 	@Override
 	public List<ExerciseDTO> selectExerciseList(Map map) {
 		List<ExerciseDTO> listExer=dao.selectExerciseList(map);
 		return listExer;
 	}
 
+	//운동부위별 운동 목록 조회
 	@Override
 	public List<ExerciseDTO> selectExerciseListByKind(Map map) {
-		// TODO Auto-generated method stub
-		return null;
+		List<ExerciseDTO> listExer=dao.selectExerciseListByKind(map);
+		return listExer;
 	}
 
 	@Override
