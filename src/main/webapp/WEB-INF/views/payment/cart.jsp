@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!-- 
-<script src="https://js.bootpay.co.kr/bootpay-4.2.7.min.js" type="application/javascript"></script>
-<script type="module" src="${path}/resources/js/payment.js" data-id="${id}" id="thisscript"></script>
- -->
+
   <!-- main content -->
         <div class="main-content bg-white right-chat-active">
             
@@ -125,6 +122,7 @@
         <!-- main content -->
         
     <script>
+    	//이미지의 BASE64값 4000자 분리용
 	    var str = '${BASE64}';
 	    var arr = str.split(',');
 	    arr[0] = arr[0].replace("[","");
@@ -134,5 +132,27 @@
 	    	console.log(arr[i]);
 	    }
     </script>  
+    
+    <!--  
+부트페이 라이브러리
+<script src="https://js.bootpay.co.kr/bootpay-4.2.7.min.js" type="application/javascript"></script>
+단일결재호출 - 값들을 넘겨줘야함 application_id, id, name, total가격, ordername(상품명 연결, 일정길이 이상이면 추출후 ...으로 replace), orderid(임의로 생성)
+<script type="module" src="${path}/resources/js/payment.js" data-id="${id}" data-name="${name}" id="thisscript"></script>
+ -->
+ <!-- 혹은 단일결재 실행(단, 결재버튼 누를시에 실행되어야됨) 
+ 	<script type="module">
+ 		const response = await Bootpay.requestPayment({
+    	"application_id": "",
+    	"price": 1000,
+    	"order_name": "테스트결제품목",
+    	"order_id": "TEST_ORDER_ID000000000000001",
+    	"pg": "카카오",
+    	"user": {
+        	"id": id,
+        	"username": "회원이름"
+    	}
+    	})
+ 	</script>
+ -->
     <script src="${path}/resources/js/plugin.js"></script>
     <script src="${path}/resources/js/scripts.js"></script>
