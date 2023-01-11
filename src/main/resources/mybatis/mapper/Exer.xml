@@ -8,5 +8,9 @@
 		SELECT * FROM exercisekind
 	</select>
 	
+	<select id="selectExerciseList" parameterType="Map" resultType="ExerciseDTO">
+		select * FROM exercise e JOIN exercisekind ek ON e.ek_no=ek.ek_no WHERE ek.ek_no=${ek_no}
+	</select>
+	
 	
 </mapper>

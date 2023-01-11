@@ -23,4 +23,11 @@ public class ExerciseDAO {
 		return listExerKind;
 	}
 
+	public List<ExerciseDTO> selectExerciseList(Map map) {
+		SqlSession session= sqlMapper.openSession();		
+		List<ExerciseDTO> listExer= session.selectList("selectExerciseList",map);
+		session.close();
+		return listExer;
+	}
+
 }
