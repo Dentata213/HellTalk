@@ -18,7 +18,7 @@
 				<form action="<c:url value="#"/>" method="post">
 					<table class="table table-hover text-center">
 				    	<c:forEach var="record" items="${listExerKind }" >
-				    		<tr>
+				    		<tr class="listExerKind">
 				    			<td title="${record['ek_no']}">${record["ek_kind"]}</td>
 							<%-- <input type="hidden" name="no" value="${record['ek_no']}" /> --%>
 							<%-- <input type="button" class="no" value="${record['ek_no']}" />${record["ek_kind"]} --%>
@@ -51,7 +51,7 @@
 </body>
 </html>
 <script>
-$(document).on('click','tr',function(){	 
+$(document).on('click','.listExerKind',function(){	 
 /*$('tr').click(function(){ */
 		console.log($(this).children('td').text());
 		console.log($(this).children('td').attr('title'));
@@ -74,7 +74,7 @@ $(document).on('click','tr',function(){
 				console.log('data.e_name:',data[0].e_name);	
 				$('#exer-no').html(data[0].e_name);
 				var tr="";
-				console.log("$("#exercise-list").children("tr").length",$("#exercise-list").children("tr").length)
+				console.log("$('#exercise-list').children('tr').length",$("#exercise-list").children("tr").length)
 				 if($("#exercise-list").has("tr").length !=0){
 					
 					 $("#exercise-list").children("tr").remove();
