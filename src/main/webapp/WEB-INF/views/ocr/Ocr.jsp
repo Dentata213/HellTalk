@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <div>
 	<fieldset>
 		<input type="file" name="files"/><br/>
@@ -15,7 +15,7 @@
 		formData.append("files",e.target.files[0]);
 		
 		$.ajax({
-			url:"http://localhost:9191/restapi/files",
+			url:"http://localhost:9090/restapi/files",
 			processData:false,
 			contentType:false,
 			data:formData,
@@ -32,17 +32,7 @@
                 var base64=e.target.result;              
     	        console.log('base64:',base64.split(",")[1]);
     	        //여기서 Base64인코딩된 문자열을 스프링 REST API서버로 전송한다
-    	        $.ajax({
-    	        	url:"http://localhost:9090/restapi/google/vision/ocr",
-    	        	type:'post',
-    	        	data:"base64="+encodeURIComponent(base64.split(",")[1]),
-    	        	dataType:'json'
-    	        	
-    	        }).done(function(data){
-    	        	console.log('구글서버로부터 받은 데이타:',data);
-    	        	console.log(data['responses'][0]['fullTextAnnotation']['text'])
-    	        	
-    	        });
+
             }
             console.log('e.target.files[0]:',e.target.files[0]);
             //미리보기용
