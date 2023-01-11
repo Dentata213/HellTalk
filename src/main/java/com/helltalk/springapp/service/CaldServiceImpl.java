@@ -43,8 +43,8 @@ public class CaldServiceImpl implements CalService<CaldDto> {
 
 	@Override
 	public int delete(Map map) {
-		// TODO Auto-generated method stub
-		return 0;
+		System.out.println("서비스");
+		return dao.delete(map);
 	}
 
 	@Override

@@ -69,6 +69,16 @@ public class CalController {
 	@ResponseBody
 	public Map edit(@RequestBody Map map) {
 		caldService.update(map);
+		System.out.println("수정"+map);
+		return map;
+	}
+	
+	//삭제하기
+	@RequestMapping(value="/Delete.do",method ={RequestMethod.GET,RequestMethod.POST})
+	@ResponseBody
+	public Map delete(@RequestParam Map map) {
+		System.out.println("컨트롤러:"+map);
+		caldService.delete(map);
 		return map;
 	}
 }

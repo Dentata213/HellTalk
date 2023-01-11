@@ -22,10 +22,9 @@
 	UPDATE CALDAILY SET cald_title=#{viewtitle},cald_content=#{viewcontent},cald_startdate=#{viewdate},cald_color=#{editecaldcolor} WHERE cald_no=#{viewno}
 </update>
  
-
-
-
-
+<delete id="caldDelete" parameterType="Map" >
+ 	DELETE CALDAILY WHERE cald_no=#{viewno}
+</delete>
 
 
 </mapper>
