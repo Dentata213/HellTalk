@@ -12,14 +12,17 @@
 </head>
 <body>
 	<div class="container">
-		<fieldset style="width:60%">
-			<legend>운동리스트</legend>
-			<h2>운동부위</h2>
+		<fieldset>
+			<legend>커스텀 운동 루틴</legend>
+			<h2>DAY1</h2>
+		</fieldset>
+		<fieldset>
+			<legend>운동부위</legend>
 				<form action="<c:url value="#"/>" method="post">
 					<table class="table table-hover text-center">
-				    	<c:forEach var="record" items="${listExerKind }" >
-				    		<tr>
-				    			<td title="${record['ek_no']}">${record["ek_kind"]}</td>
+						<tr >
+				    		<c:forEach var="record" items="${listExerKind }" >
+				    			<td class="listExerKind" title="${record['ek_no']}">${record["ek_kind"]}</td>
 							<%-- <input type="hidden" name="no" value="${record['ek_no']}" /> --%>
 							<%-- <input type="button" class="no" value="${record['ek_no']}" />${record["ek_kind"]} --%>
 							<%-- <a href="#" class="btn btn-success" >${record["ek_kind"]}</a> --%>
@@ -27,39 +30,24 @@
 					    </c:forEach>
 				    </table>
 				</form>
-		</fieldset>
-		<table class="table table-dark table-hover text-center">
-
-			<thead>
-				<tr>
-					<th class="col-1">번호</th>
-					<th>운동명</th>
-					<th class="col-2">필요기구</th>				
-					<th class="col-2">사용자기록수</th>
-				</tr>
-			</thead>
-			<tbody class="table-sm down-file-body" id="exercise-list">
-				<%-- <c:if test="" var="isEmpty">
+		
+			<table class="table table-dark table-hover text-center">
+	
+				<thead>
 					<tr>
-						<td colspan="4">등록된 글이 없습니다.</td>
+						<th>번호</th>
+						<th>운동명</th>
+						<th>필요기구</th>				
+						<th>사용자기록수</th>
+						<th>루틴 추가</th>
 					</tr>
-				</c:if> 
-				<c:if test="">--%>
-					<c:forEach var="record" items="" varStatus="loop">
-						<tr>
-							<td class="exer-no"></td>
-							<td class="exer-name">
-								<a href="#"/><c:out value="" default="1"/></a> 
-								<span class="badge badge-light"></span></td>
-							<td class="exer-eq"></td>						
-							<td class="exer-count"></td>
-						</tr>
-					</c:forEach>
-				<%-- </c:if> --%>
-	
-			</tbody>
-		</table>
-	
+				</thead>
+				<tbody class="table-sm down-file-body" id="exercise-list">
+					
+		
+				</tbody>
+			</table>
+		</fieldset>
 	
 	
 	</div>
@@ -67,22 +55,22 @@
 </body>
 </html>
 <script>
-$(document).on('click','tr',function(){	 
+$(document).on('click','.listExerKind',function(){	 
 /*$('tr').click(function(){ */
-		console.log($(this).children('td').text());
-		console.log($(this).children('td').attr('title'));
+		console.log($(this).text());
+		console.log($(this).attr('title'));
 		
-		var ek_kind=$(this).children('td').text();
-		var ek_no=$(this).children('td').attr('title');
+		var ek_kind=$(this).text();
+		var ek_no=$(this).attr('title');
 		
 		console.log(ek_kind);
 		console.log(ek_no);
 		
-		$.ajax({
+		 $.ajax({
 			url:"<c:url value='/exercise.do'/>",
 			data:{"ek_no": ek_no},
 			dataType:'json',
-			context: this,
+			//context: this,
 			type:'post'
 			})
 			.done(function(data){
@@ -90,37 +78,16 @@ $(document).on('click','tr',function(){
 				console.log('data.e_name:',data[0].e_name);	
 				$('#exer-no').html(data[0].e_name);
 				var tr="";
-				/*var tr="<tr>
-							<td>"+data.name+"</td>
-							<td class='text-left line-comment' title='"+data.lno+"'>"+data.linecomment+"</td>
-							<td>"+getToday()+"</td>
-							<td><span class='btn btn-info btn-sm my-delete'>삭제</span></td>
-						</tr>";
-						
-						<tr>
-						<th class="col-1">번호</th>
-						<th>운동명</th>
-						<th class="col-2">필요기구</th>				
-						<th class="col-2">사용자기록수</th>
-					</tr>
-					$('#comments-list').prepend(tr);
-				*/
-				 /* var tr="<tr><td>"+data.e_no+"</td><td class='text-left line-comment' title='"+data.e_no+"'>"+data.e_name+"</td><td>"+data.e_equipment+"</td><td>"+data.e_count+"</td></tr>";
-				$('#exercise-list').prepend(tr);  */
-				
+				console.log("$('#exercise-list').children('tr').length",$("#exercise-list").children("tr").length)
+				 if($("#exercise-list").has("tr").length !=0){
+					
+					 $("#exercise-list").children("tr").remove();
+				} 
+			
+				 
 				$.each(data,function(i,item){
-					/* if($("#exercise-list").length !=0){
-						
-						$('#exercise-list').remove();
-					} */
 					
-					//
-					 /* $('#exer-no').html(item.e_no);
-					$('#exer-name').html(item.e_name);
-					$('#exer-eq').html(item.e_equipment);
-					$('#exer-count').html(item.e_count);  */
-					
-					tr+="<tr><td>"+item.e_no+"</td><td class='text-left line-comment' title='"+item.e_no+"'>"+item.e_name+"</td><td>"+item.e_equipment+"</td><td>"+data.e_count+"</td></tr>";
+					tr+="<tr><td>"+item.e_no+"</td><td class='text-left line-comment' title='"+item.e_no+"'>"+item.e_name+"</td><td>"+item.e_equipment+"</td><td>"+data.e_count+"</td><td><input type='button' class='btn btn-info' value='추가'></td></tr>";
 					 
 					
 				})
@@ -133,10 +100,27 @@ $(document).on('click','tr',function(){
 			.fail(function( request, status, error ){
 				console.log("status : " + request.status + ", message : " + request.responseText + ", error : " + error);
 			});			
-		 
-	})
+		  
+})
 	
-	 
+	
+	
+$(document).on('click','tr',function(e){	
+	console.log('tr클릭이벤트')
+	console.log("e.target.nodeName",e.target.nodeName)
+	if(e.target.nodeName=='INPUT'){//추가버튼 클릭 이벤트
+		
+	}
+	else{//운동 상세보기(td) 클릭 이벤트
+		
+	}
+	
+	
+});
+
+	
+
+
 		
 
 

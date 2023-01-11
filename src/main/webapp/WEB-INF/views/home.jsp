@@ -197,8 +197,9 @@
 		
 		<!-- 추가이동경로 필요할경우 아래에 추가 -->
    		<a href="<c:url value="/model/Register.do"/>" >최부건-회원가입</a>
-   
-   
+   		<a href="<c:url value="/community/bbs/list"/>" >함병완-게시판</a>
+   		<a href="<c:url value="/backend/admin"/>" >김동진-어드민</a>
+   		
    
    
    

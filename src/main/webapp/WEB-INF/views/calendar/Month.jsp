@@ -181,8 +181,7 @@
 	  $('#calEditok').on('click',function(){	
 			 console.log($(this).html())		
 			 console.log($("#viewtitle").val())
-  	//	$("#addCalendar").on("click",function(){  // modal의 추가 버튼 클릭 시
-            
+  
   			  var viewtitle = $("#viewtitle").val();
            	  var viewcontent = $("#viewcontent").val();
               var viewdate = $("#viewdate").val();
@@ -219,11 +218,11 @@
 	              			method: "POST",
 	              			data:JSON.stringify(obj),
 	            			type:'json',
-	            			contentType:"application/json; charset=utf-8",
+	            			contentType:"application/json; charset=utf-8"
               			})
               			.done(function(data){         
               					alert('수정 되었습니다.');
-              					console.log(${caldno})
+              					console.log("수정",${caldno})
               					window.location.href ="List.do";
               				
               			}).
@@ -236,6 +235,32 @@
 
 	  
  				 });
+	  
+	  //삭제
+	  $(function(){
+		  $('#caldelete').on("click",function(){
+			if(confirm("정말로 삭제하시겠습니까?")){
+			  var viewno = $("#viewno").val();
+			  console.log("??",viewno)			  
+			  $.ajax({
+		   			url:"<c:url value="/cal/Delete.do"/>",
+		   			data:{"viewno":viewno},
+		   			dataType:'json',
+		   			contentType:"application/json; charset=utf-8"
+					})		
+					.done(function(data){         			
+						alert('삭제되었습니다.')	
+						location.reload();
+						
+					}).fail(function(error){
+						alert('삭제실패!')
+					});		   			  
+		  }
+						
+		 		 })
+		  
+	  });
+	  
 
   //목표달성 버튼 
     $(function() {
@@ -276,6 +301,7 @@
              }  	   
        })
       });
+  
     $(function() {
         $('#foodbtn').click(function(){
      	   if($(this).html()==='목표 식단 달성?'){

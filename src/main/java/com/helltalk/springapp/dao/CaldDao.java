@@ -40,6 +40,11 @@ public class CaldDao {
 	public int update(Map map) {		
 		return template.update("caldUpdate",map);
 	}
+
+	public int delete(Map map) {
+		System.out.println("dao");
+		return template.delete("caldDelete",map);
+	}
 	
 
 }
