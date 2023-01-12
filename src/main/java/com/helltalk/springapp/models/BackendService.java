@@ -3,21 +3,18 @@ package com.helltalk.springapp.models;
 import java.util.List;
 import java.util.Map;
 
-public interface BackendService<T> {
+public interface BackendService {
 //회원관리
 	//모든 회원 조회
-	List<T> selectAllUser(Map map);
-	
+	List selectAllUser();
 	
 //게시글관리
 	//모든 글 조회
-	List<T> selectAllWrite(Map map);
+	List selectAllWritings();
 	
-	
-	
-//결재관리 Payment에서 처리?
+//결재관리
 	//모든 결재 목록 조회
-	
+	List selectAllReceipt();
 	
 }
 

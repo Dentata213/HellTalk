@@ -17,7 +17,15 @@
     <link rel="icon" type="image/png" sizes="16x16" href="${path}/resources/images/favicon.png">
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="${path}/resources/css/style.css">
-
+	<style>
+	@media (min-width: 992px) {
+	  .main-content {
+	  	padding-top: 105px;
+	    padding-left: 225px;
+	    padding-right: 0px;
+	  }
+	}
+	</style>
 </head>
 
 <body class="color-theme-blue mont-font stop-scrolling" id="body">
@@ -42,15 +50,14 @@
         <nav class="navigation scroll-bar">
             <div class="container ps-0 pe-0">
                 <div class="nav-content">
-                    <div class="nav-wrap bg-white bg-transparent-card rounded-xxl shadow-xss pt-3 pb-1 mb-2 mt-2" style="height: 600px">
+                    <div class="nav-wrap bg-white bg-transparent-card rounded-xxl shadow-xss pt-3 pb-1 mb-2 mt-2" style="height: 600px; width: 200px">
                         <ul class="mb-1 top-content">
                             <li class="logo d-none d-xl-block d-lg-block"></li>
-                            <li><a href="javascript:adminStatus();" class="nav-content-bttn open-font" ><i class="feather-tv btn-round-md bg-blue-gradiant me-3"></i><span>통계</span></a></li>
-                            <li><a href="javascript:adminMember();" class="nav-content-bttn open-font" ><i class="feather-award btn-round-md bg-red-gradiant me-3"></i><span>사용자 관리</span></a></li>
-                            <li><a href="javascript:adminBBS();" class="nav-content-bttn open-font" ><i class="feather-globe btn-round-md bg-gold-gradiant me-3"></i><span>게시물 관리</span></a></li>
-                            <li><a href="javascript:adminPayment();" class="nav-content-bttn open-font" ><i class="feather-zap btn-round-md bg-mini-gradiant me-3"></i><span>결재 관리</span></a></li>
-                            <li><a href="user-page.html" class="nav-content-bttn open-font"><i class="feather-user btn-round-md bg-primary-gradiant me-3"></i><span>Q&A </span></a></li>    
-                            <li><a href="default.html" class="nav-content-bttn open-font" ><i class="feather-tv btn-round-md bg-blue-gradiant me-3"></i><span>Newsfeed</span></a></li>
+                            <li><a href="javascript:adminStatus();" class="nav-content-bttn open-font" ><i class="feather-bar-chart-2" style="color:black"></i>&nbsp;&nbsp;<span>통계</span></a></li>
+                            <li><a href="javascript:adminMember();" class="nav-content-bttn open-font" ><i class="feather-users" style="color:black"></i>&nbsp;&nbsp;<span>사용자 관리</span></a></li>
+                            <li><a href="javascript:adminBBS();" class="nav-content-bttn open-font" ><i class="feather-list" style="color:black"></i>&nbsp;&nbsp;<span>게시물 관리</span></a></li>
+                            <li><a href="javascript:adminPayment();" class="nav-content-bttn open-font" ><i class="feather-credit-card" style="color:black"></i>&nbsp;&nbsp;<span>결재 관리</span></a></li>
+                            <li><a href="#" class="nav-content-bttn open-font"><i class="feather-help-circle" style="color:black"></i>&nbsp;&nbsp;<span>Q&A</span></a></li>    
                         </ul>
                     </div>
                 </div>
@@ -58,8 +65,8 @@
         </nav>
         <!-- navigation left -->
         <!-- main content -->
-        <div class="main-content right-chat-active">
-	        <iframe id="iframe" style="height:615px; width:100%" src="<c:url value="/backend/adminStatus"/>"></iframe>
+        <div class="main-content right-chat-active" >
+	        <iframe id="iframe" style="height:600px; width:100%" src="<c:url value="/backend/adminStatus"/>"></iframe>
         </div>
         <!-- main content -->
 
