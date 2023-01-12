@@ -23,7 +23,7 @@ import com.helltalk.springapp.models.PaymentDTO;
 import com.helltalk.springapp.service.PaymentServiceImpl;
 
 @Controller
-@RequestMapping("/payment*")
+@RequestMapping("/payment")
 public class PaymentController {
 	
 	@Value("${application_id}")//properties 설정한 application_id 가져오기
