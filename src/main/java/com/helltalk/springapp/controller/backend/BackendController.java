@@ -1,14 +1,14 @@
 package com.helltalk.springapp.controller.backend;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.helltalk.springapp.models.BackendService;
+
 import com.helltalk.springapp.service.BackendServiceImpl;
-import com.helltalk.springapp.service.PaymentServiceImpl;
+
 
 @Controller
 @RequestMapping("/backend")
@@ -18,8 +18,6 @@ public class BackendController {
 	//@Autowired
 	private BackendServiceImpl service;
 
-	
-	
 	
 	@RequestMapping("/admin")
 	public String admin() {

@@ -305,7 +305,7 @@
 				dataType:'text'
 			}).done(function(data){
 				console.log(data);
-				$('#iframe').attr('src',data);
+				$('#iframe').attr('src','/Helltalk/'+data);
 			})
 		}
 		
@@ -315,7 +315,7 @@
 				dataType:'text'
 			}).done(function(data){
 				console.log(data);
-				$('#iframe').attr('src',data);
+				$('#iframe').attr('src','/Helltalk/'+data);
 			})
 			
 		}
@@ -325,7 +325,7 @@
 				dataType:'text'
 			}).done(function(data){
 				console.log(data);
-				$('#iframe').attr('src',data);
+				$('#iframe').attr('src','/Helltalk/'+data);
 			})
 		}
 		
@@ -335,7 +335,7 @@
 				dataType:'text'
 			}).done(function(data){
 				console.log(data);
-				$('#iframe').attr('src',data);
+				$('#iframe').attr('src','/Helltalk/'+data);
 			})
 		}
 		
