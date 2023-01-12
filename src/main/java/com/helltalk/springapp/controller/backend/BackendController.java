@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.helltalk.springapp.models.BackendService;
-import com.helltalk.springapp.service.BackendServiceImpl;
 import com.helltalk.springapp.service.PaymentServiceImpl;
 
 @Controller
@@ -15,9 +13,12 @@ import com.helltalk.springapp.service.PaymentServiceImpl;
 public class BackendController {
 	
 	
-	//@Autowired
-	private BackendServiceImpl service;
-
+	//@Autowired//결재 서비스
+	private PaymentServiceImpl paymentService;
+	//@Autowired//멤버 서비스
+	//
+	//@Autowired//게시판 서비스
+	//
 	
 	
 	
@@ -43,7 +44,7 @@ public class BackendController {
 	}
 	@RequestMapping("/adminPayment")
 	public String adminPayment() {
-		//service.selectAllReceipt();
+		//paymentService.selectReceiptList(null);
 		return "backend/payment/AdminPayment";
 	}
 
