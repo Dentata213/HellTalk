@@ -8,47 +8,102 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
 
+
+
+/* li {
+    display: inline-block; 
+}  */
+h2{
+	
+	 float:left; 
+	 margin: 20px;
+}
+ ol{
+	margin-top: 30px;
+
+} 
+ li {
+	
+ 	float: left; 
+    margin-left: 20px;
+    margin-bottom: 10px;
+    
+} 	
+.flex-container{
+            display: flex;
+        }
+
+
+</style>
 </head>
 <body>
 	<div class="container">
-		<fieldset>
-			<legend>커스텀 운동 루틴</legend>
-			<h2>DAY1</h2>
-		</fieldset>
-		<fieldset>
-			<legend>운동부위</legend>
-				<form action="<c:url value="#"/>" method="post">
-					<table class="table table-hover text-center">
-						<tr >
-				    		<c:forEach var="record" items="${listExerKind }" >
-				    			<td class="listExerKind" title="${record['ek_no']}">${record["ek_kind"]}</td>
-							<%-- <input type="hidden" name="no" value="${record['ek_no']}" /> --%>
-							<%-- <input type="button" class="no" value="${record['ek_no']}" />${record["ek_kind"]} --%>
-							<%-- <a href="#" class="btn btn-success" >${record["ek_kind"]}</a> --%>
-					    
-					    </c:forEach>
-				    </table>
-				</form>
+		<div>
+			<fieldset>
+				<legend>커스텀 운동 루틴</legend>
+				
+				<!-- <ol>
+					<li><h2>DAY1</h2></li> 
+					<li id="day1_1">.</li>
+					<li id="day1_2">.</li>
+					<li id="day1_3">.</li>
+				</ol> -->
+				
+					<c:forEach var="i" begin="1" end="7" varStatus="loop">
+						<div class="flex-container">
+							<h2>DAY ${loop.index }</h2>
+							<ol >
+								<c:forEach var="k" begin="1" end="3" varStatus="loop2">
+								<li>
+									<select class="selecBox" id="selecBox${loop.index}_${loop2.index}">
+									<option class="option">운동 선택</option>
+									</select>
+								</li>
+								
+								</c:forEach>
+							</ol>
+						</div>
+					</c:forEach>
+				
+			</fieldset>
+			</div>
+			
+			<div>
+			<fieldset>
+				<legend>운동부위</legend>
+					<form action="<c:url value="#"/>" method="post">
+						<table class="table table-hover text-center">
+							<tr >
+					    		<c:forEach var="record" items="${listExerKind }" >
+					    			<td class="listExerKind" title="${record['ek_no']}">${record["ek_kind"]}</td>
+								<%-- <input type="hidden" name="no" value="${record['ek_no']}" /> --%>
+								<%-- <input type="button" class="no" value="${record['ek_no']}" />${record["ek_kind"]} --%>
+								<%-- <a href="#" class="btn btn-success" >${record["ek_kind"]}</a> --%>
+						    
+						    </c:forEach>
+					    </table>
+					</form>
+			
+				<table class="table table-dark table-hover text-center">
 		
-			<table class="table table-dark table-hover text-center">
-	
-				<thead>
-					<tr>
-						<th>번호</th>
-						<th>운동명</th>
-						<th>필요기구</th>				
-						<th>사용자기록수</th>
-						<th>루틴 추가</th>
-					</tr>
-				</thead>
-				<tbody class="table-sm down-file-body" id="exercise-list">
-					
-		
-				</tbody>
-			</table>
-		</fieldset>
-	
+					<thead>
+						<tr>
+							<th>번호</th>
+							<th>운동명</th>
+							<th>필요기구</th>				
+							<th>사용자기록수</th>
+							<!-- <th>루틴 추가</th> -->
+						</tr>
+					</thead>
+					<tbody class="table-sm down-file-body" id="exercise-list">
+						
+			
+					</tbody>
+				</table>
+			</fieldset>
+		</div>
 	
 	</div>
 
@@ -78,21 +133,42 @@ $(document).on('click','.listExerKind',function(){
 				console.log('data.e_name:',data[0].e_name);	
 				$('#exer-no').html(data[0].e_name);
 				var tr="";
-				console.log("$('#exercise-list').children('tr').length",$("#exercise-list").children("tr").length)
+				var option="";
+				
+				
+				/* console.log("$('#exercise-list').children('tr').length",$("#exercise-list").children("tr").length)
+				console.log('$(".option").html()',$(".option").html())
+				console.log("$('.selecBox').find()",$('.selecBox').find())
+				console.log($(".selecBox option:selected").text())
+				console.log($("#selecBox option:selected").text())
+				console.log($("#selecBox1_1 option:selected").text())
+				console.log($("#selecBox1_3 option:selected").text()) */
+				
 				 if($("#exercise-list").has("tr").length !=0){
 					
 					 $("#exercise-list").children("tr").remove();
 				} 
-			
-				 
+				
+				for(var i=1;i<=7;i++){
+					for(var k=1;k<=3;k++){
+						if($("#selecBox"+i+"_"+k+" option:selected").text()=="운동 선택"){
+							$("#selecBox"+i+"_"+k+" option").remove();
+							option="<option class='option'>운동 선택</option>"
+						 }
+					}
+				}
+
 				$.each(data,function(i,item){
-					
+					/* 
 					tr+="<tr><td>"+item.e_no+"</td><td class='text-left line-comment' title='"+item.e_no+"'>"+item.e_name+"</td><td>"+item.e_equipment+"</td><td>"+data.e_count+"</td><td><input type='button' class='btn btn-info' value='추가'></td></tr>";
-					 
+					 */ 
+					tr+="<tr><td>"+item.e_no+"</td><td class='text-left line-comment' title='"+item.e_no+"'>"+item.e_name+"</td><td>"+item.e_equipment+"</td><td>"+data.e_count+"</td></tr>";
+					option+="<option value='"+item.e_no+"'>"+item.e_name+"</option>"
 					
 				})
 								
 				$('#exercise-list').append(tr);
+				$(".selecBox").append(option);
 				
 				
 				
@@ -108,12 +184,16 @@ $(document).on('click','.listExerKind',function(){
 $(document).on('click','tr',function(e){	
 	console.log('tr클릭이벤트')
 	console.log("e.target.nodeName",e.target.nodeName)
-	if(e.target.nodeName=='INPUT'){//추가버튼 클릭 이벤트
+	/* if(e.target.nodeName=='INPUT'){//추가버튼 클릭 이벤트
+		console.log('INPUT클릭이벤트')
+		console.log(e.target)
+		console.log(e.target.parentElement.parentElement.children[1])
 		
 	}
 	else{//운동 상세보기(td) 클릭 이벤트
 		
-	}
+	} */
+	
 	
 	
 });
