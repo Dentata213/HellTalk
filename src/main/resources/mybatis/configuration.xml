@@ -13,6 +13,7 @@
 		<typeAlias type="com.helltalk.springapp.models.PaymentDTO" alias="PaymentDTO"/>
 		<typeAlias type="com.helltalk.springapp.service.ExerciseDTO" alias="ExerciseDTO"/>
 		<typeAlias type="com.helltalk.springapp.service.MemberDTO" alias="MemberDTO"/>
+		<typeAlias type="com.helltalk.springapp.service.BBSDto" alias="BBSDto"/>
 		
 	</typeAliases>
 
@@ -24,6 +25,7 @@
 		<mapper resource="mybatis/mapper/Payment.xml"/> 
 		<mapper resource="mybatis/mapper/Exer.xml"/> 
 		<mapper resource="mybatis/mapper/Member.xml"/> 
+		<mapper resource="mybatis/mapper/Board.xml"/> 
 		
 	</mappers>
 </configuration>

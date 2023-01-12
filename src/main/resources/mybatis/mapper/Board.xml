@@ -2,10 +2,14 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mybatis.mapper.Payment">
+<mapper namespace="mybatis.mapper.Board">
   
-	<select id="list" resultType="BBSDto">
-			SELECT * FROM BBS;
+	<select id="selectBBS" resultType="BBSDto">
+			SELECT
+			U_NO as id,
+			P_CONTENT as content,
+			P_TITLE as title
+			FROM BBS
 	</select>
 	 
 </mapper>

@@ -12,8 +12,8 @@ import org.springframework.stereotype.Repository;
 
 import com.helltalk.springapp.service.BBSDto;
 
-	@Repository
-	public class BBSDao{
+@Repository
+public class BBSDao{
 
 	@Autowired
 	private SqlSessionTemplate template;

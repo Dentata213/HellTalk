@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
    <!-- main content -->
@@ -44,18 +45,18 @@
                            <div class="card-body p-0 d-flex">
                            
 	                           	<tbody class="table-sm down-file-body" id="scroll">
-									<c:if test="${empty list}" var="isEmpty">
+									<c:if test="${empty lists}" var="isEmpty">
 									<tr>
 										<td colspan="6">등록된 글이 없습니다.</td>
 									</tr>	
 									</c:if>
 									<c:if test="${not isEmpty}">
-									<c:forEach var="list" items="${list}" varStatus="loop">
+									<c:forEach var="list" items="${lists}" varStatus="loop">
 		                               <figure class="avatar me-3"><img src="https://via.placeholder.com/50x50.png" alt="image" class="shadow-sm rounded-circle w45"></figure>
-		                               <h4 class="fw-700 text-grey-900 font-xssss mt-1">${list.id}</h4>
+		                               <h4 class="fw-700 text-grey-900 font-xssss mt-1">${list.id}, ${list.title}</h4>
 		                            </div>
 		                            <div class="card-body p-0 me-lg-5">
-		                                <p class="fw-500 text-grey-500 lh-26 font-xssss w-100">${list.comment}</p>
+		                                <p class="fw-500 text-grey-500 lh-26 font-xssss w-100">${list.content}</p>
 		                            </div>
 		                            <div class="card-body d-block p-0">
 		                                <div class="row ps-2 pe-2">
@@ -66,7 +67,7 @@
 		                            </div>
 	                           	
                            <div class="card-body d-flex p-0 mt-3">
-                               <a href="#" class="emoji-bttn d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss me-2"><i class="feather-thumbs-up text-white bg-primary-gradiant me-1 btn-round-xs font-xss"></i> <i class="feather-heart text-white bg-red-gradiant me-2 btn-round-xs font-xss"></i>${list.likecount}</a>
+                               <a href="#" class="emoji-bttn d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss me-2"><i class="feather-thumbs-up text-white bg-primary-gradiant me-1 btn-round-xs font-xss"></i> <i class="feather-heart text-white bg-red-gradiant me-2 btn-round-xs font-xss"></i><!-- ${list.likeCount} --></a>
                                <div class="emoji-wrap">
                                    <ul class="emojis list-inline mb-0">
                                        <li class="emoji list-inline-item"><i class="em em---1"></i> </li>
@@ -79,7 +80,7 @@
                                        <li class="emoji list-inline-item"><i class="em em-full_moon_with_face"></i></li>
                                    </ul>
                                </div>
-                               <a href="#" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss"><i class="feather-message-circle text-dark text-grey-900 btn-round-sm font-lg"></i><span class="d-none-xss">${list.commentCount}</span></a>
+                               <a href="#" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss"><i class="feather-message-circle text-dark text-grey-900 btn-round-sm font-lg"></i><span class="d-none-xss"><!-- ${list.commentCount} --></span></a>
 								</c:forEach>
 								</c:if>
                                    </div>
@@ -89,6 +90,7 @@
                       
    <!-- main content -->
 	<script>
+	/*
 	var count=parseInt(${maxlength})-10;
 	
 	$(window).scroll(function() {
@@ -117,6 +119,8 @@
 		   var start = new Date().getTime();
 		   while (new Date().getTime() < start + delay);
 	}
+	
+	*/
 </script>
 
 

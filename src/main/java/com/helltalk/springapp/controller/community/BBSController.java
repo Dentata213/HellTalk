@@ -31,7 +31,7 @@ public class BBSController {
 	public String list(@RequestParam Map map,Model model) throws Exception{
 		List<BBSDto> lists = service.selectBBS(map);
 		model.addAttribute("lists", lists);
-		
+		System.out.println(lists);
 		return "community/bbs/List.helltalk";
 		
 	}
