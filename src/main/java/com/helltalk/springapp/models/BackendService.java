@@ -6,15 +6,18 @@ import java.util.Map;
 public interface BackendService {
 //회원관리
 	//모든 회원 조회
-	List selectAllUser();
+	List selectAllUser(Map map);
+	//회원 차단/차단해제
+	int blockUser(Map map);
 	
 //게시글관리
 	//모든 글 조회
-	List selectAllWritings();
+	List selectAllWritings(Map map);
+	
 	
 //결재관리
 	//모든 결재 목록 조회
-	List selectAllReceipt();
+	List selectAllReceipt(Map map);
 	
 }
 

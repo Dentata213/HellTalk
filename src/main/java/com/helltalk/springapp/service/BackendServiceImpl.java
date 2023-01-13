@@ -1,6 +1,7 @@
 package com.helltalk.springapp.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,21 +17,27 @@ public class BackendServiceImpl implements BackendService{
 	private BackendDAO dao;
 	
 	@Override
-	public List<MemberDTO> selectAllUser() {
+	public List<MemberDTO> selectAllUser(Map map) {
 		List<MemberDTO> lists = dao.selectAllUser();
 		return lists;
 	}
 
 	@Override
-	public List selectAllWritings() {
+	public List selectAllWritings(Map map) {
 		
 		return null;
 	}
 
 	@Override
-	public List<PaymentDTO> selectAllReceipt() {
+	public List<PaymentDTO> selectAllReceipt(Map map) {
 		List<PaymentDTO> lists = dao.selectAllReceipt();
 		return lists;
+	}
+
+	@Override
+	public int blockUser(Map map) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }

@@ -50,7 +50,7 @@
         <nav class="navigation scroll-bar">
             <div class="container ps-0 pe-0">
                 <div class="nav-content">
-                    <div class="nav-wrap bg-white bg-transparent-card rounded-xxl shadow-xss pt-3 pb-1 mb-2 mt-2" style="height: 80vh; width: 200px">
+                    <div class="nav-wrap bg-white bg-transparent-card rounded-xxl shadow-xss pt-3 pb-1 mb-2 mt-2" style="height: 83vh; width: 200px">
                         <ul class="mb-1 top-content">
                             <li class="logo d-none d-xl-block d-lg-block"></li>
                             <li><a href="javascript:adminStatus();" class="nav-content-bttn open-font" ><i class="feather-bar-chart-2" style="color:black"></i>&nbsp;&nbsp;<span>통계</span></a></li>
@@ -66,7 +66,7 @@
         <!-- navigation left -->
         <!-- main content -->
         <div class="main-content right-chat-active">
-	        <iframe id="iframe" style="height:80vh; width:100%" src="<c:url value="/backend/adminStatus"/>"></iframe>
+	        <iframe id="iframe" style="height:83vh; width:100%" src="<c:url value="/backend/adminStatus"/>"></iframe>
         </div>
         <!-- main content -->
 
