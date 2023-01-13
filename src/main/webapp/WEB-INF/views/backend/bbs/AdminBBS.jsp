@@ -99,6 +99,7 @@
                       </tr>
                     </thead>
                     <tbody>
+                    <c:forEach var="" items="#{}" >
                       <tr>
                         <td>1</td>
                         <td class="text-left" style="text-align:left">Albert Cook</td>
@@ -118,7 +119,7 @@
                           </div>
                         </td>
                       </tr>
-                     
+                    </c:forEach>
                     </tbody>
                     <tfoot class="table-border-bottom-0">
                       <tr>
