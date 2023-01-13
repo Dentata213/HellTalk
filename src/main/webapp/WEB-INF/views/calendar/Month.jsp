@@ -4,6 +4,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+ <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,8 +14,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<link href='${pageContext.request.contextPath}/resources/fullcalendar-5.11.3/lib/main.css' rel='stylesheet' />
-<script src='${pageContext.request.contextPath}/resources/fullcalendar-5.11.3/lib/main.js'></script>
+<link href='${path}/resources/fullcalendar-5.11.3/lib/main.css' rel='stylesheet' />
+<script src='${path}/resources/fullcalendar-5.11.3/lib/main.js'></script>
 <script>
 
   document.addEventListener('DOMContentLoaded', function() {
@@ -97,11 +98,13 @@
         },
         </c:forEach>   
         {
+       
         title:'테스트',
         start:'2023-01-16',
-        end:'2023-01-17T12:00',
+      //  end:'2023-01-17',
         constraint: 'availableForMeeting', // defined below
-        color:'#257e4a'
+        color:'#257e4a',
+       display:'background'  
         },
       ],
       customButtons: {
@@ -502,7 +505,6 @@
           </div>
       </div>
   </div>
-
   
 </body>
 </html>
