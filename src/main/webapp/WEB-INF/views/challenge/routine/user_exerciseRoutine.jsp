@@ -4,6 +4,7 @@
 
 <!DOCTYPE html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
 <html>
 <head>
 <meta charset="UTF-8">
@@ -35,6 +36,12 @@ h2{
             display: flex;
         }
 
+.calendar{
+	display: flex;
+	float: left; 
+	margin-right: 50px;
+	margin-left: 15px;
+}
 
 </style>
 </head>
@@ -43,7 +50,19 @@ h2{
 		<div>
 			<fieldset>
 				<legend>커스텀 운동 루틴</legend>
-				
+					<div class="calendar">
+						<label>
+							시작날짜 </br>
+							<input type="date" id="start" min="1950-01-01" max="2022-12-31">
+							
+						 </label>
+					 </div class="calendar">
+					 <div>
+						 <label>
+							끝날짜: </br>
+							<input type="date" id="end" min="1950-01-01" max="2022-12-31" readonly >
+						 </label>
+					</div>
 				<!-- <ol>
 					<li><h2>DAY1</h2></li> 
 					<li id="day1_1">.</li>
@@ -199,9 +218,44 @@ $(document).on('click','tr',function(e){
 });
 
 	
+ $(document).on('change','#start',function(e){	
+	
+ 	var start=$(this).val();
+ 	console.log("start",start)
+ 	
+	var end=endDate(start,6)
+	console.log("end",end) 
+	$('#end').val(end)
+	//$('#end').val($(this).stepUp(7));
+	//console.log($(this).val())
+	//start=$(this).val();
+	//console.log($(this).stepUp(7));
+	//var end=start.setDate(start.getDate() +7);
+	//console.log($(this).val().stepUp(7));
+	//console.log(end);
+	//$('#end').val($(this).val()+7)
+}); 
+ 
+function endDate(date,n){
+	var yyyy=date.substring(0,4);
+	var mm = date.substring(5,7);
+	var dd=date.substring(8,10);
+	mm=Number(mm)-1;
+	
+	var endDate = new Date(yyyy,mm,dd);
+	endDate.setDate(endDate.getDate()+n);
+	
+	return endDate.getFullYear()+"-"+((endDate.getMonth()+1)>9?(endDate.getMonth()+1).toString():"0"+(endDate.getMonth()+1))+
+			"-"+(endDate.getDate()>9?endDate.getDate().toString():"0"+endDate.getDate().toString());
+}
+ 
+/* 
+$('#start').change(function() {
+	$('#end').val(document.getElementById('start').stepUp(10080))
+}) */
 
 
-		
+	
 
 
 </script>
