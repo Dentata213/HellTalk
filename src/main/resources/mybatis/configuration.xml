@@ -14,7 +14,7 @@
 		<typeAlias type="com.helltalk.springapp.service.ExerciseDTO" alias="ExerciseDTO"/>
 		<typeAlias type="com.helltalk.springapp.service.MemberDTO" alias="MemberDTO"/>
 		<typeAlias type="com.helltalk.springapp.service.BBSDto" alias="BBSDto"/>
-		
+		<typeAlias type="com.helltalk.springapp.models.CalcDto" alias="CalcDto"/>
 	</typeAliases>
 
 	<!-- 매퍼파일(SQL쿼리 결과와 자바빈 매핑)의 위치정보 설정 xml파일 생성후 mapper기입 -->
@@ -27,6 +27,6 @@
 		<mapper resource="mybatis/mapper/Member.xml"/> 
 		<mapper resource="mybatis/mapper/Board.xml"/> 
 		<mapper resource="mybatis/mapper/Backend.xml"/>
-		
+	 	<mapper resource="mybatis/mapper/Calc.xml"/>   
 	</mappers>
 </configuration>

@@ -4,7 +4,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
- <c:set var="path" value="${pageContext.request.contextPath}"/>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,7 +48,7 @@
     		}),   	  
     	 //※댓글 목록의 제목 클릭시-click이벤트걸때 반드시  $(document).on('이벤트명','셀렉터',콜백함수)으로
     	//그래야 동적으로 추가된 요소에도 이벤트가 발생한다 	  
-    	  $(document).on('click','.fc-event-title-container',function(){
+    	 $(document).on('click','.fc-event-title-container',function(){
     			//먼저 각 댓글 작성자의 아이디를 Ajax로 가져온다. 
     		//	console.log('댓글번호1:',this.viewno());
     			var this_= $(this).children(); //클릭한 제이쿼리 객체
@@ -75,21 +75,20 @@
         },   
       events: [
     
-    <c:forEach var="cal" items="${calendarList}" varStatus="loop">
-     	  { //오라클에서 불러온 데이터 연동==> 여기 클릭하면 모달창 띄워서 정보 보여주기! 
-     		  // 노노 이거 하루하루 목표 완료체크용으로 변경할거..
-               title:'${cal.title}',
-               start:'${cal.startdate}',  //'${today}'
-               end:'${cal.enddate}',  //'${today}'
-               color:'#ff9f89' , 
+    //calcheked list 뿌리기 	  
+    <c:forEach var="calc" items="${calcList}" varStatus="loop">
+     	  { 
+               title:'${calc.rout_name}',
+               start:'${calc.rout_startdate}',  
+               end:'${calc.rout_enddate}', 
+               color:'${calc.calc_color}' , 
            	   display:'background'         	 
 	  	   },
 	</c:forEach> 
    
 	//caldaily list 뿌리기
 	<c:forEach var="cald" items="${caldList}" varStatus="loop"> 			
-	  	{  		
-       
+	  	{  		     
           title:'${cald.cald_no}_${cald.cald_title}',
           start:'${cald.cald_startdate}',
    //     end:'${cald.cald_enddate}T12:00',
