@@ -26,6 +26,7 @@
 		<mapper resource="mybatis/mapper/Exer.xml"/> 
 		<mapper resource="mybatis/mapper/Member.xml"/> 
 		<mapper resource="mybatis/mapper/Board.xml"/> 
+		<mapper resource="mybatis/mapper/Backend.xml"/>
 		
 	</mappers>
 </configuration>
