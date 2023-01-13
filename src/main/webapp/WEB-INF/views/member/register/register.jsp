@@ -213,7 +213,7 @@ body {
 	  </label>
 	  <br>
 	  <label>
-		생년월일을 선택해주세요: <input type="date" name="u_birth" min="1950-01-01" max="2022-12-31">
+		생년월일을 선택해주세요: <input type="date" name="u_birth" min="1950-01-01" max="9999-12-31">
 	 </label>
 	  
       <div class="textForm">
