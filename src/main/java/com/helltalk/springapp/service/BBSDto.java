@@ -15,12 +15,14 @@ public class BBSDto {
 	private String id;
 	private String no;
 	private String title;
+	private String u_nickname;
 	private String content;
 	private String comment;
 	private int viewCount;
 	private Date postDate;
 	private int likeCount;
 	private boolean like;
+	
 	
 	//아래는 게시판 테이블 생성시 컬럼에서 제외
 	private String name;

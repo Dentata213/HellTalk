@@ -33,7 +33,33 @@ public class BBSController {
 		model.addAttribute("lists", lists);
 		System.out.println(lists);
 		return "community/bbs/List.helltalk";
-		
 	}
-
+	
+	//게시물 작성
+	@RequestMapping("/write")
+	public String write(@RequestParam Map map) throws Exception{
+		service.insertBBS(map);
+		return "community/bbs/List.helltalk";
+	}
+	
+	@RequestMapping("/movetoEdit")
+	public String movetoEdit() {
+		return "community/bbs/Edit.helltalk";
+	}
+	
+	//게시물 수정
+	@RequestMapping("/edit")
+	public String edit(@RequestParam Map map) throws Exception{
+		service.editBBS(map);
+		return "community/bbs/Edit.helltalk";
+	}
+	
+	//게시물 삭제
+	@RequestMapping(value="/delete",method ={RequestMethod.GET,RequestMethod.POST})
+	public String delete(@RequestParam Map map) throws Exception{
+		service.deleteBBS(map);
+		return "community/bbs/List.helltalk";
+	}
 }
+
+	
