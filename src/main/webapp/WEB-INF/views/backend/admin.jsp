@@ -26,6 +26,7 @@
 	  }
 	}
 	</style>
+
 </head>
 
 <body class="color-theme-blue mont-font stop-scrolling" id="body">
@@ -171,9 +172,6 @@
 				$('#iframe').attr('src','/Helltalk/'+data);
 			})
 		}
-		
-		
-		
 		
 		
 	</script>

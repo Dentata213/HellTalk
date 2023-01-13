@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="path" value="${pageContext.request.contextPath}/resources/"/>
+<c:set var="paymentlength" value="${paymentlists}"/>
 <!DOCTYPE html>
 
 <!-- =========================================================
@@ -83,23 +84,28 @@
               <div class="card" style="height: 100%">
                 <h4 class="card-header">결재목록</h4>
                 <div class="table-responsive text-nowrap"  style="height: 100%">
-                  <table class="table">
+                  <table class="table text-center">
                     <thead>
                       <tr>
                         <th>결재번호</th>
-                        <th>결재</th>
-                        <th>Users</th>
-                        <th>Actions</th>
-                        <th>Actions</th>
+                        <th>결재목록</th>
+                        <th>결재자</th>
+                        <th>결재금액</th>
+                        <th>결재일</th>
                         <th>상태</th>
-                        <th>Actions</th>
+                        <th>메뉴</th>
                       </tr>
                     </thead>
                     <tbody>
+                    <c:if test="${empty paymentlists}" var="flag">
+                    	<tr><td colspan="7">결재목록이 없습니다</td></tr>
+                    </c:if>
+                    <c:if test="${not flag}">
+                    <c:forEach var="paymentInfo" items="${paymentlists}" varStatus="loop">
                       <tr>
-                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong>Angular Project</strong></td>
-                        <td>Albert Cook</td>
-                        <td>User</td>
+                        <td>${fn:length(paymentlength)-loop.count+1}</td>
+                        <td></td>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td><span class="badge bg-label-primary me-1">결재완료</span></td>
@@ -116,17 +122,18 @@
                           </div>
                         </td>
                       </tr>
-                     
+                      </c:forEach>
+                     </c:if>
                     </tbody>
                     <tfoot class="table-border-bottom-0">
                       <tr>
-                   		<th>결재번호</th>
-                        <th>결재</th>
-                        <th>Users</th>
-                        <th>Actions</th>
-                        <th>Actions</th>
+                        <th>결재번호</th>
+                        <th>결재목록</th>
+                        <th>결재자</th>
+                        <th>결재금액</th>
+                        <th>결재일</th>
                         <th>상태</th>
-                        <th>Actions</th>
+                        <th>메뉴</th>
                       </tr>	
                     </tfoot>
                   </table>

@@ -3,19 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="path" value="${pageContext.request.contextPath}/resources/"/>
+<c:set var="bbslength" value="${bbslists}"/>
 <!DOCTYPE html>
-
-<!-- =========================================================
-* Sneat - Bootstrap 5 HTML Admin Template - Pro | v1.0.0
-==============================================================
-
-* Product Page: https://themeselection.com/products/sneat-bootstrap-html-admin-template/
-* Created by: ThemeSelection
-* License: You must have a valid license purchased in order to legally use the theme for your project.
-* Copyright ThemeSelection (https://themeselection.com)
-
-=========================================================
- -->
 <!-- beautify ignore:start -->
 <html
   lang="en"
@@ -89,45 +78,51 @@
                   <table class="table text-center">
                     <thead>
                       <tr>
-                        <th class="col-1">글번호</th>
-                        <th class="col-5" style="text-align:left">글제목</th>
-                        <th class="col-2">작성자</th>
-                        <th class="col-1">상태</th>
-                        <th class="col-1">Actions</th>
-                        <th class="col-1">Actions</th>
-                        <th class="col-1">Actions</th>
+                        <th>글번호</th>
+                        <th>글제목</th>
+                        <th>작성자</th>
+                        <th>좋아요수</th>
+                        <th>추천수</th>
+                        <th>Actions</th>
+                        <th>Actions</th>
                       </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var="" items="#{}" >
-                      <tr>
-                        <td>1</td>
-                        <td class="text-left" style="text-align:left">Albert Cook</td>
-                        <td>User</td>
-                      	<td></td>
-                      	<td></td>
-                      	<td></td>
-                        <td>
-                          <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                              <i class="bx bx-dots-horizontal-rounded"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                              <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                              <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                    </c:forEach>
+                    <c:if test="${empty bbslists}" var="flag">
+                    	<tr>
+                    		<td colspan="7">글이 없습니다</td>
+                    	<tr>
+                    </c:if>
+                    <c:if test="${not flag}">
+                 	  	<c:forEach var="bbsInfo" items="${bbslists}">
+	                      <tr>
+	                        <td>${bbsInfo.no}</td>
+	                        <td>${bbsInfo.title}</td>
+	                        <td>${bbsInfo.id}</td>
+	                      	<td>${bbsInfo.likeCount}</td>
+	                      	<td>${bbsInfo.viewCount}</td>
+	                      	<td></td>
+	                        <td>
+	                          <div class="dropdown">
+	                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+	                              <i class="bx bx-dots-horizontal-rounded"></i>
+	                            </button>
+	                            <div class="dropdown-menu">
+	                              <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> 삭제</a>
+	                            </div>
+	                          </div>
+	                        </td>
+	                      </tr>
+	                    </c:forEach>
+                    </c:if>
                     </tbody>
                     <tfoot class="table-border-bottom-0">
                       <tr>
                         <th>글번호</th>
-                        <th style="text-align:left">글제목</th>
+                        <th>글제목</th>
                         <th>작성자</th>
-                        <th>상태</th>
-                        <th>Actions</th>
+                        <th>좋아요수</th>
+                        <th>추천수</th>
                         <th>Actions</th>
                         <th>Actions</th>
                       </tr>	

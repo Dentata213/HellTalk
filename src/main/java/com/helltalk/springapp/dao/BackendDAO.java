@@ -1,26 +1,39 @@
 package com.helltalk.springapp.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.helltalk.springapp.models.PaymentDTO;
+import com.helltalk.springapp.service.BBSDto;
 import com.helltalk.springapp.service.MemberDTO;
 
-//@Repository
+@Repository
 public class BackendDAO {
 
-	//@Autowired
+	@Autowired
 	private SqlSessionTemplate template;
 
-	public List<MemberDTO> selectAllUser() {
-		return template.selectList("selectAllUser");
+	public List<MemberDTO> selectAllUser(Map map) {
+		List<MemberDTO> list = template.selectList("selectAllUser",map);
+		return list;
 	}
 
-	public List<PaymentDTO> selectAllReceipt() {
-		return template.selectList("selectAllReceipt");
+	public List<PaymentDTO> selectAllReceipt(Map map) {
+		List<PaymentDTO> list = template.selectList("selectAllReceipt",map);
+		return list;
+	}
+
+	public List<BBSDto> selectAllWritings(Map map) {
+		List<BBSDto> list = template.selectList("selectAllWritings",map);
+		return list;
+	}
+
+	public int blockUser(Map map) {
+		return template.update("blockUser", map);
 	}
 	
 	
