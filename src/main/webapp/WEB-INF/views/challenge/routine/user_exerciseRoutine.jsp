@@ -226,14 +226,7 @@ $(document).on('click','tr',function(e){
 	var end=endDate(start,6)
 	console.log("end",end) 
 	$('#end').val(end)
-	//$('#end').val($(this).stepUp(7));
-	//console.log($(this).val())
-	//start=$(this).val();
-	//console.log($(this).stepUp(7));
-	//var end=start.setDate(start.getDate() +7);
-	//console.log($(this).val().stepUp(7));
-	//console.log(end);
-	//$('#end').val($(this).val()+7)
+	
 }); 
  
 function endDate(date,n){
