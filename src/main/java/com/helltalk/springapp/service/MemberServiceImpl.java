@@ -43,8 +43,8 @@ public class MemberServiceImpl implements MemberService<MemberDTO>{
 	}
 
 	@Override
-	public int idCheck(Map map) {
-		return dao.idChekc(map);
+	public int emailCheck(Map map) {
+		return dao.emailCheck(map);
 	}
 	
 	
