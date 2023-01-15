@@ -89,6 +89,12 @@
 
 
 <body class="color-theme-blue">
+	<c:if test="${! empty requestScope.NotMember}">
+		<div class="alert alert-success alert-dismissible fade show">
+		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+		  <strong>로그인 실패!!</strong> ${requestScope.NotMember}
+		</div>
+	</c:if>
 
     <div class="preloader"></div>
 
@@ -107,10 +113,11 @@
                     <div class="card-body rounded-0 text-left">
                         <h2 class="fw-700 display1-size display2-md-size mb-3">Login into <br>your account</h2>
                         
-                        <form action="/LoginProcess.do" method="POST">
+                        <form action="<c:url value="/member/LoginProcess.do"/>" method="post">
+                        	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             <div class="form-group icon-input mb-3">
-                                <i class="font-sm ti-key text-grey-500 pe-0"></i>
-                                <input type="text" class="style2-input ps-5 form-control text-grey-900 font-xsss fw-600" placeholder="아이디 입력" name="id">                        
+                                <i class="font-sm ti-email text-grey-500 pe-0"></i>
+                                <input type="text" class="style2-input ps-5 form-control text-grey-900 font-xsss fw-600" placeholder="이메일 입력" name="id">                        
                             </div>
                             <div class="form-group icon-input mb-1">
                                 <input type="Password" class="style2-input ps-5 form-control text-grey-900 font-xss ls-3" placeholder="비밀번호 입력" name="pwd">
@@ -125,7 +132,7 @@
                         </form>
                          
                         <div class="col-sm-12 p-0 text-left">
-                            <h6 class="text-grey-500 font-xsss fw-500 mt-0 mb-0 lh-32">계정이 아직 없으신가요? <a href="<c:url value="/model/Register.do"/>" class="fw-700 ms-1">회원가입</a></h6>
+                            <h6 class="text-grey-500 font-xsss fw-500 mt-0 mb-0 lh-32">계정이 아직 없으신가요? <a href="<c:url value="/member/CreateUser.do"/>" class="fw-700 ms-1">회원가입</a></h6>
                         </div>
                         
                         <div class="col-sm-12 p-0 text-center mt-2">
