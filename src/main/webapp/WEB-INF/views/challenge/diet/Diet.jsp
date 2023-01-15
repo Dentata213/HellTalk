@@ -1,28 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="path" value="${pageContext.request.contextPath}"/>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
-<html lang="en" dir="rtl">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>HellTalk - HealthTalk for Everyone!</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>HellTalk - HealthTalk for Everyone!</title>
 
-    <link rel="stylesheet" href="../css/themify-icons.css">
-    <link rel="stylesheet" href="../css/feather.css">
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="${path}/resources/images/favicon.png">
-    <!-- Custom Stylesheet -->
-    <link rel="stylesheet" href="${path}/resources/css/style.css">
-    <link rel="stylesheet" href="${path}/resources/css/style-rtl.css">
-
-
-    <link rel="stylesheet" href="${path}/resources/css/emoji.css">
-    <link rel="stylesheet" href="${path}/resources/css/lightbox.css">
-    <link rel="stylesheet" href="${path}/resources/css/examscss/_color.scss">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<!-- https://developers.google.com/fonts/docs/material_icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 
 </head>
 
@@ -36,27 +31,54 @@
 		</div>
 		<div class="text-center mb-2">
 			<h1>검색 결과</h1>
-			<ul>
-				<c:forEach var="record" items="${param.searchList}" varStatus="loop">
-					<li>${record[i] }</li>
-				</c:forEach>
-			</ul>
-		
+			<table class="table table-hover text-center">
+
+				<thead>
+					<tr>
+						<th class="col-1">번호</th>
+						<th >음식 이름</th>
+						<th class="col-1">제조사명</th>
+						<th class="col-1">총내용량</th>
+						<th class="col-1">칼로리</th>
+						<th class="col-1">탄수화물</th>
+						<th class="col-1">단백질</th>
+						<th class="col-1">지방</th>
+						<th class="col-1">콜레스테롤</th>
+						<th class="col-1">나트륨</th>
+					</tr>
+				</thead>
+				<tbody class="table-sm down-file-body">
+					<c:if test="${empty searchList }" var="isEmpty">
+						<tr>
+							<td colspan="10">${FailSearch }</td>
+						</tr>
+					</c:if>
+					<c:if test="${not isEmpty }">
+						<c:forEach var="record" items="${searchList}" varStatus="loop">
+							<tr id="selectFood">
+								<td>${record.food_no }</td>
+								<td>${record.food_name }</td>
+								<td>${record.food_maker }</td>
+								<td>${record.food_size }</td>
+								<td>${record.food_kcal }</td>
+								<td>${record.food_tan }</td>
+								<td>${record.food_dan }</td>
+								<td>${record.food_fat }</td>
+								<td>${record.food_col }</td>
+								<td>${record.food_na }</td>
+							</tr>
+						</c:forEach>
+					</c:if>
+
+				</tbody>
+			</table>
 		</div>
-		
-		<%-- 
-		<c:forEach var="record" items="${listPagingData.lists}" varStatus="loop">
-			<tr>
-				<td>${record.no}</td>
-				<td class="text-left"><a
-					href="<c:url value="/onememo/bbs/View.do?no=${record.no}&nowPage="/><c:out value="${param.nowPage}" default="1"/>">${record.title}</a>
-					<span class="badge badge-light">${record.commentCount}</span></td>
-				<td>${record.name}</td>
-				<td>${record.postDate}</td>
-			</tr>
-		</c:forEach>
-		--%>
 	</div>
 </body>
 
+<script>
+	$('#selectFood').onclick=function(){
+		window.location.href = "<c:url value="/diet/putFood.do"/>"
+	}
+</script>
 </html>
