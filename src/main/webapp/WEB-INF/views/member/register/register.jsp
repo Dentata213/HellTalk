@@ -195,61 +195,62 @@ body {
 	    </div>
 	</div>
 
-	<form action="<c:url value="/model/Success.do"/>" method="POST" class="joinForm">
+	<form action="<c:url value="/register.do"/>" method="post" class="joinForm">
 	  <h1>HellTalk에 오신것을 환영합니다.</h1>
 	  <h4 class="text-grey-500">혹은 이미 계정이 있으신가요?? <a href="<c:url value="/model/Login.do"/>" class="fw-700 ms-1">로그인하러 가기</a></h4> 
 	                                                              
       <h3>성별을 선택하여 주세요</h3>
       <label class="radio-img">
-	    <input type="radio" name="gender" value="man" />
+	    <input type="radio" name="u_gender" value="M" />
 	    <img src="${path}/resources/images/free-icon-trainer-3597951.png" title="제작자: Eucalyp - Flaticon">
 	    <h3>남성</h3>
 	  </label>
 	  
 	  <label class="radio-img">
-	    <input type="radio" name="gender" value="women"/>
+	    <input type="radio" name="u_gender" value="F"/>
 	    <img src="${path}/resources/images/free-icon-aerobics-3604152.png" title="제작자: Eucalyp - Flaticon">
 	    <h3>여성</h3>
 	  </label>
 	  <br>
 	  <label>
-		생년월일을 선택해주세요: <input type="date" name="date" min="1950-01-01" max="2022-12-31">
+		생년월일을 선택해주세요: <input type="date" name="u_birth" min="1950-01-01" max="9999-12-31">
 	 </label>
 	  
       <div class="textForm">
-        <input name="id" type="text" class="id" placeholder="아이디 (아이디는 영문자와 숫자 그리고 특수문자가 포함되어야 하며 8자 이상)">
+        <input name="u_id" type="text" class="id" placeholder="아이디 (아이디는 영문자와 숫자 그리고 특수문자가 포함되어야 하며 8자 이상)">
       </div>
       <div class="textForm">
-        <input name="pwd" type="password" class="pw" placeholder="비밀번호">
+        <input name="u_pwd" type="password" class="pw" placeholder="비밀번호">
       </div>
       <div class="textForm">
-        <input name="nickName" type="text" class="name" placeholder="닉네임">
+        <input name="u_nickname" type="text" class="name" placeholder="닉네임">
       </div>
        <div class="textForm">
-        <input name="email" type="text" class="email" placeholder="이메일 (예:helltalk@naver.com)">
+        <input name="u_email" type="text" class="email" placeholder="이메일 (예:helltalk@naver.com)">
       </div>
       <div class="textForm">
-        <input name="phoneNo" type="text" class="cellphoneNo" placeholder="전화번호 (예:010-1234-1234)">
+        <input name="u_phoneno" type="text" class="cellphoneNo" placeholder="전화번호 (예:010-1234-1234)">
       </div>
       <div class="textForm">
-        <input name="height" type="text" class="height" placeholder="신장 (단위:cm)">
+        <input name="u_height" type="text" class="height" placeholder="신장 (단위:cm)">
       </div>
       <div class="textForm">
-        <input name="weight" type="text" class="weight" placeholder="몸무게 (단위:kg)">
+        <input name="u_weight" type="text" class="weight" placeholder="몸무게 (단위:kg)">
       </div>
       
       <h3>일반회원 또는 트레이너로 가입</h3>
       <label class="radio-img">
-	    <input type="radio" name="kind" value="user"/>
+	    <input type="radio" name="u_kind" value="1"/>
 	    <img src="${path}/resources/images/free-icon-trainer-4080026.png" title="제작자: Eucalyp - Flaticon">
 	    <h3>일반회원</h3>
 	  </label>
 	  
 	  <label class="radio-img">
-	    <input type="radio" name="kind" value="triner"/>
+	    <input type="radio" name="u_kind" value="2"/>
 	    <img src="${path}/resources/images/free-icon-trainer-2860987.png" title="제작자: Eucalyp - Flaticon">
 	    <h3>트레이너</h3>
 	  </label>
+	  <input type="hidden" name="u_status" value="Y">
       <input type="submit" class="btn" value="회원가입"/>
 		
     </form>	

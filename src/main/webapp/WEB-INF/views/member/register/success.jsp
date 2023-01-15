@@ -9,7 +9,6 @@
         width: 100%;
         height: 800px;
         object-fit: fill;
-        
     }
     
 
@@ -24,10 +23,10 @@
                         <div class="card shadow-none border-0 ps-lg--5 me-auto coming-soon-card">
                             <div class="card-body rounded-0 text-left pt-md-5 mt-md-5 ps-0 pe-0">
                                 <h2 class="fw-700 text-grey-900 display3-size display4-md-size lh-2">축하합니다 
-                                    <span class="text-primary">아이디님</span>
+                                    <span class="text-primary">${nickname}님!!</span>
                                 </h2>
                                 <br>트레이너 분들의 개인지도,</br> 같은 취미를 가진 사람들과 대화하며</h3>
-                                <h3 class="fw-700"><span class="text-primary">HellTalk</span>을 맘껏 즐기세요</h3>
+                                <h3 class="fw-700"><span class="text-primary">HellTalk</span>에서 맘껏 즐기세요</h3>
                                 <h4 class="fw-700 mt-5">바로 로그인하러 가기</h4>
                                 <div class="form-group p-1 p-2 bg-white border-0">
                                     <div class="row">

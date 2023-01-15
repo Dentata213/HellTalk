@@ -32,7 +32,7 @@
         <!-- navigation top-->
         <div class="nav-header bg-white shadow-xs border-0">
             <div class="nav-top">
-                <a href="default.html"><i class="feather-zap text-success display1-size me-2 ms-0"></i><span class="d-inline-block fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">HellTalk </span> </a>
+                <a href="<c:url value="/"/>"><i class="feather-zap text-success display1-size me-2 ms-0"></i><span class="d-inline-block fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">HellTalk </span> </a>
                 <a href="#" class="mob-menu ms-auto me-2 chat-active-btn"><i class="feather-message-circle text-grey-900 font-sm btn-round-md bg-greylight"></i></a>
                 <a href="default-video.html" class="mob-menu me-2"><i class="feather-video text-grey-900 font-sm btn-round-md bg-greylight"></i></a>
                 <a href="#" class="me-2 menu-search-icon mob-menu"><i class="feather-search text-grey-900 font-sm btn-round-md bg-greylight"></i></a>
@@ -197,8 +197,11 @@
 		
 		<!-- 추가이동경로 필요할경우 아래에 추가 -->
    		<a href="<c:url value="/model/Register.do"/>" >최부건-회원가입</a>
-   
-   
+   		<a href="<c:url value="/community/bbs/list"/>" >함병완-게시판</a>
+   		<a href="<c:url value="/community/bbs/mypage"/>" >함병완-마이페이지</a>
+   		<a href="<c:url value="/backend/admin"/>" >김동진-어드민</a>
+   		<a href="<c:url value="/chat1.do"/>" >최도원채팅임시</a>
+   		
    
    
    

@@ -4,11 +4,11 @@ import java.sql.Date;
 
 public class MemberDTO {
 
-	private String u_no;
+	private int u_no;
 	private String u_id;
 	private String u_pw;
 	private String u_nickname;
-	private int u_gender;
+	private String u_gender;
 	private String u_phoneno;
 	private String u_email;
 	private String u_birth;
@@ -22,7 +22,7 @@ public class MemberDTO {
 	//생성자
 	public MemberDTO() {};
 	
-	public MemberDTO(String u_no, String u_id, String u_pw, String u_nickname, int u_gender, String u_phoneno,
+	public MemberDTO(int u_no, String u_id, String u_pw, String u_nickname, String u_gender, String u_phoneno,
 			String u_email, String u_birth, String u_height, String u_weight, Date u_enterdate, String u_status,
 			String u_kind, int u_kakao) {
 		this.u_no = u_no;
@@ -42,11 +42,11 @@ public class MemberDTO {
 	}
 
 	// 게터/세터
-	public String getU_no() {
+	public int getU_no() {
 		return u_no;
 	}
 
-	public void setU_no(String u_no) {
+	public void setU_no(int u_no) {
 		this.u_no = u_no;
 	}
 
@@ -74,11 +74,11 @@ public class MemberDTO {
 		this.u_nickname = u_nickname;
 	}
 
-	public int getU_gender() {
+	public String getU_gender() {
 		return u_gender;
 	}
 
-	public void setU_gender(int u_gender) {
+	public void setU_gender(String u_gender) {
 		this.u_gender = u_gender;
 	}
 

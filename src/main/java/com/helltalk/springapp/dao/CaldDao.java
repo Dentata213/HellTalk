@@ -26,7 +26,7 @@ public class CaldDao {
 		return template.selectList("findAll",map);		
 	}
 
-	public int inset(Map map) {
+	public int insert(Map map) {
 		//마이바티스의 insert는 무조건 영향받은 행의 수 반환
 		template.insert("caldInset",map);		
 		//Map에 저장된 행의 키(번호)를 꺼내와서 반환
@@ -36,5 +36,15 @@ public class CaldDao {
 	public CaldDto findRecordByno(Map map) {
 		return template.selectOne("findRecordByno",map);
 	}
+
+	public int update(Map map) {		
+		return template.update("caldUpdate",map);
+	}
+
+	public int delete(Map map) {
+		System.out.println("dao");
+		return template.delete("caldDelete",map);
+	}
+	
 
 }

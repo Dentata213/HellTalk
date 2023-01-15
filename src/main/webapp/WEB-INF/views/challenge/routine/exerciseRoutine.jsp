@@ -33,7 +33,7 @@
 	 -->
   <div class="container">
     <div class="jumbotron bg-info">
-      <h1>자바로 웹 스크래핑하기</h1>     
+      <h1>운동 챌린지</h1>     
     </div>   
     <%-- <fieldset class="form-group border p-3">
     	<legend class="w-auto px-3">https://jsoup.org</legend>
@@ -74,8 +74,9 @@
     	
     </fieldset> --%>
     <fieldset class="form-group border p-3">
-    	<legend class="w-auto px-3">운동 부위 스크래핑하기</legend>
-    	<a class="btn btn-success" href="<c:url value='/exercise/Kind.do'/>">추천 운동 루틴</a>
+    	<legend class="w-auto px-3">운동 챌린지</legend>
+    	<a class="btn btn-success" href="<c:url value='#'/>">추천 운동 루틴</a>
+    	<a class="btn btn-success" href="<c:url value='/exercise/Kind.do'/>">사용자 커스텀 루틴</a>
     	<%
     		Document doc = Jsoup.connect("https://www.muscleandstrength.com/exercises/").get();
     		System.out.println(doc.html());

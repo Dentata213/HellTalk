@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.mapper.Backend">
+
+	<select id="selectAllUser" parameterType="Map" resultType="MemberDTO">
+		SELECT * FROM (SELECT * FROM USERS ORDER BY U_NO DESC) 
+		<if test="search!=null">
+			WHERE u_nickname = LIKE '%' || #{search} || '%'
+		</if>
+		<choose>
+			<when test="order!=null">
+				<if test="desc!=null">
+					ORDER BY #{order} DESC
+				</if>
+				<if test="desc==null">
+					ORDER BY #{order} 
+				</if>
+			</when>
+		</choose>
+	</select>
+	
+	<select id="selectAllReceipt" parameterType="Map" resultType="PaymentDTO">
+		SELECT
+		PM_RECEIPT as receipt,
+		U_NO as user_id,
+		PM_NAME as product_name,
+		PM_PRICE as product_price,
+		PM_STATUS as status,
+		PM_DATE as checkoutDate
+		FROM PAYMENT
+	</select>
+	
+	<select id="selectAllWritings" parameterType="Map" resultType="BBSDto">
+		SELECT
+		P_NO as no,
+		P_TITLE as title,
+		P_CONTENT as content,
+		P_POSTDATE as postDate,
+		P_RECOMMEND as likeCount,
+		P_VIEW as viewCount
+		FROM BBS ORDER BY P_NO DESC
+	</select>
+	
+	
+	<update id="blockUser" parameterType="Map">
+		UPDATE USERS SET U_STATUS=#{status} WHERE U_NO=#{no}
+	</update>
+</mapper>
