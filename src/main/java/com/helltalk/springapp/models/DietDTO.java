@@ -30,16 +30,14 @@ public class DietDTO {
 	//음식
 	private String food_no;
 	private String food_name;
+	private String food_maker;
+	private String food_size;
 	private String food_kcal;
-	private String allergy;
+	private String food_allergy;
 	private String food_count;
-	private String food_info;
-	
-	//영양성분
-	private String fInfo_no;
-	private String tan;
-	private String dan;
-	private String fat;
-	private String col;
-	private String na;
+	private String food_tan;
+	private String food_dan;
+	private String food_fat;
+	private String food_col;
+	private String food_na;
 }
