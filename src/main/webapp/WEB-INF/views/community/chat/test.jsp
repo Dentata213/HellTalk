@@ -10,22 +10,23 @@
 <div class="row">
     <div class="col-lg-12 position-relative">
      <div class="chat-wrapper pt-0 w-100 position-relative scroll-bar bg-white theme-dark-bg">
-         <div id="chatArea"  class="chat-body p-3 ">
-             <div  class="messages-content pb-5">
-                 <div class="message-item">
-                     <div class="message-user">
+         <div  class="chat-body p-3 " >
+             <div id="chatArea"   class="messages-content pb-5" >                                            
+               
+                 <div class="message-item" id="chatMessage" >
+                     <div class="message-user" >
                          <figure class="avatar">
                              <img src="https://via.placeholder.com/50x50.png" alt="image">
                          </figure>
-                         <div>
+                         <div  >
                              <h5>닉네임</h5>
                              <div class="time">01:35 PM</div>
                          </div>
                      </div>
-                     <div id="chatMessage" class="message-wrap"></div>
-                 </div>
-
-                 <div class="message-item outgoing-message">
+                     <div class="message-wrap" >왜안돼!!!!</div>
+                 	</div>
+        
+                 <div class="message-item outgoing-message" >
                      <div class="message-user">
                          <figure class="avatar">
                              <img src="https://via.placeholder.com/50x50.png" alt="image">
@@ -36,32 +37,42 @@
                          </div>
                      </div>
                      <div class="message-wrap">I want those files for you. I want you to send 1 PDF and 1 image file.</div>
-                 </div>
+                 </div>       
+               
+                
                  <div class="clearfix"></div>
              </div>
        </div>
    </div>
       <div class="chat-bottom dark-bg p-3 shadow-none theme-dark-bg" style="width: 98%;">
-                <form class="chat-form">
-                    <button class="bg-grey float-left"><i class="ti-microphone text-grey-600"></i></button>
-                    <div class="form-group">
-                       <!--  <input type="textarea" placeholder="Start typing.."/>--> 
-                      <input type="text"  id="message"  />
-                      </div>          
-                    <button class="bg-current"><i class="ti-arrow-right text-white"></i></button>
-
+                <form class="chat-form">                  
+		<div class="bg-grey text1">
+			<input type="text" class="form-control" id="message" placeholder="메시지를 입력하세요">
+		</div>		     
+           <button class="bg-current"><i class="ti-arrow-right text-white"></i></button> 
                 </form>
-            </div>                   
+            </div> 
+                             
         </div>
+        <input class="btn btn-info" type="button" id="enterBtn" value="입장임시버튼">
+  	 			<input class="btn btn-danger" type="button" id="exitBtn" value="퇴장임시버튼">  
 	
     </div>
 </div> <!-- 여기 오른쪽 세로 -->
-   </div>
-     <input class="btn btn-info" type="button" id="enterBtn" value="입장임시버튼">
-  	 <input class="btn btn-danger" type="button" id="exitBtn" value="퇴장임시버튼">	
+   </div>    	
      </div>            
  </div>
-  
+    <style>
+      .text1 {
+       width: calc(100% - 90px);
+       border-radius: 30px;
+       float: left;
+       margin: 0 5px;
+       position: relative;
+       }
+    
+       
+     </style>
  
 
 <script>
@@ -102,9 +113,8 @@
 		function receive(e){//e는 message이벤트 객체
 			//서버로부터 받은 데이타는 이벤트객체(e).data속성에 저장되어 있다
 			console.log('서버로부터받은 메시지:',e.data);
-			if(e.data.substring(0, 4) ==='msg:')
-				
-				appendMessage("<p class='int'><span>"+e.data.substring(4)+"</span></p>");//서버로부터 받은 메시지를 msg:부분을 제외하고 div에 출력
+			if(e.data.substring(0, 4) ==='msg:')			
+				appendMessage("<div class='message-wrap'><span>"+e.data.substring(4)+"</span></div>");//서버로부터 받은 메시지를 msg:부분을 제외하고 div에 출력
 		}
 		function appendMessage(msg){  //이건 여러군데 사용해서 메소드로 뺀거
 			//$('#chatMessage').append(msg+"<br/>");
@@ -114,24 +124,30 @@
 			//get(0)이거 자바스크립트로 바꾸는거였지...scrollTop랑 .scrollHeight는 스크롤바를계속 올리는 공식임 
 		}
 		
+		
+		//메시지 보낼때
 		$('#message').on('keypress',function(e){
 			console.log('keypress이벤트 발생:',e.keyCode);
 			if(e.keyCode===13){//엔터 입력
 				//서버로 메시지 전송
 				wsocket.send('msg:'+nickname+'>>' +$(this).val());//msg:KOSMO>>안녕
-				//DIV(대화영역)에 메시지 출력
-				        
-				appendMessage("<p class='ext'><span>"+$(this).val()+"</span></p>");
+				//DIV(대화영역)에 메시지 출력			        
+				appendMessage("<div class='message-wrap'><span>"+$(this).val()+"</span></div>");
 				//기존 메시지 클리어		
 				$(this).val("");
 				//포커스 주기
 				$(this).focus();
 				$('#chatMessage').get(0).scrollTop = $('#chatMessage').get(0).scrollHeight;			
-			}		
-		})
+			}				
+		})	
 		
+		$('.bg-current').on('click',function(e){
+			e.preventDefault();	
+			e.stopPropagation()
+		
+		})
 		//퇴장버튼 클릭 시
-		$('#exitBtn').one('click',function(){
+		$('#exitBtn').on('click',function(){
 			wsocket.send('msg:'+nickname+'가(이) 퇴장했어요');
 			wsocket.close();
 			wsocket.onclose=function(){
