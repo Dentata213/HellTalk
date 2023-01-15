@@ -4,16 +4,28 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.python.core.PyObject;
-import org.python.core.PyString;
-import org.python.util.PythonInterpreter;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +37,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.helltalk.springapp.models.DietDTO;
@@ -38,8 +49,8 @@ public class DietController {
 	@Autowired
 	private DietServiceImpl dietService;
 	
-	@Autowired
-	private RestTemplate restTemplate;
+	@Value("${foodSafetyService_Key}")
+	private String foodSafetyService_Key;
 	
 	@RequestMapping(value= "/main.do")
 	public String searchList(@RequestParam Map map, HttpServletRequest req, Model model) throws Exception {
@@ -48,49 +59,94 @@ public class DietController {
 	}
 	
 	
-	
+	//검색
 	@GetMapping("/foodSearch.do")
 	public String searchFoodList(@RequestParam Map map, HttpServletRequest req, Model model) throws Exception {
 		
 		String search= req.getParameter("search") == null? "": req.getParameter("search");
 		System.out.println("search: "+search);
 		
-		//요청 Body
-		Map<String,List> requestBody = new HashMap<>();
-		ObjectMapper mapper = new ObjectMapper();
-		HttpEntity entity = new HttpEntity(requestBody);
-		String uri="https://openapi.foodsafetykorea.go.kr/api/6a249969337a41998290/I2790/json/1/1000/DESC_KOR="+search;
-		ResponseEntity<Map> responseEntity =
-				restTemplate.exchange(
-						uri,//요청 URI
-						HttpMethod.GET,//요청 메소드
-						entity,//HttpEntity(요청바디와 요청헤더)
-						Map.class//응답 데이타가 {}일때				
-						);
+		List<DietDTO> list = new ArrayList<DietDTO>();
 		
-		Map responsebody = responseEntity.getBody();
-		System.out.println(responsebody);
-		//NUTR_CONT1
+		try{
+			String encodeFood = URLEncoder.encode(search, "UTF-8");
+			
+			URL url = new URL("https://openapi.foodsafetykorea.go.kr/api/"+foodSafetyService_Key+"/I2790/json/1/1000/DESC_KOR=%22" + encodeFood + "%22");
+			
+			HttpURLConnection con = (HttpURLConnection)url.openConnection();
+			Object obj = JSONValue.parse(new InputStreamReader(con.getInputStream()));
+			
+			JSONObject result = (JSONObject)obj;
+			
+			JSONObject all = (JSONObject)result.get("I2790");
+			//System.out.println("all: "+all);
+			
+			String totalCnt = (String)all.get("total_count");
+			//System.out.println("totalCnt: "+totalCnt);
+			
+			JSONArray row = (JSONArray)all.get("row");
+			//System.out.println("row: "+row);
+			
+			
+			if(Integer.parseInt(totalCnt) != 0) {
+				for(int i = 0; i < row.size(); i++) {
+					//DietDTO dto = new DietDTO();
+					DietDTO dto= new DietDTO();
+					
+					JSONObject item = (JSONObject)row.get(i);
+					String food_no = (String)item.get("NUM");
+					String food_name = (String)item.get("DESC_KOR");
+					String food_maker = (String)item.get("MAKER_NAME");
+					String food_size = (String)item.get("SERVING_SIZE");
+					String food_kcal = (String)item.get("NUTR_CONT1");
+					String food_tan= (String)item.get("NUTR_CONT2");
+					String food_dan= (String)item.get("NUTR_CONT3");
+					String food_fat= (String)item.get("NUTR_CONT4");
+					String food_col= (String)item.get("NUTR_CONT5");
+					String food_na= (String)item.get("NUTR_CONT6");
+					
+					dto.setFood_no(food_no);
+					dto.setFood_name(food_name);
+					dto.setFood_maker(food_maker);
+					dto.setFood_size(food_size);
+					dto.setFood_kcal(food_kcal);
+					dto.setFood_tan(food_tan);
+					dto.setFood_dan(food_dan);
+					dto.setFood_fat(food_fat);
+					dto.setFood_col(food_col);
+					dto.setFood_na(food_na);
+					
+					list.add(dto);
+				}//for				
+			}//if
+			else {
+				System.out.println("검색결과 없음");
+				model.addAttribute("FailSearch", "검색된 결과가 없습니다");
+			}
+			/*
+			for(DietBrieflyDTO item : list) {
+				System.out.println("----------------");
+				System.out.println("이름: "+ item.getFood_name());
+				System.out.println("1회제공량: "+ item.getFood_size());
+				System.out.println("열량: "+ item.getFood_kcal());
+				System.out.println("----------------");
+			}*/
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		
-		//map.put("search", search);
-		model.addAttribute("searchList", responsebody);
-		
-		//"NUTR_CONT8":"0","NUTR_CONT9":"","NUTR_CONT4":"","NUTR_CONT5":"","NUTR_CONT6":"","NUM":"1","NUTR_CONT7":"","NUTR_CONT1":"132","NUTR_CONT2":"","SUB_REF_NAME":"식약처(\u002719)","NUTR_CONT3":"","RESEARCH_YEAR":"2019","MAKER_NAME":"토프레소","GROUP_NAME":"","SERVING_SIZE":"385","SAMPLING_REGION_NAME":"전국(대표)","SAMPLING_MONTH_CD":"AVG","SAMPLING_MONTH_NAME":"평균","DESC_KOR":"사과 대추 차","SAMPLING_REGION_CD":"ZZ","FOOD_CD":"D012925"
+		model.addAttribute("searchList",list);
 		return "challenge/diet/Diet";
 		
-	}
+	}//////////searchFoodList()
 	
-	/*
-	// 목록 처리]
-	@RequestMapping(value = "/main.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String list(@RequestParam Map map, HttpServletRequest req, Model model) {
-		// 서비스 호출
-		List<DietDTO> list = dietService.selectList(map, req);
-		// 데이타 저장
-		model.addAttribute("list", list);
-		// 뷰정보 반환
-		return "challenge/diet/Diet";
+	@RequestMapping("/putFood.do")
+	public String putFood(@RequestParam Map map, HttpServletRequest req, Model model) {
+		
+		
+		return "challenge/dite/selectFood";
 	}
-	*/
+		
 
 }
