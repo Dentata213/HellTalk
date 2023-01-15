@@ -39,8 +39,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.helltalk.springapp.models.DietDTO;
+import com.helltalk.springapp.models.FoodDTO;
 import com.helltalk.springapp.service.DietServiceImpl;
+import com.helltalk.springapp.service.FoodServiceImpl;
 
 @Controller
 @RequestMapping("/diet")
@@ -51,6 +52,8 @@ public class DietController {
 	
 	@Autowired
 	private DietServiceImpl dietService;
+	@Autowired
+	private FoodServiceImpl foodService;
 	
 	@RequestMapping(value= "/main.do")
 	public String searchList(@RequestParam Map map, HttpServletRequest req, Model model) throws Exception {
@@ -66,7 +69,7 @@ public class DietController {
 		String search= req.getParameter("search") == null? "": req.getParameter("search");
 		System.out.println("search: "+search);
 		
-		List<DietDTO> list = new ArrayList<DietDTO>();
+		List<FoodDTO> list = new ArrayList<FoodDTO>();
 		
 		try{
 			String encodeFood = URLEncoder.encode(search, "UTF-8");
@@ -91,8 +94,7 @@ public class DietController {
 			
 			if(Integer.parseInt(totalCnt) != 0) {
 				for(int i = 0; i < row.size(); i++) {
-					//DietDTO dto = new DietDTO();
-					DietDTO dto= new DietDTO();
+					FoodDTO dto= new FoodDTO();
 					
 					JSONObject item = (JSONObject)row.get(i);
 					String food_no = (String)item.get("NUM");

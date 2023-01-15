@@ -16,8 +16,7 @@ public class FoodDAO {
 	private SqlSessionTemplate template;
 	
 	public int insert(Map map) {
-		// TODO Auto-generated method stub
-		return 0;
+		return template.insert("foodInsert",map);
 	}
 			
 			
