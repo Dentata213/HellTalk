@@ -45,12 +45,12 @@ import com.helltalk.springapp.service.DietServiceImpl;
 @Controller
 @RequestMapping("/diet")
 public class DietController {
-
-	@Autowired
-	private DietServiceImpl dietService;
 	
 	@Value("${foodSafetyService_Key}")
 	private String foodSafetyService_Key;
+	
+	@Autowired
+	private DietServiceImpl dietService;
 	
 	@RequestMapping(value= "/main.do")
 	public String searchList(@RequestParam Map map, HttpServletRequest req, Model model) throws Exception {
@@ -72,6 +72,7 @@ public class DietController {
 			String encodeFood = URLEncoder.encode(search, "UTF-8");
 			
 			URL url = new URL("https://openapi.foodsafetykorea.go.kr/api/"+foodSafetyService_Key+"/I2790/json/1/1000/DESC_KOR=%22" + encodeFood + "%22");
+			//19edad5b93f84a0184ce
 			
 			HttpURLConnection con = (HttpURLConnection)url.openConnection();
 			Object obj = JSONValue.parse(new InputStreamReader(con.getInputStream()));

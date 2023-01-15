@@ -1,4 +1,4 @@
-package com.helltalk.springapp.service;
+package com.helltalk.springapp.models;
 
 import java.util.List;
 import java.util.Map;

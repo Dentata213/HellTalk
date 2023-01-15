@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.helltalk.springapp.dao.DietDAO;
 import com.helltalk.springapp.models.DietDTO;
+import com.helltalk.springapp.models.DietService;
 
 @Service("dietService")
 public class DietServiceImpl implements DietService<DietDTO>{
