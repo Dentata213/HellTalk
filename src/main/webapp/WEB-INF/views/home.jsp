@@ -40,6 +40,7 @@
             </div>
             
             <form action="#" class="float-left header-search">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
                 <div class="form-group mb-0 icon-input">
                     <i class="feather-search font-sm text-grey-400"></i>
                     <input type="text" placeholder="Start typing to search.." class="bg-grey border-0 lh-32 pt-2 pb-2 ps-5 pe-3 font-xssss fw-500 rounded-xl w350 theme-dark-bg">
@@ -196,7 +197,7 @@
 		<a href="<c:url value="/member/Login.do"/>" >최부건-로그인</a>
 		
 		<!-- 추가이동경로 필요할경우 아래에 추가 -->
-   		<a href="<c:url value="/member/CreateUser"/>" >최부건-회원가입</a>
+   		<a href="<c:url value="/member/CreateUser.do"/>" >최부건-회원가입</a>
    		<a href="<c:url value="/community/bbs/list"/>" >함병완-게시판</a>
    		<a href="<c:url value="/community/bbs/mypage"/>" >함병완-마이페이지</a>
    		<a href="<c:url value="/backend/admin"/>" >김동진-어드민</a>
