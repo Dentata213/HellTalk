@@ -31,7 +31,8 @@ public class FoodServiceImpl implements DietService<DietDTO>{
 
 	@Override
 	public int insert(Map map) {
-		// TODO Auto-generated method stub
+		int newfoodNo= dao.insert(map);
+		System.out.println("음식 추가?: "+newfoodNo);
 		return 0;
 	}
 
