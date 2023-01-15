@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.mapper.Calc">
+
+
+<select id="findAllc" parameterType="Map" resultType="CalcDto">
+	SELECT CALC_NO,routine.u_no,rout_name,rout_content,rout_startdate,rout_enddate,u_id,calc_color,calc_checked
+	FROM calcheck join users
+	ON calcheck.u_no=users.u_no
+	join routine on routine.ROUT_no=calcheck.ROUT_no
+</select>
+
+
+<insert id="calcInsert" parameterType="Map">
+	<selectKey keyProperty="calcno" resultType="int" order="BEFORE">
+	SELECT SEQ_CALCNO.NEXTVAL FROM DUAL
+	</selectKey>
+	  INSERT ALL
+	  INTO CALCHECK 
+	  VALUES(SEQ_CALCNO.NEXTVAL,
+	  (SELECT USERS.U_NO FROM CALCHECK RIGHT JOIN USERS on CALCHECK.u_no = users.u_no), 
+	  '#{routno}','#{calccolor}','#{calchecked}')
+	  INTO ROUTINE
+	  values('#{routno}',
+	  '#{uno}','#{routname}','#{routcontent}','#{routlevel}','#{routcategory}','#{routeffect}',
+	  '#{routgender}','#{routime}','#{routmode}','#{routstartdate}','#{routenddate}','#{routdisplay}',
+	  '#{day1}','#{day2}','#{day3}','#{day4}','#{day5}','#{day6}','#{day7}')
+	  SELECT * FROM DUAL
+</insert>
+  
+</mapper>

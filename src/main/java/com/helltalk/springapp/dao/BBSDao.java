@@ -22,5 +22,20 @@ public class BBSDao{
 		List<BBSDto> list = template.selectList("selectBBS",map);
 		return list;
 	}
+	//입력
+	public int insertBBS(Map map) {
+		
+		return template.insert("insertBBS",map);
+	}
+	//수정
+	public int editBBS(Map map) {
+		
+		return template.update("eidtBBS",map);
+	}
+	//삭제
+	public int deleteBBS(Map map) {
+		
+		return template.delete("deleteBBS",map);
+	}
 	
-}
+}/////////

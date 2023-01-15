@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="path" value="${pageContext.request.contextPath}/resources/"/>
+<c:set var="userlength" value="${userlists}"/>
 <!DOCTYPE html>
 
 <!-- =========================================================
@@ -83,49 +84,72 @@
               <div class="card" style="height: 100%">
                 <h4 class="card-header">사용자 목록</h4>
                 <div class="table-responsive text-nowrap"  style="height: 100%">
-                  <table class="table">
+                  <table class="table text-center">
                     <thead>
                       <tr>
-                        <th class="col-1">글번호</th>
-                        <th class="col-5">글제목</th>
-                        <th class="col-2">작성자</th>
-                        <th class="col-1">Actions</th>
-                        <th class="col-1">Actions</th>
-                        <th class="col-1">상태</th>
-                        <th class="col-1">Actions</th>
+                        <th>번호</th>
+                        <th>사용자ID</th>
+                        <th>이름</th>
+                        <th>비번</th>
+                        <th>성별</th>
+                        <th>주소</th>
+                        <th>전화번호</th>
+                        <th>가입일</th>
+                        <th>상태</th>
+                        <th>메뉴</th>
                       </tr>
                     </thead>
                     <tbody>
+                    <c:if test="${empty userlists}" var="flag">
+                    	<tr>
+                    		<td>사용자가 없습니다</td>
+                    	</tr>
+                    </c:if>
+                    <c:if test="${not flag}">
+                    <c:forEach var="userInfo" items="${userlists}" varStatus="loop">
                       <tr>
-                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong>Angular Project</strong></td>
-                        <td>Albert Cook</td>
-                        <td>User</td>
+                        <td>${fn:length(userlength)-loop.count+1}</td>
+                        <td style="text-align: left">${userInfo.u_id}</td>
+                        <td>${userInfo.u_nickname}</td>
+                      	<td>${userInfo.u_pw}</td>
+                      	<td>${userInfo.u_gender eq 'M'?'남성':'여성'}</td>
                       	<td>User</td>
                       	<td>User</td>
-                      	<td><span class="badge bg-label-danger me-1">정지</span></td>
+                      	<td>${userInfo.u_enterdate}</td>
+                      	<td>
+                      		<c:if test="${userInfo.u_status eq 'Y'}" var="isY">
+                      			<span class="badge bg-label-success me-1">정상</span>
+                      		</c:if>
+                      		<c:if test="${not isY}">
+                      			<span class="badge bg-label-danger me-1">정지</span>
+                      		</c:if>
+                      	</td>
                         <td>
                           <div class="dropdown">
                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                               <i class="bx bx-dots-horizontal-rounded"></i>
                             </button>
                             <div class="dropdown-menu">
-                              <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                              <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
-                            </div>
+                            	<a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-block me-1"></i> 차단</a>
+	                            <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> 추방</a>
                           </div>
                         </td>
                       </tr>
-                     
+                      </c:forEach>
+                     </c:if>
                     </tbody>
                     <tfoot class="table-border-bottom-0">
                       <tr>
-                        <th class="col-1">글번호</th>
-                        <th class="col-5">글제목</th>
-                        <th class="col-2">작성자</th>
-                        <th class="col-1">Actions</th>
-                        <th class="col-1">Actions</th>
-                        <th class="col-1">상태</th>
-                        <th class="col-1">Actions</th>
+                        <th>번호</th>
+                        <th>사용자ID</th>
+                        <th>이름</th>
+                        <th>비번</th>
+                        <th>성별</th>
+                        <th>주소</th>
+                        <th>전화번호</th>
+                        <th>가입일</th>
+                        <th>상태</th>
+                        <th>메뉴</th>
                       </tr>	
                     </tfoot>
                   </table>
@@ -159,8 +183,87 @@
     <script src="${path}assets/js/main.js"></script>
 
     <!-- Page JS -->
-
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
   </body>
+  <script>
+  	$('.dropdown-item').on('click',function(e){
+  		var u_id = this.parentElement.parentElement.parentElement.parentElement.children[1].textContent;
+  		
+  		const swalWithBootstrapButtons = Swal.mixin({
+  		  customClass: {
+  		    confirmButton: 'btn btn-success',
+  		    cancelButton: 'btn btn-danger'
+  		  },
+  		  buttonsStyling: false
+  		})
+
+  		swalWithBootstrapButtons.fire({
+  		  title: '정말로 삭제하시겠습니까?',
+  		  icon: 'warning',
+  		  showCancelButton: true,
+  		  confirmButtonText: '삭제', 
+  		  cancelButtonText: '취소',
+  		  reverseButtons: true,
+  		  allowOutsideClick: false
+  		}).then((result) => {
+  		  if (result.isConfirmed) {
+  			//console.log(u_id);
+  			$.ajax
+  			
+  		    swalWithBootstrapButtons.fire(
+  		      '삭제완료!',
+  		      '삭제가 완료되었습니다',
+  		      'success'
+  		    )
+  		  } else if (
+  		    /* Read more about handling dismissals below */
+  		    result.dismiss === Swal.DismissReason.cancel
+  		  ) {
+  		    swalWithBootstrapButtons.fire(
+  		      '취소!',
+  		      '요청이 취소되었습니다',
+  		      'error'
+  		    )
+  		  }
+  		})
+  		//console.log(this.parentElement.parentElement.parentElement.parentElement.children[1].textContent);
+  		/*
+  		Swal.fire({
+  		  title: 'Submit your Github username',
+  		  input: 'text',
+  		  inputAttributes: {
+  		    autocapitalize: 'off'
+  		  },
+  		  showCancelButton: true,
+  		  confirmButtonText: 'Look up',
+  		  showLoaderOnConfirm: true,
+  		  preConfirm: (login) => {
+  		    return fetch(`//api.github.com/users/${login}`)
+  		      .then(response => {
+  		        if (!response.ok) {
+  		          throw new Error(response.statusText)
+  		        }
+  		        return response.json()
+  		      })
+  		      .catch(error => {
+  		        Swal.showValidationMessage(
+  		          `Request failed: ${error}`
+  		        )
+  		      })
+  		  },
+  		  allowOutsideClick: () => !Swal.isLoading()
+  		}).then((result) => {
+  		  if (result.isConfirmed) {
+  		    Swal.fire({
+  		      title: `${result.value.login}'s avatar`,
+  		      imageUrl: result.value.avatar_url
+  		    })
+  		  }
+  		})
+  		
+  		*/
+  	})
+  </script>
 </html>

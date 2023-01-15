@@ -4,14 +4,18 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.mapper.Cald">
 <select id="findAll" parameterType="Map" resultType="CaldDto">
-		SELECT * FROM CALDAILY ORDER BY CALD_NO DESC
+		SELECT cald_no,caldaily.u_no,cald_title,cald_content,cald_startdate,u_id,cald_color
+		FROM caldaily join users
+		ON caldaily.u_no=users.u_no
 </select>
  
 <insert id="caldInset" parameterType="Map">
 	<selectKey keyProperty="caldno" resultType="int" order="BEFORE">
 		SELECT SEQ_CALDNO.NEXTVAL FROM DUAL
 	</selectKey>
-		INSERT INTO CALDAILY VALUES(SEQ_CALDNO.NEXTVAL,'가상의회원',#{caldtitle},#{caldcontent},#{caldstartdate},#{caldcolor})
+		INSERT INTO CALDAILY VALUES(SEQ_CALDNO.NEXTVAL,
+		(SELECT DISTINCT USERS.U_NO FROM CALDAILY JOIN USERS on caldaily.u_no = users.u_no)
+		,#{caldtitle},#{caldcontent},#{caldstartdate},#{caldcolor})
 </insert>
 
 <select id="findRecordByno" parameterType="Map" resultType="CaldDto">

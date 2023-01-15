@@ -10,34 +10,33 @@ import com.helltalk.springapp.dao.BackendDAO;
 import com.helltalk.springapp.models.BackendService;
 import com.helltalk.springapp.models.PaymentDTO;
 
-//@Service
+@Service
 public class BackendServiceImpl implements BackendService{
 
-	//@Autowired
+	@Autowired
 	private BackendDAO dao;
 	
 	@Override
 	public List<MemberDTO> selectAllUser(Map map) {
-		List<MemberDTO> lists = dao.selectAllUser();
+		List<MemberDTO> lists = dao.selectAllUser(map);
 		return lists;
 	}
 
 	@Override
-	public List selectAllWritings(Map map) {
-		
-		return null;
+	public List<BBSDto> selectAllWritings(Map map) {
+		List<BBSDto> lists = dao.selectAllWritings(map);
+		return lists;
 	}
 
 	@Override
 	public List<PaymentDTO> selectAllReceipt(Map map) {
-		List<PaymentDTO> lists = dao.selectAllReceipt();
+		List<PaymentDTO> lists = dao.selectAllReceipt(map);
 		return lists;
 	}
 
 	@Override
 	public int blockUser(Map map) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.blockUser(map);
 	}
 	
 }
