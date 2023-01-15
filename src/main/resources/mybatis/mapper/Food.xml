@@ -5,7 +5,7 @@
     
 <mapper namespace="mybatis.mapper.Food">
 	<insert id="foodInsert" parameterType="Map">
-		
+		INSERT INTO food VALUES(SEQ_Food.CURRVAL,#{food_name},#{food_maker},#{food_size},#{food_kcal},#{food_tan},#{food_dan},#{food_fat},#{food_col},#{food_na});
 	</insert>
 
 

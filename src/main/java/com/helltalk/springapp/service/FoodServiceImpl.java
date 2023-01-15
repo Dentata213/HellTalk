@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import com.helltalk.springapp.models.DietService;
 import com.helltalk.springapp.models.FoodDTO;
 
-@Service("dietService")
+@Service("foodService")
 public class FoodServiceImpl implements DietService<FoodDTO>{
 	
 	@Autowired

@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Diet Page</title>
+<title>Select Food</title>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 <!-- https://developers.google.com/fonts/docs/material_icons -->
@@ -55,7 +55,7 @@
 					</c:if>
 					<c:if test="${not isEmpty }">
 						<c:forEach var="record" items="${searchList}" varStatus="loop">
-							<tr class="select">
+							<tr class="select" name="selectFood${record.food_no }">
 								<td>${record.food_no }</td>
 								<td>${record.food_name }</td>
 								<td>${record.food_maker }</td>

@@ -144,11 +144,14 @@ public class DietController {
 		
 	}//////////searchFoodList()
 	
-	@RequestMapping("/putFood.do")
+	@GetMapping("/putFood.do")
 	public String putFood(@RequestParam Map map, HttpServletRequest req, Model model) {
+		System.out.println("putFood Map?:"+map);
+		
+		int insetFood= foodService.insert(map);
 		
 		
-		return "challenge/dite/selectFood";
+		return "challenge/diet/selectFood";
 	}
 		
 
