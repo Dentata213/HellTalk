@@ -34,10 +34,7 @@ public class MemberController {
 		return "member/register/register";
 	}
 	
-	@RequestMapping("/SuccessLoginHome.do")
-	public String home() {
-		return "home";
-	}
+	
 	
 	
 	@RequestMapping("/register.do")//회원가입 컨트롤러
