@@ -47,7 +47,7 @@ import com.helltalk.springapp.service.FoodServiceImpl;
 @RequestMapping("/diet")
 public class DietController {
 	
-	@Value("${foodSafetyService_Key}")
+	//@Value("${foodSafetyService_Key}")
 	private String foodSafetyService_Key;
 	
 	@Autowired
