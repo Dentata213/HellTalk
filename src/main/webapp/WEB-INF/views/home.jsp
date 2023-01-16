@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +24,7 @@
 </head>
 
 <body class="color-theme-blue mont-font">
-
+	
     <div class="preloader"></div>
 
     
@@ -202,14 +203,16 @@
    		<a href="<c:url value="/community/bbs/mypage"/>" >함병완-마이페이지</a>
    		<a href="<c:url value="/backend/admin"/>" >김동진-어드민</a>
    		<a href="<c:url value="/chat1.do"/>" >최도원채팅임시</a>
-   		
-   
-   
-   
-   
-   
-   
-
+   		<form action="<c:url value="/member/Logout.do"/>" method="post">
+   			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+   			<button class="custom-btn btn-5" type="submit"><span>로그아웃</span></button>
+   		</form>
+   		<sec:authorize access="isAuthenticated()">
+	        <sec:authentication property="principal"/>
+	        <!--객체의 권한-->
+	        <b>Authenticated user role:</b>
+	        
+		</sec:authorize>
 
     <script src="${path}/resources/js/plugin.js"></script>
     <script src="${path}/resources/js/lightbox.js"></script>
