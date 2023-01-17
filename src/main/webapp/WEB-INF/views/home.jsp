@@ -336,7 +336,7 @@
 	        <b>Authenticated user role:</b>
 	        
 		</sec:authorize>
-=======
+
 		<div>
 		    <section class="container">
 		        <div class="section first">
@@ -387,7 +387,7 @@
    
    
 
->>>>>>> branch 'master' of https://github.com/Dentata213/HellTalk.git
+
 
     <script src="${path}/resources/js/plugin.js"></script>
     <script src="${path}/resources/js/lightbox.js"></script>
