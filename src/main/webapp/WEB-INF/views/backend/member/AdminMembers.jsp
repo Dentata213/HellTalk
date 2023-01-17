@@ -132,8 +132,8 @@
                               <i class="bx bx-dots-horizontal-rounded"></i>
                             </button>
                             <div class="dropdown-menu">
-                            	<a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-block me-1"></i> 차단</a>
-	                            <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> 추방</a>
+                            	<a class="dropdown-item" href="#"><i class="bx bx-block me-1"></i> <c:if test="${isY}">차단</c:if><c:if test="${not isY}">차단해제</c:if></a>
+	                            <a class="dropdown-item" href="#"><i class="bx bx-trash me-1"></i> 추방</a>
                           </div>
                         </td>
                       </tr>
@@ -191,10 +191,25 @@
   </body>
   <script>
   	$('.dropdown-item').on('click',function(e){
+  		var button = this;
   		var u_id = this.parentElement.parentElement.parentElement.parentElement.children[1].textContent;
-  		console.log(e.target.innerText.trim());
+  		var userStatus = this.parentElement.parentElement.parentElement.parentElement.children[8].children[0].textContent;
+  		var clicked = this.parentElement.parentElement.parentElement.parentElement.children[8].children[0];
+  		//console.log(clicked);
+  		//console.log('userStatus:'+userStatus);
+  		//console.log('u_id:'+u_id);
+  		//console.log(e.target.innerText.trim());
+  		//console.log(this.innerHTML);
+  		
+  		var status;
   		if(e.target.innerText.trim()=='차단'){
-	  		const swalWithBootstrapButtons = Swal.mixin({
+			status="차단";
+  		}else if(e.target.innerText.trim()=='차단해제'){
+  			status="차단해제";
+  		}else if(e.target.innerText.trim()=='추방'){
+  			status="추방";
+  		}
+  		const swalWithBootstrapButtons = Swal.mixin({
 	  		  customClass: {
 	  		    confirmButton: 'btn btn-success',
 	  		    cancelButton: 'btn btn-danger'
@@ -203,20 +218,34 @@
 	  		})
 	
 	  		swalWithBootstrapButtons.fire({
-	  		  title: '해당 유저를 차단하시겠습니까?',
+	  		  title: '해당 유저를 '+status+' 하시겠습니까?',
 	  		  icon: 'warning',
 	  		  showCancelButton: true,
-	  		  confirmButtonText: '차단', 
+	  		  confirmButtonText: status, 
 	  		  cancelButtonText: '취소',
 	  		  reverseButtons: true,
 	  		  allowOutsideClick: false
 	  		}).then((result) => {
 	  		  if (result.isConfirmed) {
-	  			console.log(u_id);
-				//$.ajax
+				$.ajax({
+					url:'<c:url value="/backend/updateUserStatus"/>',
+					data:'u_id='+u_id+'&status='+status,
+					dataType:'text'
+				}).done(function(data){
+					console.log(data);
+				})
+				if(userStatus=='정지'){
+					clicked.className="badge bg-label-success me-1";
+					clicked.textContent="정상";
+					button.innerHTML='<i class="bx bx-block me-1"></i> 차단';
+				}else{
+					clicked.className="badge bg-label-danger me-1";
+					clicked.textContent="정지";
+					button.innerHTML='<i class="bx bx-block me-1"></i> 차단해제';
+				}
 	  		    swalWithBootstrapButtons.fire(
 	  		      '',
-	  		      '유저 '+u_id+' 가 차단되었습니다',
+	  		      '유저 '+u_id+' 가 '+status+' 되었습니다',
 	  		      'success'
 	  		    )
 	  		  } else if (
@@ -230,44 +259,6 @@
 	  		    )
 	  		  }
 	  		})
-  		}else{
-  			const swalWithBootstrapButtons = Swal.mixin({
-  	  		  customClass: {
-  	  		    confirmButton: 'btn btn-success',
-  	  		    cancelButton: 'btn btn-danger'
-  	  		  },
-  	  		  buttonsStyling: false
-  	  		})
-  	
-  	  		swalWithBootstrapButtons.fire({
-  	  		  title: '해당 유저를 추방하시겠습니까?',
-  	  		  icon: 'warning',
-  	  		  showCancelButton: true,
-  	  		  confirmButtonText: '추방', 
-  	  		  cancelButtonText: '취소',
-  	  		  reverseButtons: true,
-  	  		  allowOutsideClick: false
-  	  		}).then((result) => {
-  	  		  if (result.isConfirmed) {
-  	  			console.log(u_id);
-  				//$.ajax
-  	  		    swalWithBootstrapButtons.fire(
-  	  		      '',
-  	  		      '유저 '+u_id+' 가 추방되었습니다',
-  	  		      'success'
-  	  		    )
-  	  		  } else if (
-  	  		    /* Read more about handling dismissals below */
-  	  		    result.dismiss === Swal.DismissReason.cancel
-  	  		  ) {
-  	  		    swalWithBootstrapButtons.fire(
-  	  		      '',
-  	  		      '취소되었습니다',
-  	  		      'error'
-  	  		    )
-  	  		  }
-  	  		})
-  		}
 
   	})
   </script>

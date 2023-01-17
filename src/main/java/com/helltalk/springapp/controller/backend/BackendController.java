@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -80,11 +81,36 @@ public class BackendController {
 		return "/backend/adminPayment";
 	}
 	
-	@RequestMapping("/blockUser")
-	public @ResponseBody int blockUser(@RequestParam Map map) {
-		return service.blockUser(map);
+
+	@RequestMapping("/updateUserStatus")
+	public @ResponseBody String updateUserStatus(@RequestParam Map map) {
+		switch(map.get("status").toString()) {
+			case "차단":
+				map.put("status", "N");
+				service.blockUser(map);
+				return "차단";
+			case "차단해제":
+				map.put("status", "Y");
+				service.blockUser(map);
+				return "차단해제";
+			case "추방":
+				service.kickUser(map);
+				return "추방";
+		}
+		return "";
 	}
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	@RequestMapping("/design")
+	public String design() {
+		return "/backend/member/register";
+	}
 	
 }

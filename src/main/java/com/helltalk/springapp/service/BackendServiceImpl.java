@@ -38,5 +38,9 @@ public class BackendServiceImpl implements BackendService{
 	public int blockUser(Map map) {
 		return dao.blockUser(map);
 	}
+
+	public int kickUser(Map map) {
+		return dao.kickUser(map);
+	}
 	
 }
