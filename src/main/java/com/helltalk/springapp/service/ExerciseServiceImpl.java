@@ -36,6 +36,8 @@ public class ExerciseServiceImpl implements ExerciseService<ExerciseDTO>{
 
 	@Override
 	public ExerciseDTO selectOneExercise(Map map) {
+		
+		
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -66,8 +68,8 @@ public class ExerciseServiceImpl implements ExerciseService<ExerciseDTO>{
 
 	@Override
 	public int insertExerciseRoutine(Map map) {
-		// TODO Auto-generated method stub
-		return 0;
+		int newRoutNo =dao.insertExerciseRoutine(map);
+		return newRoutNo;
 	}
 
 	@Override

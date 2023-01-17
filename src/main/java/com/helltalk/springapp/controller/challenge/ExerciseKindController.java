@@ -33,7 +33,7 @@ public class ExerciseKindController {
 		
 		List<ExerciseDTO> listExerKind= exerService.selectExerciseKindList(map);
 		model.addAttribute("listExerKind", listExerKind);
-		return "challenge/routine/user_exerciseRoutine";
+		return "challenge/routine/user_exerciseRoutine.helltalk";
 		
 	}
 
