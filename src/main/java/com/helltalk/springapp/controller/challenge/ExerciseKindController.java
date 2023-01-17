@@ -27,13 +27,13 @@ public class ExerciseKindController {
 	@Autowired
 	private ExerciseServiceImpl exerService;
 	
-	@GetMapping("/Kind.do")
+	@RequestMapping("/Kind.do")
 	public String exerciseKind(@RequestParam Map map,Model model) {
 		//System.out.println("컨트롤러");
 		
 		List<ExerciseDTO> listExerKind= exerService.selectExerciseKindList(map);
 		model.addAttribute("listExerKind", listExerKind);
-		return "challenge/routine/user_exerciseRoutine.helltalk";
+		return "challenge/routine/user_exerciseRoutine";
 		
 	}
 
