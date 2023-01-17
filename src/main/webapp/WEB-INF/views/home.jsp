@@ -29,7 +29,7 @@
             height: 100%;
         }
 
-        .container {
+        .not-container {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -37,15 +37,15 @@
             width: 100vw;
         }
 
-        .container:hover>.section {
+        .not-container:hover>.section {
             filter: brightness(22%);
         }
 
-        .container:hover>.section:hover {
+        .not-container:hover>.section:hover {
             filter: brightness(100%);
         }
 
-        .container .section {
+        .not-container .section {
             flex-grow: 1;
             position: relative;
             height: 100%;
@@ -57,7 +57,7 @@
             flex: 1;
         }
 
-        .container .section .cont_title {
+        .not-container .section .cont_title {
             position: relative;
             margin: auto;
             width: 100%;
@@ -66,7 +66,7 @@
             margin-top: 37vh;
         }
 
-        .container .section .cont_title h1 {
+        .not-container .section .cont_title h1 {
             text-transform: uppercase;
             color: white;
             font-family: "Economica", sans-serif;
@@ -77,7 +77,7 @@
             vertical-align: middle;
         }
 
-        .container .section .cont_title h3 {
+        .not-container .section .cont_title h3 {
             text-transform: uppercase;
             font-family: "Economica", sans-serif;
             font-size: 1.3vw;
@@ -87,7 +87,7 @@
             text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
         }
 
-        .container .section .cont_desc {
+        .not-container .section .cont_desc {
             position: relative;
             display: block;
             text-align: center;
@@ -100,29 +100,29 @@
             transform: scale(1);
         }
 
-        .container .section .cont_desc p {
+        .not-container .section .cont_desc p {
             margin: 0;
             font-family: "Economica", sans-serif;
             color: white;
             font-size: 16px;
         }
 
-        .container .section:hover {
+        .not-container .section:hover {
             flex-grow: 1.8;
             transition: flex 0.2s;
         }
 
-        .container .section:hover>.cont_title h1 {
+        .not-container .section:hover>.cont_title h1 {
             font-size: 5.3vw;
             transition: font-size 0.4s;
         }
 
-        .container .section:hover>.cont_title h3 {
+        .not-container .section:hover>.cont_title h3 {
             font-size: 1.6vw;
             transition: all 0.4s;
         }
 
-        .container .section:hover>.cont_desc {
+        .not-container .section:hover>.cont_desc {
             opacity: 1;
             padding-top: 2vh;
             transform: scale(1.5);
@@ -130,20 +130,44 @@
             transition-delay: 0s, 0.1s, 0s;
         }
 
-        .container .section:nth-child(1) {
+        .not-container .section:nth-child(1) {
             background: url("https://artsandculture.withgoogle.com/gcs/national-parks-service/en-us/Asset-Kenai-desktop.jpg") center;
         }
 
-        .container .section:nth-child(2) {
+        .not-container .section:nth-child(2) {
             background: url("https://artsandculture.withgoogle.com/gcs/national-parks-service/en-us/Asset-Hawaii-desktop.jpg") center;
         }
 
-        .container .section:nth-child(3) {
+        .not-container .section:nth-child(3) {
             background: url("https://artsandculture.withgoogle.com/gcs/national-parks-service/en-us/de0b954d-ca76-41d3-ac3a-900c6bc25139.jpg") center;
         }
+		     
+/*않이.... 왜 안돼....*/  
+		@media (min-width: 1200px)
+				.not-container-xl, .not-container-lg, .not-container-md, .not-container-sm, .not-container {
+		  max-width: 1119px;
+		}
+		@media (min-width: 992px)
+				.not-container-lg, .not-container-md, .not-container-sm, .not-container {
+		  max-width: 991px;
+		}
+		@media (min-width: 768px)
+				.not-container-md, .not-container-sm, .not-container {
+		  max-width: 767px;
+		}
+		@media (min-width: 576px)
+				.not-container-sm, .not-container {
+		  max-width: 575px;
+		}
+		
+		#temp a {
+			color:white;
+		}
     </style>
 </head>
+<style>
 
+</style>
 <body class="color-theme-blue mont-font">
 
     <div class="preloader"></div>
@@ -308,7 +332,7 @@
             
         </div>
 		<div>
-		    <section class="container">
+		    <section class="not-container">
 		        <div class="section first">
 		            <div class="cont_title">
 		                <h1>오우!?<br>챌린지!</h1>
@@ -316,20 +340,22 @@
 		            </div>
 		            <div class="cont_desc">
 		                <p>눈아파도 잠시동안만... </p>
-		                <a href="<c:url value="/model/shop-1.do"/>" >백건효</a>
-						<a href="<c:url value="/model/routine.do"/>" >진소희</a>
-						<a href="<c:url value="/diet/main.do"/>" >조주희</a>
-						<a href="<c:url value="/model/ocr.do"/>" >함병완</a>
-						<a href="<c:url value="/home.do"/>" >김성우</a>
-						<a href="<c:url value="/cal/List.do"/>" >최도원</a>
-						<a href="<c:url value="/model/Login.do"/>" >최부건-로그인</a>
-						
-						<!-- 추가이동경로 필요할경우 아래에 추가 -->
-				   		<a href="<c:url value="/model/Register.do"/>" >최부건-회원가입</a>
-				   		<a href="<c:url value="/community/bbs/list"/>" >함병완-게시판</a>
-				   		<a href="<c:url value="/community/bbs/mypage"/>" >함병완-마이페이지</a>
-				   		<a href="<c:url value="/backend/admin"/>" >김동진-어드민</a>
-				   		<a href="<c:url value="/chat1.do"/>" >최도원채팅임시</a>
+		                <div id="temp">
+			                <a href="<c:url value="/model/shop-1.do"/>">백건효</a>
+							<a href="<c:url value="/model/routine.do"/>" >진소희</a>
+							<a href="<c:url value="/diet/main.do"/>" >조주희</a>
+							<a href="<c:url value="/model/ocr.do"/>" >함병완</a>
+							<a href="<c:url value="/home.do"/>" >김성우</a>
+							<a href="<c:url value="/cal/List.do"/>" >최도원</a>
+							<a href="<c:url value="/model/Login.do"/>" >최부건-로그인</a>
+							
+							<!-- 추가이동경로 필요할경우 아래에 추가 -->
+					   		<a href="<c:url value="/model/Register.do"/>" >최부건-회원가입</a>
+					   		<a href="<c:url value="/community/bbs/list"/>" >함병완-게시판</a>
+					   		<a href="<c:url value="/community/bbs/mypage"/>" >함병완-마이페이지</a>
+					   		<a href="<c:url value="/backend/admin"/>" >김동진-어드민</a>
+					   		<a href="<c:url value="/chat1.do"/>" >최도원채팅임시</a>
+				   		</div>
 		            </div>
 		        </div>
 		        <div class="section">
