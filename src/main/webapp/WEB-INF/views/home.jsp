@@ -19,7 +19,129 @@
     <link rel="stylesheet" href="${path}/resources/css/emoji.css">
     
     <link rel="stylesheet" href="${path}/resources/css/lightbox.css">
+    <style>
+        @import 'https://fonts.googleapis.com/css?family=Economica';
 
+        html,
+        body {
+            margin: 0;
+            max-width: 100%;
+            height: 100%;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .container:hover>.section {
+            filter: brightness(22%);
+        }
+
+        .container:hover>.section:hover {
+            filter: brightness(100%);
+        }
+
+        .container .section {
+            flex-grow: 1;
+            position: relative;
+            height: 100%;
+            transition: all 0.4s;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            text-align: center;
+            flex: 1;
+        }
+
+        .container .section .cont_title {
+            position: relative;
+            margin: auto;
+            width: 100%;
+            height: auto;
+            text-align: center;
+            margin-top: 37vh;
+        }
+
+        .container .section .cont_title h1 {
+            text-transform: uppercase;
+            color: white;
+            font-family: "Economica", sans-serif;
+            text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
+            font-size: 3.5vw;
+            margin: 0;
+            transition: font-size 0.3s;
+            vertical-align: middle;
+        }
+
+        .container .section .cont_title h3 {
+            text-transform: uppercase;
+            font-family: "Economica", sans-serif;
+            font-size: 1.3vw;
+            transition: all 0.3s;
+            color: white;
+            letter-spacing: 3px;
+            text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .container .section .cont_desc {
+            position: relative;
+            display: block;
+            text-align: center;
+            width: 12vw;
+            height: auto;
+            margin: auto;
+            opacity: 0;
+            transition: opacity 0.8s, transform 0.7s, padding-top 0.9s;
+            padding-top: 6vh;
+            transform: scale(1);
+        }
+
+        .container .section .cont_desc p {
+            margin: 0;
+            font-family: "Economica", sans-serif;
+            color: white;
+            font-size: 16px;
+        }
+
+        .container .section:hover {
+            flex-grow: 1.8;
+            transition: flex 0.2s;
+        }
+
+        .container .section:hover>.cont_title h1 {
+            font-size: 5.3vw;
+            transition: font-size 0.4s;
+        }
+
+        .container .section:hover>.cont_title h3 {
+            font-size: 1.6vw;
+            transition: all 0.4s;
+        }
+
+        .container .section:hover>.cont_desc {
+            opacity: 1;
+            padding-top: 2vh;
+            transform: scale(1.5);
+            transition: opacity 0.7s, padding-top 0.5s, transform 0.1s;
+            transition-delay: 0s, 0.1s, 0s;
+        }
+
+        .container .section:nth-child(1) {
+            background: url("https://artsandculture.withgoogle.com/gcs/national-parks-service/en-us/Asset-Kenai-desktop.jpg") center;
+        }
+
+        .container .section:nth-child(2) {
+            background: url("https://artsandculture.withgoogle.com/gcs/national-parks-service/en-us/Asset-Hawaii-desktop.jpg") center;
+        }
+
+        .container .section:nth-child(3) {
+            background: url("https://artsandculture.withgoogle.com/gcs/national-parks-service/en-us/de0b954d-ca76-41d3-ac3a-900c6bc25139.jpg") center;
+        }
+    </style>
 </head>
 
 <body class="color-theme-blue mont-font">
@@ -185,25 +307,51 @@
             <a href="default-settings.html" class="p-0 ms-3 menu-icon"><img src="https://via.placeholder.com/50x50.png" alt="user" class="w40 mt--1"></a>
             
         </div>
-        <!-- navigation top -->
-        <div style="margin-top:100px"></div>
-		<a href="<c:url value="/model/shop-1.do"/>" >김동진</a>
-		<a href="<c:url value="/model/routine.do"/>" >진소희</a>
-		<a href="<c:url value="/diet/main.do"/>" >조주희</a>
-		<a href="<c:url value="/model/ocr.do"/>" >함병완</a>
-		<a href="<c:url value="/home.do"/>" >김성우</a>
-		<a href="<c:url value="/cal/List.do"/>" >최도원</a>
-		<a href="<c:url value="/model/Login.do"/>" >최부건-로그인</a>
-		
-		<!-- 추가이동경로 필요할경우 아래에 추가 -->
-   		<a href="<c:url value="/model/Register.do"/>" >최부건-회원가입</a>
-   		<a href="<c:url value="/community/bbs/list"/>" >함병완-게시판</a>
-   		<a href="<c:url value="/community/bbs/mypage"/>" >함병완-마이페이지</a>
-   		<a href="<c:url value="/backend/admin"/>" >김동진-어드민</a>
-   		<a href="<c:url value="/chat1.do"/>" >최도원채팅임시</a>
-   		
-   
-   
+		<div>
+		    <section class="container">
+		        <div class="section first">
+		            <div class="cont_title">
+		                <h1>오우!?<br>챌린지!</h1>
+		                <h3>여기야여기!</h3>
+		            </div>
+		            <div class="cont_desc">
+		                <p>눈아파도 잠시동안만... </p>
+		                <a href="<c:url value="/model/shop-1.do"/>" >백건효</a>
+						<a href="<c:url value="/model/routine.do"/>" >진소희</a>
+						<a href="<c:url value="/diet/main.do"/>" >조주희</a>
+						<a href="<c:url value="/model/ocr.do"/>" >함병완</a>
+						<a href="<c:url value="/home.do"/>" >김성우</a>
+						<a href="<c:url value="/cal/List.do"/>" >최도원</a>
+						<a href="<c:url value="/model/Login.do"/>" >최부건-로그인</a>
+						
+						<!-- 추가이동경로 필요할경우 아래에 추가 -->
+				   		<a href="<c:url value="/model/Register.do"/>" >최부건-회원가입</a>
+				   		<a href="<c:url value="/community/bbs/list"/>" >함병완-게시판</a>
+				   		<a href="<c:url value="/community/bbs/mypage"/>" >함병완-마이페이지</a>
+				   		<a href="<c:url value="/backend/admin"/>" >김동진-어드민</a>
+				   		<a href="<c:url value="/chat1.do"/>" >최도원채팅임시</a>
+		            </div>
+		        </div>
+		        <div class="section">
+		            <div class="cont_title">
+		                <h1>여긴<br>마이페이지</h1>
+		                <h3>National Park</h3>
+		            </div>
+		            <div class="cont_desc">
+		                <p>Rappel into a crevasse, kayak through icebergs, and watch a glacier recede.</p>
+		            </div>
+		        </div>
+		        <div class="section">
+		            <div class="cont_title">
+		                <h1>마지막으로<br>커뮤니티</h1>
+		                <h3>National Park</h3>
+		            </div>
+		            <div class="cont_desc">
+		                <p>Rappel into a crevasse, kayak through icebergs, and watch a glacier recede.</p>
+		            </div>
+		        </div>
+		    </section>
+		</div>
    
    
    
