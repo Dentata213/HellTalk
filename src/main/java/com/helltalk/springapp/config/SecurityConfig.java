@@ -22,28 +22,7 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
-/*
- 
-	아래 클래스 작성후 해야할 작업들 순서
-	1. AuthController.java의 서비스 주입 및 로그인 처리 및 로그아웃 처리 주석
-	2. Login.jsp의 로그인폼의 action속성을 반드시
-	   loginProcessingUrl()메소드에 지정한 경로와 일치 시켜야한다
-	3. Login.jsp의 세션영역에서 ${sessionScope.id}를 읽어오는 부분을
-	   모두 security 태그 라이브러를 사용해서 변경한다.
-	4. Top.jsp도 3번과 같이 security 태그 라이브러를 사용해서 변경
-	5. .java(컨트롤러)에서 세션영역에서 읽어오는 코드(@ModelAttribue String id)를 모두 Autentication클래스를 
-	      사용한 코드로 변경
-	   (@SessionAttribute나 HttpSesion등은 주석처리)
-	   
-	즉
-	컨트롤러 단에서는 @SessionAttribute대신 스프링 씨큐리티 코드로 변경
-	뷰단(JSP)에서는 스프링 씨큐리티 태그 라이브러리로 변경
 
- */
-
-
-//1.web.xml에서 XML기반이 아닌 어노테이션 기반 설정이 적용되도록 수정
-//2.자바코드로 스프링 씨큐리티 설정
 @Configuration
 @EnableWebSecurity
 @PropertySource({"classpath:config/database.properties"})
@@ -85,27 +64,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		filter.setEncoding("UTF-8");
 		filter.setForceEncoding(true);
 		http.addFilterBefore(filter, CsrfFilter.class);
-		/*
-		super.configure(http);
-		위 메소드의 구현 내용
-		http
-			.authorizeRequests()  //요청에 대해 씨큐리티 인증을 시작한다
-			.anyRequest().authenticated() //어떤 요청이든지 권한이 있어야 한다
-			.and()//그리고
-			.formLogin()  //폼기반의 인증
-			.and()
-			.httpBasic();//HTTP기본인증 사용
-	   */
-		
-		//스프링 씨큐리티 기본 테스트(메모리기반 인증)		
-		/*
-		http
-			.authorizeRequests()
-			.anyRequest().authenticated()
-			.and()
-			.formLogin() 
-			.and()
-			.csrf().disable();//CSRF보안 비 활성화*/
 		
 		http
 			//인증설정
