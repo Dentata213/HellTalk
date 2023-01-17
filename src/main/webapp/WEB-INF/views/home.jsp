@@ -355,6 +355,7 @@
 					   		<a href="<c:url value="/community/bbs/mypage"/>" >함병완-마이페이지</a>
 					   		<a href="<c:url value="/backend/admin"/>" >김동진-어드민</a>
 					   		<a href="<c:url value="/chat1.do"/>" >최도원채팅임시</a>
+					   		<a href="<c:url value="/backend/design"/>">임시 사용자 회원가입 디자인</a>
 				   		</div>
 		            </div>
 		        </div>
