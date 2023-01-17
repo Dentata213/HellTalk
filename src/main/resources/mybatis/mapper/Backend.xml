@@ -45,6 +45,10 @@
 	
 	
 	<update id="blockUser" parameterType="Map">
-		UPDATE USERS SET U_STATUS=#{status} WHERE U_NO=#{no}
+		UPDATE USERS SET U_STATUS=#{status} WHERE U_ID=#{u_id}
 	</update>
+	
+	<delete id="kickUser" parameterType="Map">
+		DELETE USERS WHERE U_ID=#{u_id}
+	</delete>
 </mapper>

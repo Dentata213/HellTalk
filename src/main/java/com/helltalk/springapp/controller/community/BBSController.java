@@ -60,6 +60,13 @@ public class BBSController {
 		service.deleteBBS(map);
 		return "community/bbs/List.helltalk";
 	}
+	
+	
+	//마이페이지
+	@RequestMapping("/mypage")
+	public String movetomypage() {
+		return "community/bbs/user-page.helltalk";
+	}
 }
 
 	

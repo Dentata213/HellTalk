@@ -35,6 +35,10 @@ public class BackendDAO {
 	public int blockUser(Map map) {
 		return template.update("blockUser", map);
 	}
+
+	public int kickUser(Map map) {
+		return template.delete("kickUser", map);
+	}
 	
 	
 

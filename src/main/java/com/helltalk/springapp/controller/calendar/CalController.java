@@ -28,6 +28,13 @@ import com.helltalk.springapp.models.CaldDto;
 @RequestMapping("/cal")
 public class CalController {
 	
+	
+	@RequestMapping("/ifram.do")
+	public String ifram() {
+		return "calendar/IframMon.helltalk";
+	}
+	
+	
 	//Dto 주입
 	@Autowired
 	private CalService<CaldDto> caldService;
@@ -70,7 +77,7 @@ public class CalController {
 		model.addAttribute("calcList",calcList);
 		System.out.println("여기지나니?");
 		//뷰정보반환
-		return "calendar/Month.helltalk";
+		return "calendar/Month";
 	}
 	
 	//일정등록
@@ -107,4 +114,5 @@ public class CalController {
 		caldService.delete(map);
 		return map;
 	}
+	
 }

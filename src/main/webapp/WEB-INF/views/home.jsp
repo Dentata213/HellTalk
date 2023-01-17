@@ -379,7 +379,7 @@
 							<a href="<c:url value="/diet/main.do"/>" >조주희</a>
 							<a href="<c:url value="/model/ocr.do"/>" >함병완</a>
 							<a href="<c:url value="/home.do"/>" >김성우</a>
-							<a href="<c:url value="/cal/List.do"/>" >최도원</a>
+							<a href="<c:url value="/cal/ifram.do"/>" >최도원</a>
 							<a href="<c:url value="/model/Login.do"/>" >최부건-로그인</a>
 							
 							<!-- 추가이동경로 필요할경우 아래에 추가 -->
@@ -388,6 +388,7 @@
 					   		<a href="<c:url value="/community/bbs/mypage"/>" >함병완-마이페이지</a>
 					   		<a href="<c:url value="/backend/admin"/>" >김동진-어드민</a>
 					   		<a href="<c:url value="/chat1.do"/>" >최도원채팅임시</a>
+					   		<a href="<c:url value="/backend/design"/>">임시 사용자 회원가입 디자인</a>
 				   		</div>
 		            </div>
 		        </div>

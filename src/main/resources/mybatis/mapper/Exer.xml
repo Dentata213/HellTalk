@@ -17,4 +17,12 @@
 	</select>
 	
 	
+	<insert id="insertExerciseRoutine" parameterType="Map">
+		<selectKey order="BEFORE" resultType="int" keyProperty="rout_no">
+			SELECT SEQ_routine.NEXTVAL FROM DUAL
+		</selectKey>
+		
+		INSERT into routine
+	</insert>
+	
 </mapper>

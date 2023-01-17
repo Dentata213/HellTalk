@@ -2,13 +2,20 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!DOCTYPE html>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 
-<html>
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scrapping.jsp</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style>
 
 
@@ -21,7 +28,7 @@ h2{
 	 float:left; 
 	 margin: 20px;
 }
- ol{
+.ol-container{
 	margin-top: 30px;
 
 } 
@@ -34,6 +41,7 @@ h2{
 } 	
 .flex-container{
             display: flex;
+            
         }
 
 .calendar{
@@ -42,41 +50,45 @@ h2{
 	margin-right: 50px;
 	margin-left: 15px;
 }
+.btn{
+	float: right; 
+}
 
-</style>
+
+
+</style>   
 </head>
 <body>
-	<div class="container">
+
+  
+ 
+
+<div class="container">
 		<div>
 			<fieldset>
 				<legend>커스텀 운동 루틴</legend>
+				<form method="post" action="<c:url value="/exercise/routine.do"/>"> 
 					<div class="calendar">
 						<label>
 							시작날짜 </br>
-							<input type="date" id="start" min="1950-01-01" max="2022-12-31">
+							<input type="date" id="start" min="1950-01-01" max="2023-12-31" name="start">
 							
 						 </label>
 					 </div class="calendar">
 					 <div>
 						 <label>
 							끝날짜: </br>
-							<input type="date" id="end" min="1950-01-01" max="2022-12-31" readonly >
+							<input type="date" id="end" min="1950-01-01" max="2023-12-31" readonly name="end">
 						 </label>
 					</div>
-				<!-- <ol>
-					<li><h2>DAY1</h2></li> 
-					<li id="day1_1">.</li>
-					<li id="day1_2">.</li>
-					<li id="day1_3">.</li>
-				</ol> -->
 				
 					<c:forEach var="i" begin="1" end="7" varStatus="loop">
 						<div class="flex-container">
 							<h2>DAY ${loop.index }</h2>
-							<ol >
+							<ol class="ol-container">
 								<c:forEach var="k" begin="1" end="3" varStatus="loop2">
 								<li>
-									<select class="selecBox" id="selecBox${loop.index}_${loop2.index}">
+									<select class="selecBox" id="selecBox${loop.index}_${loop2.index}" name="selecBox${loop.index}_${loop2.index}">
 									<option class="option">운동 선택</option>
 									</select>
 								</li>
@@ -85,7 +97,44 @@ h2{
 							</ol>
 						</div>
 					</c:forEach>
+					
+					<!-- <input type="submit" class="btn btn-danger mx-2" data-toggle="modal" data-target="#exampleModalCenter" value="등록" id="submit"/> -->
 				
+					<!--모달  -->
+					<!-- Button trigger modal -->
+					 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" data-id="전달할 값">
+					  등록
+					</button> 
+					<input type="button" class="btn btn-danger mx-2" value="취소" id="cancel" />
+					
+					<!-- Modal -->
+					<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+					  <div class="modal-dialog modal-dialog-centered" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalLongTitle">루틴 내용을 작성해 주세요</h5>
+					        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span> -->
+					        </button>
+					      </div>
+					      <div class="modal-body">
+					        <input type="text" class="body-contents" id="contents" />
+        					<!-- <textarea class="body-contents" id="text-contents"></textarea> -->
+        					<form name="boardInfo">
+	
+								<input type="hidden" name="boardName" value="${boardName}">
+								<input type="hidden" name="bId" value="${vo.bId}">
+							</form>
+					      </div>
+					      <div class="modal-footer">
+					      	<button type="button" class="btn btn-primary" onclick="clickSave(boardInfo)">저장</button>
+					        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+					        
+					      </div>
+					    </div>
+					  </div>
+					</div>
+				</form>
 			</fieldset>
 			</div>
 			
@@ -96,7 +145,7 @@ h2{
 						<table class="table table-hover text-center">
 							<tr >
 					    		<c:forEach var="record" items="${listExerKind }" >
-					    			<td class="listExerKind" title="${record['ek_no']}">${record["ek_kind"]}</td>
+					    			<td class="listExerKind" title="${record['ek_no']}">${record['ek_kind']}</td>
 								<%-- <input type="hidden" name="no" value="${record['ek_no']}" /> --%>
 								<%-- <input type="button" class="no" value="${record['ek_no']}" />${record["ek_kind"]} --%>
 								<%-- <a href="#" class="btn btn-success" >${record["ek_kind"]}</a> --%>
@@ -125,9 +174,9 @@ h2{
 		</div>
 	
 	</div>
+	
 
-</body>
-</html>
+
 <script>
 $(document).on('click','.listExerKind',function(){	 
 /*$('tr').click(function(){ */
@@ -242,13 +291,41 @@ function endDate(date,n){
 			"-"+(endDate.getDate()>9?endDate.getDate().toString():"0"+endDate.getDate().toString());
 }
  
-/* 
-$('#start').change(function() {
-	$('#end').val(document.getElementById('start').stepUp(10080))
-}) */
-
-
+$(document).on('click','#cancel',function(e){	
+	console.log("취소버튼 클릭")
+	var option="";
+	for(var i=1;i<=7;i++){
+		for(var k=1;k<=3;k++){
+			
+				$("#selecBox"+i+"_"+k+" option").remove();
+				option="<option class='option'>운동 선택</option>"
+			 
+		}
+	}
+	$(".selecBox").append(option);
+	 $("#exercise-list").children("tr").remove();
 	
+})
 
 
-</script>
+
+/* 모달 */
+$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+  var data = $(this).data('id');
+  $("#contents.body-contents").val(data);
+  $("#text-contents.body-contents").html(data);
+})
+
+function clickSave(formName) {
+					formName.action = "/exercise/routine.do";
+					formName.method = "post";
+					formName.submit();
+}
+
+</script>  
+  
+    <script src="${path}/resources/js/plugin.js"></script>
+    <script src="${path}/resources/js/scripts.js"></script>
+</body>
+</html>
