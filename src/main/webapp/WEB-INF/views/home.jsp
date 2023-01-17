@@ -346,7 +346,7 @@
 							<a href="<c:url value="/diet/main.do"/>" >조주희</a>
 							<a href="<c:url value="/model/ocr.do"/>" >함병완</a>
 							<a href="<c:url value="/home.do"/>" >김성우</a>
-							<a href="<c:url value="/cal/List.do"/>" >최도원</a>
+							<a href="<c:url value="/cal/ifram.do"/>" >최도원</a>
 							<a href="<c:url value="/model/Login.do"/>" >최부건-로그인</a>
 							
 							<!-- 추가이동경로 필요할경우 아래에 추가 -->
