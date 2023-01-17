@@ -326,15 +326,15 @@
    		<a href="<c:url value="/community/bbs/mypage"/>" >함병완-마이페이지</a>
    		<a href="<c:url value="/backend/admin"/>" >김동진-어드민</a>
    		<a href="<c:url value="/chat1.do"/>" >최도원채팅임시</a>
-   		<form action="<c:url value="/member/Logout.do"/>" method="post">
+   		
+   		<sec:authorize access="isAuthenticated()">
+	        
+	        <!--객체의 권한-->
+	        <b>Authenticated:<sec:authentication property="principal"/></b>
+	        <form action="<c:url value="/member/Logout.do"/>" method="post">
    			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
    			<button class="custom-btn btn-5" type="submit"><span>로그아웃</span></button>
    		</form>
-   		<sec:authorize access="isAuthenticated()">
-	        <sec:authentication property="principal"/>
-	        <!--객체의 권한-->
-	        <b>Authenticated user role:</b>
-	        
 		</sec:authorize>
 
 		<div>
