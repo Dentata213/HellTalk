@@ -2,7 +2,6 @@ package com.helltalk.springapp.config;
 
 import java.io.IOException;
 
-import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,8 +41,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Value("${password}")
 	private String password;
 	
-	
-	private final SecurityFailureHandler securityFailureHandler = null;
 
 	@Bean 
 	public HikariDataSource hikariDataSource() {
@@ -85,15 +82,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.loginProcessingUrl("/member/LoginProcess.do")//폼의 action속성값.실제 로그인처리는 씨큐리티가 한다.(컨트롤러에서 로그인 처리 부분이 불필요)
 			.failureUrl("/member/Login.do")//로그인 실패시 보여질 페이지 URL설정."login?error" 기본값
 			.failureHandler((request,response,exception)->{
-				
 				request.setAttribute("NotMember", "회원정보가 일치하지 않습니다.");
 				request.getRequestDispatcher("/member/Login.do").forward(request, response);
 			})//로그인 실패시 처리할 핸들러 설정.failureUrl()보다 우선
-			
 			.usernameParameter("id")//로그인 폼 아이디 입력 필드의  name 속성값. 기본값은 "username"
 			.passwordParameter("pwd")//로그인 폼 패스워드 입력 필드의 name 속성값. 기본값은 "password"
 			//.defaultSuccessUrl("/")//인증 성공후 이동할 URL설정.로그인 성공시 직전에 방문했던 페이지로 리다이렉트(기본값).true로 설정시 지정한 URL로 무조건 리다이렉트 즉 defaultSuccessUrl("/",true)
-			.failureHandler(securityFailureHandler)
+			//.failureHandler(securityFailureHandler)
 			//.successHandler((request,response,authentication)->{//인증 성공후 이동할 URL설정.defaultSuccessUrl("/")보다 우선
 			//	authentication객체로 인증된 사용자 정보(아이디 혹은 권한등)를 파악할수 있다
 			//	response.sendRedirect(request.getContextPath());
