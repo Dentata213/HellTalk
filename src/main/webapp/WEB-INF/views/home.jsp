@@ -309,7 +309,7 @@
             <a href="default-settings.html" class="p-0 ms-3 menu-icon"><img src="https://via.placeholder.com/50x50.png" alt="user" class="w40 mt--1"></a>
             
         </div>
-<<<<<<< HEAD
+
         <!-- navigation top -->
         <div style="margin-top:100px"></div>
 		<a href="<c:url value="/model/shop-1.do"/>" >김동진</a>
