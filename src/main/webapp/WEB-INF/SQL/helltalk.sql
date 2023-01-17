@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 
 /* Drop Tables */
 
@@ -894,4 +894,3 @@ CREATE SEQUENCE SEQ_FOOD
 NOCACHE
 NOCYCLE;
 
->>>>>>> branch 'master' of https://github.com/Dentata213/HellTalk.git
