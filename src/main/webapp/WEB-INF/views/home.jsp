@@ -342,9 +342,11 @@
 		<a href="<c:url value="/model/ocr.do"/>" >함병완</a>
 		<a href="<c:url value="/home.do"/>" >김성우</a>
 		<a href="<c:url value="/cal/List.do"/>" >최도원</a>
-		<a href="<c:url value="/member/Login.do"/>" >최부건-로그인</a>
+		
 		
 		<!-- 추가이동경로 필요할경우 아래에 추가 -->
+		
+		<a href="<c:url value="/member/Login.do"/>" >최부건-로그인</a>
    		<a href="<c:url value="/member/CreateUser.do"/>" >최부건-회원가입</a>
    		<a href="<c:url value="/community/bbs/list"/>" >함병완-게시판</a>
    		<a href="<c:url value="/community/bbs/mypage"/>" >함병완-마이페이지</a>
@@ -354,11 +356,12 @@
    		<sec:authorize access="isAuthenticated()">
 	        
 	        <!--객체의 권한-->
-	        <b>Authenticated:<sec:authentication property="principal"/></b>
-	        <form action="<c:url value="/member/Logout.do"/>" method="post">
-   			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-   			<button class="custom-btn btn-5" type="submit"><span>로그아웃</span></button>
-   		</form>
+	        <b>principal(현재 접속한 사람의 정보):<sec:authentication property="principal"/></b>
+	        <b>principal(현재 접속한 사람의 id):<sec:authentication property="principal.username"/></b>
+		    <form action="<c:url value="/member/Logout.do"/>" method="post">
+	   			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+	   			<button class="custom-btn btn-5" type="submit"><span>로그아웃</span></button>
+	   		</form>
 		</sec:authorize>
 
 		<div>

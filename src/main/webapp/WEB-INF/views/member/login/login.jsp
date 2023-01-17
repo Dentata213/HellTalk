@@ -89,12 +89,6 @@
 
 
 <body class="color-theme-blue">
-	<c:if test="${! empty requestScope.NotMember}">
-		<div class="alert alert-success alert-dismissible fade show">
-		  <button type="button" class="close" data-dismiss="alert">&times;</button>
-		  <strong>로그인 실패!!</strong> ${requestScope.NotMember}
-		</div>
-	</c:if>
 
     <div class="preloader"></div>
 
@@ -110,6 +104,9 @@
             <div class="col-xl-5 d-none d-xl-block p-0 vh-100 bg-image-cover bg-no-repeat" style="background-image: url(${path}/resources/images/woman-running.png);"></div>
             <div class="col-xl-7 vh-100 align-items-center d-flex bg-white rounded-3 overflow-hidden">
                 <div class="card shadow-none border-0 ms-auto me-auto login-card">
+                	<c:if test="${! empty requestScope.LoginFailMessage}">
+						  <strong>로그인 실패!!</strong> ${requestScope.LoginFailMessage}
+					</c:if>
                     <div class="card-body rounded-0 text-left">
                         <h2 class="fw-700 display1-size display2-md-size mb-3">Login into <br>your account</h2>
                         
