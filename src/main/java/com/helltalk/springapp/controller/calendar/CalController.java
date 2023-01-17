@@ -70,7 +70,7 @@ public class CalController {
 		model.addAttribute("calcList",calcList);
 		System.out.println("여기지나니?");
 		//뷰정보반환
-		return "calendar/Month";
+		return "calendar/Month.helltalk";
 	}
 	
 	//일정등록
