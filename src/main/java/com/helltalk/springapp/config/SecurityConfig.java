@@ -15,6 +15,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
@@ -99,6 +101,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.deleteCookies("JSESSIONID")
 			.logoutSuccessUrl("/")
 			.and()
+			.exceptionHandling()
+		    .accessDeniedPage("/member/forbidden.do")
+		    /*
+		    .accessDeniedHandler((request,response,authentication)->{
+		    	Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		    	UserDetails userDetails = (UserDetails)principal;
+		    	String username = userDetails.getUsername();
+		    	request.setAttribute("username", username);
+		    	
+		    	
+		    })
+		    */
+		    .and()
 			
 			/*
 			CSRF(Cross Site Resquest Fosery) 공격을 방어하기 위한 설정
@@ -118,6 +133,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.maximumSessions(1)//최대 허용 가능 중복 세션 수.(중복 로그인 방지하기 위해 1로 설정)
 			.maxSessionsPreventsLogin(false)//true설정시 기존에 로그인 했던 사용자 우선.기본값은 false로 새롭게 로그인한 사용자가 우선 즉 기존 사용자는 자동 로그아웃됨
 			.expiredUrl("/member/Login.do");//만기된 세션 즉 세션 유효시간이 경과 한 경우 이동할 URL(중복으로 인해 끊어진 경우도 해당함).
+			
 	}
 	
 	//사용자의 Authorization 설정(메모리 기반 혹은 JDBC기반 혹은 UserDetailsService 구현 기반)	
@@ -132,6 +148,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.usersByUsernameQuery("select u_email as username, u_pw as password, u_status as enabled from users where u_email = ?")
 			.authoritiesByUsernameQuery("select u_email as username, u_kind as authority from users where u_email = ?")
 			.passwordEncoder(passwordEncoder());
+		
 	}////////////////////////
 	//org.springframework.security.crypto.password.PasswordEncoder
 	@Bean
@@ -140,17 +157,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}	
 	
 	//커스텀 로그인실패 클래스 빈으로 등록
-	
 	public AuthenticationFailureHandler authenticationFailureHandler() {
 	    return new SecurityFailureHandler();
 	} 
 
-	/*
-	@Bean
-	public AccessDeniedHandler accessDeniedHandler() {
-	   return new CustomAccessDeniedHandler();
-	}
-	*/
 	
 	
 }//////////
