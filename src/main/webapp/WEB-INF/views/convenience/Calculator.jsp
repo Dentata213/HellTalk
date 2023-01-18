@@ -6,12 +6,14 @@
         <!-- main content -->
         <div class="main-content right-chat-active">
             <div class="middle-sidebar-bottom">
-                <!-- 개인 코드 작성 / 페이지 요청은 .helltalk 붙이기 -->
+                <!-- 개인 코드 작성 -->
                 
                 
                 
                 
-                <!-- 개인 코드 작성 / 페이지 요청은 .helltalk 붙이기 -->
+                
+                
+                <!-- 개인 코드 작성 -->
             </div>            
         </div>
         <!-- main content -->
