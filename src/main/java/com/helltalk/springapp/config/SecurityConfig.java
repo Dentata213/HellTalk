@@ -73,8 +73,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()
 			//https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/util/AntPathMatcher.html
 			.antMatchers("/","/SuccessLoginHome.do","/member/Login.do","/member/CreateUser.do","/member/Register.do","/member/Success.do").permitAll()
-			.antMatchers("/model/shop-1.do","/model/routine.do","/model/ocr.do","/home.do","/cal/List.do","/chat1.do").hasAnyRole("USER","TN")//유저와 트레이너 권한이 있어야 열람할수 있는 페이지, ROLE_는 반드시 생략.자동으로 추가됨으로
-			.antMatchers("/backend/admin").hasRole("ADMIN")//어드민 권한이 있어야 가능
+			.antMatchers("/model/shop-1.do","/model/routine.do","/model/ocr.do","/home.do","/cal/List.do","/chat1.do").hasAnyRole("USER","TN","ADMIN")//유저와 트레이너 권한이 있어야 열람할수 있는 페이지, ROLE_는 반드시 생략.자동으로 추가됨으로
+			.antMatchers("/backend/*").hasRole("ADMIN")//어드민 권한이 있어야 가능
 			.and()//HttpSecurity 반환
 			//폼기반 로그인 인증설정
 			.formLogin()
@@ -87,7 +87,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.usernameParameter("id")//로그인 폼 아이디 입력 필드의  name 속성값. 기본값은 "username"
 			.passwordParameter("pwd")//로그인 폼 패스워드 입력 필드의 name 속성값. 기본값은 "password"
 			//.defaultSuccessUrl("/")//인증 성공후 이동할 URL설정.로그인 성공시 직전에 방문했던 페이지로 리다이렉트(기본값).true로 설정시 지정한 URL로 무조건 리다이렉트 즉 defaultSuccessUrl("/",true)
-			//.failureHandler(securityFailureHandler)
 			//.successHandler((request,response,authentication)->{//인증 성공후 이동할 URL설정.defaultSuccessUrl("/")보다 우선
 			//	authentication객체로 인증된 사용자 정보(아이디 혹은 권한등)를 파악할수 있다
 			//	response.sendRedirect(request.getContextPath());

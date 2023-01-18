@@ -352,10 +352,10 @@
 							<a href="<c:url value="/model/ocr.do"/>" >함병완</a>
 							<a href="<c:url value="/home.do"/>" >김성우</a>
 							<a href="<c:url value="/cal/ifram.do"/>" >최도원</a>
-							<a href="<c:url value="/model/Login.do"/>" >최부건-로그인</a>
+							<a href="<c:url value="/member/Login.do"/>" >최부건-로그인</a>
 							
 							<!-- 추가이동경로 필요할경우 아래에 추가 -->
-					   		<a href="<c:url value="/model/Register.do"/>" >최부건-회원가입</a>
+					   		<a href="<c:url value="/member/CreateUser.do"/>" >최부건-회원가입</a>
 					   		<a href="<c:url value="/community/bbs/list"/>" >함병완-게시판</a>
 					   		<a href="<c:url value="/community/bbs/mypage"/>" >함병완-마이페이지</a>
 					   		<a href="<c:url value="/backend/admin"/>" >김동진-어드민</a>
@@ -389,10 +389,11 @@
 	        
 	        <!--객체의 권한-->
 	        <ul>
-		        <li>principal(현재 접속한 사람의 정보):<sec:authentication property="principal"/></li>
+		        <li>principal(현재 접속한 계정의 타입 및 정보):<sec:authentication property="principal"/></li>
 		        <li>principal(현재 접속한 사람의 id):<sec:authentication property="principal.username"/></li>
 		        <li>principal(현재 접속한 사람의 비밀번호):<sec:authentication property="principal.password"/></li>
-		        <li>principal.enabled : <sec:authentication property="principal.enabled"/></li>
+		        <li>principal.enabled(계정 활성화 상태 true:1 ,false:0) : <sec:authentication property="principal.enabled"/></li>
+		        <li>principal.authorities(현재 접속한 사람의 권한) : <sec:authentication property="principal.authorities"/></li>
 	        </ul>
 		    <form action="<c:url value="/member/Logout.do"/>" method="post">
 	   			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
