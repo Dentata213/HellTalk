@@ -34,6 +34,15 @@ public class MemberController {
 		return "member/register/register";
 	}
 	
+	@RequestMapping("/Success.do")
+	public String SuccessRegister() {
+		return "member/register/success.helltalk";
+	}
+	
+	@RequestMapping("/forbidden.do")
+	public String forbidden() {
+		return "member/forbidden/forbidden";
+	}
 	
 	
 	
@@ -71,10 +80,7 @@ public class MemberController {
 		
 	}
 	
-	@RequestMapping("/Success.do")
-	public String SuccessRegister() {
-		return "member/register/success.helltalk";
-	}
+	
 	
 	
 	
