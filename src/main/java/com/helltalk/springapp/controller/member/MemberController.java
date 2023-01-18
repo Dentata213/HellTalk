@@ -39,25 +39,35 @@ public class MemberController {
 	
 	@RequestMapping("/register.do")//회원가입 컨트롤러
 	public String register(@RequestParam Map<String,String> map,Model model,HttpServletResponse response) throws IOException {
-		int affected = service.emailCheck(map);//아이디 서버단에서 중복체크
-		if(affected == 0) {
+		int affectedEm = service.emailCheck(map);//이메일 서버단에서 중복체크
+		int affectedName = service.nicknameCheck(map);
+		String nickname="";
+		String email="";
+		if(affectedEm + affectedName == 0 ) {
 			String rawPassword = map.get("u_pwd");
 			String encodedPassword = passwordEncoder.encode(rawPassword); //비밀번호 암호화
 			System.out.println("암호화된 비번:"+encodedPassword);
 			map.put("u_pwd", encodedPassword);
 			service.insertUser(map);
-			model.addAttribute("nickname",map.get("u_nickname"));
+			nickname = map.get("u_nickname");
+			model.addAttribute("nickname",nickname);
 			return "forward:/member/Success.do";
 			
-		}else {
-			String email = map.get("u_email");
+		}else if(affectedEm != 0){
+			email = map.get("u_email");
 			response.setContentType("text/html; charset=utf-8");
 	        PrintWriter w = response.getWriter();
 	        w.write("<script>alert('"+email+"는 현재 사용중인 이메일 입니다.');history.back();</script>");
 	        w.close();
 	        
+		}else if (affectedName != 0) {
+			nickname = map.get("u_nickname");
+			response.setContentType("text/html; charset=utf-8");
+	        PrintWriter w = response.getWriter();
+	        w.write("<script>alert('"+nickname+"는 현재 사용중인 닉네임 입니다.');history.back();</script>");
+	        w.close();
 		}
-		return null;
+		return "";
 		
 	}
 	

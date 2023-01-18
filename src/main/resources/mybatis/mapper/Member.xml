@@ -16,6 +16,10 @@
 		SELECT COUNT(*) FROM USERS WHERE U_EMAIL = #{u_email}
 	</select>
 	
+	<select id="nicknameCheck" parameterType="Map" resultType="int">
+		SELECT COUNT(*) FROM USERS WHERE U_NICKNAME = #{u_nickname}
+	</select>
+	
 	<insert id="userInsert" parameterType="Map">
 		INSERT INTO USERS VALUES(
 		SEQ_USERNO.NEXTVAL,#{u_pwd},#{u_nickname},#{u_gender},
