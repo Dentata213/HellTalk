@@ -72,7 +72,14 @@
 		                            <input name="default-radio-2" class="form-check-input" type="radio" value="" id="defaultRadio4"/>
 		                            <label class="form-check-label" for="defaultRadio4"> 트레이너 </label>
 		                        </div>
-	                    
+	                    		
+	              		        <div class="mb-3">
+			                        <label for="html5-date-input" class="col-md-2 col-form-label">생년월일</label>
+			                        <div class="col-md-10">
+			                          <input class="form-control" type="date" value="2021-06-18" id="html5-date-input" />
+			                        </div>
+			                    </div>
+	                    		
 		                        <div class="col-sm-12 p-0 text-left">
 		                            <div class="form-group mb-1 mt-1" id="nextbtn"><a href="#" class="form-control text-center style2-input text-white fw-600 bg-dark border-0 p-0 ">다음</a></div>
 		                            <h6 class="text-grey-500 font-xsss fw-500 mt-0 mb-0 lh-32">Already have account <a href="login.html" class="fw-700 ms-1">Login</a></h6>
