@@ -104,10 +104,21 @@
             <div class="col-xl-5 d-none d-xl-block p-0 vh-100 bg-image-cover bg-no-repeat" style="background-image: url(${path}/resources/images/woman-running.png);"></div>
             <div class="col-xl-7 vh-100 align-items-center d-flex bg-white rounded-3 overflow-hidden">
                 <div class="card shadow-none border-0 ms-auto me-auto login-card">
-                	<c:if test="${! empty requestScope.LoginFailMessage}">
-						  <strong>로그인 실패!!</strong> ${requestScope.LoginFailMessage}
-					</c:if>
                     <div class="card-body rounded-0 text-left">
+	                    <!-- 로그인 실패시 시큐리티는 SPRING_SECURITY_LAST_EXCEPTION 라는 키값을 세션에 저장
+	                	<c:if test="${! empty SPRING_SECURITY_LAST_EXCEPTION}">
+	                		<font color="red">
+							  <strong>로그인 실패!!</strong> ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+							</font>
+							<c:remove var="SPRING_SECURITY_LAST_EXCEPTION" scope="session" />
+							<!-- 예외를 계속 세션에 저장하면 WAS에 과부하, remove 태그로 세션 영역에 에러 메세지를 지워준다. 
+						</c:if>
+						-->
+						<c:if test="${! empty LoginFailMessage}">
+	                		<font color="red">
+							  <strong>로그인 실패!!</strong> <br>${LoginFailMessage}
+							</font>
+						</c:if>
                         <h2 class="fw-700 display1-size display2-md-size mb-3">Login into <br>your account</h2>
                         
                         <form action="<c:url value="/member/LoginProcess.do"/>" method="post">

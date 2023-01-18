@@ -333,36 +333,8 @@
             <a href="default-settings.html" class="p-0 ms-3 menu-icon"><img src="https://via.placeholder.com/50x50.png" alt="user" class="w40 mt--1"></a>
             
         </div>
-
-        <!-- navigation top -->
-        <div style="margin-top:100px"></div>
-		<a href="<c:url value="/model/shop-1.do"/>" >김동진</a>
-		<a href="<c:url value="/model/routine.do"/>" >진소희</a>
-		<a href="<c:url value="/model"/>" >조주희</a>
-		<a href="<c:url value="/model/ocr.do"/>" >함병완</a>
-		<a href="<c:url value="/home.do"/>" >김성우</a>
-		<a href="<c:url value="/cal/List.do"/>" >최도원</a>
-		
-		
-		<!-- 추가이동경로 필요할경우 아래에 추가 -->
-		
-		<a href="<c:url value="/member/Login.do"/>" >최부건-로그인</a>
-   		<a href="<c:url value="/member/CreateUser.do"/>" >최부건-회원가입</a>
-   		<a href="<c:url value="/community/bbs/list"/>" >함병완-게시판</a>
-   		<a href="<c:url value="/community/bbs/mypage"/>" >함병완-마이페이지</a>
-   		<a href="<c:url value="/backend/admin"/>" >김동진-어드민</a>
-   		<a href="<c:url value="/chat1.do"/>" >최도원채팅임시</a>
    		
-   		<sec:authorize access="isAuthenticated()">
-	        
-	        <!--객체의 권한-->
-	        <b>principal(현재 접속한 사람의 정보):<sec:authentication property="principal"/></b>
-	        <b>principal(현재 접속한 사람의 id):<sec:authentication property="principal.username"/></b>
-		    <form action="<c:url value="/member/Logout.do"/>" method="post">
-	   			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-	   			<button class="custom-btn btn-5" type="submit"><span>로그아웃</span></button>
-	   		</form>
-		</sec:authorize>
+   		
 
 		<div>
 		    <section class="not-container">
@@ -413,7 +385,20 @@
 		    </section>
 		</div>
    
-   
+   <sec:authorize access="isAuthenticated()">
+	        
+	        <!--객체의 권한-->
+	        <ul>
+		        <li>principal(현재 접속한 사람의 정보):<sec:authentication property="principal"/></li>
+		        <li>principal(현재 접속한 사람의 id):<sec:authentication property="principal.username"/></li>
+		        <li>principal(현재 접속한 사람의 비밀번호):<sec:authentication property="principal.password"/></li>
+		        <li>principal.enabled : <sec:authentication property="principal.enabled"/></li>
+	        </ul>
+		    <form action="<c:url value="/member/Logout.do"/>" method="post">
+	   			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+	   			<button class="custom-btn btn-5" type="submit"><span>로그아웃</span></button>
+	   		</form>
+		</sec:authorize>
    
    
 

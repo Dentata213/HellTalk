@@ -3,39 +3,48 @@ package com.helltalk.springapp.config;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
+import org.springframework.security.authentication.AccountExpiredException;
+import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.InternalAuthenticationServiceException;
+import org.springframework.security.authentication.CredentialsExpiredException;
+import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
-import org.springframework.stereotype.Component;
 
-@Component
+
+											//implements AuthenticationFailureHandler 둘중하나 아무거나 사용해도 가능
 public class SecurityFailureHandler extends SimpleUrlAuthenticationFailureHandler{
 
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
-		 String errorMessage;
-	        if (exception instanceof BadCredentialsException) {
-	            errorMessage = "아이디 또는 비밀번호가 맞지 않습니다. 다시 확인해 주세요.";
-	        } else if (exception instanceof InternalAuthenticationServiceException) {
-	            errorMessage = "내부적으로 발생한 시스템 문제로 인해 요청을 처리할 수 없습니다. 관리자에게 문의하세요.";
-	        } else if (exception instanceof UsernameNotFoundException) {
-	            errorMessage = "계정이 존재하지 않습니다. 회원가입 진행 후 로그인 해주세요.";
-	        } else if (exception instanceof AuthenticationCredentialsNotFoundException) {
-	            errorMessage = "인증 요청이 거부되었습니다. 관리자에게 문의하세요.";
-	        } else {
-	            errorMessage = "알 수 없는 이유로 로그인에 실패하였습니다 관리자에게 문의하세요.";
-	        }
-	        setDefaultFailureUrl("/member/Login.do?error=true&exception="+errorMessage);
-		
-		super.onAuthenticationFailure(request, response, exception);
+		if(exception instanceof AuthenticationServiceException) {
+			request.setAttribute("LoginFailMessage", "죄송합니다. 시스템에 오류가 발생했습니다.");
+		}
+		else if(exception instanceof BadCredentialsException) {
+			request.setAttribute("LoginFailMessage", "아이디 또는 비밀번호가 일치하지 않습니다.");
+		}
+		else if(exception instanceof DisabledException) {
+			request.setAttribute("LoginFailMessage", "현재 사용할 수 없는 계정입니다.");
+		}
+		else if(exception instanceof LockedException) {
+			request.setAttribute("LoginFailMessage", "현재 잠긴 계정입니다.");
+		}
+		else if(exception instanceof AccountExpiredException) {
+			request.setAttribute("LoginFailMessage", "이미 만료된 계정입니다.");
+		}
+		else if(exception instanceof CredentialsExpiredException) {
+			request.setAttribute("LoginFailMessage", "비밀번호가 만료된 계정입니다.");
+		}
+		else request.setAttribute("LoginFailMessage", "계정을 찾을 수 없습니다.");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/member/Login.do");
+		dispatcher.forward(request, response);
 	}
 	
 	

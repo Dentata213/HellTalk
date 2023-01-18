@@ -81,10 +81,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.loginPage("/member/Login.do")//로그인 폼 URL설정.기본값은 "/login" 
 			.loginProcessingUrl("/member/LoginProcess.do")//폼의 action속성값.실제 로그인처리는 씨큐리티가 한다.(컨트롤러에서 로그인 처리 부분이 불필요)
 			.failureUrl("/member/Login.do")//로그인 실패시 보여질 페이지 URL설정."login?error" 기본값
-			.failureHandler((request,response,exception)->{
-				request.setAttribute("NotMember", "회원정보가 일치하지 않습니다.");
-				request.getRequestDispatcher("/member/Login.do").forward(request, response);
-			})//로그인 실패시 처리할 핸들러 설정.failureUrl()보다 우선
+											//로그인 form으로 파라미터값 ?error로 보냄 
+			.failureHandler(authenticationFailureHandler())//로그인 실패시 처리할 핸들러 설정.failureUrl()보다 우선
+			
 			.usernameParameter("id")//로그인 폼 아이디 입력 필드의  name 속성값. 기본값은 "username"
 			.passwordParameter("pwd")//로그인 폼 패스워드 입력 필드의 name 속성값. 기본값은 "password"
 			//.defaultSuccessUrl("/")//인증 성공후 이동할 URL설정.로그인 성공시 직전에 방문했던 페이지로 리다이렉트(기본값).true로 설정시 지정한 URL로 무조건 리다이렉트 즉 defaultSuccessUrl("/",true)
@@ -141,7 +140,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}	
 	
+	//커스텀 로그인실패 클래스 빈으로 등록
 	
+	public AuthenticationFailureHandler authenticationFailureHandler() {
+	    return new SecurityFailureHandler();
+	} 
+
+	/*
+	@Bean
+	public AccessDeniedHandler accessDeniedHandler() {
+	   return new CustomAccessDeniedHandler();
+	}
+	*/
 	
 	
 }//////////
