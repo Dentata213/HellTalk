@@ -36,6 +36,7 @@
 				<thead>
 					<tr>
 						<th class="col-1">번호</th>
+						<th class="col-1">식품코드</th>
 						<th >음식 이름</th>
 						<th class="col-1">제조사명</th>
 						<th class="col-1">총내용량</th>
@@ -55,18 +56,19 @@
 					</c:if>
 					<c:if test="${not isEmpty }">
 						<c:forEach var="record" items="${searchList}" varStatus="loop">
-							<tr class="select">
-								<td>${record.food_no }</td>
-								<td>${record.food_name }</td>
-								<td>${record.food_maker }</td>
-								<td>${record.food_size }</td>
-								<td>${record.food_kcal }</td>
-								<td>${record.food_tan }</td>
-								<td>${record.food_dan }</td>
-								<td>${record.food_fat }</td>
-								<td>${record.food_col }</td>
-								<td>${record.food_na }</td>
-							</tr>
+									<tr class="select">
+										<td>${loop.index+1 }</td>
+										<td>${record.food_cd }</td>
+										<td>${record.food_name }</td>
+										<td>${record.food_maker }</td>
+										<td>${record.food_size }</td>
+										<td>${record.food_kcal }</td>
+										<td>${record.food_tan }</td>
+										<td>${record.food_dan }</td>
+										<td>${record.food_fat }</td>
+										<td>${record.food_col }</td>
+										<td>${record.food_na }</td>
+									</tr>
 						</c:forEach>
 					</c:if>
 
@@ -77,12 +79,12 @@
 </body>
 
 <script>
-	console.log("테스트");
-	$(function(){
 		$('.select').click(function(){
-			window.location.href ="<c:url value="/diet/putFood.do"/>"
-			console.log("뭐 찍히나:",$('tr[name=selectFood]'));
+			var food_cd= $(this).find("td:eq(1)").html();
+			console.log("food_cd : "+ food_cd);
+				
+				window.location.href ='<c:url value="/diet/putFood.do" />?food_cd='+food_cd;
+		
 		});
-	});
 </script>
 </html>

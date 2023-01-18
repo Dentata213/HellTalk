@@ -23,12 +23,7 @@
 
 <body>
 	<div class="container">
-		<div>
-			<form action="<c:url value="/diet/foodSearch.do"/>">
-				<input type="text" value="${param.search}" class="form-control" placeholder="음식을 검색해보세요" name="search">
-				<button type="submit" class="btn btn-primary">검색</button>
-			</form>
-		</div>
+		
 		<div class="text-center mb-2">
 			<h1>검색 결과</h1>
 			<table class="table table-hover text-center">
@@ -48,26 +43,24 @@
 					</tr>
 				</thead>
 				<tbody class="table-sm down-file-body">
-					<c:if test="${empty searchList }" var="isEmpty">
+					<c:if test="${empty selectFood }" var="isEmpty">
 						<tr>
-							<td colspan="10">${FailSearch }</td>
+							<td colspan="10">${FailSelect }</td>
 						</tr>
 					</c:if>
 					<c:if test="${not isEmpty }">
-						<c:forEach var="record" items="${searchList}" varStatus="loop">
-							<tr class="select" name="selectFood${record.food_no }">
-								<td>${record.food_no }</td>
-								<td>${record.food_name }</td>
-								<td>${record.food_maker }</td>
-								<td>${record.food_size }</td>
-								<td>${record.food_kcal }</td>
-								<td>${record.food_tan }</td>
-								<td>${record.food_dan }</td>
-								<td>${record.food_fat }</td>
-								<td>${record.food_col }</td>
-								<td>${record.food_na }</td>
+							<tr class="select">
+								<td>${selectFood.food_cd }</td>
+								<td>${selectFood.food_name }</td>
+								<td>${selectFood.food_maker }</td>
+								<td>${selectFood.food_size }</td>
+								<td>${selectFood.food_kcal }</td>
+								<td>${selectFood.food_tan }</td>
+								<td>${selectFood.food_dan }</td>
+								<td>${selectFood.food_fat }</td>
+								<td>${selectFood.food_col }</td>
+								<td>${selectFood.food_na }</td>
 							</tr>
-						</c:forEach>
 					</c:if>
 
 				</tbody>
@@ -77,12 +70,15 @@
 </body>
 
 <script>
-	console.log("테스트");
-	$(function(){
-		$('.select').click(function(){
-			window.location.href ="<c:url value="/diet/putFood.do"/>"
-			console.log("뭐 찍히나:",$('tr[name=selectFood]'));
-		});
+	console.log("테스트 :"+$('.select').find("td:eq(0)").html());
+	
+	$('.select').click(function(){
+		var food_cd= $('.select').find("td:eq(0)").html();
+		console.log("food_cd : "+ food_cd);
+			
+			window.location.href ='<c:url value="/diet/putFoodByNo.do" />?food_cd='+food_cd;
+	
 	});
+	
 </script>
 </html>

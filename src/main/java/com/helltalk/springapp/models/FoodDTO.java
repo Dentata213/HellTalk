@@ -13,7 +13,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class FoodDTO {
 	//음식
-	private String food_no;
+	private String food_cd;
 	private String food_name;
 	private String food_maker;
 	private String food_size;

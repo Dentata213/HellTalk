@@ -97,7 +97,7 @@ public class DietController {
 					FoodDTO dto= new FoodDTO();
 					
 					JSONObject item = (JSONObject)row.get(i);
-					String food_no = (String)item.get("NUM");
+					String food_cd= (String)item.get("FOOD_CD");
 					String food_name = (String)item.get("DESC_KOR");
 					String food_maker = (String)item.get("MAKER_NAME");
 					String food_size = (String)item.get("SERVING_SIZE");
@@ -108,7 +108,7 @@ public class DietController {
 					String food_col= (String)item.get("NUTR_CONT5");
 					String food_na= (String)item.get("NUTR_CONT6");
 					
-					dto.setFood_no(food_no);
+					dto.setFood_cd(food_cd);
 					dto.setFood_name(food_name);
 					dto.setFood_maker(food_maker);
 					dto.setFood_size(food_size);
@@ -119,7 +119,21 @@ public class DietController {
 					dto.setFood_col(food_col);
 					dto.setFood_na(food_na);
 					
-					list.add(dto);
+					
+					
+					
+					int selectOneFood= foodService.selectFoodAffected(dto);
+					System.out.println("selectoneFood-"+i+" :"+selectOneFood);
+					if(selectOneFood == 0) {
+						int insertFoodAffected= foodService.insert(dto);
+						System.out.println("insertFoodAffected : "+insertFoodAffected);
+						
+						FoodDTO insertFood= foodService.selectOne(dto);
+						System.out.println("insertFood : "+ insertFood);
+					}	
+					
+					
+				list.add(dto);
 				}//for				
 			}//if
 			else {
@@ -127,12 +141,37 @@ public class DietController {
 				model.addAttribute("FailSearch", "검색된 결과가 없습니다");
 			}
 			/*
-			for(DietBrieflyDTO item : list) {
+			Map foodMap= new HashMap();
+			for(FoodDTO item : list) {
+				
 				System.out.println("----------------");
 				System.out.println("이름: "+ item.getFood_name());
 				System.out.println("1회제공량: "+ item.getFood_size());
 				System.out.println("열량: "+ item.getFood_kcal());
 				System.out.println("----------------");
+				
+				foodMap.put("food_cd", item.getFood_cd());
+				foodMap.put("food_name", item.getFood_name());
+				foodMap.put("food_maker", item.getFood_maker());
+				foodMap.put("food_size", item.getFood_size());
+				foodMap.put("food_kcal", item.getFood_kcal());
+				foodMap.put("food_tan", item.getFood_tan());
+				foodMap.put("food_dan", item.getFood_dan());
+				foodMap.put("food_fat", item.getFood_fat());
+				foodMap.put("food_col", item.getFood_col());
+				foodMap.put("food_na", item.getFood_na());
+			
+				
+				FoodDTO selectOneFood= foodService.selectOne(foodMap)==null? null: foodService.selectOne(foodMap);
+				System.out.println("selectoneFood : "+selectOneFood);
+				if(selectOneFood == null) {
+					int insertFoodAffected= foodService.insert(foodMap);
+					System.out.println("insertFoodAffected : "+insertFoodAffected);
+				}
+				
+				
+				
+				
 			}*/
 			
 		}catch(Exception e){
@@ -140,19 +179,32 @@ public class DietController {
 		}
 		
 		model.addAttribute("searchList",list);
-		return "challenge/diet/Diet";
+		return "challenge/diet/SearchFood";
 		
 	}//////////searchFoodList()
 	
-	@GetMapping("/putFood.do")
+	@RequestMapping("/putFood.do")
 	public String putFood(@RequestParam Map map, HttpServletRequest req, Model model) {
-		System.out.println("putFood Map?:"+map);
+		String food_cd = req.getParameter("food_cd")==null? null: req.getParameter("food_cd");
+		System.out.println("food_cd넘어왔나 : "+ food_cd);
 		
-		int insetFood= foodService.insert(map);
+		map.put("food_cd", food_cd);
 		
+		FoodDTO selectFood= foodService.foodSelectOneByCd(map);
+		System.out.println("선택한 음식 :"+selectFood);
 		
-		return "challenge/diet/selectFood";
+		if(selectFood != null)
+			model.addAttribute("selectFood", selectFood);
+		else {
+			model.addAttribute("FailSelect", "값을 가져오지 못했습니다");
+		}
+		return "challenge/diet/SelectFood";
 	}
+	
+	@RequestMapping("/putFoodByNo.do")
+	public String putFoodByNo(@RequestParam Map map, HttpServletRequest req, Model model) {
 		
+		return "challenge/diet/Diet";
+	}
 
 }
