@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee; https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	
+
+	
 	
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 		<!-- 1)어노테이션 기반 씨큐리티 설정을 위한 주석처리  
@@ -75,7 +78,6 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
 
 
 	

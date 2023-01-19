@@ -69,6 +69,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		filter.setEncoding("UTF-8");
 		filter.setForceEncoding(true);
 		http.addFilterBefore(filter, CsrfFilter.class);
+		http.headers().frameOptions().disable(); //ifram 차단해제
 		
 		http
 			//인증설정
