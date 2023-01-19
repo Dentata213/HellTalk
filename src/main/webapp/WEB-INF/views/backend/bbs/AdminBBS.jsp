@@ -79,12 +79,12 @@
                     <thead>
                       <tr>
                         <th>글번호</th>
-                        <th>글제목</th>
+                        <th>글내용</th>
                         <th>작성자</th>
                         <th>좋아요수</th>
-                        <th>추천수</th>
-                        <th>Actions</th>
-                        <th>Actions</th>
+                        <th>조회수</th>
+                        <th>등록일</th>
+                        <th>메뉴</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -97,11 +97,11 @@
                  	  	<c:forEach var="bbsInfo" items="${bbslists}">
 	                      <tr>
 	                        <td>${bbsInfo.no}</td>
-	                        <td>${bbsInfo.title}</td>
-	                        <td>${bbsInfo.id}</td>
+	                        <td>${fn:substring(bbsInfo.content,0,10)}</td>
+	                        <td>${bbsInfo.u_nickname}</td>
 	                      	<td>${bbsInfo.likeCount}</td>
 	                      	<td>${bbsInfo.viewCount}</td>
-	                      	<td></td>
+	                      	<td>${bbsInfo.postDate}</td>
 	                        <td>
 	                          <div class="dropdown">
 	                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
@@ -119,12 +119,12 @@
                     <tfoot class="table-border-bottom-0">
                       <tr>
                         <th>글번호</th>
-                        <th>글제목</th>
+                        <th>글내용</th>
                         <th>작성자</th>
                         <th>좋아요수</th>
-                        <th>추천수</th>
-                        <th>Actions</th>
-                        <th>Actions</th>
+                        <th>조회수</th>
+                        <th>등록일</th>
+                        <th>메뉴</th>
                       </tr>	
                     </tfoot>
                   </table>

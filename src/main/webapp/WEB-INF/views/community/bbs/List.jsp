@@ -115,8 +115,7 @@
 								<div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3">
 									<div class="card-body p-0 d-flex">
 											<figure class="avatar me-3"><img src="https://via.placeholder.com/50x50.png" alt="image" class="shadow-sm rounded-circle w45"></figure>
-											<h4 class="fw-700 text-grey-900 font-xssss mt-1">${list.u_nickname},
-												${list.title}</h4>
+											<h4 class="fw-700 text-grey-900 font-xssss mt-1">${list.u_nickname}</h4>
 												<a href="#" class="ms-auto" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a>
 	                                    <div class="dropdown-menu dropdown-menu-end p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu2">
 	                                        

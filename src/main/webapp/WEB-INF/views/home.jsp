@@ -347,10 +347,8 @@
 		            <div class="cont_desc">
 		                <p>눈아파도 잠시동안만... </p>
 		                <div id="temp">
-			                <a href="<c:url value="/model/shop-1.do"/>">백건효</a>
 							<a href="<c:url value="/model/routine.do"/>" >진소희</a>
 							<a href="<c:url value="/diet/main.do"/>" >조주희</a>
-							<a href="<c:url value="/model/ocr.do"/>" >함병완</a>
 							<a href="<c:url value="/home.do"/>" >김성우</a>
 							<a href="<c:url value="/cal/ifram.do"/>" >최도원</a>
 							<a href="<c:url value="/member/Login.do"/>" >최부건-로그인</a>
@@ -363,11 +361,7 @@
 					   		<a href="<c:url value="/backend/admin"/>" >김동진-어드민</a>
 					   		<a href="<c:url value="/chat1.do"/>" >최도원채팅임시</a>
 
-
-					   		<a href="<c:url value="/backend/design"/>">임시 사용자 회원가입 디자인</a>
 					   		<a href="<c:url value="/teachable/gameResult.do"/>" >조주희-확인용(게임결과 페이지)</a>
-
-
 
 				   		</div>
 		            </div>
