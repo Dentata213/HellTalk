@@ -359,7 +359,7 @@
 					   		<a href="<c:url value="/community/bbs/list"/>" >함병완-게시판</a>
 					   		<a href="<c:url value="/community/bbs/mypage"/>" >함병완-마이페이지</a>
 					   		<a href="<c:url value="/backend/admin"/>" >김동진-어드민</a>
-					   		<a href="<c:url value="/chat1.do"/>" >최도원채팅임시</a>
+					   		<a href="<c:url value="/room.do"/>" >최도원채팅임시</a>
 
 					   		<a href="<c:url value="/teachable/gameResult.do"/>" >조주희-확인용(게임결과 페이지)</a>
 
