@@ -353,26 +353,16 @@
 							<a href="<c:url value="/model/ocr.do"/>" >함병완</a>
 							<a href="<c:url value="/home.do"/>" >김성우</a>
 							<a href="<c:url value="/cal/ifram.do"/>" >최도원</a>
-<<<<<<< HEAD
 							<a href="<c:url value="/member/Login.do"/>" >최부건-로그인</a>
-							
-=======
-							<a href="<c:url value="/model/Login.do"/>">최부건-로그인</a>
 					   		<a href="<c:url value="/qna/list"/>">위찬혁</a>
 					   		<a href="<c:url value="/convenience/Calculator"/>">신동현</a>
-					   		
->>>>>>> branch 'master' of https://github.com/Dentata213/HellTalk.git
 							<!-- 추가이동경로 필요할경우 아래에 추가 -->
-<<<<<<< HEAD
 					   		<a href="<c:url value="/member/CreateUser.do"/>" >최부건-회원가입</a>
 					   		<a href="<c:url value="/community/bbs/list"/>" >함병완-게시판</a>
 					   		<a href="<c:url value="/community/bbs/mypage"/>" >함병완-마이페이지</a>
-=======
-					   		<a href="<c:url value="/model/Register.do"/>" >최부건-회원가입</a>
->>>>>>> branch 'master' of https://github.com/Dentata213/HellTalk.git
 					   		<a href="<c:url value="/backend/admin"/>" >김동진-어드민</a>
 					   		<a href="<c:url value="/chat1.do"/>" >최도원채팅임시</a>
-					   		<a href="<c:url value="/backend/design"/>">임시 사용자 회원가입 디자인</a>
+
 
 
 				   		</div>
