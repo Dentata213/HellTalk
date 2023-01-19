@@ -7,6 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.helltalk.springapp.models.FoodDTO;
+
 @Repository
 public class FoodDAO {
 	// 마이바티스 오라클 주입
@@ -15,8 +17,20 @@ public class FoodDAO {
 	@Autowired
 	private SqlSessionTemplate template;
 	
-	public int insert(Map map) {
-		return template.insert("foodInsert",map);
+	public int insert(FoodDTO dto) {
+		return template.insert("foodInsert",dto);
+	}
+
+	public int selectFoodAffected(FoodDTO dto) {
+		return template.selectOne("foodSelectOneCount", dto);
+	}
+
+	public FoodDTO selectOne(FoodDTO dto) {
+		return template.selectOne("foodSelectOne",dto);
+	}
+
+	public FoodDTO foodSelectOneByCd(Map map) {
+		return template.selectOne("foodSelectOneByCd",map);
 	}
 			
 			

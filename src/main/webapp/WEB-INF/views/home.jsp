@@ -191,11 +191,12 @@
                     <input type="text" placeholder="Start typing to search.." class="bg-grey border-0 lh-32 pt-2 pb-2 ps-5 pe-3 font-xssss fw-500 rounded-xl w350 theme-dark-bg">
                 </div>
             </form>
-            <a href="default.html" class="p-2 text-center ms-3 menu-icon center-menu-icon"><i class="feather-home font-lg alert-primary btn-round-lg theme-dark-bg text-current "></i></a>
+            <a href="<c:url value="/"/>" class="p-2 text-center ms-3 menu-icon center-menu-icon"><i class="feather-home font-lg alert-primary btn-round-lg theme-dark-bg text-current "></i></a>
             <a href="default-storie.html" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-zap font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
             <a href="default-video.html" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-video font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
             <a href="default-group.html" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-user font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
-            <a href="<c:url value="model/shop-2.do"/>" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-shopping-bag font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
+            <a href="<c:url value="/model/shop-1.do"/>" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-shopping-bag font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
+			<a href="<c:url value="/home.do"/>" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-map font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
 
             <a href="#" class="p-2 text-center ms-auto menu-icon" id="dropdownMenu3" data-bs-toggle="dropdown" aria-expanded="false"><span class="dot-count bg-warning"></span><i class="feather-bell font-xl text-current"></i></a>
             <div class="dropdown-menu dropdown-menu-end p-4 rounded-3 border-0 shadow-lg" aria-labelledby="dropdownMenu3">
@@ -328,7 +329,7 @@
             </div>
             
 
-            <a href="default-settings.html" class="p-0 ms-3 menu-icon"><img src="https://via.placeholder.com/50x50.png" alt="user" class="w40 mt--1"></a>
+            <a href="<c:url value="/model/Login.do"/>" class="p-2 lh-20 w100 bg-primary-gradiant me-2 text-white text-center font-xssss fw-600 ls-1 rounded-xl">login</a>
             
         </div>
 		<div>
@@ -347,21 +348,24 @@
 							<a href="<c:url value="/model/ocr.do"/>" >함병완</a>
 							<a href="<c:url value="/home.do"/>" >김성우</a>
 							<a href="<c:url value="/cal/ifram.do"/>" >최도원</a>
-							<a href="<c:url value="/model/Login.do"/>" >최부건-로그인</a>
-							
+							<a href="<c:url value="/model/Login.do"/>">최부건-로그인</a>
+					   		<a href="<c:url value="/qna/list"/>">위찬혁</a>
+					   		<a href="<c:url value="/convenience/Calculator"/>">신동현</a>
+					   		
 							<!-- 추가이동경로 필요할경우 아래에 추가 -->
 					   		<a href="<c:url value="/model/Register.do"/>" >최부건-회원가입</a>
-					   		<a href="<c:url value="/community/bbs/list"/>" >함병완-게시판</a>
-					   		<a href="<c:url value="/community/bbs/mypage"/>" >함병완-마이페이지</a>
 					   		<a href="<c:url value="/backend/admin"/>" >김동진-어드민</a>
 					   		<a href="<c:url value="/chat1.do"/>" >최도원채팅임시</a>
 					   		<a href="<c:url value="/backend/design"/>">임시 사용자 회원가입 디자인</a>
+					   		<a href="<c:url value="/teachable/gameResult.do"/>" >조주희-확인용(게임결과 페이지)</a>
+
+
 				   		</div>
 		            </div>
 		        </div>
 		        <div class="section">
 		            <div class="cont_title">
-		                <h1>여긴<br>마이페이지</h1>
+		                <h1><a href="<c:url value="/community/bbs/mypage"/>" class="text-white">여긴<br>마이페이지</a></h1>
 		                <h3>National Park</h3>
 		            </div>
 		            <div class="cont_desc">
@@ -370,7 +374,7 @@
 		        </div>
 		        <div class="section">
 		            <div class="cont_title">
-		                <h1>마지막으로<br>커뮤니티</h1>
+		                <h1><a href="<c:url value="/community/bbs/list"/>" class="text-white">마지막으로<br>커뮤니티</a></h1>
 		                <h3>National Park</h3>
 		            </div>
 		            <div class="cont_desc">
@@ -379,6 +383,7 @@
 		        </div>
 		    </section>
 		</div>
+>>>>>>> branch 'master' of https://github.com/Dentata213/HellTalk.git
    
    
    

@@ -54,7 +54,18 @@ h2{
 	float: right; 
 }
 
-
+legend{
+	margin-bottom: 0px;
+	
+} 
+.modal-body{
+	padding-bottom: 0px;
+}
+.body-contents{
+	margin-top: 5px;
+	font-size: 18px;
+	font-weight: normal;
+}
 
 </style>   
 </head>
@@ -66,7 +77,7 @@ h2{
 <div class="container">
 		<div>
 			<fieldset>
-				<legend>커스텀 운동 루틴</legend>
+				<legend><h2>커스텀 운동 루틴</h2></legend>
 				<form method="post" action="<c:url value="/exercise/routine.do"/>"> 
 					<div class="calendar">
 						<label>
@@ -102,13 +113,13 @@ h2{
 				
 					<!--모달  -->
 					<!-- Button trigger modal -->
-					 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" data-id="전달할 값">
+					 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" data-id="전달할 값">
 					  등록
 					</button> 
 					<input type="button" class="btn btn-danger mx-2" value="취소" id="cancel" />
 					
 					<!-- Modal -->
-					<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 					  <div class="modal-dialog modal-dialog-centered" role="document">
 					    <div class="modal-content">
 					      <div class="modal-header">
@@ -118,16 +129,55 @@ h2{
 					        </button>
 					      </div>
 					      <div class="modal-body">
-					        <input type="text" class="body-contents" id="contents" />
-        					<!-- <textarea class="body-contents" id="text-contents"></textarea> -->
-        					<form name="boardInfo">
+					      	<form name="boardInfo" class="body-contents">
+					      		<legend class="body-contents">루틴 제목</br>
+						        <input type="text" class="body-contents" id="rout_name" name="rout_name"/></legend>
+						        <legend class="body-contents">루틴 내용</br>
+	        					<textarea class="body-contents" id="rout_content" name="rout_content"></textarea></legend>
+	        					<legend class="body-contents">
+        						<select class="body-contents" id="rout_level" name="rout_level">
+									<option class="body-contents">난이도 선택</option>
+									<option class="body-contents">하</option>
+									<option class="body-contents">중</option>
+									<option class="body-contents">상</option>
+								</select>
+								<select class="body-contents" id="rout_time" name="rout_time">
+									<option class="body-contents">총 운동시간</option>
+									<option class="body-contents">10분</option>
+									<option class="body-contents">20분</option>
+									<option class="body-contents">30분</option>
+									<option class="body-contents">40분</option>
+									<option class="body-contents">50분</option>
+									<option class="body-contents">60분</option>
+									
+								</select>
+								</legend>
+								<legend>운동 목표</br>
+								    <input type="radio" class="body-contents" name="rout_effect" value="홈트레이닝"/>홈트레이닝
+								    <input type="radio" class="body-contents" name="rout_effect" value="피트니스센터" />피트니스센터
+								    <input type="radio" class="body-contents" name="rout_effect" value="공통" checked />공통</legend>
+								<legend>운동 모드</br>
+								    <input type="radio" class="body-contents" name="rout_mode" value="다이어트"/>다이어트
+								    <input type="radio" class="body-contents" name="rout_mode" value="근육증가" />근육증가
+								    <input type="radio" class="body-contents" name="rout_mode" value="공통" checked />공통</legend>
+								<legend>성별</br>
+									
+									<input type="radio" class="body-contents" name="rout_gender" value="남자" ${member['u_gender']=="M"?"CHECKED":"" }/>남자 
+									
+									<input type="radio" class="body-contents" name="rout_gender" value="여자" ${member['u_gender']=="F"?"CHECKED":"" } />여자 </legend>
+									
+								<legend>공개여부</br>
+									<input type="radio" class="body-contents" name="rout_display" value="Y" >Y 
+									<input type="radio" class="body-contents" name="rout_display" value="N" >N </legend>
 	
-								<input type="hidden" name="boardName" value="${boardName}">
-								<input type="hidden" name="bId" value="${vo.bId}">
+	
+								<input type="hidden" name="u_id" value="${member['u_id']}">
+								<%-- <input type="text" name="u_id" value="${member['u_gender']}"> --%>
+								
 							</form>
 					      </div>
 					      <div class="modal-footer">
-					      	<button type="button" class="btn btn-primary" onclick="clickSave(boardInfo)">저장</button>
+					      	<button type="submit" class="btn btn-primary" onclick="clickSave(boardInfo)">저장</button>
 					        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
 					        
 					      </div>
@@ -310,17 +360,14 @@ $(document).on('click','#cancel',function(e){
 
 
 /* 모달 */
-$('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').trigger('focus')
-  var data = $(this).data('id');
-  $("#contents.body-contents").val(data);
-  $("#text-contents.body-contents").html(data);
+$('#myModal').on('shown.bs.modal', function (e) {
+  
 })
 
 function clickSave(formName) {
-					formName.action = "/exercise/routine.do";
-					formName.method = "post";
-					formName.submit();
+	formName.action = "/exercise/routine.do";
+	formName.method = "post";
+	formName.submit();
 }
 
 </script>  

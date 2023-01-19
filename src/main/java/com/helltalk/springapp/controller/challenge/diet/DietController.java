@@ -10,6 +10,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -20,6 +21,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -47,7 +49,7 @@ import com.helltalk.springapp.service.FoodServiceImpl;
 @RequestMapping("/diet")
 public class DietController {
 	
-	//@Value("${foodSafetyService_Key}")
+	@Value("${foodSafetyService_Key}")
 	private String foodSafetyService_Key;
 	
 	@Autowired
@@ -61,9 +63,36 @@ public class DietController {
 		return "challenge/diet/Diet";
 	}
 	
+	//등록
+	@PostMapping("/goFoodSearch.do")
+	public String goFoodSearch(@RequestParam Map map, HttpServletRequest req, Model model){
+		String breakfast= req.getParameter("breakfast")== null? null: req.getParameter("breakfast");
+		String lunch= req.getParameter("lunch")== null? null: req.getParameter("lunch");
+		String dinner= req.getParameter("dinner")== null? null: req.getParameter("dinner");
+		System.out.printf("아침:%s, 점심:%s, 저녁:%s",breakfast,lunch,dinner);
+		
+		if(breakfast != null) {
+			HttpSession session = req.getSession();
+			session.setAttribute("아침 음식 등록", breakfast);
+		}
+		else if(lunch != null) {
+			HttpSession session = req.getSession();
+			session.setAttribute("점심 음식 등록", lunch);
+		}
+		else if(dinner != null) {
+			HttpSession session = req.getSession();
+			session.setAttribute("저녁 음식 등록", dinner);
+		}
+		else {
+			System.out.println("아점저 안 넘어옴");
+		}
+		
+		return "challenge/diet/SearchFood";
+	}
+
 	
 	//검색
-	@GetMapping("/foodSearch.do")
+	@RequestMapping("/foodSearch.do")
 	public String searchFoodList(@RequestParam Map map, HttpServletRequest req, Model model) throws Exception {
 		
 		String search= req.getParameter("search") == null? "": req.getParameter("search");
@@ -97,7 +126,7 @@ public class DietController {
 					FoodDTO dto= new FoodDTO();
 					
 					JSONObject item = (JSONObject)row.get(i);
-					String food_no = (String)item.get("NUM");
+					String food_cd= (String)item.get("FOOD_CD");
 					String food_name = (String)item.get("DESC_KOR");
 					String food_maker = (String)item.get("MAKER_NAME");
 					String food_size = (String)item.get("SERVING_SIZE");
@@ -108,7 +137,7 @@ public class DietController {
 					String food_col= (String)item.get("NUTR_CONT5");
 					String food_na= (String)item.get("NUTR_CONT6");
 					
-					dto.setFood_no(food_no);
+					dto.setFood_cd(food_cd);
 					dto.setFood_name(food_name);
 					dto.setFood_maker(food_maker);
 					dto.setFood_size(food_size);
@@ -119,7 +148,21 @@ public class DietController {
 					dto.setFood_col(food_col);
 					dto.setFood_na(food_na);
 					
-					list.add(dto);
+					
+					
+					//dto를 통해 음식DB에 값 저장
+					int selectOneFood= foodService.selectFoodAffected(dto);
+					//System.out.println("selectoneFood-"+i+" :"+selectOneFood);
+					if(selectOneFood == 0) {
+						int insertFoodAffected= foodService.insert(dto);
+						//System.out.println("insertFoodAffected : "+insertFoodAffected);
+						
+						FoodDTO insertFood= foodService.selectOne(dto);
+						//System.out.println("insertFood : "+ insertFood);
+					}	
+					
+				//다음 페이지에 뿌려줄 값 리스트에 담기
+				list.add(dto);
 				}//for				
 			}//if
 			else {
@@ -127,32 +170,96 @@ public class DietController {
 				model.addAttribute("FailSearch", "검색된 결과가 없습니다");
 			}
 			/*
-			for(DietBrieflyDTO item : list) {
+			//console 테스트용
+			for(FoodDTO item : list) {
+				
 				System.out.println("----------------");
 				System.out.println("이름: "+ item.getFood_name());
 				System.out.println("1회제공량: "+ item.getFood_size());
 				System.out.println("열량: "+ item.getFood_kcal());
 				System.out.println("----------------");
+				
 			}*/
 			
-		}catch(Exception e){
+		}
+		catch(Exception e){
 			e.printStackTrace();
 		}
 		
 		model.addAttribute("searchList",list);
-		return "challenge/diet/Diet";
+		
+		return "challenge/diet/SearchFood";
 		
 	}//////////searchFoodList()
 	
-	@GetMapping("/putFood.do")
+	@RequestMapping("/putFood.do")
 	public String putFood(@RequestParam Map map, HttpServletRequest req, Model model) {
-		System.out.println("putFood Map?:"+map);
 		
-		int insetFood= foodService.insert(map);
+		String food_cd = req.getParameter("food_cd")==null? null: req.getParameter("food_cd");
+		//System.out.println("food_cd넘어왔나 : "+ food_cd);
 		
+		//선택한 음식(값)을 음식코드로 select를 위해
+		map.put("food_cd", food_cd);
 		
-		return "challenge/diet/selectFood";
+		FoodDTO selectFood= foodService.foodSelectOneByCd(map);
+		//System.out.println("선택한 음식 :"+selectFood);
+		
+		if(selectFood != null)
+			model.addAttribute("selectFood", selectFood);
+		else {
+			model.addAttribute("FailSelect", "값을 가져오지 못했습니다");
+		}
+		
+		return "challenge/diet/SelectFood";
 	}
+	
+	@RequestMapping("/putFoodByNo.do")
+	public String putFoodByNo(@RequestParam Map map, HttpServletRequest req, Model model) {
+		String food_cd = req.getParameter("food_cd")==null? null: req.getParameter("food_cd");
+		System.out.println("food_cd넘어왔나2 : " + food_cd);
+		String breakfast= req.getSession().getAttribute("breakfast").toString()== null? null:req.getSession().getAttribute("breakfast").toString() ;
+		String lunch= req.getSession().getAttribute("lunch").toString()== null? null:req.getSession().getAttribute("lunch").toString() ;
+		String dinner= req.getSession().getAttribute("dinner").toString()== null? null:req.getSession().getAttribute("dinner").toString() ;
 		
+		HttpSession session= req.getSession();
+
+	    String statusName = "";
+	    String status = "";
+
+	    Enumeration enum_app = session.getAttributeNames();
+	    int i = 0;
+
+	    while(enum_app.hasMoreElements()) {
+	   
+	        i++;
+	        statusName = enum_app.nextElement().toString();
+	        status = session.getAttribute(statusName).toString();
+	   
+	        System.out.println("얻어온 세션 이름 [ " + i +" ] : " + statusName);
+	        System.out.println("얻어온 세션 값 [ " + i +" ] : " + status);
+	    }
+	    
+	    if(status.equals("breakfast")& status != null) {
+	    	map.put("status", breakfast);
+	    }
+	    else if(status.equals("lunch")& status != null) {
+	    	map.put("status", lunch);
+	    }
+	    else if(status.equals("dinner")& status != null) {
+	    	map.put("status", dinner);
+	    }
+	    else {
+	    	System.out.println("세션에 있는 식사시간 관련 값이 넘어오지 않았습니다 : "+status);
+	    }
+	    	
+		
+	    map.put("food_cd", food_cd);
+		
+	    //한끼 식단에 음식 저장하기
+		int insertEatByNo= dietService.insertEatByNo(map);
+		
+		return null;
+		//return "challenge/diet/Diet";
+	}
 
 }
