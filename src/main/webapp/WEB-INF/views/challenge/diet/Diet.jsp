@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,10 +19,10 @@
 <body>
 	<div class="container">
 		<form action='<c:url value="/diet/goFoodSearch.do"/>' method="post">
-				<button type="submit" class="btn btn-primary" name="아침">아침 음식 등록</button>
-				<button type="submit" class="btn btn-primary" name="점심">점심 음식 등록</button>
-				<button type="submit" class="btn btn-primary" name="저녁">저녁 음식 등록</button>
-			</form>
+			<input type="submit" class="btn btn-primary" value="아침 음식 등록" name="breakfast" />
+			<input type="submit" class="btn btn-primary" value="점심 음식 등록" name="lunch" />
+			<input type="submit" class="btn btn-primary" value="저녁 음식 등록" name="dinner" />
+		</form>
 			
 		<div class="text-center mb-2">
 			<h3>아침</h3>

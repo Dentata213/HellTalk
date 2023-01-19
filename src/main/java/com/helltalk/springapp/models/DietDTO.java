@@ -20,7 +20,6 @@ public class DietDTO {
 	
 	//한끼
 	private String eat_no;
-	private String eat_foodlist;
 	private String eat_status;
 	private String eat_mode;
 	private String eat_count;

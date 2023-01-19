@@ -24,7 +24,7 @@
 <body>
 	<div class="container">
 		<div>
-			<form action="<c:url value="/diet/foodSearch.do"/>">
+			<form action="<c:url value="/diet/foodSearch.do"/>" method="post">
 				<input type="text" value="${param.search}" class="form-control" placeholder="음식을 검색해보세요" name="search">
 				<button type="submit" class="btn btn-primary">검색</button>
 			</form>

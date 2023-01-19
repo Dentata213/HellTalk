@@ -19,6 +19,11 @@ public class DietDAO {
 		@Autowired
 		private SqlSessionTemplate template;
 		
+		public int insertEatByNo(Map map) {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+		
 		public List selectList(Map map) {
 			return template.selectList("dietSelectList",map);
 		}
@@ -34,6 +39,8 @@ public class DietDAO {
 		public int delete(Map map) {		
 			return template.delete("dietDelete",map);
 		}
+
+		
 
 		
 		
