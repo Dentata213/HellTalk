@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -150,7 +151,7 @@ p {
 	    <div id="copy-container">
 	      <h2>요청이 <br>거부 되었습니다.</h2>
 	      <p><strong>페이지를 열람 할 수 있는 권한이 없습니다.</strong></p>
-	      <button ></button>
+	      <a href="<c:url value="/"/>">메인으로 이동</a>
 	    </div>
 	    <div id="circle-container">
 	      <svg version="1.1" viewBox="0 0 500 500" preserveAspectRatio="xMinYMin meet">

@@ -29,7 +29,7 @@
 .radio-img  > img{
   cursor:pointer;
   border:2px solid transparent;
-  width:120px; height:120px;
+  width:100px; height:100px;
   margin:50px;
   margin-top:10px;
   margin-bottom:5px;
@@ -114,42 +114,42 @@
 	                    		
 		                        <div class="col-sm-12 p-0 text-left">
 		                            <div class="form-group mb-1 mt-1" id="nextbtn"><a href="#" class="nextbtn form-control text-center style2-input text-white fw-600 bg-dark border-0 p-0 ">다음</a></div>
-		                            <h6 class="text-grey-500 font-xsss fw-500 mt-0 mb-0 lh-32">Already have account <a href="member/Login.do" class="fw-700 ms-1">Login</a></h6>
+		                            <h6 class="text-grey-500 font-xsss fw-500 mt-0 mb-0 lh-32">Already have account <a href="<c:url value="/member/Login.do"/>" class="fw-700 ms-1">Login</a></h6>
 		                        </div>
 		                    </div>
 		                    <div class="second " style="display:none">
 		                    	<div class="form-group form-floating">
 			                        <input type="text" class="form-control" name="u_email" placeholder="예:helltalk@email.com" aria-describedby="emailError"/>
 			                        <label for="userEmail"><i class="font-sm ti-email text-grey-500 pe-0"></i>&nbsp;&nbsp;이메일</label>
-			                        <div id="emailError" class="form-text">여기에 에러 출력하면되나</div>
+			                        <div id="emailError" class="form-text" style="color: red;"></div>
 			                    </div>
 	                            <div class="form-group form-floating">
 			                        <input type="password" class="form-control" name="u_pwd" placeholder="비밀번호는 영문자와 숫자 그리고 특수문자가 포함되어야 하며 8자 이상" aria-describedby="pwdError"/>
 			                        <label for="userPwd"><i class="font-sm ti-lock text-grey-500 pe-0"></i>&nbsp;&nbsp;비밀번호</label>
-			                        <div id="pwdError" class="form-text">여기에 에러 출력하면되나</div>
+			                        <div id="pwdError" class="form-text" style="color: red;"></div>
 			                    </div>
 			                  	<div class="form-group form-floating">
 			                        <input type="text" class="form-control" name="u_nickname" placeholder="사용할 이름" aria-describedby="nameError"/>
 			                        <label for="userName"><i class="font-sm bx bx-face text-grey-500 pe-0"></i>&nbsp;&nbsp;닉네임</label>
-			                        <div id="nameError" class="form-text">여기에 에러 출력하면되나</div>
+			                        <div id="nicknameError" class="form-text" style="color: red;"></div>
 			                    </div>
 			       
 			                    <div class="form-group form-floating">
 			                        <input type="text" class="form-control" name="u_phoneno" placeholder="예:010-1234-1234" aria-describedby="phoneError"/>
 			                        <label for="userPhone"><i class="font-sm bx bx-phone text-grey-500 pe-0"></i>&nbsp;&nbsp;전화번호</label>
-			                        <div id="phoneError" class="form-text">여기에 에러 출력하면되나</div>
+			                        <div id="phoneError" class="form-text" style="color: red;"></div>
 			                    </div>
 			                    
 			                    <div class="form-group form-floating">
 			                        <input type="number" class="form-control" name="u_height" placeholder="단위:cm" aria-describedby="heightError"/>
 			                        <label for="userPhone"><i class="font-sm bx bx-ruler text-grey-500 pe-0"></i>&nbsp;&nbsp;신장</label>
-			                        <div id="phoneError" class="form-text">여기에 에러 출력하면되나</div>
+			                        <div id="heightError" class="form-text" style="color: red;"></div>
 			                    </div>
 			                    
 			                    <div class="form-group form-floating">
 			                        <input type="text" class="form-control" name="u_weight" placeholder="단위:kg" aria-describedby="weightError"/>
 			                        <label for="userPhone"><i class="font-sm bx bx-street-view text-grey-500 pe-0"></i>&nbsp;&nbsp;몸무게</label>
-			                        <div id="phoneError" class="form-text">여기에 에러 출력하면되나</div>
+			                        <div id="weightError" class="form-text" style="color: red;"></div>
 			                    </div>
 			                    
 					            <div class="col-sm-12 p-0 text-left">
@@ -160,7 +160,7 @@
 		                            </div>
 		                            <input type="hidden" name="u_status" value="1">
 		                    		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-		                            <h6 class="text-grey-500 font-xsss fw-500 mt-0 mb-0 lh-32">Already have account <a href="member/Login.do" class="fw-700 ms-1">Login</a></h6>
+		                            <h6 class="text-grey-500 font-xsss fw-500 mt-0 mb-0 lh-32">Already have account <a href="<c:url value="/member/Login.do"/>" class="fw-700 ms-1">Login</a></h6>
 		                        </div>
 		                    </div>
                         </form>
@@ -176,7 +176,6 @@
     <script src="${path}js/scripts.js"></script>
     <script src="${path}js/vaildation.js"></script>
 	<script>
-		//다음버튼
 		
 		//이전버튼
 		$('#beforebtn').on('click',function(){
@@ -185,7 +184,6 @@
 			});
 		})
 		
-		//회원가입버튼
 		
 	
 	</script>    
