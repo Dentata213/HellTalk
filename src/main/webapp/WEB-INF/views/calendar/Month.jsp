@@ -279,10 +279,11 @@ document.addEventListener('DOMContentLoaded', function() {
                start:'${calc.rout_startdate}',  //'${today}'
                end:'${calc.rout_enddate}',  //'${today}'
                color:'#ff9f89' , 
-           	   display:'background'         	 
+           	   display:'background'  
+     	  	   
 	  	   },
 	</c:forEach> 
-   
+
 	//caldaily list 뿌리기
 	<c:forEach var="cald" items="${caldList}" varStatus="loop"> 			
 	  	{  		
@@ -458,6 +459,13 @@ document.addEventListener('DOMContentLoaded', function() {
 		  }
 						
 		 		 })
+		  
+	  });
+	  
+	  $(function(){
+		  $('.fc-event-title').on("click",function(){
+			console.log("dddd!!")
+		  })
 		  
 	  });
 	  
