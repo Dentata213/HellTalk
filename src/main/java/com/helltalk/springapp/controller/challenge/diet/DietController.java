@@ -20,6 +20,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -61,9 +62,36 @@ public class DietController {
 		return "challenge/diet/Diet";
 	}
 	
+	//
+	@PostMapping("/goFoodSearch.do")
+	public String goSearchFood(@RequestParam Map map, HttpServletRequest req, Model model){
+		String breakfast= req.getParameter("아침")== null? null: req.getParameter("아침");
+		String lunch= req.getParameter("점심")== null? null: req.getParameter("점심");
+		String dinner= req.getParameter("저녁")== null? null: req.getParameter("저녁");
+		System.out.printf("아침:%s, 점심:%s, 저녁:%s",breakfast,lunch,dinner);
+		
+		if(breakfast != null) {
+			HttpSession session = req.getSession();
+			session.setAttribute("breakfast", breakfast);
+		}
+		else if(lunch != null) {
+			HttpSession session = req.getSession();
+			session.setAttribute("lunch", lunch);
+		}
+		else if(dinner != null) {
+			HttpSession session = req.getSession();
+			session.setAttribute("dinner", dinner);
+		}
+		else {
+			System.out.println("아점저 안 넘어옴");
+		}
+		
+		return "challenge/diet/SearchFood";
+	}
+
 	
 	//검색
-	@GetMapping("/foodSearch.do")
+	@RequestMapping("/foodSearch.do")
 	public String searchFoodList(@RequestParam Map map, HttpServletRequest req, Model model) throws Exception {
 		
 		String search= req.getParameter("search") == null? "": req.getParameter("search");
@@ -203,6 +231,16 @@ public class DietController {
 	
 	@RequestMapping("/putFoodByNo.do")
 	public String putFoodByNo(@RequestParam Map map, HttpServletRequest req, Model model) {
+		String food_cd = req.getParameter("food_cd")==null? null: req.getParameter("food_cd");
+		System.out.println("food_cd넘어왔나2 : " + food_cd);
+		
+		map.put("food_cd", food_cd);
+
+		FoodDTO selectFood = foodService.foodSelectOneByCd(map);
+		System.out.println("선택한 음식 :" + selectFood);
+		
+		int insertFoodAffected= dietService.insert(map);
+		
 		
 		return "challenge/diet/Diet";
 	}
