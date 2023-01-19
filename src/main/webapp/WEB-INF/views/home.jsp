@@ -353,6 +353,8 @@
 							<a href="<c:url value="/home.do"/>" >김성우</a>
 							<a href="<c:url value="/cal/ifram.do"/>" >최도원</a>
 							<a href="<c:url value="/member/Login.do"/>" >최부건-로그인</a>
+							<a href="<c:url value="/qna/list"/>">위찬혁</a>
+					   		<a href="<c:url value="/convenience/Calculator"/>">신동현</a>
 							
 							<!-- 추가이동경로 필요할경우 아래에 추가 -->
 					   		<a href="<c:url value="/member/CreateUser.do"/>" >최부건-회원가입</a>
