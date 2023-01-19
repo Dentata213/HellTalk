@@ -31,7 +31,7 @@
                                 <div class="form-group p-1 p-2 bg-white border-0">
                                     <div class="row">
                                         <div class="col-lg-5">
-                                            <a href="<c:url value="/model/Login.do"/>" class="w-100 d-block btn bg-current text-white font-xssss fw-600 ls-3 style1-input p-0 border-0 text-uppercase ">로그인으로 이동</a>
+                                            <a href="<c:url value="/member/Login.do"/>" class="w-100 d-block btn bg-current text-white font-xssss fw-600 ls-3 style1-input p-0 border-0 text-uppercase ">로그인으로 이동</a>
                                         </div>
                                     </div>
                                 </div>

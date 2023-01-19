@@ -105,12 +105,27 @@
             <div class="col-xl-7 vh-100 align-items-center d-flex bg-white rounded-3 overflow-hidden">
                 <div class="card shadow-none border-0 ms-auto me-auto login-card">
                     <div class="card-body rounded-0 text-left">
+	                    <!-- 로그인 실패시 시큐리티는 SPRING_SECURITY_LAST_EXCEPTION 라는 키값을 세션에 저장
+	                	<c:if test="${! empty SPRING_SECURITY_LAST_EXCEPTION}">
+	                		<font color="red">
+							  <strong>로그인 실패!!</strong> ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+							</font>
+							<c:remove var="SPRING_SECURITY_LAST_EXCEPTION" scope="session" />
+							<!-- 예외를 계속 세션에 저장하면 WAS에 과부하, remove 태그로 세션 영역에 에러 메세지를 지워준다. 
+						</c:if>
+						-->
+						<c:if test="${! empty LoginFailMessage}">
+	                		<font color="red">
+							  <strong>로그인 실패!!</strong> <br>${LoginFailMessage}
+							</font>
+						</c:if>
                         <h2 class="fw-700 display1-size display2-md-size mb-3">Login into <br>your account</h2>
                         
-                        <form action="/LoginProcess.do" method="POST">
+                        <form action="<c:url value="/member/LoginProcess.do"/>" method="post">
+                        	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             <div class="form-group icon-input mb-3">
-                                <i class="font-sm ti-key text-grey-500 pe-0"></i>
-                                <input type="text" class="style2-input ps-5 form-control text-grey-900 font-xsss fw-600" placeholder="아이디 입력" name="id">                        
+                                <i class="font-sm ti-email text-grey-500 pe-0"></i>
+                                <input type="text" class="style2-input ps-5 form-control text-grey-900 font-xsss fw-600" placeholder="이메일 입력" name="id">                        
                             </div>
                             <div class="form-group icon-input mb-1">
                                 <input type="Password" class="style2-input ps-5 form-control text-grey-900 font-xss ls-3" placeholder="비밀번호 입력" name="pwd">
@@ -125,7 +140,7 @@
                         </form>
                          
                         <div class="col-sm-12 p-0 text-left">
-                            <h6 class="text-grey-500 font-xsss fw-500 mt-0 mb-0 lh-32">계정이 아직 없으신가요? <a href="<c:url value="/model/Register.do"/>" class="fw-700 ms-1">회원가입</a></h6>
+                            <h6 class="text-grey-500 font-xsss fw-500 mt-0 mb-0 lh-32">계정이 아직 없으신가요? <a href="<c:url value="/member/CreateUser.do"/>" class="fw-700 ms-1">회원가입</a></h6>
                         </div>
                         
                         <div class="col-sm-12 p-0 text-center mt-2">

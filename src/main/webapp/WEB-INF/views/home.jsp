@@ -409,7 +409,9 @@
 	   		</form>
 		</sec:authorize> 
    
- 
+   
+
+
 
     <script src="${path}/resources/js/plugin.js"></script>
     <script src="${path}/resources/js/lightbox.js"></script>

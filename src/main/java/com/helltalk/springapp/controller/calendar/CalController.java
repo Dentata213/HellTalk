@@ -54,7 +54,6 @@ public class CalController {
 		///풀캘린더 enddate 설정이 하루 전으로 나와서 날짜 하루 더하기...
 		String sdate = null;
 			for(CalcDto c: calcList) {
-				System.out.println(c.getCalc_no());
 			     System.out.println(c.getRout_enddate());
 			sdate= c.getRout_enddate().toString();		
 			long fTime = 0;
@@ -77,7 +76,6 @@ public class CalController {
 		model.addAttribute("caldList",caldList);
 		model.addAttribute("calcList",calcList);
 		System.out.println("여기지나니?");
-
 		//뷰정보반환
 		return "calendar/Month";
 	}

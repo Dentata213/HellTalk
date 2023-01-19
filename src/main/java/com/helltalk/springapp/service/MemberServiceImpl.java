@@ -32,19 +32,23 @@ public class MemberServiceImpl implements MemberService<MemberDTO>{
 	}
 
 	@Override
-	public int updateUser(Map map) {   //회원의 닉네임,키,몸무게 수정가능하게 함
+	public int updateUser(Map map) {//회원의 닉네임,키,몸무게 수정가능하게 함
 		return dao.update(map);
 	}
 
 	@Override
 	public int deleteUser(Map map) {
-		// TODO Auto-generated method stub
 		return dao.delete(map);
 	}
 
 	@Override
-	public int idCheck(Map map) {
-		return dao.idChekc(map);
+	public int emailCheck(Map map) {
+		return dao.emailCheck(map);
+	}
+
+	@Override
+	public int nicknameCheck(Map map) {
+		return dao.nicknameCheck(map);
 	}
 	
 	

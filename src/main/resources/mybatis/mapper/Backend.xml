@@ -35,7 +35,6 @@
 	<select id="selectAllWritings" parameterType="Map" resultType="BBSDto">
 		SELECT
 		P_NO as no,
-		P_TITLE as title,
 		P_CONTENT as content,
 		P_POSTDATE as postDate,
 		P_RECOMMEND as likeCount,

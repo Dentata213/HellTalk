@@ -2,6 +2,7 @@ package com.helltalk.springapp.dao;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -43,7 +44,12 @@ public class ExerciseDAO {
 	}
 
 	public int insertExerciseRoutine(Map map) {
-		//SqlSession session= sqlMapper.openSession();		
+		//SqlSession session= sqlMapper.openSession();
+		Set keys= map.keySet();
+		for(Object key:keys) {
+			Object value=map.get(key);
+			System.out.println(String.format("%s : %s",key,value));
+		}
 		int newRoutNo=template.insert("insertExerciseRoutine",map);
 		int routNo=(int)map.get("rout_no");
 		System.out.println("newRoutNo"+newRoutNo);

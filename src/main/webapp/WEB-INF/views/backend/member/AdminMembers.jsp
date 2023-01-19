@@ -80,7 +80,7 @@
             <!-- Content -->
             <div class="container-xxl flex-grow-1 container-p-y">
               <div class="card mb-2">
-              	<h4 class="card-header">사용자 수</h4>
+              	<h4 class="card-header">사용자 검색</h4>
               </div>
               <!-- Bootstrap Table with Header - Footer -->
               <div class="card" style="height: 100%">
@@ -90,11 +90,11 @@
                     <thead>
                       <tr>
                         <th>번호</th>
-                        <th>사용자ID</th>
+                        <th>프로필</th>
                         <th>이름</th>
-                        <th>비번</th>
+                        <th>메일</th>
                         <th>성별</th>
-                        <th>주소</th>
+                        <th>유형</th>
                         <th>전화번호</th>
                         <th>가입일</th>
                         <th>상태</th>
@@ -111,20 +111,20 @@
                     <c:forEach var="userInfo" items="${userlists}" varStatus="loop">
                       <tr>
                         <td>${fn:length(userlength)-loop.count+1}</td>
-                        <td style="text-align: left">${userInfo.u_id}</td>
+                        <td></td>
                         <td>${userInfo.u_nickname}</td>
-                      	<td>${userInfo.u_pw}</td>
+                      	<td>${userInfo.u_email}</td>
                       	<td>${userInfo.u_gender eq 'M'?'남성':'여성'}</td>
-                      	<td>User</td>
-                      	<td>User</td>
+                      	<td>${userInfo.u_kind}</td>
+                      	<td>${userInfo.u_phoneno}</td>
                       	<td>${userInfo.u_enterdate}</td>
                       	<td>
-                      		<c:if test="${userInfo.u_status eq 'Y'}" var="isY">
-                      			<span class="badge bg-label-success me-1">정상</span>
-                      		</c:if>
-                      		<c:if test="${not isY}">
-                      			<span class="badge bg-label-danger me-1">정지</span>
-                      		</c:if>
+                    		<c:if test="${userInfo.u_status eq 1}" var="isY">
+                    			<span class="badge bg-label-success me-1">정상</span>
+                    		</c:if>
+                    		<c:if test="${not isY}">
+                    			<span class="badge bg-label-danger me-1">정지</span>
+                    		</c:if>
                       	</td>
                         <td>
                           <div class="dropdown">
@@ -143,11 +143,11 @@
                     <tfoot class="table-border-bottom-0">
                       <tr>
                         <th>번호</th>
-                        <th>사용자ID</th>
+                        <th>프로필</th>
                         <th>이름</th>
-                        <th>비번</th>
+                        <th>메일</th>
                         <th>성별</th>
-                        <th>주소</th>
+                        <th>유형</th>
                         <th>전화번호</th>
                         <th>가입일</th>
                         <th>상태</th>

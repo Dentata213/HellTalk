@@ -22,14 +22,6 @@ public class ModelController {
 		return "ocr/Ocr";
 	}
 	
-	@RequestMapping("/Login.do")
-	public String Login() {
-		return "member/login/login";
-	}
 	
-	@RequestMapping("/Register.do")
-	public String register() {
-		return "member/register/register";
-	}
 	
 }

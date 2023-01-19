@@ -12,8 +12,7 @@
      <div class="chat-wrapper pt-0 w-100 position-relative scroll-bar bg-white theme-dark-bg">
          <div  class="chat-body p-3 " >
              <div id="chatArea"   class="messages-content pb-5" >                                            
-           
-           <!-- 메시지 받을 때 -->
+               
                  <div class="message-item" id="chatMessage" >
                      <div class="message-user" >
                          <figure class="avatar">
@@ -27,7 +26,6 @@
                      <div class="message-wrap" >왜안돼!!!!</div>
                  	</div>
         
-        <!-- 메시지 보낼 떄 -->
                  <div class="message-item outgoing-message" >
                      <div class="message-user">
                          <figure class="avatar">
@@ -90,7 +88,7 @@
 	var nickname;
 	//입장버튼 클릭 시 -서버와 연결된 웹소켓 클라이언트 생성
 	$('#enterBtn').on('click',function(){  //one 한 번만 입장해야 하니까
-		wsocket = new WebSocket("ws://192.168.0.29:8080<c:url value="/chat-ws/"/>"); //wss 는 보안이 강화된것 얘는 443포트를 사용
+		wsocket = new WebSocket("ws://192.168.0.14:8080<c:url value="/chat-ws.do"/>"); //wss 는 보안이 강화된것 얘는 443포트를 사용
 		console.log('wsocket:',wsocket);
 		//서버와 연결된 웹 소켓에 이벤트 등록(함수들은 밑으로 다 빼놓음)
 		wsocket.onopen = open;  //   open()들어가면 호출하는거여
@@ -133,8 +131,8 @@
 			if(e.keyCode===13){//엔터 입력
 				//서버로 메시지 전송
 				wsocket.send('msg:'+$(this).val());//msg:KOSMO>>안녕
-				//DIV(대화영역)에 메시지 출력	
-				appendMessage("<div class='message-item outgoing-message'><div class='message-user'><figure class='avatar'><img src='https://via.placeholder.com/50x50.png' alt='image'></figure><div><h5>"+"닉네임"+"</h5><div class='time'><i class='ti-double-check text-info'></i></div></div></div><div class='message-wrap'><span>"+$(this).val()+"</span></div></div>")
+				//DIV(대화영역)에 메시지 출력			        
+				appendMessage("<div class='message-wrap' style='background-color:#05f;' align:'right'><span>"+$(this).val()+"</span></div>");
 				//기존 메시지 클리어		
 				$(this).val("");
 				//포커스 주기
