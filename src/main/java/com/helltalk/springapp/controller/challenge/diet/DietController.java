@@ -73,15 +73,15 @@ public class DietController {
 		
 		if(breakfast != null) {
 			HttpSession session = req.getSession();
-			session.setAttribute("breakfast", breakfast);
+			session.setAttribute("아침 음식 등록", breakfast);
 		}
 		else if(lunch != null) {
 			HttpSession session = req.getSession();
-			session.setAttribute("lunch", lunch);
+			session.setAttribute("점심 음식 등록", lunch);
 		}
 		else if(dinner != null) {
 			HttpSession session = req.getSession();
-			session.setAttribute("dinner", dinner);
+			session.setAttribute("저녁 음식 등록", dinner);
 		}
 		else {
 			System.out.println("아점저 안 넘어옴");
