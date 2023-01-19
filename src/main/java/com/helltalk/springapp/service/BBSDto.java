@@ -22,6 +22,7 @@ public class BBSDto {
 	private Date postDate;
 	private int likeCount;
 	private boolean like;
+	private String p_image;
 	
 	
 	//아래는 게시판 테이블 생성시 컬럼에서 제외

@@ -1,10 +1,12 @@
 package com.helltalk.springapp.controller.community;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -37,8 +39,14 @@ public class BBSController {
 	
 	//게시물 작성
 	@RequestMapping("/write")
-	public String write(@RequestParam Map map) throws Exception{
-		service.insertBBS(map);
+	public String write(@RequestParam("content") String content,Model model,HttpServletRequest req) throws Exception{
+		Map map = new HashMap();
+		HttpSession session = req.getSession();
+		//map.put("U_NO", session.getAttribute("U_NO"));
+		map.put("U_NO",1);
+		map.put("P_CONTENT", content);
+		int a =service.insertBBS(map);
+		System.out.println("ㄴ리ㅏㅓㄴㅇㄹ="+a);
 		return "community/bbs/List.helltalk";
 	}
 	
@@ -64,9 +72,26 @@ public class BBSController {
 	
 	//마이페이지
 	@RequestMapping("/mypage")
-	public String movetomypage() {
+	public String movetomypage(@RequestParam Map map,Model model) {
+		List<BBSDto> lists = service.selectBBS(map);
+		model.addAttribute("lists", lists);
 		return "community/bbs/user-page.helltalk";
 	}
+	
+	//좋아요 카운트
+	@RequestMapping("/like")
+	public String like(@RequestParam("no") String no,Model model,HttpServletRequest req) {
+		
+		Map map = new HashMap();
+		HttpSession session = req.getSession();
+		//map.put("U_NO",session.getAttribute("U_NO"));
+		map.put("U_NO",1);
+		map.put("P_NO", no);
+		service.likeBBS(map);
+		
+		return "community/bbs/List.helltalk";
+	}
+	
 }
 
 	
