@@ -14,16 +14,13 @@ import com.helltalk.springapp.service.ExerciseDTO;
 import com.helltalk.springapp.service.ExerciseServiceImpl;
 
 @Controller
-
 public class exerciseIframeController {
 	
 
-	
-	
 	@RequestMapping("/exercise/iframe.do")
-	public String exerciseKind() {
+	public String exerciseKind(Model model) {
 		
-		return "challenge/routine/userExerciseRoutine.helltalk";
+		return "challenge/routine/userExerciseRoutineIframe.helltalk";
 		
 	}
 
