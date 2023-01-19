@@ -407,7 +407,7 @@
 	   			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	   			<button class="custom-btn btn-5" type="submit"><span>로그아웃</span></button>
 	   		</form>
-		</sec:authorize>
+		</sec:authorize> 
    
    
 

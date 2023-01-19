@@ -28,16 +28,13 @@ public class RoutineController {
 	public String insertExerciseRoutine(@RequestParam Map map,Model model) {
 		System.out.println("루틴컨트롤러");
 		
-		Set keys= map.keySet();
-		for(Object key:keys) {
-			Object value=map.get(key);
-			System.out.println(String.format("%s : %s",key,value));
-		}
 		
-		List<Map<String, String>> list =new ArrayList<Map<String,String>>();
+		
+		//List<Map<String, String>> list =new ArrayList<Map<String,String>>();
 		for(int i=1;i<=7;i++) {
-			Map<String, String> dayi=new HashMap<String, String>();
+			//Map<String, String> dayi=new HashMap<String, String>();
 			String day="";
+			
 			for(int k=1;k<=3;k++) {
 				if(map.get("selecBox"+i+"_"+k).toString().equals("운동 선택")) { 
 					day+="";
@@ -49,10 +46,15 @@ public class RoutineController {
 			if(day.length()>=1) { 
 				day=day.substring(0, day.length()-1); 
 			}
-			dayi.put("day"+i, day);
-			list.add(dayi);
+			//dayi.put("day"+i, day);
+			//list.add(dayi);
+			map.put("day"+i, day);
 		}
-		System.out.println(list);
+		
+		//System.out.println(list);
+		//map.put("list", list);
+		
+		System.out.println("u_id"+map.get("u_id"));
 		
 		int newRoutNo = exerService.insertExerciseRoutine(map);
 		System.out.println("newRoutNo"+newRoutNo);

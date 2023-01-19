@@ -172,6 +172,7 @@ legend{
 	
 	
 								<input type="hidden" name="u_id" value="${member['u_id']}">
+								<input type="hidden" name="u_no" value="${member['u_no']}">
 								<%-- <input type="text" name="u_id" value="${member['u_gender']}"> --%>
 								
 							</form>
