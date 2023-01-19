@@ -5,6 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <style>
 
   body {
@@ -279,10 +280,11 @@ document.addEventListener('DOMContentLoaded', function() {
                start:'${calc.rout_startdate}',  //'${today}'
                end:'${calc.rout_enddate}',  //'${today}'
                color:'#ff9f89' , 
-           	   display:'background'         	 
+           	   display:'background'  
+     	  	   
 	  	   },
 	</c:forEach> 
-   
+
 	//caldaily list 뿌리기
 	<c:forEach var="cald" items="${caldList}" varStatus="loop"> 			
 	  	{  		
@@ -343,7 +345,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       $.ajax({
 	              			url:"<c:url value="/cal/Write.do"/>",
 	              			method: "POST",
-	              			data:JSON.stringify(obj),
+	              			data:test,
 	            			type:'json',
 	            			contentType:"application/json; charset=utf-8",
               			})
@@ -461,6 +463,13 @@ document.addEventListener('DOMContentLoaded', function() {
 		  
 	  });
 	  
+	  $(function(){
+		  $('.fc-event-title').on("click",function(){
+			console.log("dddd!!")
+		  })
+		  
+	  });
+	  
 
   //목표달성 버튼 
     $(function() {
@@ -513,3 +522,4 @@ document.addEventListener('DOMContentLoaded', function() {
         })
        });
 </script>
+

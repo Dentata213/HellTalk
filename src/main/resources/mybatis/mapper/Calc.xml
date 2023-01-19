@@ -6,7 +6,7 @@
 
 
 <select id="findAllc" parameterType="Map" resultType="CalcDto">
-	SELECT CALC_NO,routine.u_no,rout_name,rout_content,rout_startdate,rout_enddate,u_id,calc_color,calc_checked
+	SELECT CALC_NO,routine.u_no,rout_name,rout_content,rout_startdate,rout_enddate,u_email,calc_color,calc_checked
 	FROM calcheck join users
 	ON calcheck.u_no=users.u_no
 	join routine on routine.ROUT_no=calcheck.ROUT_no
