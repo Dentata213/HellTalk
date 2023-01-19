@@ -12,7 +12,7 @@
 		<typeAlias type="com.helltalk.springapp.models.CaldDto" alias="CaldDto"/>
 		<typeAlias type="com.helltalk.springapp.models.PaymentDTO" alias="PaymentDTO"/>
 		<typeAlias type="com.helltalk.springapp.models.FoodDTO" alias="FoodDTO"/>
-		<!-- <typeAlias type="com.helltalk.springapp.models.DietDTO" alias="DietDTO"/> -->
+		<typeAlias type="com.helltalk.springapp.models.DietDTO" alias="DietDTO"/>
 		<typeAlias type="com.helltalk.springapp.service.ExerciseDTO" alias="ExerciseDTO"/>
 		
 		<typeAlias type="com.helltalk.springapp.service.MemberDTO" alias="MemberDTO"/>
@@ -27,7 +27,7 @@
 		<mapper resource="mybatis/mapper/Cald.xml"/> 
 		<mapper resource="mybatis/mapper/Payment.xml"/> 
 		<mapper resource="mybatis/mapper/Food.xml"/>
-		<!-- <mapper resource="mybatis/mapper/Diet.xml"/> -->
+		<mapper resource="mybatis/mapper/Diet.xml"/>
 		<mapper resource="mybatis/mapper/Exer.xml"/> 
 		<mapper resource="mybatis/mapper/Member.xml"/> 
 		<mapper resource="mybatis/mapper/Board.xml"/> 
