@@ -1,0 +1,1369 @@
+{
+ "positions" :[
+			 {
+			  "M_ID": "백제헬스크럽",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5327835,
+			  "M_YCOORD": 126.8388232,
+			  "M_ADDRESS": "서울특별시 강서구 가로공원로76길 100 (화곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "제일휘트니스",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5435465,
+			  "M_YCOORD": 126.8436183,
+			  "M_PHONENO": "02-2602-9184",
+			  "M_ADDRESS": "서울특별시 강서구 화곡로 206, 3층 (화곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "그린헬스크럽",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.571081,
+			  "M_YCOORD": 126.8123105,
+			  "M_PHONENO": "02-664-4172",
+			  "M_ADDRESS": "서울특별시 강서구 방화동로 120 (방화동,63,158호)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "헬스라인",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5325507,
+			  "M_YCOORD": 126.8442113,
+			  "M_PHONENO": "02-699-5521",
+			  "M_ADDRESS": "서울특별시 강서구 강서로17길 29 (화곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "하이짐 까치산점",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5329647,
+			  "M_YCOORD": 126.8456362,
+			  "M_ADDRESS": "서울특별시 강서구 강서로 61, 5층 (화곡동, 영상빌딩)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "화곡역점 스포애니 주)케이디스포츠",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5429507,
+			  "M_YCOORD": 126.8421237,
+			  "M_PHONENO": "02-2691-9981",
+			  "M_ADDRESS": "서울특별시 강서구 화곡로 191, 1층로비,B1~B2층 (화곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "GOTO 방화점",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.577475,
+			  "M_YCOORD": 126.8125409,
+			  "M_PHONENO": "02-2666-5454",
+			  "M_ADDRESS": "서울특별시 강서구 금낭화로 135, 금강프라자빌딩 10층 (방화동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "GYM the Classic",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5616621,
+			  "M_YCOORD": 126.8400854,
+			  "M_PHONENO": "02-3663-3883",
+			  "M_ADDRESS": "서울특별시 강서구 강서로56가길 47, 5층 (등촌동, 동진빌딩)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "KBS 스포츠월드 헬스클럽",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5364677,
+			  "M_YCOORD": 126.8347867,
+			  "M_PHONENO": "02-2600-8855",
+			  "M_ADDRESS": "서울특별시 강서구 공항대로 376 (화곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "영헬스피아",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5341016,
+			  "M_YCOORD": 126.8632591,
+			  "M_PHONENO": "02-2647-1175",
+			  "M_ADDRESS": "서울특별시 강서구 등촌로 47 (화곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "호산헬스크럽",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5303228,
+			  "M_YCOORD": 126.8471952,
+			  "M_PHONENO": "02-692-1564",
+			  "M_ADDRESS": "서울특별시 강서구 강서로 27 (화곡동,2호)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "삼성헬스프라자",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.531661,
+			  "M_YCOORD": 126.8591846,
+			  "M_PHONENO": "02-654-1147",
+			  "M_ADDRESS": "서울특별시 강서구 곰달래로 236 (화곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "스타짐",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5348754,
+			  "M_YCOORD": 126.838973,
+			  "M_PHONENO": "02-2603-1141",
+			  "M_ADDRESS": "서울특별시 강서구 월정로30길 55, 2층 (화곡동, 태영빌딩)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "자마이카 휘트니스",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5415632,
+			  "M_YCOORD": 126.8396504,
+			  "M_ADDRESS": "서울특별시 강서구 화곡로 161, 대성빌딩 5층,6층 일부호 (화곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "미 앤 스포츠",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.552534,
+			  "M_YCOORD": 126.8366224,
+			  "M_PHONENO": "02-2666-1889",
+			  "M_ADDRESS": "서울특별시 강서구 강서로 297, 3층 (내발산동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "파씨 헬스클럽",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5303313,
+			  "M_YCOORD": 126.8486229,
+			  "M_PHONENO": "02-2604-9669",
+			  "M_ADDRESS": "서울특별시 강서구 강서로10길 15  (화곡동,2층)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "마이짐",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5648322,
+			  "M_YCOORD": 126.8342406,
+			  "M_PHONENO": "02-2659-8291",
+			  "M_ADDRESS": "서울특별시 강서구 양천로 461, 6층 (가양동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "솔 휘트니스 ＆ 스포츠크리닉",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5660956,
+			  "M_YCOORD": 126.8115905,
+			  "M_PHONENO": "02-2064-7556",
+			  "M_ADDRESS": "서울특별시 강서구 금낭화로 9 (방화동,용환빌딩 4층 401호)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "스카이 토탈 휘트니스 센타",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5587608,
+			  "M_YCOORD": 126.841089,
+			  "M_PHONENO": "02-3661-2471",
+			  "M_ADDRESS": "서울특별시 강서구 강서로54길 42 (등촌동,2층)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "해피 휘트니스 클럽",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5612833,
+			  "M_YCOORD": 126.8602034,
+			  "M_PHONENO": "02-3661-2661",
+			  "M_ADDRESS": "서울특별시 강서구 허준로 198 (가양동,가양프라자 205호, 206호)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "라이프 휘트니스",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5432355,
+			  "M_YCOORD": 126.8384665,
+			  "M_PHONENO": "02-2607-0079",
+			  "M_ADDRESS": "서울특별시 강서구 강서로 191  (화곡동,3층)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "가양스포츠클럽",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5705204,
+			  "M_YCOORD": 126.8414027,
+			  "M_PHONENO": "02-2668-7055",
+			  "M_ADDRESS": "서울특별시 강서구 강서로 505  (가양동,3층)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "기쁜우리체육센터",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5691778,
+			  "M_YCOORD": 126.8489398,
+			  "M_PHONENO": "02-3665-3831",
+			  "M_ADDRESS": "서울특별시 강서구 허준로 65  (가양동,기쁜우리체육센터 4층)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "라이프 헬스센타",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5551359,
+			  "M_YCOORD": 126.8652032,
+			  "M_PHONENO": "02-3663-1739",
+			  "M_ADDRESS": "서울특별시 강서구 양천로 606, 8층 (등촌동, 준희빌딩)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "열린산업개발 토탈휘트니스",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5733291,
+			  "M_YCOORD": 126.8104386,
+			  "M_PHONENO": "02-2064-0117",
+			  "M_ADDRESS": "서울특별시 강서구 양천로 49 (방화동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "태광 스포츠",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5574922,
+			  "M_YCOORD": 126.8428449,
+			  "M_PHONENO": "02-3664-3383",
+			  "M_ADDRESS": "서울특별시 강서구 강서로52길 83  (내발산동,1층, 2층)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "스포애니 등촌점",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5592457,
+			  "M_YCOORD": 126.8457028,
+			  "M_PHONENO": "02-2658-2082",
+			  "M_ADDRESS": "서울특별시 강서구 공항대로41길 34, 5층 (등촌동, 플러스존)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "주) 스포웰",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5327032,
+			  "M_YCOORD": 126.8524559,
+			  "M_PHONENO": "02-2604-1094",
+			  "M_ADDRESS": "서울특별시 강서구 곰달래로31가길 27, 2층 (화곡동, 신정초등학교내)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "랩스휘트니스 까치산",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.53001,
+			  "M_YCOORD": 126.8473652,
+			  "M_PHONENO": "02-2607-6666",
+			  "M_ADDRESS": "서울특별시 강서구 강서로 27, 화곡심포니타워 8층 (화곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "체리휘트니스",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.565704,
+			  "M_YCOORD": 126.8115367,
+			  "M_PHONENO": "02-2662-7006",
+			  "M_ADDRESS": "서울특별시 강서구 금낭화로 5  (방화동,5층)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "S 메디스포",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5570082,
+			  "M_YCOORD": 126.8593075,
+			  "M_PHONENO": "02-3660-7762",
+			  "M_ADDRESS": "서울특별시 강서구 화곡로68길 102, B111호 (등촌동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "핏 플러스짐",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5482421,
+			  "M_YCOORD": 126.8628531,
+			  "M_PHONENO": "02-3663-4466",
+			  "M_ADDRESS": "서울특별시 강서구 양천로 510, B01~3호 (등촌동, 현대프린스텔)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "파워 헬스",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5286198,
+			  "M_YCOORD": 126.8499582,
+			  "M_PHONENO": "02-2691-4279",
+			  "M_ADDRESS": "서울특별시 강서구 국회대로7길 195, 3층 (화곡동, 대송빌딩)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "에이블짐 수명산파크점",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5526355,
+			  "M_YCOORD": 126.826665,
+			  "M_PHONENO": "02-2667-1414",
+			  "M_ADDRESS": "서울특별시 강서구 수명로 68-27, 801호 (내발산동, 웨스트엔드문화센터)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "라이프플러스 휘트니스 강서점",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.556904,
+			  "M_YCOORD": 126.8642901,
+			  "M_PHONENO": "02-2093-3990",
+			  "M_ADDRESS": "서울특별시 강서구 양천로 583, A동 B107호 (염창동, 우림블루나인비즈니스센터)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "GOTO 우장산점",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5495066,
+			  "M_YCOORD": 126.8360117,
+			  "M_PHONENO": "02-2064-8801",
+			  "M_ADDRESS": "서울특별시 강서구 강서로 267, 9층 (내발산동, 송화프라자)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "커브스 등촌클럽",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5598666,
+			  "M_YCOORD": 126.8460382,
+			  "M_PHONENO": "02-2647-3088",
+			  "M_ADDRESS": "서울특별시 강서구 공항대로41길 50, 303~306호 (등촌동, 보고시티프라자)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "팀원 짐",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5497346,
+			  "M_YCOORD": 126.8761662,
+			  "M_PHONENO": "02-3662-0858",
+			  "M_ADDRESS": "서울특별시 강서구 양천로73가길 74, 당곡빌딩 5층 (염창동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "GOTO 화곡점",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5501456,
+			  "M_YCOORD": 126.8485937,
+			  "M_PHONENO": "02-2605-7330",
+			  "M_ADDRESS": "서울특별시 강서구 화곡로 292, B101~102호 (화곡동, 서광프리메라)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "샬롬헬스타운",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5625437,
+			  "M_YCOORD": 126.8088127,
+			  "M_PHONENO": "02-2663-1064",
+			  "M_ADDRESS": "서울특별시 강서구 방화동로 11-1, 3층 (방화동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "아이엔지 휘트니스",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.550582,
+			  "M_YCOORD": 126.8636935,
+			  "M_PHONENO": "02-2647-8022",
+			  "M_ADDRESS": "서울특별시 강서구 등촌로 233, 2층 (등촌동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "K-휘트니스1",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5688298,
+			  "M_YCOORD": 126.8124481,
+			  "M_PHONENO": "02-2661-3500",
+			  "M_ADDRESS": "서울특별시 강서구 방화동로 93, 지층 (방화동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "K-휘트니스2",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5688298,
+			  "M_YCOORD": 126.8124481,
+			  "M_PHONENO": "02-2661-3500",
+			  "M_ADDRESS": "서울특별시 강서구 방화동로 93, 지층 (방화동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "그랜드아쿠아24&amp;휘트니스",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.554776,
+			  "M_YCOORD": 126.8511883,
+			  "M_PHONENO": "02-2065-0011",
+			  "M_ADDRESS": "서울특별시 강서구 화곡로 347, B202호 (화곡동, 그랜드아이파크)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "헬스-라이프",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5336528,
+			  "M_YCOORD": 126.8422867,
+			  "M_ADDRESS": "서울특별시 강서구 강서로17다길 24, 1층층 (화곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "MAREE PT",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5637979,
+			  "M_YCOORD": 126.8514516,
+			  "M_PHONENO": "02-3665-7321",
+			  "M_ADDRESS": "서울특별시 강서구 양천로57길 9-14, 401호 (가양동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "애플짐플러스",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5531859,
+			  "M_YCOORD": 126.8263802,
+			  "M_ADDRESS": "서울특별시 강서구 수명로 80, 7층 (내발산동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "인스타일 휘트니스",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5586315,
+			  "M_YCOORD": 126.8544319,
+			  "M_PHONENO": "02-2658-7672",
+			  "M_ADDRESS": "서울특별시 강서구 화곡로 398, 4층 (등촌동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "핵 짐",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5604944,
+			  "M_YCOORD": 126.8551299,
+			  "M_ADDRESS": "서울특별시 강서구 화곡로 420, 8층 (등촌동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "커브스 우장산클럽",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5477471,
+			  "M_YCOORD": 126.8356409,
+			  "M_PHONENO": "02-2694-3020",
+			  "M_ADDRESS": "서울특별시 강서구 강서로45길 9, 401호 (화곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "렛츠런 24hour 휘트니스",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5315795,
+			  "M_YCOORD": 126.8465242,
+			  "M_PHONENO": "02-2696-3508",
+			  "M_ADDRESS": "서울특별시 강서구 강서로 43, B201호 (화곡동, 도양라비앙타워)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "주식회사 인어스",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5589024,
+			  "M_YCOORD": 126.8378102,
+			  "M_PHONENO": "02-2659-9679",
+			  "M_ADDRESS": "서울특별시 강서구 공항대로 271, 5층(504), 6층 (마곡동, 이천이프라자)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "JY FITNESS",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5316073,
+			  "M_YCOORD": 126.8454041,
+			  "M_PHONENO": "02-2695-1121",
+			  "M_ADDRESS": "서울특별시 강서구 강서로13길 3, B2, 2층 (화곡동, 동진빌딩)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "(주)스퀘어짐",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5584671,
+			  "M_YCOORD": 126.8478177,
+			  "M_PHONENO": "02-3663-0251",
+			  "M_ADDRESS": "서울특별시 강서구 화곡로63길 93, 지하1층 B1-01호~B1-03호 (등촌동, 신송타워)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "가양헬스클럽",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5651111,
+			  "M_YCOORD": 126.8554837,
+			  "M_PHONENO": "02-3661-8150",
+			  "M_ADDRESS": "서울특별시 강서구 허준로 139, 2층 (가양동, 강변아파트관리사무동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "자이타워골프클럽",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5653407,
+			  "M_YCOORD": 126.8480309,
+			  "M_PHONENO": "02-2638-5555",
+			  "M_ADDRESS": "서울특별시 강서구 양천로 401, A213-4호 (가양동, 강서한강자이타워)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "짐에브리원",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.556904,
+			  "M_YCOORD": 126.8642901,
+			  "M_ADDRESS": "서울특별시 강서구 양천로 583, A-511호 (염창동, 우림블루나인비즈니스센터 )",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "Coca Muscle 휘트니스",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5323096,
+			  "M_YCOORD": 126.8620609,
+			  "M_ADDRESS": "서울특별시 강서구 곰달래로 261 (화곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "스키니짐",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5411987,
+			  "M_YCOORD": 126.8403437,
+			  "M_PHONENO": "02-2601-5600",
+			  "M_ADDRESS": "서울특별시 강서구 강서로 163, 4층 (화곡동, 콤마빌딩)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "FITNESS EL",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5541704,
+			  "M_YCOORD": 126.8738089,
+			  "M_PHONENO": "02-3664-7727",
+			  "M_ADDRESS": "서울특별시 강서구 공항대로 637, 101동 106호 (염창동, 현대아이파크아파트)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "클락짐",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5653407,
+			  "M_YCOORD": 126.8480309,
+			  "M_PHONENO": "02-2638-5520",
+			  "M_ADDRESS": "서울특별시 강서구 양천로 401, A동 314호 (가양동, 강서한강자이타워)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "아이앤지 짐",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.547251,
+			  "M_YCOORD": 126.8745264,
+			  "M_PHONENO": "02-2658-9612",
+			  "M_ADDRESS": "서울특별시 강서구 공항대로 627, 2층 (염창동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "아임핏 피트니스 퍼스널트레이닝",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5548165,
+			  "M_YCOORD": 126.8561969,
+			  "M_ADDRESS": "서울특별시 강서구 공항대로 441, 2,3층 202,301,302호 (등촌동, 덕경빌딩)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "크로스핏 팬덤",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5408792,
+			  "M_YCOORD": 126.8390021,
+			  "M_PHONENO": "02-2603-9679",
+			  "M_ADDRESS": "서울특별시 강서구 화곡로 154, B1층 (화곡동, 청산빌딩1)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "옵티멀 무브",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.564979,
+			  "M_YCOORD": 126.827427,
+			  "M_PHONENO": "02-2661-2224",
+			  "M_ADDRESS": "서울특별시 강서구 마곡중앙5로 81, 10층 1003~1004호 (마곡동, 에스비타운)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "아놀드홍 휘트니스 홈플러스 가양점",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5642454,
+			  "M_YCOORD": 126.8499416,
+			  "M_PHONENO": "02-3665-8296",
+			  "M_ADDRESS": "서울특별시 강서구 양천로 431 (가양동, 홈플러스가양점 지하1층 G,2호 아놀드홍코너)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "카이로스 짐",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5637903,
+			  "M_YCOORD": 126.8459677,
+			  "M_PHONENO": "02-2668-2727",
+			  "M_ADDRESS": "서울특별시 강서구 강서로68길 108, 지층 101~104,107~116호 (등촌동, 등촌 동성아파트 상가)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "팀스파르타짐",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.572741,
+			  "M_YCOORD": 126.817908,
+			  "M_PHONENO": "02-2666-4110",
+			  "M_ADDRESS": "서울특별시 강서구 양천로26길 18, 4층 (방화동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "아놀드홍 휘트니스 홈플러스 강서점",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.558418,
+			  "M_YCOORD": 126.854838,
+			  "M_PHONENO": "02-3662-8296",
+			  "M_ADDRESS": "서울특별시 강서구 화곡로 398, 점3층 B3호 (등촌동, 홈플러스 강서점 아놀드 홍코너)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "에스핏 피티 스튜디오",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.564979,
+			  "M_YCOORD": 126.827427,
+			  "M_ADDRESS": "서울특별시 강서구 마곡중앙5로 81, 702호 (마곡동, 에스비타운)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "AKA 크로스핏",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5607155,
+			  "M_YCOORD": 126.8397503,
+			  "M_PHONENO": "02-2659-5598",
+			  "M_ADDRESS": "서울특별시 강서구 강서로 392-11, B1층 (등촌동, 진성프라자)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "BREAK CALORIE",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.564979,
+			  "M_YCOORD": 126.827427,
+			  "M_PHONENO": "070-8877-9898",
+			  "M_ADDRESS": "서울특별시 강서구 마곡중앙5로 87, 208호 (마곡동, 우성르보아투)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "WON GYM",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5593839,
+			  "M_YCOORD": 126.8250934,
+			  "M_PHONENO": "02-3663-3006",
+			  "M_ADDRESS": "서울특별시 강서구 공항대로 290, 3층 307호 (내발산동, 순봉빌딩)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "커브스 마곡클럽",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.564979,
+			  "M_YCOORD": 126.827427,
+			  "M_PHONENO": "02-2662-1330",
+			  "M_ADDRESS": "서울특별시 강서구 마곡중앙5로 87, 3층 309호 (마곡동, 우성르보아투)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "슈퍼바디 짐",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.542108999999996,
+			  "M_YCOORD": 126.837998,
+			  "M_ADDRESS": "서울특별시 강서구 화곡로25길 2, 503호 (화곡동, KBH빌딩)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "슈퍼맨 짐",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.547194,
+			  "M_YCOORD": 126.8738404,
+			  "M_PHONENO": "02-2668-3007",
+			  "M_ADDRESS": "서울특별시 강서구 공항대로 621, 3층 (염창동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "아놀드홍짐 염창점",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5533789,
+			  "M_YCOORD": 126.8707448,
+			  "M_PHONENO": "02-2602-9679",
+			  "M_ADDRESS": "서울특별시 강서구 양천로69길 19, 201호 (염창동, 세우빌딩)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "리썸바디 필라니스",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5620046,
+			  "M_YCOORD": 126.8525363,
+			  "M_PHONENO": "02-3663-7248",
+			  "M_ADDRESS": "서울특별시 강서구 양천로 470, 3층 315호 (등촌동, 그레이스힐)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "바디채널 화곡점",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5424559,
+			  "M_YCOORD": 126.8441342,
+			  "M_PHONENO": "02-2602-2010",
+			  "M_ADDRESS": "서울특별시 강서구 까치산로4길 3, 3층 303,304호 (화곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "더 나아짐",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5670759,
+			  "M_YCOORD": 126.8171329,
+			  "M_PHONENO": "02-2663-5716",
+			  "M_ADDRESS": "서울특별시 강서구 방화대로 294, 604호 (마곡동, 마곡더블유타워)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "에이블짐 신방화역점",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5670759,
+			  "M_YCOORD": 126.8171329,
+			  "M_PHONENO": "02-2664-7984",
+			  "M_ADDRESS": "서울특별시 강서구 방화대로 294, 10층 1001~1007호 (마곡동, 마곡더블유타워)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "저스트짐",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5316969,
+			  "M_YCOORD": 126.8634675,
+			  "M_PHONENO": "02-2648-5288",
+			  "M_ADDRESS": "서울특별시 강서구 등촌로 19, 3,4층 (화곡동, 수남빌딩)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "더핏불",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5740018,
+			  "M_YCOORD": 126.8229903,
+			  "M_PHONENO": "02-2664-8300",
+			  "M_ADDRESS": "서울특별시 강서구 마곡서로 133, 704동 202호 (마곡동, 마곡엠밸리7단지)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "마블짐 휘트니스",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5813955,
+			  "M_YCOORD": 126.827955,
+			  "M_PHONENO": "02-3661-8898",
+			  "M_ADDRESS": "서울특별시 강서구 마곡중앙6로 93, 503호 (마곡동, 열린프라자)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "스카이 핏",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5678452999999,
+			  "M_YCOORD": 126.8414984,
+			  "M_PHONENO": "02-2658-9678",
+			  "M_ADDRESS": "서울특별시 강서구 강서로74길 3, 202호 (가양동, 가양빌딩)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "프로게이너 짐",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5689765,
+			  "M_YCOORD": 126.8421772,
+			  "M_PHONENO": "02-3663-9666",
+			  "M_ADDRESS": "서울특별시 강서구 강서로 490, 2층 (가양동, 일신건영휴먼빌아파트 상가동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "코카머슬로즈PT",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5413713,
+			  "M_YCOORD": 126.841038,
+			  "M_ADDRESS": "서울특별시 강서구 강서로 162, 302호 (화곡동, SC제일은행화곡지점)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "바디코드",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5600589,
+			  "M_YCOORD": 126.8383354,
+			  "M_ADDRESS": "서울특별시 강서구 강서로 385, 901호 (마곡동, 우성에스비타워)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "ML GYM",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5339125,
+			  "M_YCOORD": 126.8478415,
+			  "M_PHONENO": "070-4643-0504",
+			  "M_ADDRESS": "서울특별시 강서구 곰달래로25길 75, 2층 (화곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "아이언 바디",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5596879,
+			  "M_YCOORD": 126.8304186,
+			  "M_PHONENO": "02-3664-2848",
+			  "M_ADDRESS": "서울특별시 강서구 공항대로 205, B101,B102호 (마곡동, 에스에이치빌딩)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "에코짐",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5325269,
+			  "M_YCOORD": 126.8575998,
+			  "M_ADDRESS": "서울특별시 강서구 곰달래로49길 17, 2층,3층일부호 (화곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "라이트핏",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5701411999999,
+			  "M_YCOORD": 126.8264481,
+			  "M_PHONENO": "02-6408-2848",
+			  "M_ADDRESS": "서울특별시 강서구 마곡중앙로 165, 310~311호 (마곡동, 안강프라이빗타워)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "이재규 스포츠 재활",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5804823,
+			  "M_YCOORD": 126.8263719,
+			  "M_PHONENO": "02-6339-7575",
+			  "M_ADDRESS": "서울특별시 강서구 마곡서로 101, 801,836호 (마곡동, 동익드미라벨복합빌딩)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "리썸바디 필라니스",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5671562,
+			  "M_YCOORD": 126.8272843,
+			  "M_ADDRESS": "서울특별시 강서구 마곡중앙5로 6, 215~217호 (마곡동, 마곡나루역보타닉푸르지오시티)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "휘트니스 팜 마곡센터",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5591978,
+			  "M_YCOORD": 126.8260763,
+			  "M_PHONENO": "02-702-7307",
+			  "M_ADDRESS": "서울특별시 강서구 마곡중앙6로 45, 4,5층 403,409,502,503,509,510호 (마곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "레몬트리짐",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5621059,
+			  "M_YCOORD": 126.8080195,
+			  "M_PHONENO": "02-2661-9430",
+			  "M_ADDRESS": "서울특별시 강서구 방화동로 1, 2층 (방화동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "GGpark",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5678055,
+			  "M_YCOORD": 126.823081,
+			  "M_PHONENO": "02-2658-7781",
+			  "M_ADDRESS": "서울특별시 강서구 양천로30길 123-5, 2층 (마곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "피트니스 2.0",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5600589,
+			  "M_YCOORD": 126.8383354,
+			  "M_PHONENO": "02-2658-9620",
+			  "M_ADDRESS": "서울특별시 강서구 강서로 385, 우성에스비타워 705,706호 (마곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "프로게이너짐",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5607832,
+			  "M_YCOORD": 126.8461215,
+			  "M_PHONENO": "070-8844-9666",
+			  "M_ADDRESS": "서울특별시 강서구 공항대로41길 65, 그랜드종합상가 303호 (등촌동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "포에버 퀸즈짐",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5480366,
+			  "M_YCOORD": 126.8345704,
+			  "M_PHONENO": "02-2603-1778",
+			  "M_ADDRESS": "서울특별시 강서구 강서로45길 28, 지층 2호 (내발산동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "메이크바디",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.569369,
+			  "M_YCOORD": 126.8262667,
+			  "M_ADDRESS": "서울특별시 강서구 마곡중앙로 161-8, 두산더랜드파크 A-309~313호 (마곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "쉐어짐",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5586746,
+			  "M_YCOORD": 126.831078,
+			  "M_PHONENO": "02-6373-4545",
+			  "M_ADDRESS": "서울특별시 강서구 공항대로 212, 문영 퀸즈파크11차 317,318호 (마곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "리폼드 크로스핏",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5669356,
+			  "M_YCOORD": 126.8265611,
+			  "M_PHONENO": "02-2659-8527",
+			  "M_ADDRESS": "서울특별시 강서구 마곡중앙로 171, 마곡나루역프라이빗타워Ⅱ B105호 (마곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "바디체크짐",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.564979,
+			  "M_YCOORD": 126.827427,
+			  "M_PHONENO": "02-2662-9682",
+			  "M_ADDRESS": "서울특별시 강서구 마곡중앙5로 81, 에스비타운 305,306호 (마곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "더 피트니스",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5747733,
+			  "M_YCOORD": 126.8381942,
+			  "M_ADDRESS": "서울특별시 강서구 마곡서로 133, 704동 102-2호 (마곡동, 마곡엠밸리7단지)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "공감 휘트니스",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5530943,
+			  "M_YCOORD": 126.8367868,
+			  "M_PHONENO": "02-2658-0606",
+			  "M_ADDRESS": "서울특별시 강서구 강서로 308, 신양빌딩 지층 (내발산동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "JK블라썸호텔(휘트니스)",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5557155,
+			  "M_YCOORD": 126.8674772,
+			  "M_PHONENO": "02-2138-0051",
+			  "M_ADDRESS": "서울특별시 강서구 양천로65길 41-22, JK블라썸호텔 지하2층 일부호 (염창동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "바크짐",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5618132,
+			  "M_YCOORD": 126.8088323,
+			  "M_PHONENO": "02-2662-7996",
+			  "M_ADDRESS": "서울특별시 강서구 공항대로 13, 대룡드림타워-II 지하1층 (공항동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "이지 스트랭스",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.572075,
+			  "M_YCOORD": 126.8230308,
+			  "M_PHONENO": "02-3394-6881",
+			  "M_ADDRESS": "서울특별시 강서구 양천로30길 27, A동 (마곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "에이블짐 마곡나루점",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5671136,
+			  "M_YCOORD": 126.8268948,
+			  "M_ADDRESS": "서울특별시 강서구 마곡중앙로 161-17, 보타닉파크타워Ⅰ 12층 (마곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "아놀드홍짐 염창점2",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5533789,
+			  "M_YCOORD": 126.8707448,
+			  "M_ADDRESS": "서울특별시 강서구 양천로69길 19, 세우빌딩 지층 좌측호 (염창동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "벨르피티",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.53001,
+			  "M_YCOORD": 126.8473652,
+			  "M_ADDRESS": "서울특별시 강서구 강서로 27, 화곡심포니타워 504호 (화곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "짐에브리원3",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5593942,
+			  "M_YCOORD": 126.8554059,
+			  "M_PHONENO": "02-3456-2727",
+			  "M_ADDRESS": "서울특별시 강서구 화곡로68길 15, 아벨테크노 B107호 (등촌동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "건강한 운동",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5604863,
+			  "M_YCOORD": 126.8338506,
+			  "M_PHONENO": "02-6085-0311",
+			  "M_ADDRESS": "서울특별시 강서구 마곡동로 62, 마곡사이언스타워 505호 (마곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "웨이트마스터GYM",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5602316,
+			  "M_YCOORD": 126.8369982,
+			  "M_ADDRESS": "서울특별시 강서구 마곡중앙6로 85, 마곡사이언스파크뷰 305호 (마곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "GOTO 가양점",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.561561,
+			  "M_YCOORD": 126.8532562,
+			  "M_PHONENO": "02-3664-4466",
+			  "M_ADDRESS": "서울특별시 강서구 양천로 476, 금부빌딩 지하1층 (등촌동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "MH 토탈휘트니스 화곡점",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5489235,
+			  "M_YCOORD": 126.8475383,
+			  "M_PHONENO": "02-2607-9696",
+			  "M_ADDRESS": "서울특별시 강서구 화곡로 274, 크라운뷰, 크라운타워 15층 일부호 (화곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "BELIEVE PT STUDIO",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5410244,
+			  "M_YCOORD": 126.8373704,
+			  "M_PHONENO": "02-6015-3200",
+			  "M_ADDRESS": "서울특별시 강서구 화곡로 141, 월드빌딩 2층 (화곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "엠스타 휘트니스",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5600589,
+			  "M_YCOORD": 126.8383354,
+			  "M_PHONENO": "02-3665-9015",
+			  "M_ADDRESS": "서울특별시 강서구 강서로 385, 우성에스비타워 11층 (마곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "안전지대 휘트니스",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5628503999999,
+			  "M_YCOORD": 126.8526234,
+			  "M_PHONENO": "02-3662-8800",
+			  "M_ADDRESS": "서울특별시 강서구 양천로57길 10-10, 탐라영재관 지하1층 (가양동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "POSTURE FIT",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5764888,
+			  "M_YCOORD": 126.8307466,
+			  "M_ADDRESS": "서울특별시 강서구 공항대로 222, 발산W타워 310호 (마곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "대방 스포츠센터",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5727075,
+			  "M_YCOORD": 126.827284,
+			  "M_PHONENO": "02-2659-7887",
+			  "M_ADDRESS": "서울특별시 강서구 마곡동로10길 23, 마곡파크뷰대방디엠시티오피스텔 209~211, 213~223호 (마곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "바디챌린지 발산점",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5546254,
+			  "M_YCOORD": 126.8376356,
+			  "M_PHONENO": "02-2633-8151",
+			  "M_ADDRESS": "서울특별시 강서구 우장산로 4, 301호 (내발산동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "이루어짐",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5611033,
+			  "M_YCOORD": 126.8102742,
+			  "M_PHONENO": "070-8821-7733",
+			  "M_ADDRESS": "서울특별시 강서구 공항대로 28, 3층 좌측호 (공항동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "어썸 플레이스 짐",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5671562,
+			  "M_YCOORD": 126.8272843,
+			  "M_PHONENO": "02-6022-5666",
+			  "M_ADDRESS": "서울특별시 강서구 마곡중앙5로 6, 마곡나루역보타닉푸르지오시티 지층 B-104~B-110호 (마곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "바디채널 등촌역점",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5514235,
+			  "M_YCOORD": 126.8649532,
+			  "M_PHONENO": "02-2668-8868",
+			  "M_ADDRESS": "서울특별시 강서구 공항대로 525, 비원오피스텔 15층 1502,1503호 (등촌동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "제이짐(J GYM)",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5606375,
+			  "M_YCOORD": 126.8327344,
+			  "M_ADDRESS": "서울특별시 강서구 마곡중앙6로 45, 리더스퀘어마곡 A동 412호 (마곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "다이아짐",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5551977,
+			  "M_YCOORD": 126.8677,
+			  "M_PHONENO": "070-4038-0707",
+			  "M_ADDRESS": "서울특별시 강서구 양천로67길 21, 203호 (염창동, 여명로얄페밀리)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "쿠타짐",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5607747,
+			  "M_YCOORD": 126.829691,
+			  "M_PHONENO": "02-6953-1313",
+			  "M_ADDRESS": "서울특별시 강서구 마곡중앙6로 21, 이너매스 마곡 지하1층 B120,B121호 (마곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "엠스타 휘트니스",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5596367,
+			  "M_YCOORD": 126.8309251,
+			  "M_PHONENO": "02-3661-7070",
+			  "M_ADDRESS": "서울특별시 강서구 공항대로 209, 지엠지엘스타 지하1층 B108~B111호 (마곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "루나짐",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5593797,
+			  "M_YCOORD": 126.8347339,
+			  "M_PHONENO": "02-511-2259",
+			  "M_ADDRESS": "서울특별시 강서구 공항대로 247, 퀸즈파크나인 404호 (마곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "태그아웃",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5670826,
+			  "M_YCOORD": 126.8466006,
+			  "M_PHONENO": "02-332-7690",
+			  "M_ADDRESS": "서울특별시 강서구 화곡로72길 62, 가양글로벌퍼스트 103동 지층 B101호 (가양동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "프라임짐PT&amp;필라테스",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5589267,
+			  "M_YCOORD": 126.8287147,
+			  "M_ADDRESS": "서울특별시 강서구 공항대로 190, 푸리마타워 316~319호 (마곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "커브스 까치산클럽",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5311374,
+			  "M_YCOORD": 126.8473841,
+			  "M_PHONENO": "02-2065-3360",
+			  "M_ADDRESS": "서울특별시 강서구 강서로 36, 3층 (화곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "더예뻐짐",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5588638,
+			  "M_YCOORD": 126.8242844,
+			  "M_ADDRESS": "서울특별시 강서구 마곡중앙로 59-21, 에이스타워2 지하1층 B06~B07호 (마곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "방화사거리점 스포애니 주)케이디스포츠",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5764563,
+			  "M_YCOORD": 126.813873,
+			  "M_PHONENO": "02-2662-9618",
+			  "M_ADDRESS": "서울특별시 강서구 양천로 72, 해성빌딩 6층 (방화동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "HY 트레이닝",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5605422,
+			  "M_YCOORD": 126.8384733,
+			  "M_PHONENO": "02-6741-1010",
+			  "M_ADDRESS": "서울특별시 강서구 강서로 391, 문영비즈웍스 501호 (마곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "1986 피트니스",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5605018,
+			  "M_YCOORD": 126.8555237,
+			  "M_ADDRESS": "서울특별시 강서구 양천로 500, 등촌동노블리움오피스텔 307,308호 (등촌동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "엑티브핏",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5560356,
+			  "M_YCOORD": 126.840219,
+			  "M_PHONENO": "02-2658-6177",
+			  "M_ADDRESS": "서울특별시 강서구 강서로 348, 상가1동 405호 (내발산동, 우장산힐스테이트)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "올데이",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5340786999999,
+			  "M_YCOORD": 126.8470537,
+			  "M_ADDRESS": "서울특별시 강서구 강서로18가길 4, 3층 (화곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "에너짐",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5609154,
+			  "M_YCOORD": 126.8115721,
+			  "M_PHONENO": "02-2662-0676",
+			  "M_ADDRESS": "서울특별시 강서구 공항대로 38, 지하1층 (공항동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "번타임 코리아",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5598223,
+			  "M_YCOORD": 126.8340102,
+			  "M_ADDRESS": "서울특별시 강서구 마곡중앙6로 66, 퀸즈파크텐 508호 (마곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "바디플렉스짐",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.543260599999996,
+			  "M_YCOORD": 126.8424889,
+			  "M_ADDRESS": "서울특별시 강서구 화곡로 195, 지하1층 (화곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "브이업짐",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5586533,
+			  "M_YCOORD": 126.8238095,
+			  "M_ADDRESS": "서울특별시 강서구 마곡중앙1로 26, 마곡엠리체 301,302호 (마곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "더조은피티",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5296848,
+			  "M_YCOORD": 126.8467265,
+			  "M_PHONENO": "02-2603-7779",
+			  "M_ADDRESS": "서울특별시 강서구 강서로7길 18, 지하1층 B01호 (화곡동, 한울아파트)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "윤진화 퍼스널트레이닝",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5592744,
+			  "M_YCOORD": 126.8255825,
+			  "M_ADDRESS": "서울특별시 강서구 공항대로 164, 류마타워 403호 (마곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "껀바디(kkunbody)",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5593797,
+			  "M_YCOORD": 126.8347339,
+			  "M_ADDRESS": "서울특별시 강서구 공항대로 247, 퀸즈파크나인 331,332,333호 (마곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "가벼워GYM",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.562252,
+			  "M_YCOORD": 126.8540764,
+			  "M_ADDRESS": "서울특별시 강서구 양천로 489, 상가동 2층 203호 (가양동, 가양우성아파트)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "레오핏",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5600042,
+			  "M_YCOORD": 126.8319305,
+			  "M_ADDRESS": "서울특별시 강서구 마곡중앙6로 42, 사이언스타 409호 (마곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "이바디",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5736809,
+			  "M_YCOORD": 126.8118243,
+			  "M_PHONENO": "02-2661-9679",
+			  "M_ADDRESS": "서울특별시 강서구 양천로 73, 멤브로메디컬센터 304호 (방화동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "제이뷰짐",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5588004,
+			  "M_YCOORD": 126.8247782,
+			  "M_PHONENO": "02-2135-5632",
+			  "M_ADDRESS": "서울특별시 강서구 마곡중앙로 59-17, 류마타워2 301~303호 (마곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "라인핏",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5595821,
+			  "M_YCOORD": 126.8327146,
+			  "M_ADDRESS": "서울특별시 강서구 공항대로 227, 마곡센트럴타워Ⅰ 217호 (마곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "행복해GYM",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.569266,
+			  "M_YCOORD": 126.826403,
+			  "M_ADDRESS": "서울특별시 강서구 마곡서1로 115-1, 마곡헤리움1차 212호 (마곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "어뉴바디 PT&amp;Pilates",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.540417,
+			  "M_YCOORD": 126.8410234,
+			  "M_ADDRESS": "서울특별시 강서구 강서로 153, 3층 (화곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "MK짐",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5536031,
+			  "M_YCOORD": 126.8754461,
+			  "M_ADDRESS": "서울특별시 강서구 양천로 658, 201호 (염창동)",
+			  "M_CATEGORY": "HEALTH"
+			 },
+			 {
+			  "M_ID": "원필라테스",
+			  "M_KEYWORD": "EXERCISE",
+			  "M_XCOORD": 37.5606102,
+			  "M_YCOORD": 126.8331525,
+			  "M_ADDRESS": "서울특별시 강서구 마곡동로 61, 에이스프라자 504~506호 (마곡동)",
+			  "M_CATEGORY": "HEALTH"
+			 }
+			]
+			}
