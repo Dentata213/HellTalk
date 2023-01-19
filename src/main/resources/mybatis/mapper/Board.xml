@@ -10,14 +10,18 @@
 		u.U_NO as no,
 		U_ID as id,
 		U_NICKNAME as u_nickname,
-		P_CONTENT as content,
-		P_TITLE as title
+		P_CONTENT as content
 		FROM BBS b JOIN USERS u ON u.U_NO=b.U_NO
+		ORDER BY P_POSTDATE DESC
+		
 	</select>
 	 
 	<!-- 게시글 등록 -->
 	<insert id="insertBBS" parameterType="Map">
-		INSERT INTO BBS VALUES(SEQ_BBS.NEXTVAL,#{U_NO},#{P_KIND},#{P_TITLE},#{P_CONTENT},SYSDATE,null,null,0,0,
+		<selectKey resultType="int" keyProperty="P_NO" order="AFTER">
+        	SELECT MAX(P_NO) FROM BBS 
+    	</selectKey>
+		INSERT INTO BBS VALUES(SEQ_BBS.NEXTVAL,#{U_NO},'게시글종류',#{P_CONTENT},SYSDATE,null,null,0,0,
 		<if test="img!=null">
 			#{img}
 		</if>
@@ -30,11 +34,15 @@
 	
 	<!-- 게시글 수정 -->
 	<update id="editBBS" parameterType="Map">
-		UPDATE BBS SET P_TITLE=#{title},P_CONTENT=#{content} WHERE P_NO=#{no}
+		UPDATE BBS SET P_CONTENT=#{content} WHERE P_NO=#{no}
 	</update>
 	
 	<!-- 게시글 삭제 -->
 	<delete id="deleteBBS" parameterType="Map">
 		DELETE BBS WHERE P_no=#{no}
 	</delete>
+	<!-- 좋아요 수 증가 -->
+	<insert id="likeBBS" parameterType="Map">
+		INSERT INTO BLIKECOUNT VALUES(#{P_NO},#{U_NO})
+	</insert>
 </mapper>

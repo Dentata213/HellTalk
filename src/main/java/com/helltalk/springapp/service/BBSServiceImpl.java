@@ -45,6 +45,11 @@ public class BBSServiceImpl implements BBSService<BBSDto>{
 		
 		return dao.deleteBBS(map);
 	}
+
+	public void likeBBS(Map map) {
+		// TODO Auto-generated method stub
+		 dao.likeBBS(map);
+	}
 	
 	
 	

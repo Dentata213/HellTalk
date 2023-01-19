@@ -40,10 +40,10 @@
 				</div>
 				<!-- loader wrapper -->
 	
-				<div
+				<div id="bw"
 					class="card w-100 shadow-xss rounded-xxl border-0 ps-4 pt-4 pe-4 pb-3 mb-3">
 					<div class="card-body p-0">
-						<a href="#"
+						<a href="javascript:writeBoard()"
 							class=" font-xssss fw-600 text-grey-500 card-body p-0 d-flex align-items-center"><i
 							class="btn-round-sm font-xs text-primary feather-edit-3 me-2 bg-greylight"></i>게시글
 							작성</a>
@@ -115,7 +115,7 @@
 								<div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3">
 									<div class="card-body p-0 d-flex">
 											<figure class="avatar me-3"><img src="https://via.placeholder.com/50x50.png" alt="image" class="shadow-sm rounded-circle w45"></figure>
-											<h4 class="fw-700 text-grey-900 font-xssss mt-1">${list.id},
+											<h4 class="fw-700 text-grey-900 font-xssss mt-1">${list.u_nickname},
 												${list.title}</h4>
 												<a href="#" class="ms-auto" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a>
 	                                    <div class="dropdown-menu dropdown-menu-end p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu2">
@@ -134,6 +134,7 @@
 									<div class="card-body p-0 me-lg-5">
 										<p class="fw-500 text-grey-500 lh-26 font-xssss w-100">${list.content}</p>
 									</div>
+									<c:if test="${isEmpty}">
 									<div class="card-body d-block p-0">
 										<div class="row ps-2 pe-2">
 											<div class="col-xs-4 col-sm-4 p-1">
@@ -153,13 +154,13 @@
 													data-lightbox="roadtrip" class="position-relative d-block"><img
 													src="https://via.placeholder.com/1200x800.png"
 													class="rounded-3 w-100" alt="image"><span
-													class="img-count font-sm text-white ls-3 fw-600"><b>+2</b></span></a>
+													class="img-count font-sm text-white ls-3 fw-600"><b>+3</b></span></a>
 											</div>
 										</div>
 									</div>
-	
+									</c:if>
 									<div class="card-body d-flex p-0 mt-3">
-										<a href="#"
+										<a href="javascript:like(${list.no})"
 											class="emoji-bttn d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss me-2">
 											<i class="feather-thumbs-up text-white bg-primary-gradiant me-1 btn-round-xs font-xss"></i>
 											<i class="feather-heart text-white bg-red-gradiant me-2 btn-round-xs font-xss"></i>${list.likeCount}</a>
@@ -196,6 +197,48 @@
 	</div>
 	<!-- main content -->
 	<script>
+		function writeBoard(){
+			var content=$("textarea[name=message]").val();
+			//console.log(content);
+			$.ajax({
+				url:'<c:url value="/community/bbs/write"/>',
+				data:"content="+content,
+				success:function(data){
+					console.log(data);
+					var sss=""+
+					'<div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3">'+
+						'<div class="card-body p-0 d-flex">'+
+						'<figure class="avatar me-3"><img src="https://via.placeholder.com/50x50.png" alt="image" class="shadow-sm rounded-circle w45"></figure>'+
+						'<h4 class="fw-700 text-grey-900 font-xssss mt-1"></h4>'+
+							'<a href="#" class="ms-auto" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a>'+
+		            '<div class="dropdown-menu dropdown-menu-end p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu2">'+
+		                
+		                '<div class="card-body p-0 d-flex mt-2">'+
+		                    '<a href="#" ><i class="feather-edit text-grey-500 me-3 font-lg"></i></a>'+
+		                   '<h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4">게시글 수정 <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Save to your saved items</span></h4> </div>'+
+		                '<div class="card-body p-0 d-flex mt-2"> <a href="#" ><i class="feather-trash-2 text-grey-500 me-3 font-lg"></i></a>'+
+		                    '<h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4">게시글 삭제 <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Save to your saved items</span></h4></div></div>'+
+		                    '<div class="card-body p-0 me-lg-5"><p class="fw-500 text-grey-500 lh-26 font-xssss w-100">'+content+'</p></div></div></div>"';
+					$("#bw").after(sss);
+				}
+			})			
+			.fail(function(req,status,error){
+				console.log('응답코드:%s,에러메시지:%s,error:%s,status:%s',req.status,req.responseText,error,status);
+			})
+		}
+		
+		function like(no) {
+			$.ajax({
+				url:'<c:url value="/community/bbs/"/>',
+				data:"no="+no
+			})
+			.done(function(data){
+				//console.log(data);			
+			})			
+			.fail(function(req,status,error){
+				console.log('응답코드:%s,에러메시지:%s,error:%s,status:%s',req.status,req.responseText,error,status);
+			})
+		}
 		/*
 		var count=parseInt(${maxlength})-10;
 		
