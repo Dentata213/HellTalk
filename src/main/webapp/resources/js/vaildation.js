@@ -13,39 +13,11 @@
     var u_weight = form.u_weight;
     var u_kind = form.u_kind;
     var button = document.querySelector(".btn");
-    //var loginbutton = 
+    var nextButton = document.querySelector(".nextbtn");
 
-    /*
-    loginbutton.onclick = function(){
-        
-        if(mainId.value.trim() === ""){
-            alert("아이디를 입력 해주세요.");
-            mainId.focus();
-            return false;
-            
-        }else if(mainPwd.value.trim() === ""){
-			alert("비밀번호를 입력 해주세요.");
-            mainPwd.focus();
-            return false;
-		}
-    }/////////
-*/
     
-
-
-    button.onclick = function(){
-        //아이디 체크
-        var regExpPwd = /(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,}$/
-        var regExpEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/;
-        var regExpPhone = /^\d{3}-\d{3,4}-\d{4}$/;
-        var regExpHeight = /[0-9]{3}$/;
-        var regExpWeight = /[0-9]{2,3}$/;
-		
-		
-		//console.log("u_kind:"+u_kind);
-		//console.log("u_gender:"+u_gender);
-		
-		
+    nextButton.onclick = function(){
+        
         //성별 체크
         isGender = false;
         u_gender.forEach(function(item){
@@ -66,6 +38,57 @@
             u_birth.focus();
             return false;
         }
+        
+        iskind = false;
+        u_kind.forEach(function(item){
+            //console.log("item:",item)
+            if(item.checked)iskind = true; 
+            
+        });
+        
+        if(!iskind){
+            alert("가입유형을 선택하여 주십시요");
+            u_kind[0].focus();
+            return false;
+        }
+        
+        $('#nextbtn').on('click',function(){
+			$('.first').fadeOut(function(){
+				$('.second').fadeIn();
+			});
+		})
+        
+        /*
+        if(mainId.value.trim() === ""){
+            alert("아이디를 입력 해주세요.");
+            mainId.focus();
+            return false;
+            
+        }else if(mainPwd.value.trim() === ""){
+			alert("비밀번호를 입력 해주세요.");
+            mainPwd.focus();
+            return false;
+		}
+		*/
+    }/////////
+
+   
+
+
+    button.onclick = function(){
+        //아이디 체크
+        var regExpPwd = /(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,}$/
+        var regExpEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/;
+        var regExpPhone = /^\d{3}-\d{3,4}-\d{4}$/;
+        var regExpHeight = /[0-9]{3}$/;
+        var regExpWeight = /[0-9]{2,3}$/;
+		
+		
+		//console.log("u_kind:"+u_kind);
+		//console.log("u_gender:"+u_gender);
+		
+		
+        
         
         if(u_email.value.trim() === ""){
             alert("이메일을 입력 해주세요.");
@@ -134,18 +157,9 @@
         	return false;
         }
 
-        iskind = false;
-        u_kind.forEach(function(item){
-            //console.log("item:",item)
-            if(item.checked)iskind = true; 
-            
-        });
+        
 
-        if(!iskind){
-                alert("가입유형을 선택하여 주십시요");
-                u_kind[0].focus();
-                return false;
-            }
+        
 
 
         return true;
