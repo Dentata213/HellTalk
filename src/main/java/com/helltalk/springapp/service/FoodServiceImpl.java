@@ -22,20 +22,42 @@ public class FoodServiceImpl implements DietService<FoodDTO>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	
+	public FoodDTO selectOne(FoodDTO dto) {
+		
+		return dao.selectOne(dto);
+	}
+	
+	
+	public int selectFoodAffected(FoodDTO dto) {
+		int selectFoodAffected= dao.selectFoodAffected(dto);
+		return selectFoodAffected;
+	}
+	
+	/*있는 음식 찾기
+	public String selectOne(FoodDTO dto) {
+		String food= dao.selectOne(dto);
+		System.out.println("이미 있는 음식:"+food);
+		return dao.selectOne(dto);
+	}*/
+	
+	
+	public FoodDTO foodSelectOneByCd(Map map) {
+		return dao.foodSelectOneByCd(map);
+	}
 
-	@Override
-	public FoodDTO selectOne(Map map) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public int insert(FoodDTO dto) {
+		return dao.insert(dto);
 	}
 	
 	@Override
 	public int insert(Map map) {
-		int newfoodNo= dao.insert(map);
-		System.out.println("음식 추가?: "+newfoodNo);
+		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	
 	@Override
 	public int delete(Map map) {
 		// TODO Auto-generated method stub
@@ -47,5 +69,17 @@ public class FoodServiceImpl implements DietService<FoodDTO>{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+
+	@Override
+	public FoodDTO selectOne(Map map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	
+	
 
 }

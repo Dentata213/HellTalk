@@ -1,8 +1,7 @@
 
     //var mainForm = document.querySelector("body > section > div > div:nth-child(2) > div > div > form");
     //var mainId = mainForm.id;
-    //var mainPwd = mainForm.pwd;
-    var i = -1;
+    //var mainPwd = mainForm.pwd;2
     var form = document.forms[0];
     var u_pwd = form.u_pwd;
     var u_gender = form.u_gender;

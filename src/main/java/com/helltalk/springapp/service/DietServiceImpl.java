@@ -18,12 +18,17 @@ public class DietServiceImpl implements DietService<DietDTO>{
 	@Autowired
 	private DietDAO dao;
 	
+	//음식 하나를 한끼 테이블에 저장
+	public int insertEatByNo(Map map) {
+		return dao.insertEatByNo(map);
+	}
+	
 	@Override
 	public List<DietDTO> selectList(Map map, HttpServletRequest req) {
 		List lists= dao.selectList(map);
 		return null;
 	}
-
+	
 	@Override
 	public DietDTO selectOne(Map map) {
 		// TODO Auto-generated method stub
@@ -32,8 +37,7 @@ public class DietServiceImpl implements DietService<DietDTO>{
 
 	@Override
 	public int insert(Map map) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.insert(map);
 	}
 
 	@Override
@@ -47,5 +51,7 @@ public class DietServiceImpl implements DietService<DietDTO>{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	
 	
 }

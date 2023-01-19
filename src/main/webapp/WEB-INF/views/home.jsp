@@ -362,7 +362,12 @@
 					   		<a href="<c:url value="/community/bbs/mypage"/>" >함병완-마이페이지</a>
 					   		<a href="<c:url value="/backend/admin"/>" >김동진-어드민</a>
 					   		<a href="<c:url value="/chat1.do"/>" >최도원채팅임시</a>
+<<<<<<< HEAD
 
+=======
+					   		<a href="<c:url value="/backend/design"/>">임시 사용자 회원가입 디자인</a>
+					   		<a href="<c:url value="/teachable/gameResult.do"/>" >조주희-확인용(게임결과 페이지)</a>
+>>>>>>> branch 'master' of https://github.com/Dentata213/HellTalk.git
 
 
 				   		</div>
@@ -388,6 +393,7 @@
 		        </div>
 		    </section>
 		</div>
+>>>>>>> branch 'master' of https://github.com/Dentata213/HellTalk.git
    
    <sec:authorize access="isAuthenticated()">
 	        
