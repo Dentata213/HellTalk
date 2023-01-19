@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="en">
@@ -169,7 +170,7 @@
 
 </style>
 <body class="color-theme-blue mont-font">
-
+	
     <div class="preloader"></div>
 
     
@@ -186,6 +187,7 @@
             </div>
             
             <form action="#" class="float-left header-search">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
                 <div class="form-group mb-0 icon-input">
                     <i class="feather-search font-sm text-grey-400"></i>
                     <input type="text" placeholder="Start typing to search.." class="bg-grey border-0 lh-32 pt-2 pb-2 ps-5 pe-3 font-xssss fw-500 rounded-xl w350 theme-dark-bg">
@@ -332,6 +334,9 @@
             <a href="<c:url value="/model/Login.do"/>" class="p-2 lh-20 w100 bg-primary-gradiant me-2 text-white text-center font-xssss fw-600 ls-1 rounded-xl">login</a>
             
         </div>
+   		
+   		
+
 		<div>
 		    <section class="not-container">
 		        <div class="section first">
@@ -348,16 +353,20 @@
 							<a href="<c:url value="/model/ocr.do"/>" >함병완</a>
 							<a href="<c:url value="/home.do"/>" >김성우</a>
 							<a href="<c:url value="/cal/ifram.do"/>" >최도원</a>
-							<a href="<c:url value="/model/Login.do"/>">최부건-로그인</a>
+							<a href="<c:url value="/member/Login.do"/>" >최부건-로그인</a>
 					   		<a href="<c:url value="/qna/list"/>">위찬혁</a>
 					   		<a href="<c:url value="/convenience/Calculator"/>">신동현</a>
-					   		
 							<!-- 추가이동경로 필요할경우 아래에 추가 -->
-					   		<a href="<c:url value="/model/Register.do"/>" >최부건-회원가입</a>
+					   		<a href="<c:url value="/member/CreateUser.do"/>" >최부건-회원가입</a>
+					   		<a href="<c:url value="/community/bbs/list"/>" >함병완-게시판</a>
+					   		<a href="<c:url value="/community/bbs/mypage"/>" >함병완-마이페이지</a>
 					   		<a href="<c:url value="/backend/admin"/>" >김동진-어드민</a>
 					   		<a href="<c:url value="/chat1.do"/>" >최도원채팅임시</a>
+
+
 					   		<a href="<c:url value="/backend/design"/>">임시 사용자 회원가입 디자인</a>
 					   		<a href="<c:url value="/teachable/gameResult.do"/>" >조주희-확인용(게임결과 페이지)</a>
+
 
 
 				   		</div>
@@ -383,11 +392,25 @@
 		        </div>
 		    </section>
 		</div>
->>>>>>> branch 'master' of https://github.com/Dentata213/HellTalk.git
+   
+   <sec:authorize access="isAuthenticated()">
+	        
+	        <!--객체의 권한-->
+	        <ul>
+		        <li>principal(현재 접속한 계정의 타입 및 정보):<sec:authentication property="principal"/></li>
+		        <li>principal(현재 접속한 사람의 id):<sec:authentication property="principal.username"/></li>
+		        <li>principal(현재 접속한 사람의 비밀번호):<sec:authentication property="principal.password"/></li>
+		        <li>principal.enabled(계정 활성화 상태 true:1 ,false:0) : <sec:authentication property="principal.enabled"/></li>
+		        <li>principal.authorities(현재 접속한 사람의 권한) : <sec:authentication property="principal.authorities"/></li>
+	        </ul>
+		    <form action="<c:url value="/member/Logout.do"/>" method="post">
+	   			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+	   			<button class="custom-btn btn-5" type="submit"><span>로그아웃</span></button>
+	   		</form>
+		</sec:authorize> 
    
    
-   
-   
+
 
 
     <script src="${path}/resources/js/plugin.js"></script>

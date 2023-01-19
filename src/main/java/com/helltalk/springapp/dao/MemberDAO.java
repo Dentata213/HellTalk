@@ -23,8 +23,12 @@ public class MemberDAO {
 		return template.selectOne("findUserByNo", map);
 	}
 	
-	public int idChekc(Map map) {
-		return template.selectOne("idCheck",map);
+	public int emailCheck(Map map) {
+		return template.selectOne("emailCheck",map);
+	}
+	
+	public int nicknameCheck(Map map) {
+		return template.selectOne("nicknameCheck",map);
 	}
 	
 	public int insert(Map map) {		

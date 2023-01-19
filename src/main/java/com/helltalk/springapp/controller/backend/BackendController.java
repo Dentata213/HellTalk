@@ -63,22 +63,22 @@ public class BackendController {
 	@RequestMapping("/getAdminStatus")
 	public @ResponseBody String getAdminStatus() {
 
-		return "/backend/adminStatus";
+		return "backend/adminStatus";
 	}
 	@RequestMapping("/getAdminMembers")
 	public @ResponseBody String getAdminMembers() {
 		
-		return "/backend/adminMembers";
+		return "backend/adminMembers";
 	}
 	@RequestMapping("/getAdminBBS")
 	public @ResponseBody String getAdminBBS() {
 		
-		return "/backend/adminBBS";
+		return "backend/adminBBS";
 	}
 	@RequestMapping("/getAdminPayment")
 	public @ResponseBody String getAdminPayment() {
 		
-		return "/backend/adminPayment";
+		return "backend/adminPayment";
 	}
 	
 
