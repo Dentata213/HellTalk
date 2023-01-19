@@ -130,9 +130,9 @@
 			console.log('keypress이벤트 발생:',e.keyCode);
 			if(e.keyCode===13){//엔터 입력
 				//서버로 메시지 전송
-				wsocket.send('msg:'+nickname+'>>' +$(this).val());//msg:KOSMO>>안녕
+				wsocket.send('msg:'+$(this).val());//msg:KOSMO>>안녕
 				//DIV(대화영역)에 메시지 출력			        
-				appendMessage("<div class='message-wrap'><span>"+$(this).val()+"</span></div>");
+				appendMessage("<div class='message-wrap' style='background-color:#05f;' align:'right'><span>"+$(this).val()+"</span></div>");
 				//기존 메시지 클리어		
 				$(this).val("");
 				//포커스 주기

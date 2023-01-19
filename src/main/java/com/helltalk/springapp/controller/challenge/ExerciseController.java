@@ -21,7 +21,7 @@ public class ExerciseController {
 	
 	@PostMapping("/exercise.do")
 	@ResponseBody
-	public List<ExerciseDTO> exerciseKind(@RequestParam Map map) {
+	public List<ExerciseDTO> exercise(@RequestParam Map map) {
 		List<ExerciseDTO> listExer;
 		System.out.println("exercise컨트롤러");
 		System.out.println("map.get(\"ek_no\")"+map.get("ek_no"));

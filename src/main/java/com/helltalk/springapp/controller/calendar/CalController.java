@@ -28,6 +28,13 @@ import com.helltalk.springapp.models.CaldDto;
 @RequestMapping("/cal")
 public class CalController {
 	
+	
+	@RequestMapping("/ifram.do")
+	public String ifram() {
+		return "calendar/IframMon.helltalk";
+	}
+	
+	
 	//Dto 주입
 	@Autowired
 	private CalService<CaldDto> caldService;
@@ -107,4 +114,5 @@ public class CalController {
 		caldService.delete(map);
 		return map;
 	}
+	
 }

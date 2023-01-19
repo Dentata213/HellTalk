@@ -79,7 +79,9 @@
           <div class="content-wrapper">
             <!-- Content -->
             <div class="container-xxl flex-grow-1 container-p-y">
-                
+              <div class="card mb-2">
+              	<h4 class="card-header">사용자 수</h4>
+              </div>
               <!-- Bootstrap Table with Header - Footer -->
               <div class="card" style="height: 100%">
                 <h4 class="card-header">사용자 목록</h4>
@@ -130,8 +132,8 @@
                               <i class="bx bx-dots-horizontal-rounded"></i>
                             </button>
                             <div class="dropdown-menu">
-                            	<a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-block me-1"></i> 차단</a>
-	                            <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> 추방</a>
+                            	<a class="dropdown-item" href="#"><i class="bx bx-block me-1"></i> <c:if test="${isY}">차단</c:if><c:if test="${not isY}">차단해제</c:if></a>
+	                            <a class="dropdown-item" href="#"><i class="bx bx-trash me-1"></i> 추방</a>
                           </div>
                         </td>
                       </tr>
@@ -189,81 +191,75 @@
   </body>
   <script>
   	$('.dropdown-item').on('click',function(e){
+  		var button = this;
   		var u_id = this.parentElement.parentElement.parentElement.parentElement.children[1].textContent;
+  		var userStatus = this.parentElement.parentElement.parentElement.parentElement.children[8].children[0].textContent;
+  		var clicked = this.parentElement.parentElement.parentElement.parentElement.children[8].children[0];
+  		//console.log(clicked);
+  		//console.log('userStatus:'+userStatus);
+  		//console.log('u_id:'+u_id);
+  		//console.log(e.target.innerText.trim());
+  		//console.log(this.innerHTML);
   		
+  		var status;
+  		if(e.target.innerText.trim()=='차단'){
+			status="차단";
+  		}else if(e.target.innerText.trim()=='차단해제'){
+  			status="차단해제";
+  		}else if(e.target.innerText.trim()=='추방'){
+  			status="추방";
+  		}
   		const swalWithBootstrapButtons = Swal.mixin({
-  		  customClass: {
-  		    confirmButton: 'btn btn-success',
-  		    cancelButton: 'btn btn-danger'
-  		  },
-  		  buttonsStyling: false
-  		})
+	  		  customClass: {
+	  		    confirmButton: 'btn btn-success',
+	  		    cancelButton: 'btn btn-danger'
+	  		  },
+	  		  buttonsStyling: false
+	  		})
+	
+	  		swalWithBootstrapButtons.fire({
+	  		  title: '해당 유저를 '+status+' 하시겠습니까?',
+	  		  icon: 'warning',
+	  		  showCancelButton: true,
+	  		  confirmButtonText: status, 
+	  		  cancelButtonText: '취소',
+	  		  reverseButtons: true,
+	  		  allowOutsideClick: false
+	  		}).then((result) => {
+	  		  if (result.isConfirmed) {
+				$.ajax({
+					url:'<c:url value="/backend/updateUserStatus"/>',
+					data:'u_id='+u_id+'&status='+status,
+					dataType:'text'
+				}).done(function(data){
+					console.log(data);
+				})
+				if(userStatus=='정지'){
+					clicked.className="badge bg-label-success me-1";
+					clicked.textContent="정상";
+					button.innerHTML='<i class="bx bx-block me-1"></i> 차단';
+				}else{
+					clicked.className="badge bg-label-danger me-1";
+					clicked.textContent="정지";
+					button.innerHTML='<i class="bx bx-block me-1"></i> 차단해제';
+				}
+	  		    swalWithBootstrapButtons.fire(
+	  		      '',
+	  		      '유저 '+u_id+' 가 '+status+' 되었습니다',
+	  		      'success'
+	  		    )
+	  		  } else if (
+	  		    /* Read more about handling dismissals below */
+	  		    result.dismiss === Swal.DismissReason.cancel
+	  		  ) {
+	  		    swalWithBootstrapButtons.fire(
+	  		      '',
+	  		      '취소되었습니다',
+	  		      'error'
+	  		    )
+	  		  }
+	  		})
 
-  		swalWithBootstrapButtons.fire({
-  		  title: '정말로 삭제하시겠습니까?',
-  		  icon: 'warning',
-  		  showCancelButton: true,
-  		  confirmButtonText: '삭제', 
-  		  cancelButtonText: '취소',
-  		  reverseButtons: true,
-  		  allowOutsideClick: false
-  		}).then((result) => {
-  		  if (result.isConfirmed) {
-  			//console.log(u_id);
-  			$.ajax
-  			
-  		    swalWithBootstrapButtons.fire(
-  		      '삭제완료!',
-  		      '삭제가 완료되었습니다',
-  		      'success'
-  		    )
-  		  } else if (
-  		    /* Read more about handling dismissals below */
-  		    result.dismiss === Swal.DismissReason.cancel
-  		  ) {
-  		    swalWithBootstrapButtons.fire(
-  		      '취소!',
-  		      '요청이 취소되었습니다',
-  		      'error'
-  		    )
-  		  }
-  		})
-  		//console.log(this.parentElement.parentElement.parentElement.parentElement.children[1].textContent);
-  		/*
-  		Swal.fire({
-  		  title: 'Submit your Github username',
-  		  input: 'text',
-  		  inputAttributes: {
-  		    autocapitalize: 'off'
-  		  },
-  		  showCancelButton: true,
-  		  confirmButtonText: 'Look up',
-  		  showLoaderOnConfirm: true,
-  		  preConfirm: (login) => {
-  		    return fetch(`//api.github.com/users/${login}`)
-  		      .then(response => {
-  		        if (!response.ok) {
-  		          throw new Error(response.statusText)
-  		        }
-  		        return response.json()
-  		      })
-  		      .catch(error => {
-  		        Swal.showValidationMessage(
-  		          `Request failed: ${error}`
-  		        )
-  		      })
-  		  },
-  		  allowOutsideClick: () => !Swal.isLoading()
-  		}).then((result) => {
-  		  if (result.isConfirmed) {
-  		    Swal.fire({
-  		      title: `${result.value.login}'s avatar`,
-  		      imageUrl: result.value.avatar_url
-  		    })
-  		  }
-  		})
-  		
-  		*/
   	})
   </script>
 </html>

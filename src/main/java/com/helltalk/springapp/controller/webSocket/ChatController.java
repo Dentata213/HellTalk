@@ -13,9 +13,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ChatController {
 	
 	@RequestMapping("/chat1.do")
-	public String list() {
+	public String list(
+			HttpServletRequest req) {	
+    	HttpSession session = req.getSession();
+    	session.setAttribute("HTTP.SESSION.ID","kim");
+    	System.out.println("세션확인"+session);
 		return "community/chat/test.helltalk";
 	}
+	
+	
 
 	@GetMapping("/chat")	// client uri
 	public void getChat(HttpServletRequest request, @RequestParam String id) {

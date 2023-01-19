@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<c:set var="path" value="${pageContext.request.contextPath}"/>
+<c:set var="path" value="${pageContext.request.contextPath}/resources/"/>
 
         <!-- main content -->
         <div class="main-content right-chat-active">
@@ -395,6 +395,7 @@
     <script src="${path}js/scripts.js"></script>
     <script src="${path}js/jquery.easypiechart.min.js"></script> 
     <script>
+    
         $('.chart').easyPieChart({
             easing: 'easeOutElastic',
             delay: 3000,
@@ -409,4 +410,5 @@
                 this.el.children[0].innerHTML = Math.round(percent);
             }
         });
+    
     </script> 

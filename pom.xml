@@ -256,10 +256,10 @@
 		
 		<!-- 식품 api를 위한 json simple -->
 		<dependency>
-		<groupId>com.googlecode.json-simple</groupId>
-		<artifactId>json-simple</artifactId>
-		<version>1.1.1</version>
-	</dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+		</dependency>
 	
 	<!-- jQuery -->
 		<!-- https://mvnrepository.com/artifact/org.webjars/jquery -->
@@ -269,6 +269,12 @@
 		    <version>3.6.3</version>
 		</dependency>
 		
+		<dependency>
+		    <groupId>org.python</groupId>
+		    <artifactId>jython-installer</artifactId>
+		    <version>2.7.3</version>
+		</dependency>
+				
 	</dependencies>
     <build>
         <plugins>

@@ -2,23 +2,219 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset='utf-8' />
+<style>
+
+  body {
+    margin: 40px 10px;
+    padding: 0;
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    font-size: 14px;
+  }
+
+  #calendar {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  
+  /*사이드추가*/
+    body {
+    margin-top: 40px;
+    font-size: 14px;
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+  }
+
+  #external-events {
+    position: fixed;
+    left: 20px;
+    top: 100px;
+    width: 150px;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    background: #eee;
+    text-align: center;
+  }
+
+  #external-events h4 {
+    font-size: 16px;
+    margin-top: 0;
+    padding-top: 1em;
+  }
+
+  #external-events .fc-event {
+    margin: 3px 0;
+    cursor: move;
+  }
+
+  #external-events p {
+    margin: 1.5em 0;
+    font-size: 11px;
+    color: #666;
+  }
+
+  #external-events p input {
+    margin: 0;
+    vertical-align: middle;
+  }
+
+  #calendar-wrap {
+    margin-left: 100px;
+  }
+
+ .fc-event-time{
+ 	font-size: 0px;
+ }
+</style>                     
+<!-- main content -->
+  <!--
+<div class="main-content bg-white right-chat-active theme-dark-bg"> 
+    <div class="middle-sidebar-bottom">
+        <div class="middle-sidebar-left">
+            <div class="row">
+                <div class="col-xl-12 col-xxl-12 col-lg-12">
+                    <div class="row">
+                        <div id='wrap'>
+
+       사이드메뉴 
+   <div id='external-events'>
+       <h4>Today Check List</h4>
+
+       <div class="fc-button-group">
+           <div>
+               <button type="button" id="spobtn" title="운동 하셨나요?"
+                   class="fc-addEventButton-button fc-button fc-button-primary">운동
+                   하셨나요?</button>
+           </div>
+           <div style="margin-top: 10px;">
+               <button type="button" id="foodbtn" title="목표 식단 달성?"
+                   class="fc-addEventButton-button fc-button fc-button-primary">목표
+                   식단 달성?</button>
+           </div>
+       </div>
+
+       <p>
+           <label for='drop-remove'></label>
+       </p>
+   </div>
+   -->
+   <!-- 달력 -->
+  <div id='calendar-wrap'>
+  	<div id='calendar'></div>
+ </div>  
+
+ <!--일정추가 modal 추가 -->
+  <div class="modal fade" id="addcalendarModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="addModalLabel">오늘하루를 기록하세요!</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <div class="form-group">
+                      <label for="taskId" class="col-form-label">title</label>
+                      <input type="text" class="form-control" id="caldtitle" name="caldtitle">
+                      <label for="taskId" class="col-form-label">내용</label>
+                      <textarea class="form-control"  rows="10"  id="caldcontent" name="caldcontent"></textarea>
+                      <label for="taskId" class="col-form-label">날짜</label>
+                      <input type="date" class="form-control" id="caldstartdate" name="caldstartdate">
+                  </div>
+				  <div class="row">
+                  <div class="col-xs-12">
+                      <label class="col-xs-4" for="color" style="margin-left:20px;" >색상</label>
+                      <select class="inputModal" name="caldcolor" id="caldcolor">
+                          <option value="#D25565" style="color:#D25565;">빨간색</option>
+                          <option value="#9775fa" style="color:#9775fa;">보라색</option>
+                          <option value="#ffa94d" style="color:#ffa94d;">주황색</option>
+                          <option value="#74c0fc" style="color:#74c0fc;">파란색</option>
+                          <option value="#f06595" style="color:#f06595;">핑크색</option>
+                          <option value="#63e6be" style="color:#63e6be;">연두색</option>
+                          <option value="#a9e34b" style="color:#a9e34b;">초록색</option>
+                          <option value="#4d638c" style="color:#4d638c;">남색</option>
+                          <option value="#495057" style="color:#495057;">검정색</option>
+                      </select>
+                  </div>
+                </div>                                        
+              </div>
+               
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-warning" id="addCalendar" >추가</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                      id="addModalClose">닫기</button>
+              </div>
+  
+          </div>
+      </div>
+  </div>
+  <!--일정 상세보기 modal -->
+  <div class="modal fade" id="calendarModalView" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true" >
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">기록보기</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <div class="form-group">
+                  	 <input type="hidden" class="form-control" id="viewno" name="viewno" />
+                      <label for="taskId" class="col-form-label">title</label>
+                      <input type="text" class="form-control" id="viewtitle" name="viewtitle" disabled />                  
+                      <label for="taskId" class="col-form-label">내용</label>
+                      <textarea class="form-control"  rows="10"  id="viewcontent" name="viewcontent" disabled></textarea>
+                      <label for="taskId" class="col-form-label">날짜</label>
+                      <input type="date" class="form-control" id="viewdate" name="viewdate" disabled  >                    
+                  </div>                    
+              
+               <div class="row">
+                  <div class="col-xs-12">
+                      <label class="col-xs-4" for="color" style="margin-left:20px;"  id="editecolortitle" hidden>색상</label>
+                      <select class="inputModal" name="editecaldcolor" id="editecaldcolor"  hidden>
+                          <option value="#D25565" style="color:#D25565;">빨간색</option>
+                          <option value="#9775fa" style="color:#9775fa;">보라색</option>
+                          <option value="#ffa94d" style="color:#ffa94d;">주황색</option>
+                          <option value="#74c0fc" style="color:#74c0fc;">파란색</option>
+                          <option value="#f06595" style="color:#f06595;">핑크색</option>
+                          <option value="#63e6be" style="color:#63e6be;">연두색</option>
+                          <option value="#a9e34b" style="color:#a9e34b;">초록색</option>
+                          <option value="#4d638c" style="color:#4d638c;">남색</option>
+                          <option value="#495057" style="color:#495057;">검정색</option>
+                      </select>
+                  </div>
+                </div> 
+              </div>                                   
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-warning" id="calEdit" >수정</button>
+                  <button type="button" class="btn btn-warning" id="calEditok" hidden >등록</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                      id="caldelete">삭제</button>
+                  <button type="button" class="btn btn-warning" data-dismiss="modal"
+                      id="viewModalClose" >닫기</button>
+              </div>
+   
+          </div>
+      </div>
+  </div>
+<!-- main content -->
+
+<script src="${path}/resources/js/plugin.js"></script>
+<script src="${path}/resources/js/scripts.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
- <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <link href='${path}/resources/fullcalendar-5.11.3/lib/main.css' rel='stylesheet' />
 <script src='${path}/resources/fullcalendar-5.11.3/lib/main.js'></script>
 <script>
-
-  document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -27,9 +223,9 @@
       locale: 'ko',
       initialDate: '${today}',
       headerToolbar: {
-          left: 'prev,next today',
+          left: 'addEventButton, dayGridMonth',
           center: 'title',
-          right: 'addEventButton dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+          right: 'prev,next,today'//dayGridMonth,timeGridWeek,timeGridDay,listWeek
         },
       navLinks: true, //// 클릭 시 상단 네이게이션 동작
       businessHours: true, // display business hours
@@ -75,20 +271,22 @@
         },   
       events: [
     
-    //calcheked list 뿌리기 	  
+    //calcked list 뿌리기 	  
     <c:forEach var="calc" items="${calcList}" varStatus="loop">
-     	  { 
+     	  { //오라클에서 불러온 데이터 연동==> 여기 클릭하면 모달창 띄워서 정보 보여주기! 
+     		  // 노노 이거 하루하루 목표 완료체크용으로 변경할거..
                title:'${calc.rout_name}',
-               start:'${calc.rout_startdate}',  
-               end:'${calc.rout_enddate}', 
-               color:'${calc.calc_color}' , 
+               start:'${calc.rout_startdate}',  //'${today}'
+               end:'${calc.rout_enddate}',  //'${today}'
+               color:'#ff9f89' , 
            	   display:'background'         	 
 	  	   },
 	</c:forEach> 
    
 	//caldaily list 뿌리기
 	<c:forEach var="cald" items="${caldList}" varStatus="loop"> 			
-	  	{  		     
+	  	{  		
+       
           title:'${cald.cald_no}_${cald.cald_title}',
           start:'${cald.cald_startdate}',
    //     end:'${cald.cald_enddate}T12:00',
@@ -314,196 +512,4 @@
                 }  	   
         })
        });
-   
-    
 </script>
-<style>
-
-  body {
-    margin: 40px 10px;
-    padding: 0;
-    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-    font-size: 14px;
-  }
-
-  #calendar {
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-  
-  /*사이드추가*/
-    body {
-    margin-top: 40px;
-    font-size: 14px;
-    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-  }
-
-  #external-events {
-    position: fixed;
-    left: 20px;
-    top: 100px;
-    width: 150px;
-    padding: 0 10px;
-    border: 1px solid #ccc;
-    background: #eee;
-    text-align: center;
-  }
-
-  #external-events h4 {
-    font-size: 16px;
-    margin-top: 0;
-    padding-top: 1em;
-  }
-
-  #external-events .fc-event {
-    margin: 3px 0;
-    cursor: move;
-  }
-
-  #external-events p {
-    margin: 1.5em 0;
-    font-size: 11px;
-    color: #666;
-  }
-
-  #external-events p input {
-    margin: 0;
-    vertical-align: middle;
-  }
-
-  #calendar-wrap {
-    margin-left: 100px;
-  }
-
- .fc-event-time{
- 	font-size: 0px;
- }
-</style>
-</head>
-<body>
-<div id='wrap'>
-
- <div id='external-events'>
-    <h4>Today Check List</h4>
- 
-  <!-- 사이드메뉴 -->
-  <div class="fc-button-group">
-   	   <div >
-       <button type="button" id="spobtn" title="운동 하셨나요?" class="fc-addEventButton-button fc-button fc-button-primary">운동 하셨나요?</button>
-   	  </div >
-   	   <div style="margin-top:10px;" >
-   	   <button type="button" id="foodbtn" title="목표 식단 달성?" class="fc-addEventButton-button fc-button fc-button-primary">목표 식단 달성?</button>
-  	 </div>
-   </div>
-
-      <p>
-        <label for='drop-remove'></label>
-      </p>
-  </div> 
-  <!-- 달력 -->
-  <div id='calendar-wrap'>
-  	<div id='calendar'></div>
- </div>  
-  
-  
-   <!--일정추가 modal 추가 -->
-  <div class="modal fade" id="addcalendarModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog" role="document">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <h5 class="modal-title" id="addModalLabel">오늘하루를 기록하세요!</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-              </div>
-              <div class="modal-body">
-                  <div class="form-group">
-                      <label for="taskId" class="col-form-label">title</label>
-                      <input type="text" class="form-control" id="caldtitle" name="caldtitle">
-                      <label for="taskId" class="col-form-label">내용</label>
-                      <textarea class="form-control"  rows="10"  id="caldcontent" name="caldcontent"></textarea>
-                      <label for="taskId" class="col-form-label">날짜</label>
-                      <input type="date" class="form-control" id="caldstartdate" name="caldstartdate">
-                  </div>
-				  <div class="row">
-                  <div class="col-xs-12">
-                      <label class="col-xs-4" for="color" style="margin-left:20px;" >색상</label>
-                      <select class="inputModal" name="caldcolor" id="caldcolor">
-                          <option value="#D25565" style="color:#D25565;">빨간색</option>
-                          <option value="#9775fa" style="color:#9775fa;">보라색</option>
-                          <option value="#ffa94d" style="color:#ffa94d;">주황색</option>
-                          <option value="#74c0fc" style="color:#74c0fc;">파란색</option>
-                          <option value="#f06595" style="color:#f06595;">핑크색</option>
-                          <option value="#63e6be" style="color:#63e6be;">연두색</option>
-                          <option value="#a9e34b" style="color:#a9e34b;">초록색</option>
-                          <option value="#4d638c" style="color:#4d638c;">남색</option>
-                          <option value="#495057" style="color:#495057;">검정색</option>
-                      </select>
-                  </div>
-                </div>                                        
-              </div>
-               
-              <div class="modal-footer">
-                  <button type="button" class="btn btn-warning" id="addCalendar" >추가</button>
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                      id="addModalClose">닫기</button>
-              </div>
-  
-          </div>
-      </div>
-  </div>
-  <!--일정 상세보기 modal -->
-  <div class="modal fade" id="calendarModalView" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-      aria-hidden="true" >
-      <div class="modal-dialog" role="document">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">기록보기</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-              </div>
-              <div class="modal-body">
-                  <div class="form-group">
-                  	 <input type="hidden" class="form-control" id="viewno" name="viewno" />
-                      <label for="taskId" class="col-form-label">title</label>
-                      <input type="text" class="form-control" id="viewtitle" name="viewtitle" disabled />                  
-                      <label for="taskId" class="col-form-label">내용</label>
-                      <textarea class="form-control"  rows="10"  id="viewcontent" name="viewcontent" disabled></textarea>
-                      <label for="taskId" class="col-form-label">날짜</label>
-                      <input type="date" class="form-control" id="viewdate" name="viewdate" disabled  >                    
-                  </div>                    
-              
-               <div class="row">
-                  <div class="col-xs-12">
-                      <label class="col-xs-4" for="color" style="margin-left:20px;"  id="editecolortitle" hidden>색상</label>
-                      <select class="inputModal" name="editecaldcolor" id="editecaldcolor"  hidden>
-                          <option value="#D25565" style="color:#D25565;">빨간색</option>
-                          <option value="#9775fa" style="color:#9775fa;">보라색</option>
-                          <option value="#ffa94d" style="color:#ffa94d;">주황색</option>
-                          <option value="#74c0fc" style="color:#74c0fc;">파란색</option>
-                          <option value="#f06595" style="color:#f06595;">핑크색</option>
-                          <option value="#63e6be" style="color:#63e6be;">연두색</option>
-                          <option value="#a9e34b" style="color:#a9e34b;">초록색</option>
-                          <option value="#4d638c" style="color:#4d638c;">남색</option>
-                          <option value="#495057" style="color:#495057;">검정색</option>
-                      </select>
-                  </div>
-                </div> 
-              </div>                                   
-              <div class="modal-footer">
-                  <button type="button" class="btn btn-warning" id="calEdit" >수정</button>
-                  <button type="button" class="btn btn-warning" id="calEditok" hidden >등록</button>
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                      id="caldelete">삭제</button>
-                  <button type="button" class="btn btn-warning" data-dismiss="modal"
-                      id="viewModalClose" >닫기</button>
-              </div>
-  
-          </div>
-      </div>
-  </div>
-  
-</body>
-</html>

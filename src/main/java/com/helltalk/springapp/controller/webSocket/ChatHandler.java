@@ -28,12 +28,13 @@ public class ChatHandler extends TextWebSocketHandler {
 	ObjectMapper json = new ObjectMapper();
 	
 	
-	//클라이언트와 연결 되었을 때 호출되는 콜백 메소드
+	//클라이언트와 연결 되었을 때 호출되는 콜백 메소드 id
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		//컬렉션에 연결된 클라이언트 추가
 		clients.put(session.getId(),session);
 		System.out.println(session.getId()+"연결 되었습니다.");
+		System.out.println(session.toString());
 	}/////////
 	
 	// message
@@ -42,7 +43,6 @@ public class ChatHandler extends TextWebSocketHandler {
 		// message data
 		String senderId =(String)session.getAttributes().get("HTTP.SESSION.ID");
 				//.toString(); http세션에연결된 아이디를 가져옴 (web소켓 아이디 아님!!)
-		System.out.println("진짜 http세선인지확인 "+senderId);
 		System.out.println("toString으로 확인"+(String)session.getAttributes().toString());
 		
 		 //getPayload()로 메시지를 얻어옴
@@ -52,7 +52,7 @@ public class ChatHandler extends TextWebSocketHandler {
 	for(WebSocketSession client:clients.values()) {  
 		if(!session.getId().equals(client.getId())) {  //자기가 보낸 메시지를 자기한테 다시 받지 않도록
 			//받은 메시지를 그대로 접속한 모든 인원에게 push
-			client.sendMessage(message);
+			client.sendMessage(message);  //client = receiver
 			System.out.println("client아이디?:"+client.getId());
 		}
 	}

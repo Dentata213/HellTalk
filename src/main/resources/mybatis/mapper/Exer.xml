@@ -17,4 +17,12 @@
 	</select>
 	
 	
+	<insert id="insertExerciseRoutine" parameterType="Map">
+		<selectKey order="BEFORE" resultType="int" keyProperty="rout_no">
+			SELECT SEQ_routine.NEXTVAL FROM DUAL
+		</selectKey>
+		
+		INSERT into routine VALUES(SEQ_routine.CURRVAL,#{u_id},#{rout_name},#{rout_content},#{rout_level},"없애기",#{rout_effect},#{rout_gender},#{rout_time},#{rout_mode},#{start},#{end},#{rout_display},#{day1},#{day2},#{day3},#{day4},#{day5},#{day6},#{day7})
+	</insert>
+	
 </mapper>

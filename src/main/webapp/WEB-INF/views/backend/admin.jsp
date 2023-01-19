@@ -18,13 +18,19 @@
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="${path}/resources/css/style.css">
 	<style>
-	@media (min-width: 992px) {
-	  .main-content {
-	  	padding-top: 105px;
-	    padding-left: 225px;
-	    padding-right: 0px;
-	  }
-	}
+		@media (min-width: 992px) {
+		  .main-content {
+		    padding-left: 225px;
+		  }
+		  iframe{
+		  	height: 83vh; width: 100%
+		  }
+		}
+		@media (max-width: 991px){
+			iframe{
+				height: 83vh;
+			}
+		}
 	</style>
 
 </head>
@@ -37,7 +43,7 @@
 
         <!-- navigation top-->
         <div class="nav-header bg-white shadow-xs border-0">
-            <div class="nav-top">
+            <div class="nav-top"  style="justify-content: space-between;">
                 <a href="<c:url value="/"/>"><i class="feather-zap text-success display1-size me-2 ms-0"></i><span class="d-inline-block fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">HellTalk </span> </a>
                 <button class="nav-menu me-0 ms-2"></button>
             </div>
@@ -66,15 +72,15 @@
         </nav>
         <!-- navigation left -->
         <!-- main content -->
-        <div class="main-content right-chat-active">
-	        <iframe id="iframe" style="height:83vh; width:100%" src="<c:url value="/backend/adminStatus"/>"></iframe>
+        <div class="main-content bg-white theme-dark-bg">
+			<div class="middle-sidebar-bottom">
+
+				<iframe id="iframe" style="width: 100%; overflow: hidden" frameborder="0" crolling="no" frameborder="none" allowfullscreen="" src="<c:url value="/backend/adminStatus"/>"></iframe>
+				
+
+        	</div>
         </div>
         <!-- main content -->
-
-        
-        
-
-
         <div class="app-header-search">
             <form class="search-form">
                 <div class="form-group searchbox mb-0 border-0 p-1">

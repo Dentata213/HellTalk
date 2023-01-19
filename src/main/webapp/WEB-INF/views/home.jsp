@@ -19,9 +19,155 @@
     <link rel="stylesheet" href="${path}/resources/css/emoji.css">
     
     <link rel="stylesheet" href="${path}/resources/css/lightbox.css">
+    <style>
+        @import 'https://fonts.googleapis.com/css?family=Economica';
 
+        html,
+        body {
+            margin: 0;
+            max-width: 100%;
+            height: 100%;
+        }
+
+        .not-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .not-container:hover>.section {
+            filter: brightness(22%);
+        }
+
+        .not-container:hover>.section:hover {
+            filter: brightness(100%);
+        }
+
+        .not-container .section {
+            flex-grow: 1;
+            position: relative;
+            height: 100%;
+            transition: all 0.4s;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            text-align: center;
+            flex: 1;
+        }
+
+        .not-container .section .cont_title {
+            position: relative;
+            margin: auto;
+            width: 100%;
+            height: auto;
+            text-align: center;
+            margin-top: 37vh;
+        }
+
+        .not-container .section .cont_title h1 {
+            text-transform: uppercase;
+            color: white;
+            font-family: "Economica", sans-serif;
+            text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
+            font-size: 3.5vw;
+            margin: 0;
+            transition: font-size 0.3s;
+            vertical-align: middle;
+        }
+
+        .not-container .section .cont_title h3 {
+            text-transform: uppercase;
+            font-family: "Economica", sans-serif;
+            font-size: 1.3vw;
+            transition: all 0.3s;
+            color: white;
+            letter-spacing: 3px;
+            text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .not-container .section .cont_desc {
+            position: relative;
+            display: block;
+            text-align: center;
+            width: 12vw;
+            height: auto;
+            margin: auto;
+            opacity: 0;
+            transition: opacity 0.8s, transform 0.7s, padding-top 0.9s;
+            padding-top: 6vh;
+            transform: scale(1);
+        }
+
+        .not-container .section .cont_desc p {
+            margin: 0;
+            font-family: "Economica", sans-serif;
+            color: white;
+            font-size: 16px;
+        }
+
+        .not-container .section:hover {
+            flex-grow: 1.8;
+            transition: flex 0.2s;
+        }
+
+        .not-container .section:hover>.cont_title h1 {
+            font-size: 5.3vw;
+            transition: font-size 0.4s;
+        }
+
+        .not-container .section:hover>.cont_title h3 {
+            font-size: 1.6vw;
+            transition: all 0.4s;
+        }
+
+        .not-container .section:hover>.cont_desc {
+            opacity: 1;
+            padding-top: 2vh;
+            transform: scale(1.5);
+            transition: opacity 0.7s, padding-top 0.5s, transform 0.1s;
+            transition-delay: 0s, 0.1s, 0s;
+        }
+
+        .not-container .section:nth-child(1) {
+            background: url("https://artsandculture.withgoogle.com/gcs/national-parks-service/en-us/Asset-Kenai-desktop.jpg") center;
+        }
+
+        .not-container .section:nth-child(2) {
+            background: url("https://artsandculture.withgoogle.com/gcs/national-parks-service/en-us/Asset-Hawaii-desktop.jpg") center;
+        }
+
+        .not-container .section:nth-child(3) {
+            background: url("https://artsandculture.withgoogle.com/gcs/national-parks-service/en-us/de0b954d-ca76-41d3-ac3a-900c6bc25139.jpg") center;
+        }
+		     
+/*않이.... 왜 안돼....*/  
+		@media (min-width: 1200px)
+				.not-container-xl, .not-container-lg, .not-container-md, .not-container-sm, .not-container {
+		  max-width: 1119px;
+		}
+		@media (min-width: 992px)
+				.not-container-lg, .not-container-md, .not-container-sm, .not-container {
+		  max-width: 991px;
+		}
+		@media (min-width: 768px)
+				.not-container-md, .not-container-sm, .not-container {
+		  max-width: 767px;
+		}
+		@media (min-width: 576px)
+				.not-container-sm, .not-container {
+		  max-width: 575px;
+		}
+		
+		#temp a {
+			color:white;
+		}
+    </style>
 </head>
+<style>
 
+</style>
 <body class="color-theme-blue mont-font">
 
     <div class="preloader"></div>
@@ -45,11 +191,12 @@
                     <input type="text" placeholder="Start typing to search.." class="bg-grey border-0 lh-32 pt-2 pb-2 ps-5 pe-3 font-xssss fw-500 rounded-xl w350 theme-dark-bg">
                 </div>
             </form>
-            <a href="default.html" class="p-2 text-center ms-3 menu-icon center-menu-icon"><i class="feather-home font-lg alert-primary btn-round-lg theme-dark-bg text-current "></i></a>
+            <a href="<c:url value="/"/>" class="p-2 text-center ms-3 menu-icon center-menu-icon"><i class="feather-home font-lg alert-primary btn-round-lg theme-dark-bg text-current "></i></a>
             <a href="default-storie.html" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-zap font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
             <a href="default-video.html" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-video font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
             <a href="default-group.html" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-user font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
-            <a href="<c:url value="model/shop-2.do"/>" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-shopping-bag font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
+            <a href="<c:url value="/model/shop-1.do"/>" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-shopping-bag font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
+			<a href="<c:url value="/home.do"/>" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-map font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
 
             <a href="#" class="p-2 text-center ms-auto menu-icon" id="dropdownMenu3" data-bs-toggle="dropdown" aria-expanded="false"><span class="dot-count bg-warning"></span><i class="feather-bell font-xl text-current"></i></a>
             <div class="dropdown-menu dropdown-menu-end p-4 rounded-3 border-0 shadow-lg" aria-labelledby="dropdownMenu3">
@@ -182,9 +329,10 @@
             </div>
             
 
-            <a href="default-settings.html" class="p-0 ms-3 menu-icon"><img src="https://via.placeholder.com/50x50.png" alt="user" class="w40 mt--1"></a>
+            <a href="<c:url value="/model/Login.do"/>" class="p-2 lh-20 w100 bg-primary-gradiant me-2 text-white text-center font-xssss fw-600 ls-1 rounded-xl">login</a>
             
         </div>
+<<<<<<< HEAD
         <!-- navigation top -->
         <div style="margin-top:100px"></div>
 		<a href="<c:url value="/model/shop-1.do"/>" >김동진</a>
@@ -205,6 +353,58 @@
    		
    
    
+=======
+		<div>
+		    <section class="not-container">
+		        <div class="section first">
+		            <div class="cont_title">
+		                <h1>오우!?<br>챌린지!</h1>
+		                <h3>여기야여기!</h3>
+		            </div>
+		            <div class="cont_desc">
+		                <p>눈아파도 잠시동안만... </p>
+		                <div id="temp">
+			                <a href="<c:url value="/model/shop-1.do"/>">백건효</a>
+							<a href="<c:url value="/model/routine.do"/>" >진소희</a>
+							<a href="<c:url value="/diet/main.do"/>" >조주희</a>
+							<a href="<c:url value="/model/ocr.do"/>" >함병완</a>
+							<a href="<c:url value="/home.do"/>" >김성우</a>
+							<a href="<c:url value="/cal/ifram.do"/>" >최도원</a>
+							<a href="<c:url value="/model/Login.do"/>">최부건-로그인</a>
+					   		<a href="<c:url value="/qna/list"/>">위찬혁</a>
+					   		<a href="<c:url value="/convenience/Calculator"/>">신동현</a>
+					   		
+							<!-- 추가이동경로 필요할경우 아래에 추가 -->
+					   		<a href="<c:url value="/model/Register.do"/>" >최부건-회원가입</a>
+					   		<a href="<c:url value="/backend/admin"/>" >김동진-어드민</a>
+					   		<a href="<c:url value="/chat1.do"/>" >최도원채팅임시</a>
+					   		<a href="<c:url value="/backend/design"/>">임시 사용자 회원가입 디자인</a>
+
+
+				   		</div>
+		            </div>
+		        </div>
+		        <div class="section">
+		            <div class="cont_title">
+		                <h1><a href="<c:url value="/community/bbs/mypage"/>" class="text-white">여긴<br>마이페이지</a></h1>
+		                <h3>National Park</h3>
+		            </div>
+		            <div class="cont_desc">
+		                <p>Rappel into a crevasse, kayak through icebergs, and watch a glacier recede.</p>
+		            </div>
+		        </div>
+		        <div class="section">
+		            <div class="cont_title">
+		                <h1><a href="<c:url value="/community/bbs/list"/>" class="text-white">마지막으로<br>커뮤니티</a></h1>
+		                <h3>National Park</h3>
+		            </div>
+		            <div class="cont_desc">
+		                <p>Rappel into a crevasse, kayak through icebergs, and watch a glacier recede.</p>
+		            </div>
+		        </div>
+		    </section>
+		</div>
+>>>>>>> branch 'master' of https://github.com/Dentata213/HellTalk.git
    
    
    
