@@ -43,7 +43,7 @@
 	<body>
 	<h2><i>헤에에엘토오오오오오오오오오오토옥</i></h2>
 	<div class="map_wrap">
-	    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+	    <div id="map" style="width:100%;height:90vh;position:relative;overflow:hidden;"></div>
 	    <ul id="category">
 	        <li id="CT1" data-order="0"> 
 	            <span class="category_bg health"></span>
