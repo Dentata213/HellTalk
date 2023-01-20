@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="https://code.jquery.com/jquery-3.6.3.slim.js" integrity="sha256-DKU1CmJ8kBuEwumaLuh9Tl/6ZB6jzGOBV/5YpNE2BWc=" crossorigin="anonymous"></script>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
   <!-- main content -->
         <div class="main-content bg-white right-chat-active">
@@ -35,9 +36,11 @@
                                             </thead>
                                             <tbody>
                                             <c:forEach var="list" items="${lists}" varStatus="loop">
+                                           
                                                 <tr>
                                                     <td class="product-thumbnail text-left ps-0">
                                                         <img src="data:image/jpeg;base64,${list.product_img}" alt="Product Thumnail" class="w75 rounded-3">
+                                                        
                                                     </td>
                                                     <td class="product-headline text-left wide-column">
                                                         <h3>
@@ -46,21 +49,31 @@
                                                     </td>
                                                     <td class="product-p">
                                                         <span class="product-price-wrapper">
-                                                            <span class="money text-grey-500 fw-600 font-xsss">${list.product_price}<span class="font-xsssss"> 원</span></span>
+                                                            <span class="money text-grey-500 fw-600 font-xsss" id="oneprice">${list.product_price}</span>
+                                                            <span class="font-xsssss"> 원</span>
                                                         </span>
                                                     </td>
                                                     <td class="product-quantity">
+                                                    	
                                                         <div class="quantity">
-                                                            <input type="number" class="quantity-input open-font fw-600" name="qty" id="qty-1" value="${list.product_quantity}" min="1">
-                                                        <div class="dec qtybutton">-</div><div class="inc qtybutton">+</div></div>
+                                                        	<input value="${list.product_no}" hidden="hidden" id="cartnum" class="hidden"/>
+                                                            <input type="number" class="quantity-input open-font fw-600" name="qty"
+															id="qty-1" value="${list.product_quantity}" min="1">
+															<div class="dec qtybutton down" id="down">-</div>
+															<div class="inc qtybutton up" id="up">+</div>
+														</div>
                                                     </td>
                                                     <td class="product-total-price">
                                                         <span class="product-price-wrapper">
-                                                            <span class="money fmont"><strong>${list.product_price*list.product_quantity}<span class="font-xsssss"> 원</span></strong></span>
+                                                            <strong id="onetotalprice"><span class="money fmont">${list.product_price*list.product_quantity}</strong> 원</span>
                                                         </span>
                                                     </td>
-                                                    <td class="product-remove text-right"><a href="#"><i class="ti-trash font-xs text-grey-500"></i></a></td>
-                                                </tr>
+												 <td class="product-remove text-right">
+                                                        <a href="#"><i class="ti-trash font-xs text-grey-500"></i></a>
+                                                        <input value="" hidden="hidden" id="cartnum" class="hidden"/>
+                                                    </td>
+											</tr>
+                                             
                                                 </c:forEach>
                                             </tbody>
                                         </table>
@@ -86,21 +99,13 @@
                                             <div class="table-content table-responsive">
                                                 <table class="table order-table">
                                                     <tbody>
-                                                        <tr>
-                                                            <td class="font-xsss pt-2 fw-600">Subtotal</td>
-                                                            <td class="font-xssss fw-700 text-grey-600 pt-2 text-right">$196.00</td>  
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="font-xsss pt-2 fw-600">Shipping</td>
-                                                            <td class="font-xssss fw-700 text-grey-600 pt-2 text-right">
-                                                                <span>Flat rate: $20.00</span>
-                                                            </td>  
-                                                        </tr>
+                                                        
                                                         <tr class="order-total">
-                                                            <td class="font-xsss pt-2 fw-600">Total</td>
+                                                            <td class="font-xsss pt-2 fw-600">결제예정금액</td>
                                                             <td class="font-xssss fw-700 text-grey-600 pt-2 text-right">
                                                                 <span class="product-price-wrapper">
-                                                                    <span class="money fmont">$226.00</span>
+                                                                    <span class="money fmont" id="totalprice">${totalprice}</span>
+                                                                    <strong><input value="${totalprice}" hidden="hidden" id="totalhidden"/></strong>
                                                                 </span>
                                                             </td>
                                                         </tr>
@@ -122,16 +127,81 @@
         <!-- main content -->
         
     <script>
-    	//이미지의 BASE64값 4000자 분리용
-	    var str = '${BASE64}';
-	    var arr = str.split(',');
-	    arr[0] = arr[0].replace("[","");
-	    arr[arr.length-1] = arr[arr.length-1].replace("]","");
-	    for(i=0; i<arr.length; i++){
-	    	arr[i] = arr[i].replace(" ","");
-	    	console.log(arr[i]);
-	    }
-    </script>  
+	//이미지의 BASE64값 4000자 분리용
+	var str = '${BASE64}';
+	var arr = str.split(',');
+	arr[0] = arr[0].replace("[", "");
+	arr[arr.length - 1] = arr[arr.length - 1].replace("]", "");
+	for (i = 0; i < arr.length; i++) {
+		arr[i] = arr[i].replace(" ", "");
+		console.log(arr[i]);
+	}
+	
+	
+	document.addEventListener('DOMContentLoaded', function() {
+		//개별 수량 변경	  
+		$('div.quantity').click(
+			
+			function(e) {
+				
+				console.log('클릭이벤트');
+				var p_num = parseInt($(this).children('input[type=number]').val());
+				
+				var newval = e.target.classList.contains('up') ? p_num + 1
+						: e.target.classList.contains('down') ? p_num - 1
+								: p_num;
+				
+				var product_no= $(this).children('input[hidden=hidden]').val();
+				if (parseInt(newval) < 1 || parseInt(newval) > 10) {
+					return false;
+				}	
+				$(this).children('input[type=number]').attr('value', newval);
+				console.log('아이템수량'+newval);
+				
+				var event = $(this);
+				var onePrice = parseInt(event.parent().prev().children().children('#oneprice').text());	
+				
+				function newPrice(data) {
+					//var oneTotal = data.product_price;
+					//console.log('데이타에서꺼내온 가격'+oneTotal);
+					console.log('아이템한개 가격'+onePrice);
+					var newPrice = onePrice*newval;
+					console.log('아이템한개 총금액'+newPrice);
+					event.parent().next().children().children().text(newPrice);					
+					
+				}
+
+				console.log(${list.product_price});
+				
+				var data = {"CART_QUANTITY":newval,"PRO_NO":product_no,"totalprice":onePrice};
+				$.ajax({
+					type: "GET",
+		   			url:"<c:url value="/Shop/quantityUpdate"/>",
+		   			async:false,
+		   			data: data,
+		   			dataType:'json'
+				})		
+				.done(function(data){         													
+					var hidden = $('#totalhidden').val();
+					newPrice(data);
+					console.log(data);
+					console.log('성공');
+					$('#totalprice').text(data.sum)//총 결제금액
+					
+				}).fail(function(error){
+			
+					console.log('에러발생'+error);
+				});		
+			
+			}
+		);////////click
+		
+		
+		
+		
+		
+	});/////////
+</script>
     
     <!--  
 부트페이 라이브러리
