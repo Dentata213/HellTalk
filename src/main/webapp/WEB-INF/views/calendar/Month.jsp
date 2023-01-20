@@ -5,6 +5,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<c:set var="sessionId"><sec:authentication property="principal.username"/></c:set>
 <style>
 
   body {
@@ -107,6 +109,7 @@
  <!--일정추가 modal 추가 -->
   <div class="modal fade" id="addcalendarModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
       aria-hidden="true">
+      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
       <div class="modal-dialog" role="document">
           <div class="modal-content">
               <div class="modal-header">
@@ -146,6 +149,7 @@
                   <button type="button" class="btn btn-warning" id="addCalendar" >추가</button>
                   <button type="button" class="btn btn-secondary" data-dismiss="modal"
                       id="addModalClose">닫기</button>
+                      
               </div>
   
           </div>
@@ -154,12 +158,14 @@
   <!--일정 상세보기 modal -->
   <div class="modal fade" id="calendarModalView" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
       aria-hidden="true" >
+     
       <div class="modal-dialog" role="document">
           <div class="modal-content">
               <div class="modal-header">
                   <h5 class="modal-title" id="exampleModalLabel">기록보기</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
+                      
                   </button>
               </div>
               <div class="modal-body">
@@ -191,16 +197,19 @@
                 </div> 
               </div>                                   
               <div class="modal-footer">
+              <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                   <button type="button" class="btn btn-warning" id="calEdit" >수정</button>
                   <button type="button" class="btn btn-warning" id="calEditok" hidden >등록</button>
                   <button type="button" class="btn btn-secondary" data-dismiss="modal"
                       id="caldelete">삭제</button>
                   <button type="button" class="btn btn-warning" data-dismiss="modal"
                       id="viewModalClose" >닫기</button>
+              
               </div>
    
           </div>
       </div>
+      
   </div>
 <!-- main content -->
 
@@ -215,6 +224,12 @@
 <script src='${path}/resources/fullcalendar-5.11.3/lib/main.js'></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+	
+	  
+	  $(document).ajaxSend(function(e, xhr, options) {
+		  xhr.setRequestHeader( "${_csrf.headerName}", "${_csrf.token}" );
+		  }); 
+	  
     var calendarEl = document.getElementById('calendar');
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -232,6 +247,7 @@ document.addEventListener('DOMContentLoaded', function() {
       editable: true,
       selectable: true,       
       eventClick: function() {
+    	
     	  //닫기 누르면 새로고침 해줘야 함...
     		$(document).on('click','#viewModalClose',function(){
     			location.reload();  			
@@ -279,10 +295,11 @@ document.addEventListener('DOMContentLoaded', function() {
                start:'${calc.rout_startdate}',  //'${today}'
                end:'${calc.rout_enddate}',  //'${today}'
                color:'#ff9f89' , 
-           	   display:'background'         	 
+           	   display:'background'  
+     	  	   
 	  	   },
 	</c:forEach> 
-   
+
 	//caldaily list 뿌리기
 	<c:forEach var="cald" items="${caldList}" varStatus="loop"> 			
 	  	{  		
@@ -343,7 +360,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       $.ajax({
 	              			url:"<c:url value="/cal/Write.do"/>",
 	              			method: "POST",
-	              			data:JSON.stringify(obj),
+	              			data:test,
 	            			type:'json',
 	            			contentType:"application/json; charset=utf-8",
               			})
@@ -461,6 +478,13 @@ document.addEventListener('DOMContentLoaded', function() {
 		  
 	  });
 	  
+	  $(function(){
+		  $('.fc-event-title').on("click",function(){
+			console.log("dddd!!")
+		  })
+		  
+	  });
+	  
 
   //목표달성 버튼 
     $(function() {
@@ -513,3 +537,4 @@ document.addEventListener('DOMContentLoaded', function() {
         })
        });
 </script>
+

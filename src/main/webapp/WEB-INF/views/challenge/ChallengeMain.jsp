@@ -3,15 +3,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
+        <!-- main content -->
         <div class="main-content right-chat-active">
             <div class="middle-sidebar-bottom">
-                <div class="middle-sidebar-left">
-                    <div class="row">
-					<iframe id="iframe" style="width:100%; height:1000px; overflow: hidden" frameborder="0" crolling="no" frameborder="none" allowfullscreen="" src="<c:url value="/cal/List.do"/>"></iframe>
-					</div>
-				</div> 
+                <!-- 개인 코드 작성 / 페이지 요청은 .helltalk 붙이기 -->
+                
+                
+                
+                
+                <!-- 개인 코드 작성 / 페이지 요청은 .helltalk 붙이기 -->
             </div>            
         </div>
+        <!-- main content -->
+
+
 
     <script src="${path}/resources/js/plugin.js"></script>
     <script src="${path}/resources/js/scripts.js"></script>

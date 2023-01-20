@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee; https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	
+
+	
 	
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/root-context.xml</param-value>
-	</context-param>
 		<!-- 1)어노테이션 기반 씨큐리티 설정을 위한 주석처리  
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -22,16 +21,18 @@
 		<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
 	</context-param>
 	<!-- 스프링 씨큐리티를 자바코드로 설정한 클래스를 컨텍스트 초기화 파라미터로 등록-->
-	<!-- 
+	<!-- -->
+	
+	
+	
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>com.kosmo.springapp.basic.security.SecurityConfig</param-value>
+		<param-value>com.helltalk.springapp.config.SecurityConfig</param-value>
 	</context-param>
-	 -->
-	<!-- 스프링 씨큐리티용 필터 등록 
-	     (필터명은 반드시 springSecurityFilterChain으로)
-	-->
-	<!--
+	 
+	<!-- 스프링 씨큐리티용 필터 등록  (필터명은 반드시 springSecurityFilterChain으로) -->
+	<!-- -->
+
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -40,7 +41,6 @@
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	-->
 
 	<!--POST방식일때 한글 깨지는 거 처리  -->
 	<filter>
@@ -78,7 +78,6 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
 
 
 	

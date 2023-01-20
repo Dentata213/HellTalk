@@ -37,5 +37,10 @@ public class BBSDao{
 		
 		return template.delete("deleteBBS",map);
 	}
+	public void likeBBS(Map map) {
+		// TODO Auto-generated method stub
+		template.update("likeBBS",map);
+		
+	}
 	
 }/////////
