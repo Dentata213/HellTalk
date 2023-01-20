@@ -21,10 +21,6 @@ public class DietDTO {
 	//한끼
 	private String eat_no;
 	private String eat_status;
-	private String eat_mode;
 	private String eat_count;
-	
-	//한끼 코드 저장
-	private String eatList_no;
 	
 }
