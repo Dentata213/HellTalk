@@ -17,16 +17,16 @@
 	<selectKey keyProperty="calcno" resultType="int" order="BEFORE">
 	SELECT SEQ_CALCNO.NEXTVAL FROM DUAL
 	</selectKey>
-	  INSERT ALL
+	  INSERT ALL	  
+	  INTO ROUTINE
+	  values('#{routno}',
+	  '#{uno}','#{routname}','#{routcontent}','#{routlevel}','#{routeffect}',
+	  '#{routgender}','#{routime}','#{routmode}','#{routstartdate}','#{routenddate}','#{routdisplay}',
+	  '#{day1}','#{day2}','#{day3}','#{day4}','#{day5}','#{day6}','#{day7}')
 	  INTO CALCHECK 
 	  VALUES(SEQ_CALCNO.NEXTVAL,
 	  (SELECT USERS.U_NO FROM CALCHECK RIGHT JOIN USERS on CALCHECK.u_no = users.u_no), 
-	  '#{routno}','#{calccolor}','#{calchecked}')
-	  INTO ROUTINE
-	  values('#{routno}',
-	  '#{uno}','#{routname}','#{routcontent}','#{routlevel}','#{routcategory}','#{routeffect}',
-	  '#{routgender}','#{routime}','#{routmode}','#{routstartdate}','#{routenddate}','#{routdisplay}',
-	  '#{day1}','#{day2}','#{day3}','#{day4}','#{day5}','#{day6}','#{day7}')
+	  '#{routno}','#{calccolor}','#{calchecked}')  
 	  SELECT * FROM DUAL
 </insert>
   
