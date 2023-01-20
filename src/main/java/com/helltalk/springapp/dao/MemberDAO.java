@@ -42,6 +42,10 @@ public class MemberDAO {
 	public int update(Map map) {
 		return template.update("userUpdate",map);
 	}
+
+	public MemberDTO findUserByEmail(Map map) {
+		return template.selectOne("findUserByEmail",map);
+	}
 	
 	
 	

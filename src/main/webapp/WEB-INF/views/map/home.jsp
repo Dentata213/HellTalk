@@ -30,8 +30,8 @@ color:white;
 
     <div class="preloader"></div>
 
+    <div class="items-container">   
     
-    <div class="main-wrapper">
 
         <!-- navigation top-->
         <div class="nav-header bg-white shadow-xs border-0">
@@ -56,148 +56,61 @@ color:white;
             <a href="<c:url value="model/shop-2.do"/>" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-shopping-bag font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
 
             <a href="#" class="p-2 text-center ms-auto menu-icon" id="dropdownMenu3" data-bs-toggle="dropdown" aria-expanded="false"><span class="dot-count bg-warning"></span><i class="feather-bell font-xl text-current"></i></a>
-            <div class="dropdown-menu dropdown-menu-end p-4 rounded-3 border-0 shadow-lg" aria-labelledby="dropdownMenu3">
+            <!-- Notification -->
+            <div class="dropdown-menu dropdown-menu-end p-4 rounded-3 border-0 shadow-lg" aria-labelledby="dropdownMenu3"></div>
                 
-                <h4 class="fw-700 font-xss mb-4">Notification</h4>
-                <div class="card bg-transparent-card w-100 border-0 ps-5 mb-3">
-                    <img src="https://via.placeholder.com/50x50.png" alt="user" class="w40 position-absolute left-0">
-                    <h5 class="font-xsss text-grey-900 mb-1 mt-0 fw-700 d-block">Hendrix Stamp <span class="text-grey-400 font-xsssss fw-600 float-right mt-1"> 3 min</span></h5>
-                    <h6 class="text-grey-500 fw-500 font-xssss lh-4">There are many variations of pass..</h6>
-                </div>
-                <div class="card bg-transparent-card w-100 border-0 ps-5 mb-3">
-                    <img src="https://via.placeholder.com/50x50.png" alt="user" class="w40 position-absolute left-0">
-                    <h5 class="font-xsss text-grey-900 mb-1 mt-0 fw-700 d-block">Goria Coast <span class="text-grey-400 font-xsssss fw-600 float-right mt-1"> 2 min</span></h5>
-                    <h6 class="text-grey-500 fw-500 font-xssss lh-4">Mobile Apps UI Designer is require..</h6>
-                </div>
-
-                <div class="card bg-transparent-card w-100 border-0 ps-5 mb-3">
-                    <img src="https://via.placeholder.com/50x50.png" alt="user" class="w40 position-absolute left-0">
-                    <h5 class="font-xsss text-grey-900 mb-1 mt-0 fw-700 d-block">Surfiya Zakir <span class="text-grey-400 font-xsssss fw-600 float-right mt-1"> 1 min</span></h5>
-                    <h6 class="text-grey-500 fw-500 font-xssss lh-4">Mobile Apps UI Designer is require..</h6>
-                </div>
-                <div class="card bg-transparent-card w-100 border-0 ps-5">
-                    <img src="https://via.placeholder.com/50x50.png" alt="user" class="w40 position-absolute left-0">
-                    <h5 class="font-xsss text-grey-900 mb-1 mt-0 fw-700 d-block">Victor Exrixon <span class="text-grey-400 font-xsssss fw-600 float-right mt-1"> 30 sec</span></h5>
-                    <h6 class="text-grey-500 fw-500 font-xssss lh-4">Mobile Apps UI Designer is require..</h6>
-                </div>
-            </div>
+                
+            <!-- Message -->
             <a href="#" class="p-2 text-center ms-3 menu-icon chat-active-btn"><i class="feather-message-square font-xl text-current"></i></a>
             <div class="p-2 text-center ms-3 position-relative dropdown-menu-icon menu-icon cursor-pointer">
                 <i class="feather-settings animation-spin d-inline-block font-xl text-current"></i>
-                <div class="dropdown-menu-settings switchcolor-wrap">
-                    <h4 class="fw-700 font-sm mb-4">Settings</h4>
-                    <h6 class="font-xssss text-grey-500 fw-700 mb-3 d-block">Choose Color Theme</h6>
-                    <ul>
-                        <li>
-                            <label class="item-radio item-content">
-                                <input type="radio" name="color-radio" value="red" checked=""><i class="ti-check"></i>
-                                <span class="circle-color bg-red" style="background-color: #ff3b30;"></span>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="item-radio item-content">
-                                <input type="radio" name="color-radio" value="green"><i class="ti-check"></i>
-                                <span class="circle-color bg-green" style="background-color: #4cd964;"></span>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="item-radio item-content">
-                                <input type="radio" name="color-radio" value="blue" checked=""><i class="ti-check"></i>
-                                <span class="circle-color bg-blue" style="background-color: #132977;"></span>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="item-radio item-content">
-                                <input type="radio" name="color-radio" value="pink"><i class="ti-check"></i>
-                                <span class="circle-color bg-pink" style="background-color: #ff2d55;"></span>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="item-radio item-content">
-                                <input type="radio" name="color-radio" value="yellow"><i class="ti-check"></i>
-                                <span class="circle-color bg-yellow" style="background-color: #ffcc00;"></span>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="item-radio item-content">
-                                <input type="radio" name="color-radio" value="orange"><i class="ti-check"></i>
-                                <span class="circle-color bg-orange" style="background-color: #ff9500;"></span>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="item-radio item-content">
-                                <input type="radio" name="color-radio" value="gray"><i class="ti-check"></i>
-                                <span class="circle-color bg-gray" style="background-color: #8e8e93;"></span>
-                            </label>
-                        </li>
-
-                        <li>
-                            <label class="item-radio item-content">
-                                <input type="radio" name="color-radio" value="brown"><i class="ti-check"></i>
-                                <span class="circle-color bg-brown" style="background-color: #D2691E;"></span>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="item-radio item-content">
-                                <input type="radio" name="color-radio" value="darkgreen"><i class="ti-check"></i>
-                                <span class="circle-color bg-darkgreen" style="background-color: #228B22;"></span>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="item-radio item-content">
-                                <input type="radio" name="color-radio" value="deeppink"><i class="ti-check"></i>
-                                <span class="circle-color bg-deeppink" style="background-color: #FFC0CB;"></span>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="item-radio item-content">
-                                <input type="radio" name="color-radio" value="cadetblue"><i class="ti-check"></i>
-                                <span class="circle-color bg-cadetblue" style="background-color: #5f9ea0;"></span>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="item-radio item-content">
-                                <input type="radio" name="color-radio" value="darkorchid"><i class="ti-check"></i>
-                                <span class="circle-color bg-darkorchid" style="background-color: #9932cc;"></span>
-                            </label>
-                        </li>
-                    </ul>
-                    
-                    <div class="card bg-transparent-card border-0 d-block mt-3">
-                        <h4 class="d-inline font-xssss mont-font fw-700">Header Background</h4>
-                        <div class="d-inline float-right mt-1">
-                            <label class="toggle toggle-menu-color"><input type="checkbox"><span class="toggle-icon"></span></label>
-                        </div>
-                    </div>
-                    <div class="card bg-transparent-card border-0 d-block mt-3">
-                        <h4 class="d-inline font-xssss mont-font fw-700">Menu Position</h4>
-                        <div class="d-inline float-right mt-1">
-                            <label class="toggle toggle-menu"><input type="checkbox"><span class="toggle-icon"></span></label>
-                        </div>
-                    </div>
-                    <div class="card bg-transparent-card border-0 d-block mt-3">
-                        <h4 class="d-inline font-xssss mont-font fw-700">Dark Mode</h4>
-                        <div class="d-inline float-right mt-1">
-                            <label class="toggle toggle-dark"><input type="checkbox"><span class="toggle-icon"></span></label>
-                        </div>
-                    </div>
-                    
-                </div>
+                <div class="dropdown-menu-settings switchcolor-wrap"> </div>
             </div>
             
 
             <a href="default-settings.html" class="p-0 ms-3 menu-icon"><img src="https://via.placeholder.com/50x50.png" alt="user" class="w40 mt--1"></a>
-            
-         <div>
+          </div>
+          
+           </div> 
+       
         <!-- navigation top -->
         
-       
+     
         
-        	<div style="margin-top:200px;margin-right:2000px;background-Color:gray;">
+        
+     
+        
+        
+       
+       <div class="item" style="background-Color:gray; height:300px;" >
+		        <br><br><br><br><br><br>
+		        
+		        <h1><a href="<c:url value="/androidDB.do"/>" >AndroidDB</a></h1>
+		        
 		        <h1><a href="<c:url value="/address.do"/>" >map1</a></h1>
-		        <br><br><br>
+		        
 				<h1><a href="<c:url value="/address2.do"/>" >map2</a></h1>
+				
+				<form action="/login" method="post">
+					
+					
+					<ul>
+						<input type="button" onclick="javascript:fblogout();" value ="로그아웃" />
+						<div id="status"/>
+					</ul>
+					<br>
+						<div
+						  class="fb-like" data-share="true" data-width="450" data-show-faces="true">
+						</div>
+				</form>
 			</div>
+       
+       
+   
+        
+        
+        
+        	
 		
 		
 		
@@ -205,11 +118,122 @@ color:white;
    
    
    
-   
-   
-   
-   
-   
+   	<!-- facebook login api -->
+
+
+		   
+	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js"></script> 
+	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v10.0&appId=538226158336285" nonce="SiOBIhLG"></script>	   
+  
+  <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '538226158336285',
+      cookie     : true,  // enable cookies to allow the server to access  the session
+      xfbml      : true,  // parse social plugins on this page
+      version    : 'v3.0' // use graph api version 2.8
+    });
+      
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });  
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+ 
+    /*
+     콜백에 제공되는 response 개체에는 다음과 같은 여러 필드가 포함되어 있습니다.
+    {
+        status: 'connected',
+        authResponse: {
+            accessToken: '...',
+            expiresIn:'...',
+            signedRequest:'...',
+            userID:'...'
+        }
+    }코드 복사
+    status는 앱 사용자의 로그인 상태를 지정합니다. 상태는 다음 중 하나일 수 있습니다.
+    connected - 사용자가 Facebook에 로그인하고 앱에 로그인했습니다.
+    not_authorized - 사용자가 Facebook에는 로그인했지만 앱에는 로그인하지 않았습니다.
+    unknown - 사용자가 Facebook에 로그인하지 않았으므로 사용자가 앱에 로그인했거나 FB.logout()이 호출되었는지 알 수 없어, 
+Facebook에 연결할 수 없습니다.
+    connected 상태인 경우 authResponse가 포함되며 다음과 같이 구성되어 있습니다.
+    accessToken - 앱 사용자의 액세스 토큰이 포함되어 있습니다.
+    expiresIn - 토큰이 만료되어 갱신해야 하는 UNIX 시간을 표시합니다.
+    signedRequest - 앱 사용자에 대한 정보를 포함하는 서명된 매개변수입니다.
+    userID - 앱 사용자의 ID입니다.
+    앱에서 앱 사용자의 로그인 상태를 알게 되면 다음 중 하나를 수행할 수 있습니다.
+    사용자가 Facebook과 앱에 로그인한 경우 앱의 로그인된 환경으로 리디렉션됩니다.
+    사용자가 앱에 로그인하지 않았거나 Facebook에 로그인하지 않은 경우 FB.login()을 사용하여 로그인 대화 상자에 메시지를 
+표시하거나 로그인 버튼을 표시합니다.
+        */ 
+   function statusChangeCallback(response) {
+    
+      console.log('statusChangeCallback');
+
+      if (response.status === 'connected') {
+        console.log(response.authResponse.accessToken);
+        // Logged into your app and Facebook.
+        testAPI();
+      } else if (response.status === 'not_authorized') {
+        document.getElementById('status').innerHTML = 'Please log ' + 'into this app.';
+      } else {
+        document.getElementById('status').innerHTML = 'Please log ' + 'into Facebook.';
+      }
+
+  }
+
+function checkLoginState() {
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+}
+  
+//아래는 로그인정보 id,name,email 가져오가기  
+function testAPI() {
+  console.log('Welcome!  Fetching your information.... ');
+  FB.api(
+    '/me',
+    {"fields":"id,name,email"},
+    function(response) {
+       // Insert your code here
+      console.log('Successful login for: ' + response.name);
+
+      document.getElementById('status').innerHTML = JSON.stringify(response);
+    }
+  );
+}
+
+function fblogout(){
+
+  FB.logout(function(response) {
+    window.location.reload();
+  });
+}
+
+</script>
+
+<fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
 
     <script src="resources/js/plugin.js"></script>

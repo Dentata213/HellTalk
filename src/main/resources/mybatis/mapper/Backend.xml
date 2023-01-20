@@ -35,12 +35,12 @@
 	<select id="selectAllWritings" parameterType="Map" resultType="BBSDto">
 		SELECT
 		P_NO as no,
-		P_TITLE as title,
 		P_CONTENT as content,
 		P_POSTDATE as postDate,
 		P_RECOMMEND as likeCount,
-		P_VIEW as viewCount
-		FROM BBS ORDER BY P_NO DESC
+		P_VIEW as viewCount,
+		u.u_nickname
+		FROM BBS b JOIN USERS u ON b.u_no=u.u_no ORDER BY P_NO DESC
 	</select>
 	
 	

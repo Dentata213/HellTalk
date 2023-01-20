@@ -198,7 +198,7 @@
             <a href="default-video.html" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-video font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
             <a href="default-group.html" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-user font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
             <a href="<c:url value="/model/shop-1.do"/>" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-shopping-bag font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
-			<a href="<c:url value="/home.do"/>" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-map font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
+			<a href="<c:url value="/address.do"/>" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-map font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
 
             <a href="#" class="p-2 text-center ms-auto menu-icon" id="dropdownMenu3" data-bs-toggle="dropdown" aria-expanded="false"><span class="dot-count bg-warning"></span><i class="feather-bell font-xl text-current"></i></a>
             <div class="dropdown-menu dropdown-menu-end p-4 rounded-3 border-0 shadow-lg" aria-labelledby="dropdownMenu3">
@@ -341,16 +341,15 @@
 		    <section class="not-container">
 		        <div class="section first">
 		            <div class="cont_title">
-		                <h1>오우!?<br>챌린지!</h1>
+		           
+		                <h1><a href="<c:url value="/model/challengeMain"/>" class="text-white">오우!?<br>챌린지!</a></h1>
 		                <h3>여기야여기!</h3>
 		            </div>
 		            <div class="cont_desc">
 		                <p>눈아파도 잠시동안만... </p>
 		                <div id="temp">
-			                <a href="<c:url value="/model/shop-1.do"/>">백건효</a>
 							<a href="<c:url value="/model/routine.do"/>" >진소희</a>
 							<a href="<c:url value="/diet/main.do"/>" >조주희</a>
-							<a href="<c:url value="/model/ocr.do"/>" >함병완</a>
 							<a href="<c:url value="/home.do"/>" >김성우</a>
 							<a href="<c:url value="/cal/ifram.do"/>" >최도원</a>
 							<a href="<c:url value="/member/Login.do"/>" >최부건-로그인</a>
@@ -361,13 +360,9 @@
 					   		<a href="<c:url value="/community/bbs/list"/>" >함병완-게시판</a>
 					   		<a href="<c:url value="/community/bbs/mypage"/>" >함병완-마이페이지</a>
 					   		<a href="<c:url value="/backend/admin"/>" >김동진-어드민</a>
-					   		<a href="<c:url value="/chat1.do"/>" >최도원채팅임시</a>
+					   		<a href="<c:url value="/room.do"/>" >최도원채팅임시</a>
 
-
-					   		<a href="<c:url value="/backend/design"/>">임시 사용자 회원가입 디자인</a>
 					   		<a href="<c:url value="/teachable/gameResult.do"/>" >조주희-확인용(게임결과 페이지)</a>
-
-
 
 				   		</div>
 		            </div>

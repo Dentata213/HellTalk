@@ -17,7 +17,7 @@ public class PaymentDAO {
 	private SqlSessionTemplate template;
 
 	public List<PaymentDTO> selectCartList(Map map) {
-		map.put("U_NO", "KIM");
+		map.put("U_NO", 1);
 		map.put("PRO_NO", 1);
 		
 		List<PaymentDTO> list = template.selectList("selectCartList",map);

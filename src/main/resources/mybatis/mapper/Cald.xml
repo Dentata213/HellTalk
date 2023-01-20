@@ -4,7 +4,7 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.mapper.Cald">
 <select id="findAll" parameterType="Map" resultType="CaldDto">
-		SELECT cald_no,caldaily.u_no,cald_title,cald_content,cald_startdate,u_id,cald_color
+		SELECT cald_no,caldaily.u_no,cald_title,cald_content,cald_startdate,u_email,cald_color
 		FROM caldaily join users
 		ON caldaily.u_no=users.u_no
 </select>

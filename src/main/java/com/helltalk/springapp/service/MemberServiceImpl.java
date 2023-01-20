@@ -51,7 +51,9 @@ public class MemberServiceImpl implements MemberService<MemberDTO>{
 		return dao.nicknameCheck(map);
 	}
 	
-	
+	public MemberDTO selectOneByEmail(Map map) {
+		return dao.findUserByEmail(map);
+	}
 	
 	
 

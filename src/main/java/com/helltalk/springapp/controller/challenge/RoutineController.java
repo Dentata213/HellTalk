@@ -1,6 +1,7 @@
 package com.helltalk.springapp.controller.challenge;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -13,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.helltalk.springapp.service.ExerciseDTO;
 import com.helltalk.springapp.service.ExerciseServiceImpl;
@@ -25,7 +28,7 @@ public class RoutineController {
 	private ExerciseServiceImpl exerService;
 	
 	@PostMapping("/routine.do")
-	public String insertExerciseRoutine(@RequestParam Map map,Model model) {
+	public ModelAndView insertExerciseRoutine(@RequestParam Map map,Model model) {
 		System.out.println("루틴컨트롤러");
 		
 		
@@ -54,12 +57,13 @@ public class RoutineController {
 		//System.out.println(list);
 		//map.put("list", list);
 		
-		System.out.println("u_id"+map.get("u_id"));
+		//System.out.println("u_id"+map.get("u_id"));
 		
 		int newRoutNo = exerService.insertExerciseRoutine(map);
-		System.out.println("newRoutNo"+newRoutNo);
-		model.addAttribute("newRoutNo", newRoutNo);
+		//System.out.println("newRoutNo"+newRoutNo);
+		//model.addAttribute("newRoutNo", newRoutNo);
 		
+		//return "#";
 		/*
 		 * String day1= "";
 		 * 
@@ -80,7 +84,15 @@ public class RoutineController {
 		
 		//int newRoutNo = exerService.insertExerciseRoutine(map);
 		//
-		return "#";
+		
+		
+		ModelAndView mav = new ModelAndView();
+		RedirectView view = new RedirectView();
+		mav.addObject("newRoutNo", newRoutNo);
+		view.setUrl("/cal/List.do");
+		view.setContextRelative(true);///ViewResolver/Continues.do를 상대주소로 설정 
+		mav.setView(view);
+		return mav;
 		
 	}
 

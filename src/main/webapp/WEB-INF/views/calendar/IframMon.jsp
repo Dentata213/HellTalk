@@ -7,7 +7,7 @@
             <div class="middle-sidebar-bottom">
                 <div class="middle-sidebar-left">
                     <div class="row">
-							<iframe id="iframe" style="width:100%; height:1000px; overflow: hidden" frameborder="0" crolling="no" frameborder="none" allowfullscreen="" src="<c:url value="/cal/List.do"/>"></iframe>
+					<iframe id="iframe" style="width:100%; height:1000px; overflow: hidden" frameborder="0" crolling="no" frameborder="none" allowfullscreen="" src="<c:url value="/cal/List.do"/>"></iframe>
 					</div>
 				</div> 
             </div>            
