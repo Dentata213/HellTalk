@@ -40,7 +40,7 @@ public class PaymentServiceImpl implements PaymentService<PaymentDTO>{
 
 	@Override
 	public int updateCart(Map map) {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 
@@ -77,6 +77,14 @@ public class PaymentServiceImpl implements PaymentService<PaymentDTO>{
 	@Override
 	public boolean isEmpty(Map map) {
 		return false;
+	}
+
+	public Map updateQuantity(Map map) {
+		System.out.println("서비스");
+		dao.updateQuantity(map);
+		
+		return map;
+		
 	}
 
 }

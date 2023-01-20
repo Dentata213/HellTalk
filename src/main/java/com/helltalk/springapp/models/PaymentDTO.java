@@ -21,4 +21,6 @@ public class PaymentDTO {
 	String product_quantity;
 	Date checkoutDate;
 	String status;
+	
+	int cart_no;
 }
