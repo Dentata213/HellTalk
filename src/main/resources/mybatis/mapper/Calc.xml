@@ -25,7 +25,7 @@
 	  '#{day1}','#{day2}','#{day3}','#{day4}','#{day5}','#{day6}','#{day7}')
 	  INTO CALCHECK 
 	  VALUES(SEQ_CALCNO.NEXTVAL,
-	  (SELECT USERS.U_NO FROM CALCHECK RIGHT JOIN USERS on CALCHECK.u_no = users.u_no), 
+	  (SELECT DISTINCT USERS.U_NO FROM CALCHECK RIGHT JOIN USERS on CALCHECK.u_no = users.u_no), 
 	  '#{routno}','#{calccolor}','#{calchecked}')  
 	  SELECT * FROM DUAL
 </insert>
