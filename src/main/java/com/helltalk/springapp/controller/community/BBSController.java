@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,8 @@ import com.helltalk.springapp.models.PaymentDTO;
 import com.helltalk.springapp.service.BBSDto;
 import com.helltalk.springapp.service.BBSService;
 import com.helltalk.springapp.service.BBSServiceImpl;
+import com.helltalk.springapp.service.MemberDTO;
+import com.helltalk.springapp.service.MemberServiceImpl;
 
 @Controller
 @RequestMapping("/community/bbs")
@@ -27,6 +30,9 @@ public class BBSController {
 	
 	@Autowired
 	private BBSServiceImpl service;
+	
+	@Autowired
+	private MemberServiceImpl memberService;
 	
 	// 게시판 목록 조회
 	@RequestMapping("/list")
@@ -72,8 +78,12 @@ public class BBSController {
 	
 	//마이페이지
 	@RequestMapping("/mypage")
-	public String movetomypage(@RequestParam Map map,Model model) {
+	public String movetomypage(@RequestParam Map map,Model model, Authentication auth) {
+		UserDetails authenticated=(UserDetails)auth.getPrincipal();
+		map.put("u_email", authenticated.getUsername());
 		List<BBSDto> lists = service.selectBBS(map);
+		MemberDTO member = memberService.selectOneByEmail(map);
+		model.addAttribute("member", member);
 		model.addAttribute("lists", lists);
 		return "community/bbs/user-page.helltalk";
 	}

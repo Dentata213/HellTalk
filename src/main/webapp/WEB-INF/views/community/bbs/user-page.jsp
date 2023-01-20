@@ -15,7 +15,7 @@
                                 <div class="card-body h250 p-0 rounded-xxl overflow-hidden m-3"><img src="https://via.placeholder.com/960x250.png" alt="image"></div>
                                 <div class="card-body p-0 position-relative">
                                     <figure class="avatar position-absolute w100 z-index-1" style="top:-40px; left: 30px;"><img src="https://via.placeholder.com/50x50.png" alt="image" class="float-right p-1 bg-white rounded-circle w-100"></figure>
-                                    <h4 class="fw-700 font-sm mt-2 mb-lg-5 mb-4 pl-15">Mohannad Zitoun <span class="fw-500 font-xssss text-grey-500 mt-1 mb-3 d-block">support@gmail.com</span></h4>
+                                    <h4 class="fw-700 font-sm mt-2 mb-lg-5 mb-4 pl-15">${member.u_nickname}<span class="fw-500 font-xssss text-grey-500 mt-1 mb-3 d-block">${member.u_email}</span></h4>
                                     <div class="d-flex align-items-center justify-content-center position-absolute-md right-15 top-0 me-2">
                                         <a href="#" class="d-none d-lg-block bg-success p-3 z-index-1 rounded-3 text-white font-xsssss text-uppercase fw-700 ls-3">Add Friend</a>
                                         <a href="#" class="d-none d-lg-block bg-greylight btn-round-lg ms-2 rounded-3 text-grey-700"><i class="feather-mail font-md"></i></a>

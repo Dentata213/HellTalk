@@ -37,4 +37,8 @@
 		WHERE U_NO = #{u_no}
 	</update>
 	
+	<select id="findUserByEmail" parameterType="Map" resultType="MemberDTO">
+		SELECT * FROM USERS WHERE u_email=#{u_email}
+	</select>
+	
 </mapper>
