@@ -51,7 +51,7 @@ public class ExerciseDAO {
 			System.out.println(String.format("%s : %s",key,value));
 		}
 		
-		//int routNo=(int)map.get("rout_no");
+		//int routNo=(int) map.get("rout_no");
 		//System.out.println("newRoutNo"+newRoutNo);
 		//System.out.println("routNo"+routNo);
 		//session.close();
