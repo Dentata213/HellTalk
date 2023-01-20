@@ -16,6 +16,15 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<!-- <script type="text/javascript">
+
+$(document).ajaxSend(function(e, xhr, options) {
+	  xhr.setRequestHeader( "${_csrf.headerName}", "${_csrf.token}" );
+	  });
+
+</script> -->
+
 <style>
 
 
@@ -79,6 +88,7 @@ legend{
 			<fieldset>
 				<legend><h2>커스텀 운동 루틴</h2></legend>
 				<form method="post" action="<c:url value="/exercise/routine.do"/>"> 
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 					<div class="calendar">
 						<label>
 							시작날짜 </br>
@@ -130,6 +140,7 @@ legend{
 					      </div>
 					      <div class="modal-body">
 					      	<form name="boardInfo" class="body-contents">
+					      		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 					      		<legend class="body-contents">루틴 제목</br>
 						        <input type="text" class="body-contents" id="rout_name" name="rout_name"/></legend>
 						        <legend class="body-contents">루틴 내용</br>
@@ -193,6 +204,7 @@ legend{
 			<fieldset>
 				<legend>운동부위</legend>
 					<form action="<c:url value="#"/>" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 						<table class="table table-hover text-center">
 							<tr >
 					    		<c:forEach var="record" items="${listExerKind }" >
@@ -230,6 +242,11 @@ legend{
 
 <script>
 $(document).on('click','.listExerKind',function(){	 
+	$(document).ajaxSend(function(e, xhr, options) {
+		  xhr.setRequestHeader( "${_csrf.headerName}", "${_csrf.token}" );
+		  });
+
+
 /*$('tr').click(function(){ */
 		console.log($(this).text());
 		console.log($(this).attr('title'));
