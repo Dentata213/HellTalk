@@ -28,7 +28,7 @@ public class RoutineController {
 	private ExerciseServiceImpl exerService;
 	
 	@PostMapping("/routine.do")
-	public String insertExerciseRoutine(@RequestParam Map map,Model model) {
+	public ModelAndView insertExerciseRoutine(@RequestParam Map map,Model model) {
 		System.out.println("루틴컨트롤러");
 		
 		
@@ -60,10 +60,10 @@ public class RoutineController {
 		//System.out.println("u_id"+map.get("u_id"));
 		
 		int newRoutNo = exerService.insertExerciseRoutine(map);
-		System.out.println("newRoutNo"+newRoutNo);
-		model.addAttribute("newRoutNo", newRoutNo);
+		//System.out.println("newRoutNo"+newRoutNo);
+		//model.addAttribute("newRoutNo", newRoutNo);
 		
-		return "#";
+		//return "#";
 		/*
 		 * String day1= "";
 		 * 
@@ -85,14 +85,14 @@ public class RoutineController {
 		//int newRoutNo = exerService.insertExerciseRoutine(map);
 		//
 		
-		/*
+		
 		ModelAndView mav = new ModelAndView();
 		RedirectView view = new RedirectView();
-		mav.addObject("", map);
-		view.setUrl("/calc/Write.do");
+		mav.addObject("newRoutNo", newRoutNo);
+		view.setUrl("/cal/ifram.do");
 		view.setContextRelative(true);///ViewResolver/Continues.do를 상대주소로 설정 
 		mav.setView(view);
-		return mav;*/
+		return mav;
 		
 	}
 
