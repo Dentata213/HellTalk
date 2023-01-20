@@ -329,9 +329,15 @@
                     
                 </div>
             </div>
-            
-
-            <a href="<c:url value="/model/Login.do"/>" class="p-2 lh-20 w100 bg-primary-gradiant me-2 text-white text-center font-xssss fw-600 ls-1 rounded-xl">login</a>
+            <sec:authorize access="isAnonymous()">
+            	<a href="<c:url value="/member/Login.do"/>" class="p-2 lh-20 w100 bg-primary-gradiant me-2 text-white text-center font-xssss fw-600 ls-1 rounded-xl">login</a>
+            </sec:authorize>
+            <sec:authorize access="isAuthenticated()">
+            	<form action="<c:url value="/member/Logout.do"/>" method="post">
+            		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+            		<button class="p-2 lh-20 w100 bg-primary-gradiant me-2 text-white text-center font-xssss fw-600 ls-1 rounded-xl">logout</button>
+            	</form>
+            </sec:authorize>
             
         </div>
    		
@@ -387,22 +393,6 @@
 		        </div>
 		    </section>
 		</div>
-   
-   <sec:authorize access="isAuthenticated()">
-	        
-	        <!--객체의 권한-->
-	        <ul>
-		        <li>principal(현재 접속한 계정의 타입 및 정보):<sec:authentication property="principal"/></li>
-		        <li>principal(현재 접속한 사람의 id):<sec:authentication property="principal.username"/></li>
-		        <li>principal(현재 접속한 사람의 비밀번호):<sec:authentication property="principal.password"/></li>
-		        <li>principal.enabled(계정 활성화 상태 true:1 ,false:0) : <sec:authentication property="principal.enabled"/></li>
-		        <li>principal.authorities(현재 접속한 사람의 권한) : <sec:authentication property="principal.authorities"/></li>
-	        </ul>
-		    <form action="<c:url value="/member/Logout.do"/>" method="post">
-	   			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-	   			<button class="custom-btn btn-5" type="submit"><span>로그아웃</span></button>
-	   		</form>
-		</sec:authorize> 
    
    
 
