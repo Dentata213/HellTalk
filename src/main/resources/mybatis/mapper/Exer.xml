@@ -31,12 +31,11 @@
 		</selectKey>
 		  INSERT ALL	  
 		  INTO ROUTINE
-		  values(SEQ_routine.NEXTVAL,
-		  #{u_no},#{rout_name},#{rout_content},#{rout_level},#{rout_effect},#{rout_gender},#{rout_time},#{rout_mode},#{start},#{end},#{rout_display},#{day1},#{day2},#{day3},#{day4},#{day5},#{day6},#{day7})
+		  values(SEQ_routine.NEXTVAL,#{u_no},#{rout_name},#{rout_content},#{rout_level},#{rout_effect},#{rout_gender},#{rout_time},#{rout_mode},#{start},#{end},#{rout_display},#{day1},#{day2},#{day3},#{day4},#{day5},#{day6},#{day7})
 		  INTO CALCHECK 
 		  VALUES(SEQ_CALCNO.NEXTVAL,
-		  (SELECT USERS.U_NO FROM CALCHECK RIGHT JOIN USERS on CALCHECK.u_no = users.u_no), 
-		  SEQ_routine.NEXTVAL,' #F06595','N')  
+		  (SELECT DISTINCT USERS.U_NO FROM CALCHECK RIGHT JOIN USERS on CALCHECK.u_no = users.u_no), 
+		  SEQ_routine.NEXTVAL,'#F06595','N') 
 		  SELECT * FROM DUAL
 	</insert>
 	

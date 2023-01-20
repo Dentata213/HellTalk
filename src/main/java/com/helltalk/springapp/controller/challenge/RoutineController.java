@@ -89,7 +89,7 @@ public class RoutineController {
 		ModelAndView mav = new ModelAndView();
 		RedirectView view = new RedirectView();
 		mav.addObject("newRoutNo", newRoutNo);
-		view.setUrl("/cal/ifram.do");
+		view.setUrl("/cal/List.do");
 		view.setContextRelative(true);///ViewResolver/Continues.do를 상대주소로 설정 
 		mav.setView(view);
 		return mav;
