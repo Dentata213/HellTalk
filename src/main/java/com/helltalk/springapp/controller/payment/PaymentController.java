@@ -40,7 +40,23 @@ public class PaymentController {
 	@RequestMapping("/mycart")
 	public String mycart(@RequestParam Map map, Model model) {
 		List<PaymentDTO> lists = service.selectCartList(map);
+		int val=lists.size();
+		System.out.println(val);
+		int sum = 0;
+		for(int i=0;i<lists.size();i++) {
+			PaymentDTO str = lists.get(i);
+			System.out.println(i+"번째 인덱스 값:"+str.getProduct_quantity());
+			System.out.println(i+"번째 인덱스 값:"+str.getProduct_price());
+
+			int qty = Integer.parseInt(str.getProduct_quantity());
+			int price = Integer.parseInt(str.getProduct_price());
+			sum += qty*price;
+			System.out.println(sum);
+		}
+		System.out.println("for문 바깥 sum"+sum);
+		
 		model.addAttribute("lists", lists);
+		model.addAttribute("totalprice",sum);
 		
 		/*문자열을 4000자씩 쪼개기*/
 		String text="BASE64로 변환된 문자열";
@@ -63,9 +79,7 @@ public class PaymentController {
 		
 		return "payment/cart.helltalk";
 	}
-	
-
-	
+		
 	
 	@RequestMapping("/single-product")
 	public String singleProduct() {

@@ -31,6 +31,12 @@ public class PaymentDAO {
 	public int insertCart(Map map) {
 		return template.insert("insertCart", map);
 	}
+
+	public Map updateQuantity(Map map) {
+		System.out.println("DAO입력처리");
+		template.update("updateQuantity",map);
+		return map;
+	}
 	
 	
 	

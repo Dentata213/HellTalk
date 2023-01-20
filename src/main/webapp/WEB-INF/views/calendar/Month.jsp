@@ -238,7 +238,7 @@ document.addEventListener('DOMContentLoaded', function() {
       locale: 'ko',
       initialDate: '${today}',
       headerToolbar: {
-          left: 'addEventButton, dayGridMonth',
+          left: 'addEventButton dayGridMonth',
           center: 'title',
           right: 'prev,next,today'//dayGridMonth,timeGridWeek,timeGridDay,listWeek
         },
@@ -247,7 +247,6 @@ document.addEventListener('DOMContentLoaded', function() {
       editable: true,
       selectable: true,       
       eventClick: function() {
-    	
     	  //닫기 누르면 새로고침 해줘야 함...
     		$(document).on('click','#viewModalClose',function(){
     			location.reload();  			
