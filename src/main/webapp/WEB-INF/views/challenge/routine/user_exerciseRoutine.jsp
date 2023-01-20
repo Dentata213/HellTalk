@@ -75,6 +75,10 @@ legend{
 	font-size: 18px;
 	font-weight: normal;
 }
+.clicked {
+    color: red;
+    font-weight: bold;
+}
 
 </style>   
 </head>
@@ -163,11 +167,11 @@ legend{
 									
 								</select>
 								</legend>
-								<legend>운동 목표</br>
+								<legend>운동 모드</br>
 								    <input type="radio" class="body-contents" name="rout_effect" value="홈트레이닝"/>홈트레이닝
 								    <input type="radio" class="body-contents" name="rout_effect" value="피트니스센터" />피트니스센터
 								    <input type="radio" class="body-contents" name="rout_effect" value="공통" checked />공통</legend>
-								<legend>운동 모드</br>
+								<legend>운동 목표</br>
 								    <input type="radio" class="body-contents" name="rout_mode" value="다이어트"/>다이어트
 								    <input type="radio" class="body-contents" name="rout_mode" value="근육증가" />근육증가
 								    <input type="radio" class="body-contents" name="rout_mode" value="공통" checked />공통</legend>
@@ -241,11 +245,26 @@ legend{
 
 
 <script>
-$(document).on('click','.listExerKind',function(){	 
+$(document).on('click','.listExerKind',function(e){	 
+	/* 시큐리티 코드 추가 */
 	$(document).ajaxSend(function(e, xhr, options) {
 		  xhr.setRequestHeader( "${_csrf.headerName}", "${_csrf.token}" );
-		  });
+	});
+	
+	/* 클릭 이벤트  */
+	var listExerKind = document.getElementsByClassName("listExerKind");
+	//e.target.classList.add("clicked"); 
+	console.log(e.target.classList);
+	console.log(e.target);
+	
+	
+    for(var i = 0; i < listExerKind.length; i++) {
+        	listExerKind[i].classList.remove("clicked");
+        }
 
+        event.target.classList.add("clicked");
+      
+	 
 
 /*$('tr').click(function(){ */
 		console.log($(this).text());
