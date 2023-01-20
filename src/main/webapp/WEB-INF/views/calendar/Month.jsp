@@ -238,7 +238,7 @@ document.addEventListener('DOMContentLoaded', function() {
       locale: 'ko',
       initialDate: '${today}',
       headerToolbar: {
-          left: 'addEventButton, dayGridMonth',
+          left: 'addEventButton dayGridMonth',
           center: 'title',
           right: 'prev,next,today'//dayGridMonth,timeGridWeek,timeGridDay,listWeek
         },
