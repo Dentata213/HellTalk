@@ -341,7 +341,8 @@
 		    <section class="not-container">
 		        <div class="section first">
 		            <div class="cont_title">
-		                <h1>오우!?<br>챌린지!</h1>
+		           
+		                <h1><a href="<c:url value="/model/challengeMain"/>" class="text-white">오우!?<br>챌린지!</a></h1>
 		                <h3>여기야여기!</h3>
 		            </div>
 		            <div class="cont_desc">
