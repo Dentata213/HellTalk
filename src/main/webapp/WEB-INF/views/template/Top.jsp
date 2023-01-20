@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
@@ -180,10 +181,15 @@
                     
                 </div>
             </div>
-            
-			
-            <a href="<c:url value="/model/Login.do"/>" class="p-2 lh-20 w100 bg-primary-gradiant me-2 text-white text-center font-xssss fw-600 ls-1 rounded-xl">login</a>
-            
+            <sec:authorize access="isAnonymous()">
+            	<a href="<c:url value="/member/Login.do"/>" class="p-2 lh-20 w100 bg-primary-gradiant me-2 text-white text-center font-xssss fw-600 ls-1 rounded-xl">login</a>
+            </sec:authorize>
+            <sec:authorize access="isAuthenticated()">
+            	<form action="<c:url value="/member/Logout.do"/>" method="post">
+            		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+            		<button class="p-2 lh-20 w100 bg-primary-gradiant me-2 text-white text-center font-xssss fw-600 ls-1 rounded-xl">logout</button>
+            	</form>
+            </sec:authorize>
         </div>
         <!-- navigation top -->
         
