@@ -86,11 +86,11 @@ public class BackendController {
 	public @ResponseBody String updateUserStatus(@RequestParam Map map) {
 		switch(map.get("status").toString()) {
 			case "차단":
-				map.put("status", "N");
+				map.put("status", 0);
 				service.blockUser(map);
 				return "차단";
 			case "차단해제":
-				map.put("status", "Y");
+				map.put("status", 1);
 				service.blockUser(map);
 				return "차단해제";
 			case "추방":
@@ -98,6 +98,11 @@ public class BackendController {
 				return "추방";
 		}
 		return "";
+	}
+	
+	@RequestMapping("/removeOne")
+	public @ResponseBody Integer removeOne(@RequestParam Map map) {
+		return service.removeOne(map);
 	}
 	
 	

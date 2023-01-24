@@ -39,6 +39,11 @@ public class BackendDAO {
 	public int kickUser(Map map) {
 		return template.delete("kickUser", map);
 	}
+
+	public int removeOne(Map map) {
+		return template.delete("removeOne",map);
+	}
+
 	
 	
 
