@@ -59,7 +59,7 @@ public class CalcServiceImpl implements CalService<CalcDto> {
 	}
 
 	@Override
-	public String findNameByNo(Map map) {
+	public String findUserByNo(Map map) {
 		// TODO Auto-generated method stub
 		return null;
 	}

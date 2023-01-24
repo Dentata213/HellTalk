@@ -10,6 +10,8 @@ import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,11 +31,6 @@ import com.helltalk.springapp.models.CaldDto;
 public class CalController {
 	
 	
-	@RequestMapping("/ifram.do")
-	public String ifram() {
-		return "calendar/IframMon.helltalk";
-	}
-	
 	//Dto 주입
 	@Autowired
 	private CalService<CaldDto> caldService;
@@ -41,19 +38,27 @@ public class CalController {
 	@Autowired
 	private CalService<CalcDto> calcService;
 	
+	
+	@RequestMapping("/ifram.do")
+	public String ifram(Map map,Authentication auth,HttpServletRequest req) {	
+		return "calendar/IframMon.helltalk";
+	}
+
+	
 	//목록처리
 	@RequestMapping(value="/List.do",method ={RequestMethod.GET,RequestMethod.POST})
 	public String list(
 			@RequestParam Map map,
 			HttpServletRequest req,
-			Model model ) {
+			Model model,
+			Authentication auth) {
+	
 		List<CaldDto> caldList =caldService.selectList(map,req);
 		List<CalcDto> calcList =calcService.selectList(map,req);
 		
 		///풀캘린더 enddate 설정이 하루 전으로 나와서 날짜 하루 더하기...
 		String sdate = null;
 			for(CalcDto c: calcList) {
-			     System.out.println(c.getRout_enddate());
 			sdate= c.getRout_enddate().toString();		
 			long fTime = 0;
 			long poneday =0;
@@ -67,14 +72,20 @@ public class CalController {
 		   java.sql.Date ffdate = java.sql.Date.valueOf(day);
 		    c.setRout_enddate(ffdate);
 	 }
-	
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		
+						
+		map.put("uemail",((UserDetails)auth.getPrincipal()).getUsername().toString());
+		caldList = caldService.selectList(map,req);
+		calcList = calcService.selectList(map,req);	
+			
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");	
 		//데이터 저장
 		model.addAttribute("today",dateFormat.format(new Date()));	
 		model.addAttribute("caldList",caldList);
 		model.addAttribute("calcList",calcList);
-		System.out.println("여기지나니?");
+		model.addAttribute("uemail",((UserDetails)auth.getPrincipal()).getUsername().toString());
+		System.out.println(model);		
+		System.out.println("id"+((UserDetails)auth.getPrincipal()).getUsername().toString());
+		
 		//뷰정보반환
 		return "calendar/Month";
 	}
@@ -85,6 +96,7 @@ public class CalController {
 	public Map write(@RequestBody Map map) {
 	 int newcald = caldService.insert(map); //입력한 행의 키 값
 	 map.put("caldno", newcald);
+	 System.out.println("아이디!!"+map);
 	 return map;
 	}
 	

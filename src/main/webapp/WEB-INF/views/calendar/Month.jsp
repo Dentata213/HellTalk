@@ -6,7 +6,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<c:set var="sessionId"><sec:authentication property="principal.username"/></c:set>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <style>
 
   body {
@@ -110,6 +110,7 @@
   <div class="modal fade" id="addcalendarModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
       aria-hidden="true">
       <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+     
       <div class="modal-dialog" role="document">
           <div class="modal-content">
               <div class="modal-header">
@@ -119,8 +120,10 @@
                   </button>
               </div>
               <div class="modal-body">
-                  <div class="form-group">
+                  <div class="form-group">    
                       <label for="taskId" class="col-form-label">title</label>
+                      <c:set var="sessionId"><sec:authentication property="principal.username"/></c:set>
+                      <input type="hidden" name="uemail" id="uemail" value="${sessionId}"/>
                       <input type="text" class="form-control" id="caldtitle" name="caldtitle">
                       <label for="taskId" class="col-form-label">내용</label>
                       <textarea class="form-control"  rows="10"  id="caldcontent" name="caldcontent"></textarea>
@@ -224,11 +227,10 @@
 <script src='${path}/resources/fullcalendar-5.11.3/lib/main.js'></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-	
-	  
-	  $(document).ajaxSend(function(e, xhr, options) {
-		  xhr.setRequestHeader( "${_csrf.headerName}", "${_csrf.token}" );
-		  }); 
+
+  $(document).ajaxSend(function(e, xhr, options) {
+	  xhr.setRequestHeader( "${_csrf.headerName}", "${_csrf.token}" );
+  }); 
 	  
     var calendarEl = document.getElementById('calendar');
 
@@ -247,6 +249,7 @@ document.addEventListener('DOMContentLoaded', function() {
       editable: true,
       selectable: true,       
       eventClick: function() {
+   	  
     	  //닫기 누르면 새로고침 해줘야 함...
     		$(document).on('click','#viewModalClose',function(){
     			location.reload();  			
@@ -285,24 +288,26 @@ document.addEventListener('DOMContentLoaded', function() {
     	  
         },   
       events: [
-    
-    //calcked list 뿌리기 	  
+  	
+  	
+    //calcked list 뿌리기 	 
+
     <c:forEach var="calc" items="${calcList}" varStatus="loop">
      	  { //오라클에서 불러온 데이터 연동==> 여기 클릭하면 모달창 띄워서 정보 보여주기! 
      		  // 노노 이거 하루하루 목표 완료체크용으로 변경할거..
-               title:'${calc.rout_name}',
+     
+     		  title:'${calc.rout_name}' ,
                start:'${calc.rout_startdate}',  //'${today}'
                end:'${calc.rout_enddate}',  //'${today}'
                color:'#ff9f89' , 
            	   display:'background'  
-     	  	   
+      
 	  	   },
 	</c:forEach> 
-
+  	   
 	//caldaily list 뿌리기
 	<c:forEach var="cald" items="${caldList}" varStatus="loop"> 			
 	  	{  		
-       
           title:'${cald.cald_no}_${cald.cald_title}',
           start:'${cald.cald_startdate}',
    //     end:'${cald.cald_enddate}T12:00',
@@ -310,8 +315,9 @@ document.addEventListener('DOMContentLoaded', function() {
           color:'${cald.cald_color}' //'#257e4a'
         },
         </c:forEach>   
-        {
-       
+      
+        
+        {     
         title:'테스트',
         start:'2023-01-16',
       //  end:'2023-01-17',
@@ -323,15 +329,19 @@ document.addEventListener('DOMContentLoaded', function() {
       customButtons: {
           addEventButton: { // 추가한 버튼 설정
               text : "기록하기",  // 버튼 내용
-              click : function(){ // 버튼 클릭 시 이벤트 추가
+              click : function(){ // 버튼 클릭 시 이벤트 추가       	
+            	  
                   $("#addcalendarModal").modal("show"); // modal 나타내기
 
+                  
                   $("#addCalendar").on("click",function(){  // modal의 추가 버튼 클릭 시
                       var caldtitle = $("#caldtitle").val();
                 	  var caldcontent = $("#caldcontent").val();
                       var caldstartdate = $("#caldstartdate").val();
-                      var caldcolor = $("#caldcolor").val();                 
+                      var caldcolor = $("#caldcolor").val();
+					  var uemail = "${uemail}"; // $("#uemail").val();
                       
+					  console.log("이거!!!",uemail)
                       //내용 입력 여부 확인
                       if(caldtitle == null || caldtitle == ""){
                           alert("제목을 입력하세요.");
@@ -351,7 +361,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     		  "caldtitle" : caldtitle,
                               "caldcontent" : caldcontent,
                               "caldstartdate" : caldstartdate,
-                              "caldcolor" : caldcolor                            
+                              "caldcolor" : caldcolor,   
+                              "uemail" : uemail                       		  
                           }//전송할 객체 생성                                            
                         var test=JSON.stringify(obj);        
                      	 }
@@ -359,7 +370,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       $.ajax({
 	              			url:"<c:url value="/cal/Write.do"/>",
 	              			method: "POST",
-	              			data:test,
+	              			data: JSON.stringify(obj),
 	            			type:'json',
 	            			contentType:"application/json; charset=utf-8",
               			})
@@ -373,7 +384,8 @@ document.addEventListener('DOMContentLoaded', function() {
               				console.log(jqXHR)
               		        console.log(textStatus)
               		        console.log(errorThrown);
-            			});                      
+            			});  
+
                   });////modal안
               }///
           }////추가버튼 밖
@@ -381,7 +393,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     calendar.render();
   });
-  
+ 
   //글 수정 
   $(function(){
 	  $('#calEdit').click(function(){		

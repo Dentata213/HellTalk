@@ -6,8 +6,11 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
 
+import com.helltalk.springapp.models.CalService;
 import com.helltalk.springapp.models.CaldDto;
 
 
@@ -22,8 +25,13 @@ public class CaldDao {
 	@Autowired
 	private SqlSessionTemplate template;
 	
+
+	
 	public List findAll(Map map) {
-		return template.selectList("findAll",map);		
+		System.out.println("dao"+template.selectList("findAll",map));
+		System.out.println("dao??이리와라제바류"+map);
+		return template.selectList("findAll",map);	
+	
 	}
 
 	public int insert(Map map) {
