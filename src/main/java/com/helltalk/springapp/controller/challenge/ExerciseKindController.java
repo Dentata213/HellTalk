@@ -5,6 +5,8 @@ import java.util.Map;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,12 +36,16 @@ public class ExerciseKindController {
 	private MemberServiceImpl memberService;
 	
 	@RequestMapping("/Kind.do")
-	public String exerciseKind(@RequestParam Map map,Model model) {
+	public String exerciseKind(@RequestParam Map map,Model model,Authentication auth) {
 		//System.out.println("컨트롤러");
 		map.put("u_no", 1);
-		MemberDTO member = memberService.selectOne(map);
+		map.put("u_email",((UserDetails)auth.getPrincipal()).getUsername().toString());
+		System.out.println("u_email"+map.get("u_email"));
+		MemberDTO member = memberService.selectOneByEmail(map);
+		//MemberDTO member = memberService.selectOne(map);
 		model.addAttribute("member", member);
 		List<ExerciseDTO> listExerKind= exerService.selectExerciseKindList(map);
+		
 		model.addAttribute("listExerKind", listExerKind);
 		//model.addAttribute("u_id","KIM");
 		return "challenge/routine/user_exerciseRoutine";

@@ -12,6 +12,10 @@
 			SELECT * FROM USERS WHERE U_NO=${u_no}
 	</select>
 	
+	<select id="findUserByEail" parameterType="Map" resultType="MemberDTO">
+			SELECT * FROM USERS WHERE U_EMAIL = #{u_email}
+	</select>
+	
 	<select id="emailCheck" parameterType="Map" resultType="int">
 		SELECT COUNT(*) FROM USERS WHERE U_EMAIL = #{u_email}
 	</select>

@@ -25,6 +25,12 @@ public class MemberServiceImpl implements MemberService<MemberDTO>{
 	public MemberDTO selectOne(Map map) {
 		return dao.findUserByNo(map);
 	}
+	
+	@Override
+	public MemberDTO selectOneByEmail(Map map) {
+		return dao.findUserByEail(map);
+	}
+	
 
 	@Override
 	public int insertUser(Map map) {
@@ -51,9 +57,7 @@ public class MemberServiceImpl implements MemberService<MemberDTO>{
 		return dao.nicknameCheck(map);
 	}
 	
-	public MemberDTO selectOneByEmail(Map map) {
-		return dao.findUserByEmail(map);
-	}
+	
 	
 	
 

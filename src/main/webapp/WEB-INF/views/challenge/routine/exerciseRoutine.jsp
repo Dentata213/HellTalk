@@ -79,7 +79,7 @@
     	<a class="btn btn-success" href="<c:url value='/exercise/iframe.do'/>">사용자 커스텀 루틴</a>
     	<%
     		Document doc = Jsoup.connect("https://www.muscleandstrength.com/exercises/").get();
-    		System.out.println(doc.html());
+    		//System.out.println(doc.html());
     		//운동 부위 스크래핑
     		//CSS Selector
     		

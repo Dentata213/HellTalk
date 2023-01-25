@@ -198,8 +198,9 @@ legend{
 									<input type="radio" class="body-contents" name="rout_display" value="N" >N </legend>
 	
 	
-								<input type="hidden" name="u_id" value="${member['u_id']}">
-								<input type="hidden" name="u_no" value="${member['u_no']}">
+								<%-- <input type="hidden" name="u_id" value="${member['u_id']}">
+								<input type="hidden" name="u_no" value="${member['u_no']}"> --%>
+								<input type="hidden" name="u_email" value="${member['u_email']}">
 								<%-- <input type="text" name="u_id" value="${member['u_gender']}"> --%>
 								
 							</form>

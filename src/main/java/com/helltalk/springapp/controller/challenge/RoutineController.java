@@ -46,6 +46,7 @@ public class RoutineController {
 					day+=map.get("selecBox"+i+"_"+k)+","; 
 				} 
 			}
+			/*마지막 , 업애기*/
 			if(day.length()>=1) { 
 				day=day.substring(0, day.length()-1); 
 			}
