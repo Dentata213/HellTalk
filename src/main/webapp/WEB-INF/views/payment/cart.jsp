@@ -70,7 +70,7 @@
                                                     </td>
 												 <td class="product-remove text-right">
                                                         <a href="#"><i class="ti-trash font-xs text-grey-500"></i></a>
-                                                        <input value="" hidden="hidden" id="cartnum" class="hidden"/>
+                                                        <input value="1" hidden="hidden" id="cartnum" class="hidden"/>
                                                     </td>
 											</tr>
                                              
@@ -182,7 +182,7 @@
 		   			dataType:'json'
 				})		
 				.done(function(data){         													
-					var hidden = $('#totalhidden').val();
+					
 					newPrice(data);
 					console.log(data);
 					console.log('성공');
@@ -196,7 +196,36 @@
 			}
 		);////////click
 		
+		$('td.product-remove').click(function(e){
+			     
+            console.log('클릭발생'+$(this).prev().prev().children().children().siblings('input.hidden').val());
+            var product_no = $(this).prev().prev().children().children().siblings('input.hidden').val(); //상품번호
+            var id_no = $(this).children().siblings('input').val(); //ID값 더미데이터
+            console.log(id_no); 
+            
+            var data = {"PRO_NO":product_no,"U_NO":id_no};
+			
+            $.ajax({
+				type: "GET",
+	   			url:"<c:url value="/Shop/itemDelete"/>",
+	   			async:false,
+	   			data: data,
+	   			dataType:'json'
+			})		
+			.done(function(data){         													
+				
+			
+				console.log(data);
+				console.log('성공');
+				
+				$('#totalprice').text(data.sum)//총 결제금액
+				
+			}).fail(function(error){
 		
+				console.log('에러발생'+error);
+			});		
+            
+        });
 		
 		
 		
