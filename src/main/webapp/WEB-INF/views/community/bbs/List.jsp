@@ -264,6 +264,7 @@
 						+ "									</div>\r\n"
 						+ "								</div>";
 					$("#bw").after(sss);
+					$("textarea[name=message]").val("");
 				}
 			})			
 			.fail(function(req,status,error){
