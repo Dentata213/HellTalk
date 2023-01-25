@@ -17,6 +17,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.helltalk.springapp.dao.PaymentDAO;
 import com.helltalk.springapp.models.PaymentDTO;
 import com.helltalk.springapp.service.PaymentServiceImpl;
 
@@ -39,8 +40,11 @@ public class ShopController {
 	public String quantityUpdate(@RequestParam Map map,Model model) throws JsonProcessingException {		
 		
 		System.out.println("컨트롤러실행");	
-		System.out.println(map);	
+		System.out.println(map);
+	
 		service.updateQuantity(map);
+		
+		PaymentDAO dao = new PaymentDAO();
 		
 		List<PaymentDTO> lists = service.selectCartList(map);
 		
@@ -63,13 +67,8 @@ public class ShopController {
 	public String itemDelete(@RequestParam Map map) throws JsonProcessingException {
 		System.out.println("컨트롤러");
 		service.deleteCart(map);
-		
-		int sum = service.calcCart(map);
-		
-		ObjectMapper mapper = new ObjectMapper();
-		mapper.writeValueAsString(sum);
-		
-		return "/mycart/payment/cart.helltalk";
+		System.out.println("뷰페이지반환");
+		return "redirect:/mycart/payment/cart.helltalk";
 	}
 	
 	
