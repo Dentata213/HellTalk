@@ -5,7 +5,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-
+<link rel="stylesheet" href="${path}/resources/css/lightbox.css">
 	<!-- main content -->
 	<div class="main-content right-chat-active">
 	
@@ -234,6 +234,11 @@
 						+ "										<p class=\"fw-500 text-grey-500 lh-26 font-xssss w-100\">"+content+"</p>\r\n"
 						+ "									</div>\r\n"
 						+ "									\r\n"
+						+ "                                <div class=\"card-body d-block p-0 mb-3\">\r\n"
+						+ "                                    <div class=\"row ps-2 pe-2\">\r\n"
+						+ "                                        <div class=\"col-sm-12 p-1\"><a href=\"https://via.placeholder.com/615x350.png\" data-lightbox=\"roadtr\"><img src=\"https://via.placeholder.com/615x350.png\" class=\"rounded-3 w-100\" alt=\"image\"></a></div>                                        \r\n"
+						+ "                                    </div>\r\n"
+						+ "                                </div>"
 						+ "									<div class=\"card-body d-flex p-0 mt-3\">\r\n"
 						+ "										<a href=\"javascript:like(2)\"\r\n"
 						+ "											class=\"emoji-bttn d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss me-2\">\r\n"
@@ -318,8 +323,6 @@
 	</script>
 
 
-
-
-	<script src="${path}/resources/js/lightbox.js"></script>
 	<script src="${path}/resources/js/plugin.js"></script>
+	<script src="${path}/resources/js/lightbox.js"></script>
 	<script src="${path}/resources/js/scripts.js"></script>

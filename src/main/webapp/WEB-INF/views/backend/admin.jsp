@@ -64,7 +64,7 @@
                             <li><a href="javascript:adminMember();" class="nav-content-bttn open-font" ><i class="feather-users" style="color:black"></i>&nbsp;&nbsp;<span>사용자 관리</span></a></li>
                             <li><a href="javascript:adminBBS();" class="nav-content-bttn open-font" ><i class="feather-list" style="color:black"></i>&nbsp;&nbsp;<span>게시물 관리</span></a></li>
                             <li><a href="javascript:adminPayment();" class="nav-content-bttn open-font" ><i class="feather-credit-card" style="color:black"></i>&nbsp;&nbsp;<span>결재 관리</span></a></li>
-                            <li><a href="#" class="nav-content-bttn open-font"><i class="feather-help-circle" style="color:black"></i>&nbsp;&nbsp;<span>Q&A</span></a></li>    
+                            <li><a href="<c:url value="/backend/test"/>" class="nav-content-bttn open-font"><i class="feather-help-circle" style="color:black"></i>&nbsp;&nbsp;<span>Q&A</span></a></li>    
                         </ul>
                     </div>
                 </div>

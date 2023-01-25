@@ -118,4 +118,9 @@ public class BackendController {
 		return "/backend/member/register";
 	}
 	
+	@RequestMapping("/test")
+	public String test() {
+		return "/backend/default.helltalk";
+	}
+	
 }
