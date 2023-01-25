@@ -198,26 +198,71 @@
 	<script>
 		function writeBoard(){
 			var content=$("textarea[name=message]").val();
+			
+			//임시-임의의 값으로 설정 
+			var user="KIM";
+			var likeCount=0;
+			var comentCount=0;
+			
 			//console.log(content);
+			
+			//ajax로 유저 정보도 넘겨서 판단, 위에서 임시로 설정한 해당글에 대한 정보도 뿌려줘야 됨
 			$.ajax({
 				url:'<c:url value="/community/bbs/write"/>',
 				data:"content="+content,
 				success:function(data){
 					console.log(data);
-					var sss=""+
-					'<div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3">'+
-						'<div class="card-body p-0 d-flex">'+
-						'<figure class="avatar me-3"><img src="https://via.placeholder.com/50x50.png" alt="image" class="shadow-sm rounded-circle w45"></figure>'+
-						'<h4 class="fw-700 text-grey-900 font-xssss mt-1"></h4>'+
-							'<a href="#" class="ms-auto" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a>'+
-		            '<div class="dropdown-menu dropdown-menu-end p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu2">'+
-		                
-		                '<div class="card-body p-0 d-flex mt-2">'+
-		                    '<a href="#" ><i class="feather-edit text-grey-500 me-3 font-lg"></i></a>'+
-		                   '<h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4">게시글 수정 <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Save to your saved items</span></h4> </div>'+
-		                '<div class="card-body p-0 d-flex mt-2"> <a href="#" ><i class="feather-trash-2 text-grey-500 me-3 font-lg"></i></a>'+
-		                    '<h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4">게시글 삭제 <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Save to your saved items</span></h4></div></div>'+
-		                    '<div class="card-body p-0 me-lg-5"><p class="fw-500 text-grey-500 lh-26 font-xssss w-100">'+content+'</p></div></div></div>"';
+					var sss="<div class=\"card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3\">\r\n"
+						+ "									<div class=\"card-body p-0 d-flex\">\r\n"
+						+ "											<figure class=\"avatar me-3\"><img src=\"https://via.placeholder.com/50x50.png\" alt=\"image\" class=\"shadow-sm rounded-circle w45\"></figure>\r\n"
+						+ "											<h4 class=\"fw-700 text-grey-900 font-xssss mt-1\">"+user+"</h4>\r\n"
+						+ "												<a href=\"#\" class=\"ms-auto\" id=\"dropdownMenu2\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\"><i class=\"ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss\"></i></a>\r\n"
+						+ "	                                    <div class=\"dropdown-menu dropdown-menu-end p-4 rounded-xxl border-0 shadow-lg\" aria-labelledby=\"dropdownMenu2\">\r\n"
+						+ "	                                        \r\n"
+						+ "	                                        <div class=\"card-body p-0 d-flex mt-2\">\r\n"
+						+ "	                                            <a href=\"#\" ><i class=\"feather-edit text-grey-500 me-3 font-lg\"></i></a>\r\n"
+						+ "	                                            <h4 class=\"fw-600 text-grey-900 font-xssss mt-0 me-4\">게시글 수정 <span class=\"d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500\">Save to your saved items</span></h4>\r\n"
+						+ "	                                        </div>\r\n"
+						+ "	                                        <div class=\"card-body p-0 d-flex mt-2\">\r\n"
+						+ "	                                            <a href=\"#\" ><i class=\"feather-trash-2 text-grey-500 me-3 font-lg\"></i></a>\r\n"
+						+ "	                                            <h4 class=\"fw-600 text-grey-900 font-xssss mt-0 me-4\">게시글 삭제 <span class=\"d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500\">Save to your saved items</span></h4>\r\n"
+						+ "	                                        </div>\r\n"
+						+ "	                                        \r\n"
+						+ "	                                       </div>\r\n"
+						+ "									</div>\r\n"
+						+ "									<div class=\"card-body p-0 me-lg-5\">\r\n"
+						+ "										<p class=\"fw-500 text-grey-500 lh-26 font-xssss w-100\">"+content+"</p>\r\n"
+						+ "									</div>\r\n"
+						+ "									\r\n"
+						+ "									<div class=\"card-body d-flex p-0 mt-3\">\r\n"
+						+ "										<a href=\"javascript:like(2)\"\r\n"
+						+ "											class=\"emoji-bttn d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss me-2\">\r\n"
+						+ "											<i class=\"feather-thumbs-up text-white bg-primary-gradiant me-1 btn-round-xs font-xss\"></i>\r\n"
+						+ "											<i class=\"feather-heart text-white bg-red-gradiant me-2 btn-round-xs font-xss\"></i>"+likeCount+"</a>\r\n"
+						+ "										<div class=\"emoji-wrap\">\r\n"
+						+ "											<ul class=\"emojis list-inline mb-0\">\r\n"
+						+ "												<li class=\"emoji list-inline-item\"><i class=\"em em---1\"></i>\r\n"
+						+ "												</li>\r\n"
+						+ "												<li class=\"emoji list-inline-item\"><i\r\n"
+						+ "													class=\"em em-angry\"></i></li>\r\n"
+						+ "												<li class=\"emoji list-inline-item\"><i\r\n"
+						+ "													class=\"em em-anguished\"></i></li>\r\n"
+						+ "												<li class=\"emoji list-inline-item\"><i\r\n"
+						+ "													class=\"em em-astonished\"></i></li>\r\n"
+						+ "												<li class=\"emoji list-inline-item\"><i\r\n"
+						+ "													class=\"em em-blush\"></i></li>\r\n"
+						+ "												<li class=\"emoji list-inline-item\"><i class=\"em em-clap\"></i></li>\r\n"
+						+ "												<li class=\"emoji list-inline-item\"><i class=\"em em-cry\"></i></li>\r\n"
+						+ "												<li class=\"emoji list-inline-item\"><i\r\n"
+						+ "													class=\"em em-full_moon_with_face\"></i></li>\r\n"
+						+ "											</ul>\r\n"
+						+ "										</div>\r\n"
+						+ "										<a href=\"#\"\r\n"
+						+ "											class=\"d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss\"><i\r\n"
+						+ "											class=\"feather-message-circle text-dark text-grey-900 btn-round-sm font-lg\"></i><span\r\n"
+						+ "											class=\"d-none-xss\">"+comentCount+"</span></a>\r\n"
+						+ "									</div>\r\n"
+						+ "								</div>";
 					$("#bw").after(sss);
 				}
 			})			
