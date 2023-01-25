@@ -13,6 +13,8 @@ import com.helltalk.springapp.models.PaymentDTO;
 @Repository
 public class PaymentDAO {
 
+	public PaymentDAO() {}
+
 	@Autowired
 	private SqlSessionTemplate template;
 

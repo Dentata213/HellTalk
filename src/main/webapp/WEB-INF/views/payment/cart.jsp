@@ -35,7 +35,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            <c:forEach var="list" items="${lists}" varStatus="loop">
+                                            <c:forEach var="list" items="${lists}" varStatus="loop" >
                                            
                                                 <tr>
                                                     <td class="product-thumbnail text-left ps-0">
@@ -208,20 +208,13 @@
             $.ajax({
 				type: "GET",
 	   			url:"<c:url value="/Shop/itemDelete"/>",
-	   			async:false,
+	   			async:true,
 	   			data: data,
 	   			dataType:'json'
 			})		
-			.done(function(data){         													
-				
-			
-				console.log(data);
-				console.log('성공');
-				
-				$('#totalprice').text(data.sum)//총 결제금액
-				
-			}).fail(function(error){
-		
+			.done(function(){         																
+				console.log('성공');				
+			}).fail(function(error){		
 				console.log('에러발생'+error);
 			});		
             
