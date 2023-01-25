@@ -38,7 +38,8 @@ h2{
 	 margin: 20px;
 }
 .ol-container{
-	margin-top: 30px;
+	 margin-top: 10px; 
+	padding-left: 5px;
 
 } 
  li {
@@ -56,8 +57,8 @@ h2{
 .calendar{
 	display: flex;
 	float: left; 
-	margin-right: 50px;
-	margin-left: 15px;
+	margin-right: 30px;
+	
 }
 .btn{
 	float: right; 
@@ -79,6 +80,17 @@ legend{
     color: red;
     font-weight: bold;
 }
+.exerform{
+	float: left;
+}
+.selecBox{
+	width: 100px;
+}
+
+.exercise-routine{
+	margin-right: 30px;
+}
+
 
 </style>   
 </head>
@@ -88,8 +100,8 @@ legend{
  
 
 <div class="container">
-		<div>
-			<fieldset>
+		<div class="exerform">
+			<fieldset class="exercise-routine">
 				<legend><h2>커스텀 운동 루틴</h2></legend>
 				<form method="post" action="<c:url value="/exercise/routine.do"/>"> 
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
@@ -109,7 +121,7 @@ legend{
 				
 					<c:forEach var="i" begin="1" end="7" varStatus="loop">
 						<div class="flex-container">
-							<h2>DAY ${loop.index }</h2>
+							<h4>DAY ${loop.index }</h4>
 							<ol class="ol-container">
 								<c:forEach var="k" begin="1" end="3" varStatus="loop2">
 								<li>
@@ -204,9 +216,9 @@ legend{
 			</fieldset>
 			</div>
 			
-			<div>
-			<fieldset>
-				<legend>운동부위</legend>
+			<div class="exerkindform">
+			<fieldset class="exerkind">
+				<legend><h2>운동부위</h2></legend>
 					<form action="<c:url value="#"/>" method="post">
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 						<table class="table table-hover text-center">
