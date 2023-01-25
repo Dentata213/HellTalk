@@ -19,4 +19,8 @@
 		UPDATE CART SET CART_QUANTITY=#{CART_QUANTITY} WHERE PRO_NO=#{PRO_NO}
 	</update>
 	
+	<delete id="deleteCart" parameterType="Map">
+		DELETE FROM CART WHERE U_NO=#{U_NO} AND PRO_NO=#{PRO_NO}
+	</delete>
+	
 </mapper>
