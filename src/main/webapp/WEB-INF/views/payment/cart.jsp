@@ -208,17 +208,13 @@
             $.ajax({
 				type: "GET",
 	   			url:"<c:url value="/Shop/itemDelete"/>",
-	   			async:false,
+	   			async:true,
 	   			data: data,
 	   			dataType:'json'
 			})		
-			.done(function(data){         																
-			
-				console.log(data);
-				console.log('성공');
-				
-			}).fail(function(error){
-		
+			.done(function(){         																
+				console.log('성공');				
+			}).fail(function(error){		
 				console.log('에러발생'+error);
 			});		
             
