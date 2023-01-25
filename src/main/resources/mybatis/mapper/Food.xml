@@ -5,14 +5,17 @@
     
 <mapper namespace="mybatis.mapper.Food">
 	<select id="foodSelectOneCount" parameterType="FoodDto" resultType="int">
-		SELECT COUNT(*) FROM food WHERE food_cd=#{food_cd}
+		SELECT COUNT(*) FROM food WHERE food_name= #{food_name}
 	</select>
+	
 	<insert id="foodInsert" parameterType="FoodDto">
 		INSERT INTO food VALUES(#{food_cd},#{food_name},#{food_maker},#{food_size},#{food_kcal},#{food_tan},#{food_dan},#{food_fat},#{food_col},#{food_na})
 	</insert>
+	
 	<select id="foodSelectOne" parameterType="FoodDto" resultType="FoodDto">
 		SELECT * FROM food WHERE food_cd=#{food_cd} 
 	</select>
+	
 	<select id="foodSelectOneByCd" parameterType="Map" resultType="FoodDto">
 		SELECT * FROM food WHERE food_cd=#{food_cd} 
 	</select>

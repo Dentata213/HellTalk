@@ -19,16 +19,14 @@ public class DietDAO {
 		@Autowired
 		private SqlSessionTemplate template;
 		
-		public int insertEatByNo(Map map) {
-			// TODO Auto-generated method stub
-			return 0;
-		}
-		
+		/* DIET */
 		public List selectList(Map map) {
 			return template.selectList("dietSelectList",map);
 		}
 		
 		public int insert(Map map) {
+			int diet_no= Integer.valueOf((String) map.get("diet_no"));
+			System.out.println("시퀀스 몇이냐고 :"+diet_no);
 			return template.insert("dietInsert",map);
 		}
 		
@@ -39,9 +37,22 @@ public class DietDAO {
 		public int delete(Map map) {		
 			return template.delete("dietDelete",map);
 		}
-
+		
+		public int selectOneNo(Map map) {
+			return template.selectOne("selectOneNo",map);
+		}
 		
 
+		/* EAT */
+		public int insertEat(Map map) {
+			return template.insert("eatInsert",map);
+		}
+
+		public int insertEatList(Map map) {
+			return template.insert("eatListInsert",map);
+		}
+
+		
 		
 		
 }

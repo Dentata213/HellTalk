@@ -20,9 +20,9 @@
 	<div class="container">
 		<form action='<c:url value="/diet/goFoodSearch.do"/>' method="post">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-			<input type="submit" class="btn btn-primary" value="아침 음식 등록" name="breakfast" />
-			<input type="submit" class="btn btn-primary" value="점심 음식 등록" name="lunch" />
-			<input type="submit" class="btn btn-primary" value="저녁 음식 등록" name="dinner" />
+			<input type="submit" class="btn btn-primary" value="breakfast" name="breakfast" />
+			<input type="submit" class="btn btn-primary" value="lunch" name="lunch" />
+			<input type="submit" class="btn btn-primary" value="dinner" name="dinner" />
 		</form>
 			
 		<div class="text-center mb-2">

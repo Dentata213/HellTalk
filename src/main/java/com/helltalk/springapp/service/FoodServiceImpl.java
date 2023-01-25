@@ -31,8 +31,7 @@ public class FoodServiceImpl implements DietService<FoodDTO>{
 	
 	
 	public int selectFoodAffected(FoodDTO dto) {
-		int selectFoodAffected= dao.selectFoodAffected(dto);
-		return selectFoodAffected;
+		return dao.selectFoodAffected(dto);
 	}
 	
 	/*있는 음식 찾기

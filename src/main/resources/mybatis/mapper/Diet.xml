@@ -1,12 +1,35 @@
-<!--  
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.mapper.Diet">
-	<insert id="eatInsert" parameterType="Map">
-		
+	<!--  DIET  -->
+	<insert id="dietInsert" parameterType="Map">
+	<!-- 
+		<selectKey resultType="int" keyProperty="diet_no" order="BEFORE">
+	        SELECT SEQ_DIET.NEXTVAL FROM DUAL
+    	</selectKey> -->
+		INSERT ALL
+		INTO diet VALUES(SEQ_diet.NEXTVAL, #{u_no} ,'title', 0,0, SYSDATE)
+		INTO eat VLAUES(SEQ_eat.CURRVAL, #{status}, 0, (SELECT DISTINCT diet_no FROM eat e RIGHT JOIN diet d ON e.diet_no = d.diet_no))
 	</insert>
-
-
-</mapper> -->
+	
+	<!-- 
+	<select id="selectBreakfast" parameterType="Map" resultType="">
+		SELECT food_cd,
+	</select>
+	 -->
+	<!--  EAT 
+	<insert id="eatInsert" parameterType="Map">
+		<selectKey resultType="int" keyProperty="eat_no" order="BEFORE">
+	        SELECT SEQ_EAT.NEXTVAL FROM DUAL
+    	</selectKey>
+		INSERT INTO eat VALUES(SEQ_eat.CURRVAL, #{status}, 0, #{diet_no})
+	</insert> -->
+	
+	<insert id="eatListInsert" parameterType="Map">
+		INSERT INTO eatlist VALUES(#{food_cd},#{eat_no})
+	</insert>
+	
+	
+</mapper>
