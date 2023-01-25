@@ -55,7 +55,12 @@ public class CalController {
 	
 		List<CaldDto> caldList =caldService.selectList(map,req);
 		List<CalcDto> calcList =calcService.selectList(map,req);
-		
+			
+						
+		map.put("uemail",((UserDetails)auth.getPrincipal()).getUsername().toString());
+		caldList = caldService.selectList(map,req);
+		calcList = calcService.selectList(map,req);	
+			
 		///풀캘린더 enddate 설정이 하루 전으로 나와서 날짜 하루 더하기...
 		String sdate = null;
 			for(CalcDto c: calcList) {
@@ -71,12 +76,10 @@ public class CalController {
 		   String day = simple.format((new Date(fTime+poneday)));
 		   java.sql.Date ffdate = java.sql.Date.valueOf(day);
 		    c.setRout_enddate(ffdate);
+		    System.out.println(ffdate);
 	 }
-						
-		map.put("uemail",((UserDetails)auth.getPrincipal()).getUsername().toString());
-		caldList = caldService.selectList(map,req);
-		calcList = calcService.selectList(map,req);	
-			
+		
+		
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");	
 		//데이터 저장
 		model.addAttribute("today",dateFormat.format(new Date()));	

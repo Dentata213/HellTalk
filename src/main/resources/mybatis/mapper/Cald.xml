@@ -8,8 +8,8 @@
 		SELECT cald_no,cald_title,cald_content,cald_startdate,cald_color,u_email
 		FROM caldaily join users
 		ON caldaily.u_no=users.u_no
-  	 	WHERE caldaily.u_no = 
-  	 	(SELECT DISTINCT caldaily.U_no FROM caldaily join users ON caldaily.u_no=users.u_no WHERE u_email=#{uemail,jdbcType=VARCHAR})		 
+  	 	WHERE caldaily.u_no =
+  	 	(SELECT DISTINCT users.U_no FROM users left join CALDAILY ON caldaily.u_no=users.u_no WHERE u_email=#{uemail,jdbcType=VARCHAR})
 </select>
  
 <insert id="caldInset" parameterType="Map">
@@ -17,7 +17,7 @@
 		SELECT SEQ_CALDNO.NEXTVAL FROM DUAL
 	</selectKey>	
 		INSERT INTO CALDAILY VALUES(SEQ_CALDNO.NEXTVAL,
-		(SELECT DISTINCT caldaily.U_no FROM caldaily join users ON caldaily.u_no=users.u_no WHERE u_email=#{uemail,jdbcType=VARCHAR})
+		(SELECT DISTINCT users.U_no FROM users left join CALDAILY ON caldaily.u_no=users.u_no WHERE u_email=#{uemail,jdbcType=VARCHAR})
 		,#{caldtitle},#{caldcontent},#{caldstartdate},#{caldcolor})
 </insert>
 

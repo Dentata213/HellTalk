@@ -107,9 +107,8 @@
  </div>  
 
  <!--일정추가 modal 추가 -->
-  <div class="modal fade" id="addcalendarModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+  <div class="modal fade" id="addcalendarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
       aria-hidden="true">
-      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
      
       <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -149,6 +148,7 @@
               </div>
                
               <div class="modal-footer">
+               <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                   <button type="button" class="btn btn-warning" id="addCalendar" >추가</button>
                   <button type="button" class="btn btn-secondary" data-dismiss="modal"
                       id="addModalClose">닫기</button>
@@ -249,14 +249,17 @@ document.addEventListener('DOMContentLoaded', function() {
       editable: true,
       selectable: true,       
       eventClick: function() {
+    
    	  
     	  //닫기 누르면 새로고침 해줘야 함...
     		$(document).on('click','#viewModalClose',function(){
     			location.reload();  			
     		}),
+    		
     		$(document).on('click','#addModalClose',function(){
-    			location.reload();  			
+    			location.reload();
     		}),
+    		
     		$(document).on('click','.close',function(){
     			location.reload();  			
     		}),   	  
@@ -316,15 +319,6 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         </c:forEach>   
       
-        
-        {     
-        title:'테스트',
-        start:'2023-01-16',
-      //  end:'2023-01-17',
-        constraint: 'availableForMeeting', // defined below
-        color:'#257e4a',
-       display:'background'  
-        },
       ],
       customButtons: {
           addEventButton: { // 추가한 버튼 설정
