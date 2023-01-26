@@ -64,11 +64,11 @@ public class ShopController {
 	
 	@RequestMapping(value = "/itemDelete",produces = "text/plain; charset=UTF-8")
 	@ResponseBody
-	public String itemDelete(@RequestParam Map map) throws JsonProcessingException {
+	public Map itemDelete(@RequestParam Map map) throws JsonProcessingException {
 		System.out.println("컨트롤러");
 		service.deleteCart(map);
 		System.out.println("뷰페이지반환");
-		return "redirect:/mycart/payment/cart.helltalk";
+		return map;
 	}
 	
 	
