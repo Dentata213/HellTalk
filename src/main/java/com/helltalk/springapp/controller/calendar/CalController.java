@@ -76,7 +76,7 @@ public class CalController {
 		   String day = simple.format((new Date(fTime+poneday)));
 		   java.sql.Date ffdate = java.sql.Date.valueOf(day);
 		    c.setRout_enddate(ffdate);
-		    System.out.println(ffdate);
+		//    System.out.println(ffdate);
 	 }
 		
 		
@@ -108,7 +108,7 @@ public class CalController {
 	@ResponseBody
 	public CaldDto view(@RequestParam Map map) {
 		CaldDto record=caldService.selectOne(map);
-		System.out.println(record.getCald_no());
+		System.out.println("no가져오기"+record.getCald_no());
 		return record;
 	}
 	

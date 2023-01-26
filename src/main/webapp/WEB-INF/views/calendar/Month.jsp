@@ -7,6 +7,10 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<script src=https://cdn.jsdelivr.net/npm/fullcalendar@6.0.3/index.global.min.js></script>
+<script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
+<script src="https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js"></script>
+
 <style>
 
   body {
@@ -69,38 +73,7 @@
  	font-size: 0px;
  }
 </style>                     
-<!-- main content -->
-  <!--
-<div class="main-content bg-white right-chat-active theme-dark-bg"> 
-    <div class="middle-sidebar-bottom">
-        <div class="middle-sidebar-left">
-            <div class="row">
-                <div class="col-xl-12 col-xxl-12 col-lg-12">
-                    <div class="row">
-                        <div id='wrap'>
 
-       사이드메뉴 
-   <div id='external-events'>
-       <h4>Today Check List</h4>
-
-       <div class="fc-button-group">
-           <div>
-               <button type="button" id="spobtn" title="운동 하셨나요?"
-                   class="fc-addEventButton-button fc-button fc-button-primary">운동
-                   하셨나요?</button>
-           </div>
-           <div style="margin-top: 10px;">
-               <button type="button" id="foodbtn" title="목표 식단 달성?"
-                   class="fc-addEventButton-button fc-button fc-button-primary">목표
-                   식단 달성?</button>
-           </div>
-       </div>
-
-       <p>
-           <label for='drop-remove'></label>
-       </p>
-   </div>
-   -->
    <!-- 달력 -->
   <div id='calendar-wrap'>
   	<div id='calendar'></div>
@@ -242,15 +215,16 @@ document.addEventListener('DOMContentLoaded', function() {
       headerToolbar: {
           left: 'addEventButton dayGridMonth',
           center: 'title',
-          right: 'prev,next,today'//dayGridMonth,timeGridWeek,timeGridDay,listWeek
+          right: 'prev,next,listDay'//dayGridMonth,timeGridWeek,timeGridDay,listWeek
         },
-      navLinks: true, //// 클릭 시 상단 네이게이션 동작
+ //   navLinks: true, //// 일자 클릭 시 list로 이동 
       businessHours: true, // display business hours
       editable: true,
-      selectable: true,       
+      selectable: true,  
+      
+      
       eventClick: function() {
-    
-   	  
+
     	  //닫기 누르면 새로고침 해줘야 함...
     		$(document).on('click','#viewModalClose',function(){
     			location.reload();  			
@@ -289,10 +263,11 @@ document.addEventListener('DOMContentLoaded', function() {
     })   	      	            	        
         	$('#calendarModalView').modal('show');    
     	  
-        },   
+        }, 
+          
+            
       events: [
-  	
-  	
+    
     //calcked list 뿌리기 	 
 
     <c:forEach var="calc" items="${calcList}" varStatus="loop">
@@ -303,24 +278,49 @@ document.addEventListener('DOMContentLoaded', function() {
                start:'${calc.rout_startdate}',  //'${today}'
                end:'${calc.rout_enddate}',  //'${today}'
                color:'#ff9f89' , 
-           	   display:'background'  
-      
+           	   display:'background'
+          //	 constraint:'availableForMeeting',
+          //	 overlap:false,
+          //	 rendering: 'background'
+          	 
 	  	   },
-	</c:forEach> 
+	  	 </c:forEach> 
   	   
 	//caldaily list 뿌리기
 	<c:forEach var="cald" items="${caldList}" varStatus="loop"> 			
 	  	{  		
           title:'${cald.cald_no}_${cald.cald_title}',
-          start:'${cald.cald_startdate}',
+          start:'${cald.cald_startdate}',//T12:00붙이면 '.클래스값이 달라짐!!'
    //     end:'${cald.cald_enddate}T12:00',
-          constraint:'availableForMeeting', // defined below
+        constraint:'availableForMeeting', // defined below
           color:'${cald.cald_color}' //'#257e4a'
         },
         </c:forEach>   
+        
+        { //오라클에서 불러온 데이터 연동==> 여기 클릭하면 모달창 띄워서 정보 보여주기! 
+   		  // 노노 이거 하루하루 목표 완료체크용으로 변경할거..
+   
+   		  //아이콘 테스트!!!
+             start:'2023-01-06',  //'${today}'
+      //       end:'${calc.rout_enddate}',  //'${today}'
+           imageurl : "${path}/resources/images/ok.png"
+         	//   display:'background'
+        //	 constraint:'availableForMeeting',
+        //	 overlap:false,
+        //	 rendering: 'background'
+        	 
+	  	   },
       
       ],
-      customButtons: {
+      ////아이콘붙이기!!
+  /*    eventRender:function(event, eventElement) {
+          if(event.imageurl) {
+              eventElement.find("span.fc-title").prepend("<center><img src='" + event.imageurl + "'><center>");
+          }
+      },*/
+                
+              
+       customButtons: {
           addEventButton: { // 추가한 버튼 설정
               text : "기록하기",  // 버튼 내용
               click : function(){ // 버튼 클릭 시 이벤트 추가       	
@@ -387,6 +387,32 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     calendar.render();
   });
+  
+  //팝업으로 운동목록 뿌리기!
+  $(function(){
+	  $('.fc-daygrid-day-number').click(function(){
+		
+		  //if(설정해놓은 운동이 있으면 이거) //3.$("선택자:contains('문자열')"):
+		  //$('.fc-daygrid-day-number:contains(일)')    $('선택자').find('찾을 선택자')   $("선택자").length==0으로 판단해라.
+		// $('a[href*=naver]').css('color','red').css('fontSize','1.8em');	  
+			
+		  $('.fc-daygrid-day-number') .popover({title:'운동명',placement:'top',content:'운동내용:뭐하고뭐하고 <br/> 시간:10분 <br/>기타 등등등'
+			  ,html:true,animation:true,delay:{show: 300, hide: 100}}); 	  
+		  
+	
+		  $('.fc-non-business').parent().prev().parent().prev().prev()
+		  //   $('div').find('.fc-event-title')
+		    .attr({'data-toggle':'popover','data-trigger':'focus',
+			  title:'테스트으으으 !'
+			 })
+			  .popover({placement:'top',content:'요게왜 안나와!!!!'});
+		 
+		  
+		  
+	  })
+	  
+  })
+  
  
   //글 수정 
   $(function(){
@@ -490,56 +516,5 @@ document.addEventListener('DOMContentLoaded', function() {
 		  
 	  });
 	  
-
-  //목표달성 버튼 
-    $(function() {
-       $('#spobtn').click(function(){
-    	   if($(this).html()==='운동 하셨나요?'){
-               $(this).html('목표달성 완료!');
-               
-               var obj = {
-                       "title" : "성공!",
-                       "startdate" : "${today}",
-                       "enddate" : "${today}",
-                       "color" : "color"
-                   }//전송할 객체 생성                                           
-                 var test=JSON.stringify(obj);
-                
-               $.ajax({
-           			url:"<c:url value="/fullcal/cal2/Write.do"/>",
-           			method: "POST",
-           			data:JSON.stringify(obj),
-         			type:'json',
-         			contentType:"application/json; charset=utf-8",
-       			})
-       			.done(function(data){         
-       					alert('good!');
-       					window.location.href ="List.do";
-       			}).
-       			fail(function(jqXHR, textStatus, errorThrown){
-       				console.log(jqXHR)
-       		        console.log(textStatus)
-       		        console.log(errorThrown);
-     			});                      
-    	   
-    	   
-    	   
-    	   	}
-             else{
-               $(this).html('운동 하셨나요?'); 
-             }  	   
-       })
-      });
-  
-    $(function() {
-        $('#foodbtn').click(function(){
-     	   if($(this).html()==='목표 식단 달성?'){
-                $(this).html('목표달성 완료!');
-                }
-                else{
-                    $(this).html('목표 식단 달성?'); 
-                }  	   
-        })
-       });
 </script>
 
