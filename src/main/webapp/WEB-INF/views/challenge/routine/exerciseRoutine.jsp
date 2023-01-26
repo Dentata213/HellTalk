@@ -75,7 +75,7 @@
     </fieldset> --%>
     <fieldset class="form-group border p-3">
     	<legend class="w-auto px-3">운동 챌린지</legend>
-    	<a class="btn btn-success" href="<c:url value='#'/>">추천 운동 루틴</a>
+    	<a class="btn btn-success" href="<c:url value='/routine/iframe.do'/>">추천 운동 루틴</a>
     	<a class="btn btn-success" href="<c:url value='/exercise/iframe.do'/>">사용자 커스텀 루틴</a>
     	<%
     		Document doc = Jsoup.connect("https://www.muscleandstrength.com/exercises/").get();

@@ -16,6 +16,15 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!-- <link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css"/> 
+<script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script> -->
+<!-- <link href="//cdn.datatables.net/1.10.18/css/dataTables.bootstrap.css" rel="stylesheet" />
+<link href="//cdn.datatables.net/responsive/2.2.2/css/responsive.bootstrap.css" rel="stylesheet" />
+<script src="//cdn.datatables.net/1.10.18/js/jquery.dataTables.js"></script>
+<script src="//cdn.datatables.net/1.10.18/js/dataTables.bootstrap.js"></script>
+<script src="//cdn.datatables.net/responsive/2.2.2/js/dataTables.responsive.js"></script>
+<script src="//cdn.datatables.net/responsive/2.2.2/js/responsive.bootstrap.js"></script> -->
+
 
 <!-- <script type="text/javascript">
 
@@ -91,6 +100,18 @@ legend{
 	margin-right: 30px;
 }
 
+/* accodion 이벤트 */
+.hide {
+	display:none;
+}  
+
+.show {
+	display:table-row;
+}  
+
+.item{
+	cursor:pointer;
+} 
 
 </style>   
 </head>
@@ -234,18 +255,19 @@ legend{
 					    </table>
 					</form>
 			
-				<table class="table table-dark table-hover text-center">
+				<table class="recruit table table-dark table-hover text-center" id="recruit">
 		
 					<thead>
 						<tr>
-							<th>번호</th>
+							<th class="text-center">번호</th>
 							<th>운동명</th>
-							<th>필요기구</th>				
-							<th>사용자기록수</th>
+							<th class="text-center">필요기구</th>				
+							<th class="text-center">사용자기록수</th>
 							<!-- <th>루틴 추가</th> -->
 						</tr>
 					</thead>
 					<tbody class="table-sm down-file-body" id="exercise-list">
+				
 						
 			
 					</tbody>
@@ -264,7 +286,7 @@ $(document).on('click','.listExerKind',function(e){
 		  xhr.setRequestHeader( "${_csrf.headerName}", "${_csrf.token}" );
 	});
 	
-	/* 클릭 이벤트  */
+	/* 운동 부위 클릭 이벤트  */
 	var listExerKind = document.getElementsByClassName("listExerKind");
 	//e.target.classList.add("clicked"); 
 	console.log(e.target.classList);
@@ -327,15 +349,34 @@ $(document).on('click','.listExerKind',function(e){
 				}
 
 				$.each(data,function(i,item){
-					/* 
-					tr+="<tr><td>"+item.e_no+"</td><td class='text-left line-comment' title='"+item.e_no+"'>"+item.e_name+"</td><td>"+item.e_equipment+"</td><td>"+data.e_count+"</td><td><input type='button' class='btn btn-info' value='추가'></td></tr>";
-					 */ 
-					tr+="<tr><td>"+item.e_no+"</td><td class='text-left line-comment' title='"+item.e_no+"'>"+item.e_name+"</td><td>"+item.e_equipment+"</td><td>"+data.e_count+"</td></tr>";
-					option+="<option value='"+item.e_no+"'>"+item.e_name+"</option>"
+					//console.log("item.e_no",item.e_no)
+					
+					//tr+="<tr><td>"+item.e_no+"</td><td class='text-left line-comment' title='"+item.e_no+"'>"+item.e_name+"</td><td>"+item.e_equipment+"</td><td>"+data.e_count+"</td><td><input type='button' class='btn btn-info' value='추가'></td></tr>";
+					 
+					//tr+="<tr><td>"+item.e_no+"</td><td class='text-left line-comment' title='"+item.e_no+"'>"+item.e_name+"</td><td>"+item.e_equipment+"</td><td>"+item.e_count+"</td></tr>"; 
+					//tr+="<tr><td>"+item.e_no+"</td><td class='text-left line-comment' title='"+item.e_name+"'>"+item.e_name+"</td><td>"+item.e_equipment+"</td><td>"+item.e_count+"</td></tr><tr class='hide'><td colspan='4'>"+item.e_description+"</br><iframe src='"+item.e_url+"?&autoplay=1'</iframe></td><td style='display: none;'></td><td style='display: none;'></td><td style='display: none;'></td></tr>"; 
+					 tr+="<tr class='item'>\r\n"
+						+"	<td>"+item.e_no+"</td>\r\n"
+						+"  <td class='text-left line-comment' title='"+item.e_name+"'>"+item.e_name+"</td>\r\n"
+						+"  <td>"+item.e_equipment+"</td>\r\n"
+						+"	<td>"+item.e_count+"</td>\r\n"
+						+"</tr>\r\n"
+						+"<tr class='hide'>\r\n"
+						+"	<td colspan='4'>"+item.e_description+"</br>\r\n"
+						+"	<iframe src='"+item.e_url+"?&autoplay=1'></iframe></td>\r\n"
+						+"	<td style='display: none;'></td>\r\n"
+						+"	<td style='display: none;'></td>\r\n"
+						+"	<td style='display: none;'></td>\r\n" 
+						+"</tr>";   
+					option+="<option value='"+item.e_name+"'>"+item.e_name+"</option>"
+					//console.log(tr);
+					
+					$('#exercise-list').append(tr);
+					tr='';
 					
 				})
 								
-				$('#exercise-list').append(tr);
+				//$('#exercise-list').append(tr);
 				$(".selecBox").append(option);
 				
 				
@@ -348,10 +389,33 @@ $(document).on('click','.listExerKind',function(e){
 })
 	
 	
-	
+/*  accodion 이벤트  */
 $(document).on('click','tr',function(e){	
 	console.log('tr클릭이벤트')
 	console.log("e.target.nodeName",e.target.nodeName)
+	console.log('$(this)',$(this))
+	var article = ("#recruit .show");  
+	console.log('article',article)
+	var myArticle =$(this).next("tr");
+	console.log('myArticle',myArticle.html())
+	var td =$(this).next("tr").children(":first");
+	//var td =$(this).next("tr").children(":first");
+	//console.log('td',td)
+	
+ 	if($(myArticle).hasClass('hide')) {  
+		$(article).removeClass('show').addClass('hide');  
+		$(myArticle).removeClass('hide').addClass('show'); 
+		/* $(td).attr('colspan', $(".recruit th:visible").length);
+		$(td).siblings().attr('style', "display:none;"); */
+		
+		
+		
+		console.log('td',td.html());
+		console.log('$(myArticle).html()',$(myArticle).html());
+	 }  
+	else {  
+		$(myArticle).addClass('hide').removeClass('show');  
+	}  
 	/* if(e.target.nodeName=='INPUT'){//추가버튼 클릭 이벤트
 		console.log('INPUT클릭이벤트')
 		console.log(e.target)
@@ -363,8 +427,8 @@ $(document).on('click','tr',function(e){
 	} */
 	
 	
-	
-});
+
+}); 
 
 	
  $(document).on('change','#start',function(e){	

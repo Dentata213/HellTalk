@@ -4,16 +4,20 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mybatis.mapper.Exer">
+
+	<!-- 운동부위 조회 -->
 	<select id="selectExerciseKindList" parameterType="Map" resultType="ExerciseDTO">
 		SELECT * FROM exercisekind
 	</select>
 	
+	<!-- 운동 전체 조회 -->
 	<select id="selectExerciseList" parameterType="Map" resultType="ExerciseDTO">
-		select * FROM exercise e JOIN exercisekind ek ON e.ek_no=ek.ek_no
+		select * FROM exercise e JOIN exercisekind ek ON e.ek_no=ek.ek_no ORDER BY e_no
 	</select>
 	
+	<!-- 운동부위 no에 따른 운동 조회 -->
 	<select id="selectExerciseListByKind" parameterType="Map" resultType="ExerciseDTO">
-		select * FROM exercise e JOIN exercisekind ek ON e.ek_no=ek.ek_no WHERE ek.ek_no=${ek_no}
+		select e.* FROM exercise e JOIN exercisekind ek ON e.ek_no=ek.ek_no WHERE ek.ek_no=${ek_no}
 	</select>
 	
 	
@@ -38,5 +42,10 @@
 		  SEQ_routine.NEXTVAL,'#F06595','N') 
 		  SELECT * FROM DUAL
 	</insert>
+	
+	<!-- 추천 운동 루틴 전체 조회 -->
+	<select id="selectExerciseRoutine" parameterType="Map" resultType="ExerciseDTO">
+		SELECT r.*,u_nickname,u_gender FROM routine r JOIN users u ON r.u_no=u.u_no WHERE rout_display='Y'
+	</select>
 	
 </mapper>
