@@ -44,7 +44,7 @@
 	</insert>
 	
 	<!-- 추천 운동 루틴 전체 조회 -->
-	<select id="selectExerciseRoutine" parameterType="Map" resultType="ExerciseDTO">
+	<select id="selectExerciseRoutine" parameterType="Map" resultType="Map">
 		SELECT r.*,u_nickname,u_gender FROM routine r JOIN users u ON r.u_no=u.u_no WHERE rout_display='Y'
 	</select>
 	

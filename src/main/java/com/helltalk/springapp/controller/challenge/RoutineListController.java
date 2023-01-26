@@ -1,7 +1,10 @@
 package com.helltalk.springapp.controller.challenge;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.Vector;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -32,7 +35,28 @@ public class RoutineListController {
 		System.out.println("u_email"+map.get("u_email"));
 		MemberDTO member = memberService.selectOneByEmail(map);
 		model.addAttribute("member", member);
-		List<ExerciseDTO> recommendRoutList= exerService.selectExerciseRoutine(map);
+		List<Map> recommendRoutList= exerService.selectExerciseRoutine(map);
+		System.out.println("recommendRoutList"+recommendRoutList);
+		List<String[]> day=new Vector();
+		for(Map list:recommendRoutList) {
+			
+			for(int i=1;i<=7;i++) {
+				
+				if((String)list.get("DAY"+i)!=null){
+					String[] arr=((String)list.get("DAY"+i)).split(",");
+					System.out.println(list.get("DAY"+i));
+					System.out.println("arr"+i+"번째: "+Arrays.toString(arr));
+					day.add(arr);
+				}
+				
+				
+			}
+			
+		}
+		System.out.println("day.size()"+day.size());
+		for(String[] list:day) {
+			System.out.println(Arrays.toString(list));
+		}
 		
 		model.addAttribute("recommendRoutList", recommendRoutList);
 		

@@ -61,8 +61,8 @@ public class ExerciseServiceImpl implements ExerciseService<ExerciseDTO>{
 	}
 
 	@Override
-	public List<ExerciseDTO> selectExerciseRoutine(Map map) {
-		List<ExerciseDTO> recommendRoutList=dao.selectExerciseRoutine(map);
+	public List<Map> selectExerciseRoutine(Map map) {
+		List<Map> recommendRoutList=dao.selectExerciseRoutine(map);
 		return recommendRoutList;
 	}
 

@@ -4,11 +4,13 @@ package com.helltalk.springapp.service;
 import lombok.Getter;
 
 import lombok.Setter;
+import lombok.ToString;
 
-
+@ToString
 @Getter
 @Setter
 public class ExerciseDTO {
+	
 	/*EXERCISEKIND*/
 	//운동부위 no
 	private String ek_no;
@@ -70,6 +72,13 @@ public class ExerciseDTO {
 	private String day6;
 	//7일차
 	private String day7;
+	
+	//맴버 DTO
+	//nickname
+	private String u_nickname;
+	//성별
+	private String u_gender;
+	
 		
 
 	

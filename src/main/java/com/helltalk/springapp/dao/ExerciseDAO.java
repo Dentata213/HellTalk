@@ -58,8 +58,8 @@ public class ExerciseDAO {
 		return template.insert("insertExerciseRoutine",map);
 	}
 
-	public List<ExerciseDTO> selectExerciseRoutine(Map map) {
-		List<ExerciseDTO> recommendRoutList= template.selectList("selectExerciseRoutine",map);
+	public List<Map> selectExerciseRoutine(Map map) {
+		List<Map> recommendRoutList= template.selectList("selectExerciseRoutine",map);
 		return recommendRoutList;
 	}
 
