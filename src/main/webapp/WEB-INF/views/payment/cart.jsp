@@ -217,7 +217,7 @@
 				location.reload();
 			}).fail(function(error){		
 				console.log('에러발생'+error);
-				location.reload();
+				
 			});		
             
         });
