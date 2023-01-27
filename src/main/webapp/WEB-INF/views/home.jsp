@@ -132,15 +132,15 @@
         }
 
         .not-container .section:nth-child(1) {
-            background: url("https://artsandculture.withgoogle.com/gcs/national-parks-service/en-us/Asset-Kenai-desktop.jpg") center;
+            background: url("${path}/resources/images/chall.png") center;
         }
 
         .not-container .section:nth-child(2) {
-            background: url("https://artsandculture.withgoogle.com/gcs/national-parks-service/en-us/Asset-Hawaii-desktop.jpg") center;
+            background: url("${path}/resources/images/mypage.jpg") center;
         }
 
         .not-container .section:nth-child(3) {
-            background: url("https://artsandculture.withgoogle.com/gcs/national-parks-service/en-us/de0b954d-ca76-41d3-ac3a-900c6bc25139.jpg") center;
+            background: url("${path}/resources/images/commu.jpg") center;
         }
 		     
 /*않이.... 왜 안돼....*/  
@@ -373,7 +373,7 @@
 				   		</div>
 		            </div>
 		        </div>
-		        <div class="section">
+		        <div class="section" style="margin-top: 100px">
 		            <div class="cont_title">
 		                <h1><a href="<c:url value="/community/bbs/mypage"/>" class="text-white">여긴<br>마이페이지</a></h1>
 		                <h3>National Park</h3>
