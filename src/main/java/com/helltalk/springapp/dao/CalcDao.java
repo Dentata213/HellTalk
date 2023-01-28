@@ -22,10 +22,10 @@ public class CalcDao {
 	public List<CalcDto> findAllc(Map map) {
 		return template.selectList("findAllc",map);
 	}
-/*
-	public int insert(Map map) {
-		template.insert("calcInsert",map);
-		return Integer.parseInt(map.get("calcno").toString());
+	
+	public Map findRout(Map map) {
+		System.out.println("dao에서map"+map);
+		return template.selectOne("findRout",map);
 	}
-*/
+	
 }

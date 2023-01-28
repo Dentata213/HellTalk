@@ -31,5 +31,16 @@
 	  SEQ_routine.CURRVAL,#{calccolor},#{calchecked})
 	  SELECT * FROM DUAL
 </insert>
+
+ <select id="findRout" parameterType="Map" resultType="Map">
+	select * FROM
+	calcheck C 
+	JOIN users ON C.u_no=users.u_no
+	JOIN ROUTINE R ON C.Rout_no=R.Rout_no
+	WHERE users.u_email=#{uemail,jdbcType=VARCHAR}
+	AND r.rout_startdate=#{calcStartD}
+</select>
+  
+
   
 </mapper>

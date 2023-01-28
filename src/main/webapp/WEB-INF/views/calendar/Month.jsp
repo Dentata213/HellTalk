@@ -237,10 +237,9 @@ document.addEventListener('DOMContentLoaded', function() {
     		$(document).on('click','.close',function(){
     			location.reload();  			
     		}),   	  
-    	 //※댓글 목록의 제목 클릭시-click이벤트걸때 반드시  $(document).on('이벤트명','셀렉터',콜백함수)으로
+    	 //※click이벤트걸 때 반드시  $(document).on('이벤트명','셀렉터',콜백함수)으로
     	//그래야 동적으로 추가된 요소에도 이벤트가 발생한다 	  
     	 $(document).on('click','.fc-event-title-container',function(){
-    			//먼저 각 댓글 작성자의 아이디를 Ajax로 가져온다. 
     		//	console.log('댓글번호1:',this.viewno());
     			var this_= $(this).children(); //클릭한 제이쿼리 객체
     			var nos = this_.html().split("_")
@@ -269,20 +268,13 @@ document.addEventListener('DOMContentLoaded', function() {
       events: [
     
     //calcked list 뿌리기 	 
-
     <c:forEach var="calc" items="${calcList}" varStatus="loop">
-     	  { //오라클에서 불러온 데이터 연동==> 여기 클릭하면 모달창 띄워서 정보 보여주기! 
-     		  // 노노 이거 하루하루 목표 완료체크용으로 변경할거..
-     
+     	  { 
      		  title:'${calc.rout_name}' ,
-               start:'${calc.rout_startdate}',  //'${today}'
-               end:'${calc.rout_enddate}',  //'${today}'
+               start:'${calc.rout_startdate}', 
+               end:'${calc.rout_enddate}',  
                color:'#ff9f89' , 
-           	   display:'background'
-          //	 constraint:'availableForMeeting',
-          //	 overlap:false,
-          //	 rendering: 'background'
-          	 
+           	   display:'background'         	 
 	  	   },
 	  	 </c:forEach> 
   	   
@@ -297,29 +289,8 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         </c:forEach>   
         
-        { //오라클에서 불러온 데이터 연동==> 여기 클릭하면 모달창 띄워서 정보 보여주기! 
-   		  // 노노 이거 하루하루 목표 완료체크용으로 변경할거..
-   
-   		  //아이콘 테스트!!!
-             start:'2023-01-06',  //'${today}'
-      //       end:'${calc.rout_enddate}',  //'${today}'
-           imageurl : "${path}/resources/images/ok.png"
-         	//   display:'background'
-        //	 constraint:'availableForMeeting',
-        //	 overlap:false,
-        //	 rendering: 'background'
-        	 
-	  	   },
-      
       ],
-      ////아이콘붙이기!!
-  /*    eventRender:function(event, eventElement) {
-          if(event.imageurl) {
-              eventElement.find("span.fc-title").prepend("<center><img src='" + event.imageurl + "'><center>");
-          }
-      },*/
-                
-              
+        
        customButtons: {
           addEventButton: { // 추가한 버튼 설정
               text : "기록하기",  // 버튼 내용
@@ -389,24 +360,44 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   //팝업으로 운동목록 뿌리기!
-  $(function(){
-	  $('.fc-daygrid-day-number').click(function(){
-		
+  $(function(){  
+	  $(document).on('click','.fc-daygrid-day-number',function(){//일자에 클릭 이벤트 걸기
+	//  $('.fc-daygrid-day-number').click(function(){  
+		var this_ = $(this).parent().parent().parent().attr("data-date")//클릭한 날짜 가져오기
+		var this2 = $(this)
+//		console.log(this_)
+						
+		  //그러면 일자를 넘겨주고 거기에 맞는 루틴을 가져와서 뿌려줘도 되겠다!!!
+		   $.ajax({
+   			url:"<c:url value="/calc/View.do"/>",
+   			data:"calcStartD="+this_,
+   			dataType:'json'
+			})		
+			.done(function(data){   
+				this2.popover({title:data['ROUT_NAME'],placement:'top',
+				content:'<Strong>운동내용:</Strong>'+data.ROUT_CONTENT+'<br/> <Strong>난이도:</Strong>'+data["ROUT_LEVEL"]+'<br/> <Strong>효과:</Strong>'+data["ROUT_EFFECT"]+'<br/> <Strong>시간:</Strong>'+data["ROUT_TIME"]+'<br/> <Strong>루틴모드:</Strong>'+data["ROUT_MODE"]+''
+					,html:true,animation:true,delay:{show: 300, hide: 100}}); 				
+				console.log('이게?',data.ROUT_CONTENT)	
+			}).fail(function(error){
+				console.log('글조회오류!!');	
+				// $('.fc-non-business').parent().prev().parent().prev().prev()
+				  //   $('div').find('.fc-event-title')
+				  this2.popover({placement:'top',content:'설정한 운동이 없습니다!'});	
+			});		
+	  				
+		  
 		  //if(설정해놓은 운동이 있으면 이거) //3.$("선택자:contains('문자열')"):
 		  //$('.fc-daygrid-day-number:contains(일)')    $('선택자').find('찾을 선택자')   $("선택자").length==0으로 판단해라.
 		// $('a[href*=naver]').css('color','red').css('fontSize','1.8em');	  
+		
+		
+			//이건 설정 해 놓은 운동이 없을 때 띄우기 
+		
 			
-		  $('.fc-daygrid-day-number') .popover({title:'운동명',placement:'top',content:'운동내용:뭐하고뭐하고 <br/> 시간:10분 <br/>기타 등등등'
-			  ,html:true,animation:true,delay:{show: 300, hide: 100}}); 	  
+			
 		  
-	
-		  $('.fc-non-business').parent().prev().parent().prev().prev()
-		  //   $('div').find('.fc-event-title')
-		    .attr({'data-toggle':'popover','data-trigger':'focus',
-			  title:'테스트으으으 !'
-			 })
-			  .popover({placement:'top',content:'요게왜 안나와!!!!'});
-		 
+		  
+		  
 		  
 		  
 	  })

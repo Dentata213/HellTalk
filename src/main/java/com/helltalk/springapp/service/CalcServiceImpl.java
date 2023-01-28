@@ -27,14 +27,7 @@ public class CalcServiceImpl implements CalService<CalcDto> {
 		List<CalcDto> lists = dao.findAllc(map);  	
 		return dao.findAllc(map);
 	}
-/*	
-	@Override
-	public int insert(Map map) {
-		int newcalc = dao.insert(map);
-		return newcalc;
-	}
-*/
-	
+
 	@Override
 	public int insert(Map map) {
 		return 0;
@@ -44,6 +37,17 @@ public class CalcServiceImpl implements CalService<CalcDto> {
 	public CalcDto selectOne(Map map) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public Map selectOneR(Map map) {
+		Map list = dao.findRout(map);
+		if(list == null) {
+			System.out.println("앞뒤로 날짜 계산해서 가공해서 내보내야겠지...");
+		
+		
+		}
+		
+		return list;
 	}
 	
 	@Override
