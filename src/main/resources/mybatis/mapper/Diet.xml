@@ -5,29 +5,19 @@
 <mapper namespace="mybatis.mapper.Diet">
 	<!--  DIET  -->
 	<insert id="dietInsert" parameterType="Map">
-	<!-- 
 		<selectKey resultType="int" keyProperty="diet_no" order="BEFORE">
 	        SELECT SEQ_DIET.NEXTVAL FROM DUAL
-    	</selectKey> -->
-		INSERT ALL
-		INTO diet VALUES(SEQ_diet.NEXTVAL, #{u_no} ,'title', 0,0, SYSDATE)
-		INTO eat VLAUES(SEQ_eat.CURRVAL, #{status}, 0, (SELECT DISTINCT diet_no FROM eat e RIGHT JOIN diet d ON e.diet_no = d.diet_no))
+    	</selectKey>
+    	INSERT ALL
+		INTO DIET VALUES(#{diet_no},'title', 0,0, SYSDATE, #{u_no})
+		INTO EAT VALUES(SEQ_eat.NEXTVAL,#{status},#{diet_no})
+		SELECT * FROM DUAL
 	</insert>
 	
-	<!-- 
-	<select id="selectBreakfast" parameterType="Map" resultType="">
-		SELECT food_cd,
-	</select>
-	 -->
-	<!--  EAT 
-	<insert id="eatInsert" parameterType="Map">
-		<selectKey resultType="int" keyProperty="eat_no" order="BEFORE">
-	        SELECT SEQ_EAT.NEXTVAL FROM DUAL
-    	</selectKey>
-		INSERT INTO eat VALUES(SEQ_eat.CURRVAL, #{status}, 0, #{diet_no})
-	</insert> -->
-	
 	<insert id="eatListInsert" parameterType="Map">
+		<selectKey resultType="int" keyProperty="eat_no" order="BEFORE">
+	        SELECT SEQ_EAT.CURRVAL FROM DUAL
+    	</selectKey>
 		INSERT INTO eatlist VALUES(#{food_cd},#{eat_no})
 	</insert>
 	

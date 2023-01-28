@@ -248,55 +248,42 @@ public class DietController {
 	   
 	        System.out.println("얻어온 세션 이름 [ " + i +" ] : " + statusName);
 	        System.out.println("얻어온 세션 값 [ " + i +" ] : " + status);
+	        
+	        //식사시간구분값 저장
+	        if(status.equals("breakfast")& status != null) {
+		    	map.put("status", "breakfast");
+		    	session.removeAttribute(status);
+		    }
+		    else if(status.equals("lunch")& status != null) {
+		    	map.put("status", "lunch");
+		    	session.removeAttribute(status);
+		    }
+		    else if(status.equals("dinner")& status != null) {
+		    	map.put("status", "dinner");
+		    	session.removeAttribute(status);
+		    }
+		    else {
+		    	System.out.println("세션에 있는 식사시간 관련 값이 넘어오지 않았습니다 : "+status);
+		    }
 	    }
-	    
-	    if(status.equals("breakfast")& status != null) {
-	    	map.put("status", breakfast);
-	    	session.removeAttribute(status);
-	    }
-	    else if(status.equals("lunch")& status != null) {
-	    	map.put("status", lunch);
-	    	session.removeAttribute(status);
-	    }
-	    else if(status.equals("dinner")& status != null) {
-	    	map.put("status", dinner);
-	    	session.removeAttribute(status);
-	    }
-	    else {
-	    	System.out.println("세션에 있는 식사시간 관련 값이 넘어오지 않았습니다 : "+status);
-	    }
+	    System.out.println("status 넘어온 값: "+map.get("status"));
 	    
 	    //DB- Diet 값 저장
 	  	//map.put(,);
-	  	map.put("u_no", 4);
+	  	map.put("u_no", Integer.valueOf(7));
 	  		
 	  	//DB- Diet테이블 생성(insert) //diet_no
 	  	int insertDietAffected = dietService.insert(map);
 	  	System.out.println("diet_no : "+insertDietAffected);
-	    /*diet_no 가져오기
-	    int selectDietNo= dietService.selectOneNo(map);*/
-	  		
-	    map.put("diet_no", insertDietAffected);
-	    
-	    //한끼 생성(insert) 및 eat(select key)
-		int insertEatAffected= dietService.insertEat(map);
-		System.out.println("eat_no : "+ insertEatAffected);
 		
 		//DB- eatList관련 값 저장
-		map.put("eat_no", insertEatAffected);
 	    map.put("food_cd", food_cd);
 	    
 	    //eatList에 음식 저장
 	    int insertEatListAffected= dietService.insertEatList(map);
 	    System.out.println("insertEatListAffected : "+insertEatListAffected);
-		
 	    
 	    
-	    Map eatMap= new HashMap();
-	    
-	    List<Map> eatMapList = new ArrayList<Map>();
-	    
-	    model.addAttribute("eatMapList", eatMapList);
 	    
 		return "challenge/diet/Diet";
 	}

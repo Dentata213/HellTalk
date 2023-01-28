@@ -25,8 +25,6 @@ public class DietDAO {
 		}
 		
 		public int insert(Map map) {
-			int diet_no= Integer.valueOf((String) map.get("diet_no"));
-			System.out.println("시퀀스 몇이냐고 :"+diet_no);
 			return template.insert("dietInsert",map);
 		}
 		
