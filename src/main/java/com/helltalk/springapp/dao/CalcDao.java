@@ -27,5 +27,9 @@ public class CalcDao {
 		System.out.println("dao에서map"+map);
 		return template.selectOne("findRout",map);
 	}
+
+	public List<CalcDto> findStart(Map map) {	
+		return template.selectList("findStart",map);
+	}
 	
 }

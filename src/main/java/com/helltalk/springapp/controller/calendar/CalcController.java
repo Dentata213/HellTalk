@@ -1,6 +1,7 @@
 package com.helltalk.springapp.controller.calendar;
 
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
@@ -46,7 +47,7 @@ public class CalcController {
 	//상세보기(startdate로 루틴 가져오기!)
 	@RequestMapping("/View.do")
 	@ResponseBody
-	public Map view(@RequestParam Map map,Model model,Authentication auth) {
+	public Map view(@RequestParam Map map,Model model,Authentication auth) throws ParseException {
 		map.put("uemail",((UserDetails)auth.getPrincipal()).getUsername().toString());
 		System.out.println("넘어오는 map"+map);
 		

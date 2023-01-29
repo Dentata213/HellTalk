@@ -87,7 +87,7 @@
           <div class="modal-content">
               <div class="modal-header">
                   <h5 class="modal-title" id="addModalLabel">오늘하루를 기록하세요!</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="addclose">
                       <span aria-hidden="true">&times;</span>
                   </button>
               </div>
@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', function() {
       headerToolbar: {
           left: 'addEventButton dayGridMonth',
           center: 'title',
-          right: 'prev,next,listDay'//dayGridMonth,timeGridWeek,timeGridDay,listWeek
+          right: 'prev,next'//dayGridMonth,timeGridWeek,timeGridDay,listWeek
         },
  //   navLinks: true, //// 일자 클릭 시 list로 이동 
       businessHours: true, // display business hours
@@ -297,7 +297,14 @@ document.addEventListener('DOMContentLoaded', function() {
               click : function(){ // 버튼 클릭 시 이벤트 추가       	
             	  
                   $("#addcalendarModal").modal("show"); // modal 나타내기
-
+			
+                  //iframe후 닫기버튼이 안먹혀서 따로 지정
+                  $("#addModalClose").on("click",function(){
+                	  $("#addcalendarModal").modal("hide");    
+                  });
+                  $("#addclose").on("click",function(){
+                	  $("#addcalendarModal").modal("hide");    
+                  });
                   
                   $("#addCalendar").on("click",function(){  // modal의 추가 버튼 클릭 시
                       var caldtitle = $("#caldtitle").val();
@@ -374,31 +381,24 @@ document.addEventListener('DOMContentLoaded', function() {
    			dataType:'json'
 			})		
 			.done(function(data){   
-				this2.popover({title:data['ROUT_NAME'],placement:'top',
-				content:'<Strong>운동내용:</Strong>'+data.ROUT_CONTENT+'<br/> <Strong>난이도:</Strong>'+data["ROUT_LEVEL"]+'<br/> <Strong>효과:</Strong>'+data["ROUT_EFFECT"]+'<br/> <Strong>시간:</Strong>'+data["ROUT_TIME"]+'<br/> <Strong>루틴모드:</Strong>'+data["ROUT_MODE"]+''
-					,html:true,animation:true,delay:{show: 300, hide: 100}}); 				
-				console.log('이게?',data.ROUT_CONTENT)	
-			}).fail(function(error){
-				console.log('글조회오류!!');	
-				// $('.fc-non-business').parent().prev().parent().prev().prev()
-				  //   $('div').find('.fc-event-title')
-				  this2.popover({placement:'top',content:'설정한 운동이 없습니다!'});	
+				//console.log('이게?',data["list"]["ROUT_GENDER"])	
+				if(data["list"]==null){					
+				   if(data["DAY"]==null){
+					   this2.popover({placement:'top',content:'설정한 운동이 없습니다!'});	
+				    }else{
+					console.log('이거',data["DAY"])
+				    }
+				}
+				else{
+					console.log('아니면?',data["list"])
+					this2.popover({title:data["list"]['ROUT_NAME'],placement:'top',
+						content:'<Strong>운동내용:</Strong>'+data["list"]["ROUT_CONTENT"]+'<br/> <Strong>난이도:</Strong>'+data["list"]["ROUT_LEVEL"]+'<br/> <Strong>효과:</Strong>'+data["list"]["ROUT_EFFECT"]+'<br/> <Strong>시간:</Strong>'+data["list"]["ROUT_TIME"]+'<br/> <Strong>루틴모드:</Strong>'+data["list"]["ROUT_MODE"]+''
+							,html:true,animation:true,delay:{show: 300, hide: 100}});				
+				}
+	
+	}).fail(function(error){
+				console.log('글조회오류!!');				 
 			});		
-	  				
-		  
-		  //if(설정해놓은 운동이 있으면 이거) //3.$("선택자:contains('문자열')"):
-		  //$('.fc-daygrid-day-number:contains(일)')    $('선택자').find('찾을 선택자')   $("선택자").length==0으로 판단해라.
-		// $('a[href*=naver]').css('color','red').css('fontSize','1.8em');	  
-		
-		
-			//이건 설정 해 놓은 운동이 없을 때 띄우기 
-		
-			
-			
-		  
-		  
-		  
-		  
 		  
 	  })
 	  
