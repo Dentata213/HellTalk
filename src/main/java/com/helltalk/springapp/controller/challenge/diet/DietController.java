@@ -293,18 +293,15 @@ public class DietController {
 	  	System.out.println("eatlist테이블 insert:"+insertEatlistAffected);
 	    
 	    //한끼마다 저장된 음식값 확인
-	  	if(map.get("status").equals("breakfast")) {
-	  		List<FoodDTO> selectListEatBreakfast= foodService.selectListEatBreakfast(map);
-	  		model.addAttribute("selectListEatBreakfast", selectListEatBreakfast);
-	  	}
-	  	else if(map.get("status").equals("lunch")) {
-	  		List<FoodDTO> selectListEatLunch= foodService.selectListEatLunch(map);
-	  		model.addAttribute("selectListEatLunch", selectListEatLunch);
-	  	}
-	  	else if(map.get("status").equals("dinner")) {
-	  		List<FoodDTO> selectListEatDinner= foodService.selectListEatDinner(map);
-	  		model.addAttribute("selectListEatDinner", selectListEatDinner);
-	  	}
+	  	//아침
+	  	List<FoodDTO> selectListEatBreakfast= foodService.selectListEatBreakfast(map);
+	  	model.addAttribute("selectListEatBreakfast", selectListEatBreakfast);
+	  	//점심
+	  	List<FoodDTO> selectListEatLunch= foodService.selectListEatLunch(map);
+	  	model.addAttribute("selectListEatLunch", selectListEatLunch);
+	  	//저녁
+	  	List<FoodDTO> selectListEatDinner= foodService.selectListEatDinner(map);
+	  	model.addAttribute("selectListEatDinner", selectListEatDinner);
 	    
 		return "challenge/diet/Diet";
 	}

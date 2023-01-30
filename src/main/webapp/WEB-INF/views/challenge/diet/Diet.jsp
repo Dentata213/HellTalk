@@ -31,7 +31,7 @@
 
 				<thead>
 					<tr>
-						<th >음식 이름</th>
+						<th class="col-2">음식 이름</th>
 						<th class="col-1">총내용량</th>
 						<th class="col-1">칼로리</th>
 					</tr>
@@ -61,7 +61,7 @@
 
 				<thead>
 					<tr>
-						<th >음식 이름</th>
+						<th class="col-2">음식 이름</th>
 						<th class="col-1">총내용량</th>
 						<th class="col-1">칼로리</th>
 					</tr>
@@ -91,7 +91,7 @@
 
 				<thead>
 					<tr>
-						<th >음식 이름</th>
+						<th class="col-2">음식 이름</th>
 						<th class="col-1">총내용량</th>
 						<th class="col-1">칼로리</th>
 					</tr>
