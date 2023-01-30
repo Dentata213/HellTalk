@@ -81,6 +81,7 @@ public class DietController {
 		String lunch= req.getParameter("lunch")== null? null: req.getParameter("lunch");
 		String dinner= req.getParameter("dinner")== null? null: req.getParameter("dinner");
 		System.out.printf("아침:%s, 점심:%s, 저녁:%s",breakfast,lunch,dinner);
+		String
 		
 		//eat- status 값 받아오기
 		if(breakfast != null) {
