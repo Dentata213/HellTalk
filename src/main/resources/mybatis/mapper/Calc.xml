@@ -10,24 +10,44 @@
 	FROM calcheck join users
 	ON calcheck.u_no=users.u_no
 	join routine on routine.ROUT_no=calcheck.ROUT_no
+    WHERE calcheck.u_no =
+ 	(SELECT DISTINCT users.U_no FROM users left join calcheck ON calcheck.u_no=users.u_no WHERE u_email=#{uemail,jdbcType=VARCHAR})
 </select>
-
 
 <insert id="calcInsert" parameterType="Map">
 	<selectKey keyProperty="calcno" resultType="int" order="BEFORE">
 	SELECT SEQ_CALCNO.NEXTVAL FROM DUAL
 	</selectKey>
-	  INSERT ALL	  
+	  INSERT ALL	 
 	  INTO ROUTINE
-	  values('#{routno}',
-	  '#{uno}','#{routname}','#{routcontent}','#{routlevel}','#{routeffect}',
-	  '#{routgender}','#{routime}','#{routmode}','#{routstartdate}','#{routenddate}','#{routdisplay}',
-	  '#{day1}','#{day2}','#{day3}','#{day4}','#{day5}','#{day6}','#{day7}')
-	  INTO CALCHECK 
+	  values(SEQ_routine.NEXTVAL,
+	  (SELECT DISTINCT users.U_no FROM users left join calcheck ON calcheck.u_no=users.u_no WHERE u_email=#{uemail,jdbcType=VARCHAR}),
+	  #{routname},#{routcontent},#{routlevel},#{routeffect},
+	  #{routgender},#{routime},#{routmode},#{routstartdate},#{routenddate},#{routdisplay},
+	  #{day1},#{day2},#{day3},#{day4},#{day5},#{day6},#{day7})
+	  INTO CALCHECK
 	  VALUES(SEQ_CALCNO.NEXTVAL,
-	  (SELECT USERS.U_NO FROM CALCHECK RIGHT JOIN USERS on CALCHECK.u_no = users.u_no), 
-	  '#{routno}','#{calccolor}','#{calchecked}')  
+	  (SELECT DISTINCT users.U_no FROM users left join calcheck ON calcheck.u_no=users.u_no WHERE u_email=#{uemail,jdbcType=VARCHAR}),
+	  SEQ_routine.CURRVAL,#{calccolor},#{calchecked})
 	  SELECT * FROM DUAL
 </insert>
+
+ <select id="findRout" parameterType="Map" resultType="Map">
+	select * FROM
+	calcheck C 
+	JOIN users ON C.u_no=users.u_no
+	JOIN ROUTINE R ON C.Rout_no=R.Rout_no
+	WHERE users.u_email=#{uemail,jdbcType=VARCHAR}
+	AND r.rout_startdate=#{calcStartD}
+</select>
+ 
+ <select id="findStart" parameterType="Map" resultType="CalcDto">
+ 	select R.rout_startdate,R.rout_enddate from
+	calcheck C 
+	JOIN users ON C.u_no=users.u_no
+	JOIN ROUTINE R ON C.Rout_no=R.Rout_no
+	WHERE users.u_email=#{uemail,jdbcType=VARCHAR}
+ </select>
+
   
 </mapper>

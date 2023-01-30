@@ -134,6 +134,7 @@
                             <div class="dropdown-menu">
                             	<a class="dropdown-item" href="#"><i class="bx bx-block me-1"></i> <c:if test="${isY}">차단</c:if><c:if test="${not isY}">차단해제</c:if></a>
 	                            <a class="dropdown-item" href="#"><i class="bx bx-trash me-1"></i> 추방</a>
+                          	</div>
                           </div>
                         </td>
                       </tr>
@@ -192,7 +193,7 @@
   <script>
   	$('.dropdown-item').on('click',function(e){
   		var button = this;
-  		var u_id = this.parentElement.parentElement.parentElement.parentElement.children[1].textContent;
+  		var u_nickname = this.parentElement.parentElement.parentElement.parentElement.children[2].textContent;
   		var userStatus = this.parentElement.parentElement.parentElement.parentElement.children[8].children[0].textContent;
   		var clicked = this.parentElement.parentElement.parentElement.parentElement.children[8].children[0];
   		//console.log(clicked);
@@ -229,7 +230,7 @@
 	  		  if (result.isConfirmed) {
 				$.ajax({
 					url:'<c:url value="/backend/updateUserStatus"/>',
-					data:'u_id='+u_id+'&status='+status,
+					data:'u_nickname='+u_nickname+'&status='+status,
 					dataType:'text'
 				}).done(function(data){
 					console.log(data);
@@ -245,7 +246,7 @@
 				}
 	  		    swalWithBootstrapButtons.fire(
 	  		      '',
-	  		      '유저 '+u_id+' 가 '+status+' 되었습니다',
+	  		      '유저 '+u_nickname+' 가 '+status+' 되었습니다',
 	  		      'success'
 	  		    )
 	  		  } else if (

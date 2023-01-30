@@ -39,6 +39,21 @@ public class BackendDAO {
 	public int kickUser(Map map) {
 		return template.delete("kickUser", map);
 	}
+
+	public int removeOne(Map map) {
+		return template.delete("removeOne",map);
+	}
+
+	public int getTotalRecordCount(Map map) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public List findAll(Map map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	
 

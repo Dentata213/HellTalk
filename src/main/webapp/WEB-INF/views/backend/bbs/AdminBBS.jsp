@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="path" value="${pageContext.request.contextPath}/resources/"/>
-<c:set var="bbslength" value="${bbslists}"/>
 <!DOCTYPE html>
 <!-- beautify ignore:start -->
 <html
@@ -97,7 +96,14 @@
                  	  	<c:forEach var="bbsInfo" items="${bbslists}">
 	                      <tr>
 	                        <td>${bbsInfo.no}</td>
-	                        <td>${fn:substring(bbsInfo.content,0,10)}</td>
+	                        <td>
+	                        	<c:if test="${fn:length(bbsInfo.content)>10}" var="length">
+	                        		${fn:substring(bbsInfo.content,0,10)}...
+	                        	</c:if>
+	                        	<c:if test="${not length}">
+	                        		${bbsInfo.content}
+	                        	</c:if>
+	                        </td>
 	                        <td>${bbsInfo.u_nickname}</td>
 	                      	<td>${bbsInfo.likeCount}</td>
 	                      	<td>${bbsInfo.viewCount}</td>
@@ -108,7 +114,7 @@
 	                              <i class="bx bx-dots-horizontal-rounded"></i>
 	                            </button>
 	                            <div class="dropdown-menu">
-	                              <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> 삭제</a>
+	                              <a class="dropdown-item" href="#"><i class="bx bx-trash me-1"></i> 삭제</a>
 	                            </div>
 	                          </div>
 	                        </td>
@@ -158,7 +164,70 @@
     <script src="${path}assets/js/main.js"></script>
 
     <!-- Page JS -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script>
+		$('.dropdown-item').on('click',function(e){
+			var no = this.parentElement.parentElement.parentElement.parentElement.children[0].textContent;
+			console.log(this.parentElement.parentElement.parentElement.parentElement.children[0].textContent);
+			
+			const swalWithBootstrapButtons = Swal.mixin({
+		  		  customClass: {
+		  		    confirmButton: 'btn btn-success',
+		  		    cancelButton: 'btn btn-danger'
+		  		  },
+		  		  buttonsStyling: false
+		  		})
+		
+		  		swalWithBootstrapButtons.fire({
+		  		  title: '해당글을 삭제 하시겠습니까?',
+		  		  icon: 'warning',
+		  		  showCancelButton: true,
+		  		  confirmButtonText: '삭제', 
+		  		  cancelButtonText: '취소',
+		  		  reverseButtons: true,
+		  		  allowOutsideClick: false
+		  		}).then((result) => {
+		  		  if (result.isConfirmed) {
+		  			 
+					$.ajax({
+						url:'<c:url value="/backend/removeOne"/>',
+						data:'p_no='+no,
+					}).done(function(data){
+						if(data==0){
+							swalWithBootstrapButtons.fire(
+				  		      '',
+				  		      '삭제 실패',
+				  		      'error'
+				  		    )
+						}else{
+							swalWithBootstrapButtons.fire(
+				  		      '',
+				  		      '해당글이 삭제 되었습니다',
+				  		      'success'
+				  		    )
+						}
+					})
+					
+		  			 
+		  		    
+		  		  } else if (
+		  		    /* Read more about handling dismissals below */
+		  		    result.dismiss === Swal.DismissReason.cancel
+		  		  ) {
+		  		    swalWithBootstrapButtons.fire(
+		  		      '',
+		  		      '취소되었습니다',
+		  		      'error'
+		  		    )
+		  		  }
+		  	})
 
+	  		
+			
+			
+		});
+	
+	</script>
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
   </body>

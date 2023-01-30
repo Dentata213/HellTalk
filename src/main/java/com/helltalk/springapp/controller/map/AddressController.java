@@ -20,7 +20,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
+@RequestMapping("/map")
 public class AddressController {
+	
+	
+	@RequestMapping("/iframMap.do")
+	public String ifram() {
+		return "/map/Address.helltalk";
+	}
+	
+	
 	
 		@GetMapping("/address.do")
 		public String address() {

@@ -10,6 +10,7 @@ public interface MemberService<T> {
 	
 	//회원 상세보기
 	T selectOne(Map map);
+	T selectOneByEmail(Map map);
 	int emailCheck(Map map);
 	int nicknameCheck(Map map);
 	

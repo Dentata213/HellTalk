@@ -50,12 +50,17 @@ public class ExerciseDAO {
 			Object value=map.get(key);
 			System.out.println(String.format("%s : %s",key,value));
 		}
-		int newRoutNo=template.insert("insertExerciseRoutine",map);
-		int routNo=(int)map.get("rout_no");
-		System.out.println("newRoutNo"+newRoutNo);
-		System.out.println("routNo"+routNo);
+		
+		//int routNo=(int) map.get("rout_no");
+		//System.out.println("newRoutNo"+newRoutNo);
+		//System.out.println("routNo"+routNo);
 		//session.close();
-		return routNo;
+		return template.insert("insertExerciseRoutine",map);
+	}
+
+	public List<Map> selectExerciseRoutine(Map map) {
+		List<Map> recommendRoutList= template.selectList("selectExerciseRoutine",map);
+		return recommendRoutList;
 	}
 
 }

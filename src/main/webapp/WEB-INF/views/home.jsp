@@ -132,15 +132,15 @@
         }
 
         .not-container .section:nth-child(1) {
-            background: url("https://artsandculture.withgoogle.com/gcs/national-parks-service/en-us/Asset-Kenai-desktop.jpg") center;
+            background: url("${path}/resources/images/chall.png") center;
         }
 
         .not-container .section:nth-child(2) {
-            background: url("https://artsandculture.withgoogle.com/gcs/national-parks-service/en-us/Asset-Hawaii-desktop.jpg") center;
+            background: url("${path}/resources/images/mypage.jpg") center;
         }
 
         .not-container .section:nth-child(3) {
-            background: url("https://artsandculture.withgoogle.com/gcs/national-parks-service/en-us/de0b954d-ca76-41d3-ac3a-900c6bc25139.jpg") center;
+            background: url("${path}/resources/images/commu.jpg") center;
         }
 		     
 /*않이.... 왜 안돼....*/  
@@ -198,7 +198,7 @@
             <a href="default-video.html" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-video font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
             <a href="default-group.html" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-user font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
             <a href="<c:url value="/model/shop-1.do"/>" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-shopping-bag font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
-			<a href="<c:url value="/address.do"/>" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-map font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
+			<a href="<c:url value="/map/iframMap.do"/>" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-map font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
 
             <a href="#" class="p-2 text-center ms-auto menu-icon" id="dropdownMenu3" data-bs-toggle="dropdown" aria-expanded="false"><span class="dot-count bg-warning"></span><i class="feather-bell font-xl text-current"></i></a>
             <div class="dropdown-menu dropdown-menu-end p-4 rounded-3 border-0 shadow-lg" aria-labelledby="dropdownMenu3">
@@ -329,9 +329,15 @@
                     
                 </div>
             </div>
-            
-
-            <a href="<c:url value="/model/Login.do"/>" class="p-2 lh-20 w100 bg-primary-gradiant me-2 text-white text-center font-xssss fw-600 ls-1 rounded-xl">login</a>
+            <sec:authorize access="isAnonymous()">
+            	<a href="<c:url value="/member/Login.do"/>" class="p-2 lh-20 w100 bg-primary-gradiant me-2 text-white text-center font-xssss fw-600 ls-1 rounded-xl">login</a>
+            </sec:authorize>
+            <sec:authorize access="isAuthenticated()">
+            	<form action="<c:url value="/member/Logout.do"/>" method="post">
+            		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+            		<button class="p-2 lh-20 w100 bg-primary-gradiant me-2 text-white text-center font-xssss fw-600 ls-1 rounded-xl">logout</button>
+            	</form>
+            </sec:authorize>
             
         </div>
    		
@@ -341,7 +347,8 @@
 		    <section class="not-container">
 		        <div class="section first">
 		            <div class="cont_title">
-		                <h1>오우!?<br>챌린지!</h1>
+		           
+		                <h1><a href="<c:url value="/model/challengeMain"/>" class="text-white">오우!?<br>챌린지!</a></h1>
 		                <h3>여기야여기!</h3>
 		            </div>
 		            <div class="cont_desc">
@@ -366,7 +373,7 @@
 				   		</div>
 		            </div>
 		        </div>
-		        <div class="section">
+		        <div class="section" style="margin-top: 100px">
 		            <div class="cont_title">
 		                <h1><a href="<c:url value="/community/bbs/mypage"/>" class="text-white">여긴<br>마이페이지</a></h1>
 		                <h3>National Park</h3>
@@ -386,22 +393,6 @@
 		        </div>
 		    </section>
 		</div>
-   
-   <sec:authorize access="isAuthenticated()">
-	        
-	        <!--객체의 권한-->
-	        <ul>
-		        <li>principal(현재 접속한 계정의 타입 및 정보):<sec:authentication property="principal"/></li>
-		        <li>principal(현재 접속한 사람의 id):<sec:authentication property="principal.username"/></li>
-		        <li>principal(현재 접속한 사람의 비밀번호):<sec:authentication property="principal.password"/></li>
-		        <li>principal.enabled(계정 활성화 상태 true:1 ,false:0) : <sec:authentication property="principal.enabled"/></li>
-		        <li>principal.authorities(현재 접속한 사람의 권한) : <sec:authentication property="principal.authorities"/></li>
-	        </ul>
-		    <form action="<c:url value="/member/Logout.do"/>" method="post">
-	   			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-	   			<button class="custom-btn btn-5" type="submit"><span>로그아웃</span></button>
-	   		</form>
-		</sec:authorize> 
    
    
 

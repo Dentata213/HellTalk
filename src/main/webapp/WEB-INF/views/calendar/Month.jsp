@@ -6,7 +6,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<c:set var="sessionId"><sec:authentication property="principal.username"/></c:set>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<script src=https://cdn.jsdelivr.net/npm/fullcalendar@6.0.3/index.global.min.js></script>
+<script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
+<script src="https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js"></script>
+
 <style>
 
   body {
@@ -69,58 +73,29 @@
  	font-size: 0px;
  }
 </style>                     
-<!-- main content -->
-  <!--
-<div class="main-content bg-white right-chat-active theme-dark-bg"> 
-    <div class="middle-sidebar-bottom">
-        <div class="middle-sidebar-left">
-            <div class="row">
-                <div class="col-xl-12 col-xxl-12 col-lg-12">
-                    <div class="row">
-                        <div id='wrap'>
 
-       사이드메뉴 
-   <div id='external-events'>
-       <h4>Today Check List</h4>
-
-       <div class="fc-button-group">
-           <div>
-               <button type="button" id="spobtn" title="운동 하셨나요?"
-                   class="fc-addEventButton-button fc-button fc-button-primary">운동
-                   하셨나요?</button>
-           </div>
-           <div style="margin-top: 10px;">
-               <button type="button" id="foodbtn" title="목표 식단 달성?"
-                   class="fc-addEventButton-button fc-button fc-button-primary">목표
-                   식단 달성?</button>
-           </div>
-       </div>
-
-       <p>
-           <label for='drop-remove'></label>
-       </p>
-   </div>
-   -->
    <!-- 달력 -->
   <div id='calendar-wrap'>
   	<div id='calendar'></div>
  </div>  
 
  <!--일정추가 modal 추가 -->
-  <div class="modal fade" id="addcalendarModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+  <div class="modal fade" id="addcalendarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
       aria-hidden="true">
-      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+     
       <div class="modal-dialog" role="document">
           <div class="modal-content">
               <div class="modal-header">
                   <h5 class="modal-title" id="addModalLabel">오늘하루를 기록하세요!</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="addclose">
                       <span aria-hidden="true">&times;</span>
                   </button>
               </div>
               <div class="modal-body">
-                  <div class="form-group">
+                  <div class="form-group">    
                       <label for="taskId" class="col-form-label">title</label>
+                      <c:set var="sessionId"><sec:authentication property="principal.username"/></c:set>
+                      <input type="hidden" name="uemail" id="uemail" value="${sessionId}"/>
                       <input type="text" class="form-control" id="caldtitle" name="caldtitle">
                       <label for="taskId" class="col-form-label">내용</label>
                       <textarea class="form-control"  rows="10"  id="caldcontent" name="caldcontent"></textarea>
@@ -146,6 +121,7 @@
               </div>
                
               <div class="modal-footer">
+               <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                   <button type="button" class="btn btn-warning" id="addCalendar" >추가</button>
                   <button type="button" class="btn btn-secondary" data-dismiss="modal"
                       id="addModalClose">닫기</button>
@@ -224,11 +200,10 @@
 <script src='${path}/resources/fullcalendar-5.11.3/lib/main.js'></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-	
-	  
-	  $(document).ajaxSend(function(e, xhr, options) {
-		  xhr.setRequestHeader( "${_csrf.headerName}", "${_csrf.token}" );
-		  }); 
+
+  $(document).ajaxSend(function(e, xhr, options) {
+	  xhr.setRequestHeader( "${_csrf.headerName}", "${_csrf.token}" );
+  }); 
 	  
     var calendarEl = document.getElementById('calendar');
 
@@ -238,30 +213,33 @@ document.addEventListener('DOMContentLoaded', function() {
       locale: 'ko',
       initialDate: '${today}',
       headerToolbar: {
-          left: 'addEventButton, dayGridMonth',
+          left: 'addEventButton dayGridMonth',
           center: 'title',
-          right: 'prev,next,today'//dayGridMonth,timeGridWeek,timeGridDay,listWeek
+          right: 'prev,next'//dayGridMonth,timeGridWeek,timeGridDay,listWeek
         },
-      navLinks: true, //// 클릭 시 상단 네이게이션 동작
+ //   navLinks: true, //// 일자 클릭 시 list로 이동 
       businessHours: true, // display business hours
       editable: true,
-      selectable: true,       
+      selectable: true,  
+      
+      
       eventClick: function() {
-    	
+
     	  //닫기 누르면 새로고침 해줘야 함...
     		$(document).on('click','#viewModalClose',function(){
     			location.reload();  			
     		}),
+    		
     		$(document).on('click','#addModalClose',function(){
-    			location.reload();  			
+    			location.reload();
     		}),
+    		
     		$(document).on('click','.close',function(){
     			location.reload();  			
     		}),   	  
-    	 //※댓글 목록의 제목 클릭시-click이벤트걸때 반드시  $(document).on('이벤트명','셀렉터',콜백함수)으로
+    	 //※click이벤트걸 때 반드시  $(document).on('이벤트명','셀렉터',콜백함수)으로
     	//그래야 동적으로 추가된 요소에도 이벤트가 발생한다 	  
     	 $(document).on('click','.fc-event-title-container',function(){
-    			//먼저 각 댓글 작성자의 아이디를 Ajax로 가져온다. 
     		//	console.log('댓글번호1:',this.viewno());
     			var this_= $(this).children(); //클릭한 제이쿼리 객체
     			var nos = this_.html().split("_")
@@ -284,55 +262,58 @@ document.addEventListener('DOMContentLoaded', function() {
     })   	      	            	        
         	$('#calendarModalView').modal('show');    
     	  
-        },   
+        }, 
+          
+            
       events: [
     
-    //calcked list 뿌리기 	  
+    //calcked list 뿌리기 	 
     <c:forEach var="calc" items="${calcList}" varStatus="loop">
-     	  { //오라클에서 불러온 데이터 연동==> 여기 클릭하면 모달창 띄워서 정보 보여주기! 
-     		  // 노노 이거 하루하루 목표 완료체크용으로 변경할거..
-               title:'${calc.rout_name}',
-               start:'${calc.rout_startdate}',  //'${today}'
-               end:'${calc.rout_enddate}',  //'${today}'
+     	  { 
+     		  title:'${calc.rout_name}' ,
+               start:'${calc.rout_startdate}', 
+               end:'${calc.rout_enddate}',  
                color:'#ff9f89' , 
-           	   display:'background'  
-     	  	   
+           	   display:'background'         	 
 	  	   },
-	</c:forEach> 
-
+	  	 </c:forEach> 
+  	   
 	//caldaily list 뿌리기
 	<c:forEach var="cald" items="${caldList}" varStatus="loop"> 			
 	  	{  		
-       
           title:'${cald.cald_no}_${cald.cald_title}',
-          start:'${cald.cald_startdate}',
+          start:'${cald.cald_startdate}',//T12:00붙이면 '.클래스값이 달라짐!!'
    //     end:'${cald.cald_enddate}T12:00',
-          constraint:'availableForMeeting', // defined below
+        constraint:'availableForMeeting', // defined below
           color:'${cald.cald_color}' //'#257e4a'
         },
         </c:forEach>   
-        {
-       
-        title:'테스트',
-        start:'2023-01-16',
-      //  end:'2023-01-17',
-        constraint: 'availableForMeeting', // defined below
-        color:'#257e4a',
-       display:'background'  
-        },
+        
       ],
-      customButtons: {
+        
+       customButtons: {
           addEventButton: { // 추가한 버튼 설정
               text : "기록하기",  // 버튼 내용
-              click : function(){ // 버튼 클릭 시 이벤트 추가
+              click : function(){ // 버튼 클릭 시 이벤트 추가       	
+            	  
                   $("#addcalendarModal").modal("show"); // modal 나타내기
-
+			
+                  //iframe후 닫기버튼이 안먹혀서 따로 지정
+                  $("#addModalClose").on("click",function(){
+                	  $("#addcalendarModal").modal("hide");    
+                  });
+                  $("#addclose").on("click",function(){
+                	  $("#addcalendarModal").modal("hide");    
+                  });
+                  
                   $("#addCalendar").on("click",function(){  // modal의 추가 버튼 클릭 시
                       var caldtitle = $("#caldtitle").val();
                 	  var caldcontent = $("#caldcontent").val();
                       var caldstartdate = $("#caldstartdate").val();
-                      var caldcolor = $("#caldcolor").val();                 
+                      var caldcolor = $("#caldcolor").val();
+					  var uemail = "${uemail}"; // $("#uemail").val();
                       
+					  console.log("이거!!!",uemail)
                       //내용 입력 여부 확인
                       if(caldtitle == null || caldtitle == ""){
                           alert("제목을 입력하세요.");
@@ -352,7 +333,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     		  "caldtitle" : caldtitle,
                               "caldcontent" : caldcontent,
                               "caldstartdate" : caldstartdate,
-                              "caldcolor" : caldcolor                            
+                              "caldcolor" : caldcolor,   
+                              "uemail" : uemail                       		  
                           }//전송할 객체 생성                                            
                         var test=JSON.stringify(obj);        
                      	 }
@@ -360,7 +342,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       $.ajax({
 	              			url:"<c:url value="/cal/Write.do"/>",
 	              			method: "POST",
-	              			data:test,
+	              			data: JSON.stringify(obj),
 	            			type:'json',
 	            			contentType:"application/json; charset=utf-8",
               			})
@@ -374,7 +356,8 @@ document.addEventListener('DOMContentLoaded', function() {
               				console.log(jqXHR)
               		        console.log(textStatus)
               		        console.log(errorThrown);
-            			});                      
+            			});  
+
                   });////modal안
               }///
           }////추가버튼 밖
@@ -383,6 +366,45 @@ document.addEventListener('DOMContentLoaded', function() {
     calendar.render();
   });
   
+  //팝업으로 운동목록 뿌리기!
+  $(function(){  
+	  $(document).on('click','.fc-daygrid-day-number',function(){//일자에 클릭 이벤트 걸기
+	//  $('.fc-daygrid-day-number').click(function(){  
+		var this_ = $(this).parent().parent().parent().attr("data-date")//클릭한 날짜 가져오기
+		var this2 = $(this)
+//		console.log(this_)
+						
+		  //그러면 일자를 넘겨주고 거기에 맞는 루틴을 가져와서 뿌려줘도 되겠다!!!
+		   $.ajax({
+   			url:"<c:url value="/calc/View.do"/>",
+   			data:"calcStartD="+this_,
+   			dataType:'json'
+			})		
+			.done(function(data){   
+				//console.log('이게?',data["list"]["ROUT_GENDER"])	
+				if(data["list"]==null){					
+				   if(data["DAY"]==null){
+					   this2.popover({placement:'top',content:'설정한 운동이 없습니다!'});	
+				    }else{
+					console.log('이거',data["DAY"])
+				    }
+				}
+				else{
+					console.log('아니면?',data["list"])
+					this2.popover({title:data["list"]['ROUT_NAME'],placement:'top',
+						content:'<Strong>운동내용:</Strong>'+data["list"]["ROUT_CONTENT"]+'<br/> <Strong>난이도:</Strong>'+data["list"]["ROUT_LEVEL"]+'<br/> <Strong>효과:</Strong>'+data["list"]["ROUT_EFFECT"]+'<br/> <Strong>시간:</Strong>'+data["list"]["ROUT_TIME"]+'<br/> <Strong>루틴모드:</Strong>'+data["list"]["ROUT_MODE"]+''
+							,html:true,animation:true,delay:{show: 300, hide: 100}});				
+				}
+	
+	}).fail(function(error){
+				console.log('글조회오류!!');				 
+			});		
+		  
+	  })
+	  
+  })
+  
+ 
   //글 수정 
   $(function(){
 	  $('#calEdit').click(function(){		
@@ -485,56 +507,5 @@ document.addEventListener('DOMContentLoaded', function() {
 		  
 	  });
 	  
-
-  //목표달성 버튼 
-    $(function() {
-       $('#spobtn').click(function(){
-    	   if($(this).html()==='운동 하셨나요?'){
-               $(this).html('목표달성 완료!');
-               
-               var obj = {
-                       "title" : "성공!",
-                       "startdate" : "${today}",
-                       "enddate" : "${today}",
-                       "color" : "color"
-                   }//전송할 객체 생성                                           
-                 var test=JSON.stringify(obj);
-                
-               $.ajax({
-           			url:"<c:url value="/fullcal/cal2/Write.do"/>",
-           			method: "POST",
-           			data:JSON.stringify(obj),
-         			type:'json',
-         			contentType:"application/json; charset=utf-8",
-       			})
-       			.done(function(data){         
-       					alert('good!');
-       					window.location.href ="List.do";
-       			}).
-       			fail(function(jqXHR, textStatus, errorThrown){
-       				console.log(jqXHR)
-       		        console.log(textStatus)
-       		        console.log(errorThrown);
-     			});                      
-    	   
-    	   
-    	   
-    	   	}
-             else{
-               $(this).html('운동 하셨나요?'); 
-             }  	   
-       })
-      });
-  
-    $(function() {
-        $('#foodbtn').click(function(){
-     	   if($(this).html()==='목표 식단 달성?'){
-                $(this).html('목표달성 완료!');
-                }
-                else{
-                    $(this).html('목표 식단 달성?'); 
-                }  	   
-        })
-       });
 </script>
 

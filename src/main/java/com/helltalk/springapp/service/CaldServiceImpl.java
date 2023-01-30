@@ -18,10 +18,12 @@ public class CaldServiceImpl implements CalService<CaldDto> {
 
 	@Autowired
 	private CaldDao dao;
-	
+
+
 	@Override
 	public List<CaldDto> selectList(Map map, HttpServletRequest req) {
 		List<CaldDto> list = dao.findAll(map);
+		System.out.println("서비스"+list);
 		return dao.findAll(map);
 	}
 
@@ -53,9 +55,11 @@ public class CaldServiceImpl implements CalService<CaldDto> {
 	}
 
 	@Override
-	public String findNameByNo(Map map) {
+	public String findUserByNo(Map map) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 }

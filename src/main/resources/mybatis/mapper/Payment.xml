@@ -7,11 +7,20 @@
 	<select id="selectCartList" parameterType="Map" resultType="PaymentDTO">
 			SELECT
 			c.PRO_NO as product_no,
+			CART_NO,
 			CART_QUANTITY as product_quantity, 
 			PRO_NAME as product_name,
 			PRO_PRICE as product_price,
 			PRO_IMG as product_img
 			FROM CART c JOIN PRODUCT p ON p.PRO_NO = c.PRO_NO WHERE U_NO=#{U_NO}
 	</select>
+	
+	<update id="updateQuantity" parameterType="Map">
+		UPDATE CART SET CART_QUANTITY=#{CART_QUANTITY} WHERE PRO_NO=#{PRO_NO}
+	</update>
+	
+	<delete id="deleteCart" parameterType="Map">
+		DELETE FROM CART WHERE U_NO=#{U_NO} AND PRO_NO=#{PRO_NO}
+	</delete>
 	
 </mapper>

@@ -61,9 +61,9 @@ public class ExerciseServiceImpl implements ExerciseService<ExerciseDTO>{
 	}
 
 	@Override
-	public ExerciseDTO selectExerciseRoutine(Map map) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Map> selectExerciseRoutine(Map map) {
+		List<Map> recommendRoutList=dao.selectExerciseRoutine(map);
+		return recommendRoutList;
 	}
 
 	@Override

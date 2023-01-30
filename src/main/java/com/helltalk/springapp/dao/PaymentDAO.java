@@ -13,12 +13,13 @@ import com.helltalk.springapp.models.PaymentDTO;
 @Repository
 public class PaymentDAO {
 
+	public PaymentDAO() {}
+
 	@Autowired
 	private SqlSessionTemplate template;
 
 	public List<PaymentDTO> selectCartList(Map map) {
 		map.put("U_NO", 1);
-		map.put("PRO_NO", 1);
 		
 		List<PaymentDTO> list = template.selectList("selectCartList",map);
 		return list;
@@ -30,6 +31,17 @@ public class PaymentDAO {
 
 	public int insertCart(Map map) {
 		return template.insert("insertCart", map);
+	}
+
+	public Map updateQuantity(Map map) {
+		System.out.println("DAO입력처리");
+		template.update("updateQuantity",map);
+		return map;
+	}
+
+	public int deleteCart(Map map) {
+		template.delete("deleteCart",map);
+		return 0;
 	}
 	
 	

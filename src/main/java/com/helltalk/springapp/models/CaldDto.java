@@ -17,6 +17,6 @@ public class CaldDto {
 	private java.sql.Date cald_startdate;
 	private java.sql.Date cald_enddate;
 	private String cald_color;
-	private String u_id;	
+	private String u_email;	
 
 }

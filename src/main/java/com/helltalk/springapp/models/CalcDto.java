@@ -18,5 +18,6 @@ public class CalcDto {
 	private String rout_content;
 	private java.sql.Date rout_startdate;
 	private java.sql.Date rout_enddate;
+	private String u_email;	
 		
 }

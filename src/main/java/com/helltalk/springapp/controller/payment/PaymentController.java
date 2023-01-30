@@ -39,8 +39,12 @@ public class PaymentController {
 	
 	@RequestMapping("/mycart")
 	public String mycart(@RequestParam Map map, Model model) {
+		
 		List<PaymentDTO> lists = service.selectCartList(map);
+		int sum = service.calcCart(map);
+		
 		model.addAttribute("lists", lists);
+		model.addAttribute("totalprice",sum);
 		
 		/*문자열을 4000자씩 쪼개기*/
 		String text="BASE64로 변환된 문자열";
@@ -63,9 +67,7 @@ public class PaymentController {
 		
 		return "payment/cart.helltalk";
 	}
-	
-
-	
+		
 	
 	@RequestMapping("/single-product")
 	public String singleProduct() {

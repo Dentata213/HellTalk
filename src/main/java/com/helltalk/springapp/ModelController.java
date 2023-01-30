@@ -22,6 +22,9 @@ public class ModelController {
 		return "ocr/Ocr";
 	}
 	
-	
+	@RequestMapping("/challengeMain")
+	public String challengeMain() {
+		return "challenge/ChallengeMain.helltalk";
+	}
 	
 }

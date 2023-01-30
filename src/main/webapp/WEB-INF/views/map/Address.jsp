@@ -1,6 +1,13 @@
+<%@page import="com.helltalk.springapp.models.CaldDto"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<c:set var="sessionId"><sec:authentication property="principal.username"/></c:set>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 
 
 	<!DOCTYPE html>
@@ -8,14 +15,15 @@
 	<html>
 	<head>
 	    <meta charset="utf-8">
+	   
 	    <title>헤엘토옥</title>
 	    <style>
 	.map_wrap, .map_wrap * {margin:0; padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 	.map_wrap {position:relative;width:100%;height:350px;}
-	#category {position:absolute;top:10px;left:10px;border-radius: 5px; border:1px solid #909090;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);background: #fff;overflow: hidden;z-index: 2;}
+	#category {position:absolute;top:70px;left:10px;border-radius: 5px; border:1px solid #909090;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);background: #fff;overflow: hidden;z-index: 2;}
 	#category li {float:left;list-style: none;width:50px;px;border-right:1px solid #acacac;padding:6px 0;text-align: center; cursor: pointer;}
 	#category li.on {background: #eee;}
-	#category li:hover {background: #ffe6e6;border-left:1px solid #acacac;margin-left: -1px;}
+	#category li:hover {background: #e6e8ff;border-left:1px solid #acacac;margin-left: -1px;}
 	#category li:last-child{margin-right:0;border-right:0;}
 	#category li span {display: block;margin:0 auto 3px;width:27px;height: 28px;}
 	#category li .category_bg {background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png) no-repeat;}
@@ -33,8 +41,8 @@
 	.placeinfo a, .placeinfo a:hover, .placeinfo a:active{color:#fff;text-decoration: none;}
 	.placeinfo a, .placeinfo span {display: block;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
 	.placeinfo span {margin:5px 5px 0 5px;cursor: default;font-size:13px;}
-	.placeinfo .title {font-weight: bold; font-size:14px;border-radius: 6px 6px 0 0;margin: -1px -1px 0 -1px;padding:10px; color: #fff;background: #d95050;background: #d95050 url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;}
-	.placeinfo .tel {color:#0f7833;}
+	.placeinfo .title {font-weight: bold; font-size:14px;border-radius: 6px 6px 0 0;margin: -1px -1px 0 -1px;padding:10px; color: #fff;background: #7781e6;background: #7781e6 url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;}
+	.placeinfo .tel {color:#ff2b2b;}
 	.placeinfo .jibun {color:#999;font-size:11px;margin-top:0;}
 	</style>
 	
@@ -43,8 +51,17 @@
 	<body>
 	<h2><i>헤에에엘토오오오오오오오오오오토옥</i></h2>
 	<div class="map_wrap">
+	<div class="main-content bg-white right-chat-active">
+            <div class="middle-sidebar-bottom">
+                <div class="middle-sidebar-left">
+                <br><br>
+               </div>
+            </div>
+</div>
 	    <div id="map" style="width:100%;height:90vh;position:relative;overflow:hidden;"></div>
+	    
 	    <ul id="category">
+	    
 	        <li id="CT1" data-order="0"> 
 	            <span class="category_bg health"></span>
 	          	헬스장
@@ -65,19 +82,32 @@
 	            <span class="category_bg store"></span>
 	            편의점
 	        </li>
-	        <li id="user" data-order="5"> 
-	            <span class="category_bg user"></span>
-	            사용자
-	        </li>      
+	       
 	    </ul>
+	    
+	    <div id="menu_wrap" class="bg_white">
 	</div>
 	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2d6166a1b5a525187fa1a868dbaf55cb&libraries=services,clusterer,drawing"></script> 
-	<script type="text/javascript" src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script src="${path}/resources/js/plugin.js"></script>
+	<script src="${path}/resources/js/scripts.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	
+	
 	<script>
 
 
+
+
 	
+	
+	
+	
+	
+	
+
 	
 	
 	
@@ -281,6 +311,20 @@
 	
 	
 	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// 지도 타입 변경 컨트롤을 생성한다
 	var mapTypeControl = new kakao.maps.MapTypeControl();
 
@@ -293,76 +337,32 @@
 	// 지도의 우측에 확대 축소 컨트롤을 추가한다
 	map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 	
-	
 	</script>
 	
-	
-	
-	
-	<script>
-	
-	
-	
-	
-	$.ajax({
-    	// url은 본인의 환경에 따라 작성 합니다.
-		url : "locationMapList.do",
-		data : {},
-		success : function(result){
-		    var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
-		        center : new kakao.maps.LatLng(37.478673050045316, 126.8789041628882), // 지도의 중심좌표 
-		        level : 14 // 지도의 확대 레벨 
-		    });
-		    
-		    // 마커 클러스터러를 생성합니다 
-		    var clusterer = new kakao.maps.MarkerClusterer({
-		        map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
-		        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
-		        minLevel: 10 // 클러스터 할 최소 지도 레벨 
-		    });
-		 	
-		    // 데이터를 가져오기 위해 jQuery를 사용합니다
-		    // 데이터를 가져와 마커를 생성하고 클러스터러 객체에 넘겨줍니다
-		    $.get("", function(data) {
-		        // 데이터에서 좌표 값을 가지고 마커를 표시합니다
-		        // 마커 클러스터러로 관리할 마커 객체는 생성할 때 지도 객체를 설정하지 않습니다
-		        var markers = $(data.positions).map(function(i, position) {
-		            return new kakao.maps.Marker({
-		                position : new kakao.maps.LatLng(position.lat, position.lng)
-		            });
-		        });
-		        // 클러스터러에 마커들을 추가합니다
-		        clusterer.addMarkers(markers);
-		    });
-		},
-		error : function(){
-			//console.log(error);
-			console.log("통신--Address--실패");
-		}
-	})
-	
-	</script>
-	
-	
-	 
-	
-	<!--  <script>
-	
-	//제세동기 관련 script
-	
-	var xhr = new XMLHttpRequest();
-	var url = 'http://apis.data.go.kr/B552657/AEDInfoInqireService/getAedLcinfoInqire'; /*URL*/
-	var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'de2553c691645e8735077c1309f5ffc5'; /*Service Key*/
-	queryParams += '&' + encodeURIComponent('') + '=' + encodeURIComponent(''); /**/
-	xhr.open('GET', url + queryParams);
-	xhr.onreadystatechange = function () {
-	    if (this.readyState == 4) {
-	        alert('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);
-	    }
-	};
-
-	xhr.send('');
-	
-	</script> -->
 	</body>
 	</html>
+	<!--  
+	
+	따릉이 위치 
+	병원 예약
+	산책로 
+	걸이계산(직선 추가+ 거리별 칼로리 계산)%몸무게 입력 문제 
+	!!!@@!! 트레이너 위치 마커 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	헬스장 근무트레이너 정보 인포윈도우(하드코딩 & //헬톡가맹 헬스장 입력창//)
+	 
+	 
+	
+	
+	
+	 -->

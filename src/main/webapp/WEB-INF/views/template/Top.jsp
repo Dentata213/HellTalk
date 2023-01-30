@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
@@ -49,7 +50,7 @@
             <a href="default-video.html" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-video font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
             <a href="default-group.html" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-user font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
             <a href="<c:url value="/model/shop-1.do"/>" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-shopping-bag font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
-			<a href="<c:url value="/address.do"/>" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-map font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
+			<a href="<c:url value="/map/iframMap.do"/>" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-map font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
 
             <a href="#" class="p-2 text-center ms-auto menu-icon" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="dot-count bg-warning"></span><i class="feather-bell font-xl text-current"></i></a>
             <div class="dropdown-menu dropdown-menu-end p-4 rounded-3 border-0 shadow-lg" aria-labelledby="dropdownMenu3">
@@ -180,26 +181,31 @@
                     
                 </div>
             </div>
-            
-			
-            <a href="<c:url value="/model/Login.do"/>" class="p-2 lh-20 w100 bg-primary-gradiant me-2 text-white text-center font-xssss fw-600 ls-1 rounded-xl">login</a>
-            
+            <sec:authorize access="isAnonymous()">
+            	<a href="<c:url value="/member/Login.do"/>" class="p-2 lh-20 w100 bg-primary-gradiant me-2 text-white text-center font-xssss fw-600 ls-1 rounded-xl">login</a>
+            </sec:authorize>
+            <sec:authorize access="isAuthenticated()">
+            	<form action="<c:url value="/member/Logout.do"/>" method="post">
+            		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+            		<button class="p-2 lh-20 w100 bg-primary-gradiant me-2 text-white text-center font-xssss fw-600 ls-1 rounded-xl">logout</button>
+            	</form>
+            </sec:authorize>
         </div>
         <!-- navigation top -->
         
-                <!-- navigation left -->
+        <!-- navigation left -->
         <nav class="navigation scroll-bar">
             <div class="container ps-0 pe-0">
                 <div class="nav-content">
                     <div class="nav-wrap bg-white bg-transparent-card rounded-xxl shadow-xss pt-3 pb-1 mb-2 mt-2">
-                        <div class="nav-caption fw-600 font-xssss text-grey-500"><span>New </span>Feeds</div>
+                        <div class="nav-caption fw-600 font-xssss text-grey-500"><span>Menu</span></div>
                         <ul class="mb-1 top-content">
                             <li class="logo d-none d-xl-block d-lg-block"></li>
-                            <li><a href="default.html" class="nav-content-bttn open-font" ><i class="feather-tv btn-round-md bg-blue-gradiant me-3"></i><span>Newsfeed</span></a></li>
-                            <li><a href="default-badge.html" class="nav-content-bttn open-font" ><i class="feather-award btn-round-md bg-red-gradiant me-3"></i><span>Badges</span></a></li>
-                            <li><a href="default-storie.html" class="nav-content-bttn open-font" ><i class="feather-globe btn-round-md bg-gold-gradiant me-3"></i><span>Explore Stories</span></a></li>
-                            <li><a href="default-group.html" class="nav-content-bttn open-font" ><i class="feather-zap btn-round-md bg-mini-gradiant me-3"></i><span>Popular Groups</span></a></li>
-                            <li><a href="user-page.html" class="nav-content-bttn open-font"><i class="feather-user btn-round-md bg-primary-gradiant me-3"></i><span>Author Profile </span></a></li>                        
+                            <li><a href="<c:url value=""/>" class="nav-content-bttn open-font" ><i class="feather-award btn-round-md bg-blue-gradiant me-3"></i><span>챌린지</span></a></li>
+                            <li><a href="<c:url value=""/>" class="nav-content-bttn open-font" ><i class="feather-message-circle btn-round-md bg-red-gradiant me-3"></i><span>커뮤니티</span></a></li>
+                            <li><a href="<c:url value=""/>" class="nav-content-bttn open-font" ><i class="feather-shopping-cart btn-round-md bg-gold-gradiant me-3"></i><span>쇼핑</span></a></li>
+                            <li><a href="<c:url value=""/>" class="nav-content-bttn open-font" ><i class="feather-box btn-round-md bg-mini-gradiant me-3"></i><span>편의기능</span></a></li>
+                            <li><a href="<c:url value=""/>" class="nav-content-bttn open-font"><i class="feather-help-circle btn-round-md bg-primary-gradiant me-3"></i><span>Q&A</span></a></li>                        
                         </ul>
                     </div>
 

@@ -2,19 +2,22 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
 <mapper namespace="mybatis.mapper.Cald">
 <select id="findAll" parameterType="Map" resultType="CaldDto">
-		SELECT cald_no,caldaily.u_no,cald_title,cald_content,cald_startdate,u_email,cald_color
+		SELECT cald_no,cald_title,cald_content,cald_startdate,cald_color,u_email
 		FROM caldaily join users
 		ON caldaily.u_no=users.u_no
+  	 	WHERE caldaily.u_no =
+  	 	(SELECT DISTINCT users.U_no FROM users left join CALDAILY ON caldaily.u_no=users.u_no WHERE u_email=#{uemail,jdbcType=VARCHAR})
 </select>
  
 <insert id="caldInset" parameterType="Map">
 	<selectKey keyProperty="caldno" resultType="int" order="BEFORE">
 		SELECT SEQ_CALDNO.NEXTVAL FROM DUAL
-	</selectKey>
+	</selectKey>	
 		INSERT INTO CALDAILY VALUES(SEQ_CALDNO.NEXTVAL,
-		(SELECT DISTINCT USERS.U_NO FROM CALDAILY JOIN USERS on caldaily.u_no = users.u_no)
+		(SELECT DISTINCT users.U_no FROM users left join CALDAILY ON caldaily.u_no=users.u_no WHERE u_email=#{uemail,jdbcType=VARCHAR})
 		,#{caldtitle},#{caldcontent},#{caldstartdate},#{caldcolor})
 </insert>
 
@@ -29,6 +32,5 @@
 <delete id="caldDelete" parameterType="Map" >
  	DELETE CALDAILY WHERE cald_no=#{viewno}
 </delete>
-
 
 </mapper>

@@ -21,7 +21,7 @@ public interface ExerciseService<T> {
 	int deleteExercise(Map map);
 	
 	//운동루틴 조회 및 저장
-	T selectExerciseRoutine(Map map);
+	List selectExerciseRoutine(Map map);
 	int insertExerciseRoutine(Map map);
 	int updateExerciseRoutine(Map map);
 	int deleteExerciseRoutine(Map map);

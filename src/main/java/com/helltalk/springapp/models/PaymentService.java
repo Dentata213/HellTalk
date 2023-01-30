@@ -17,6 +17,8 @@ public interface PaymentService<T> {
 	int updateCart(Map map);
 	int deleteCart(Map map);
 	
+	int calcCart(Map map);
+	
 	//단건 결재 조회 및 저장
 	T selectOneReceipt(Map map);
 	int insertReceipt(Map map);

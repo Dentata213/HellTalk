@@ -20,7 +20,7 @@ public class exerciseIframeController {
 	@RequestMapping("/exercise/iframe.do")
 	public String exerciseKind(Model model) {
 		
-		return "challenge/routine/userExerciseRoutineIframe.helltalk";
+		return "challenge/routine/userExerciseRoutineIframe";
 		
 	}
 
