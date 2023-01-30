@@ -36,6 +36,7 @@
 				<h4>기록할 날짜 선택</h4>
 			</label>
 			<form action='<c:url value="/diet/goFoodSearch.do"/>' method="post">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<input class="form-control col-mb-3" type="date" min="1950-01-01" max="9999-12-31" name="d_date" />
 				<input type="submit" class="btn btn-primary" value="breakfast" name="breakfast" /> 
 				<input type="submit" class="btn btn-primary" value="lunch" name="lunch" /> 
