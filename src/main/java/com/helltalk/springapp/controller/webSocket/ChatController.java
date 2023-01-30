@@ -3,6 +3,7 @@ package com.helltalk.springapp.controller.webSocket;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,17 +14,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.helltalk.springapp.models.CalService;
 import com.helltalk.springapp.models.ChatDto;
 
 
 @Controller
 public class ChatController {
-	
-	List<ChatDto> roomList = new ArrayList<ChatDto>();
-	static int roomNo = 0;
 
 	@Autowired
 	public ChatDto roomDto;
+	
+	@Autowired
+	public CalService<ChatDto> chatService;
 	
 	@RequestMapping("/chat.do")
 	public ModelAndView chat() {
@@ -32,7 +34,6 @@ public class ChatController {
 		mv.setViewName("community/chat/chat");
 		return mv;
 	}
-	
 	
 	 //방 페이지
 	//채팅방목록으로 가기 
@@ -49,29 +50,24 @@ public class ChatController {
 	 */
 	@RequestMapping("/createRoom.do")
 	@ResponseBody
-	public List<ChatDto> createRoom(@RequestBody HashMap<Object, Object> params){
-		String roomName = (String) params.get("roomName");
-		System.out.println("roomname"+roomName);
-		if(roomName != null && !roomName.trim().equals("")) {			
-			roomDto.setRoomNo(++roomNo);
-			roomDto.setRoomName(roomName);
-			roomList.add(roomDto);
-			System.out.println("방번호 이게 됨?"+roomList);
-		}
-		return roomList;
+	public Map createRoom(@RequestBody HashMap map){
+	int newroom	= chatService.insert(map);
+		map.put("no", newroom);
+		System.out.println("방번호?:"+map);
+		return map;	
 	}
 //////////////////////////////////	
 	/*
-	 * 방 정보가져오기
-	 */
+	 * 방 정보가져오기(위에 no로 가져올거임!!)
+	
 	@RequestMapping("/getRoom")
 	public @ResponseBody List<ChatDto> getRoom(@RequestParam HashMap<Object, Object> params){
 		return roomList;
-	}
+	} */
 	
 	/*
 	 * 채팅방
-	 */
+	
 	@RequestMapping("/moveChating")
 	public ModelAndView chating(@RequestParam HashMap<Object, Object> params) {
 		ModelAndView mv = new ModelAndView();
@@ -87,7 +83,7 @@ public class ChatController {
 		}
 		return mv;
 	}
-	
+	 */
 	/*@RequestMapping("/chat1.do")
 	public String list(
 			HttpServletRequest req) {	
@@ -99,3 +95,4 @@ public class ChatController {
 		
 	*/
 }
+

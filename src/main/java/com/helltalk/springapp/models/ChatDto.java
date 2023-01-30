@@ -12,6 +12,8 @@ public class ChatDto {
 	
 	private int roomNo;
 	private String roomName;
+	private String u_email;
+	private int u_no;
 	
 	@Override
 	public String toString() {

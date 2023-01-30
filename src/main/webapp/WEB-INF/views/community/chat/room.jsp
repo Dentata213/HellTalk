@@ -160,7 +160,7 @@
 		}
 	
 	function enterroom(){
-		$("#enterroom").click(function(){
+		$("#enterroom1").click(function(){
 			window.location.href="<c:url value="/chat.do"/>"
 		});
 		
@@ -168,13 +168,23 @@
 </script>
 <body>
 	<div class="container">
-		<h1>채팅방</h1>
+		<h1>채팅방(임시)</h1>
 	<div id="roomContainer" class="roomContainer">
 		<table id="roomList" class="roomList">
 			<tr>
 				<th>방 제목</th>
-				<th><input name="roomName" id="roomName1" value="${name}dddddd" disabled /></th>
-				<th><button name="enterroom" id="enterroom" >입장</button></th>
+				<th><input name="roomName" id="roomName1" value="나중에" disabled /></th>
+				<th><button name="enterroom" id="enterroom1" >누르면바로채팅</button></th>
+			</tr>
+			<tr>
+				<th>방 제목</th>
+				<th><input name="roomName" id="roomName2" value="사용자검색기능추가" disabled /></th>
+				<th><button name="enterroom" id="enterroom2" >누르면바로채팅</button></th>
+			</tr>
+			<tr>
+				<th>방 제목</th>
+				<th><input name="roomName" id="roomName3" value="1:1채팅으로만들거야" disabled /></th>
+				<th><button name="enterroom" id="enterroom3" >누르면바로채팅</button></th>
 			</tr>						
 		</table>
 	</div>		
