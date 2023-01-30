@@ -44,7 +44,7 @@
 		
 		<form>
 		<div class="form-group">
-			<label><kbd class="lead">닉네임</kbd></label> 
+			<label><kbd class="lead">닉네임(이거 없앨꺼얌!!)</kbd></label> 
 			<input type="text" class="form-control" id="nickname" 
 			placeholder="닉네임을 입력하세요">
 		</div>
@@ -74,7 +74,8 @@
 	채팅 테스트
 	localhost를 아이피로 변경(192.168.0.14) 소스 및 브라우저 URL도 변경
 	그리고 인바운드 규칙추가 8080
-	
+	192.168.0.29:8080
+	${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}
 	채팅 말풍선
 	https://codepen.io/beumsk/pen/mmEzrE
 	 */
@@ -85,7 +86,7 @@
 	var nickname;
 	//입장버튼 클릭 시 -서버와 연결된 웹소켓 클라이언트 생성  ==> 채팅방 들어가는 이벤트로 변경예정...
 	$('#enterBtn').on('click',function(){  //one 한 번만 입장해야 하니까
-		wsocket = new WebSocket("ws://192.168.0.29:8080<c:url value='/chating"+"2"+".do'/>"); //wss 는 보안이 강화된것 얘는 443포트를 사용
+		wsocket = new WebSocket("ws://${pageContext.request.serverName}:${pageContext.request.serverPort}<c:url value='/chating"+"2"+".do'/>"); //wss 는 보안이 강화된것 얘는 443포트를 사용
 		console.log('wsocket:',wsocket);
 		//서버와 연결된 웹 소켓에 이벤트 등록(함수들은 밑으로 다 빼놓음)
 		wsocket.onopen = open;  //   open()들어가면 호출하는거여

@@ -77,23 +77,16 @@
 </head>
 
 <script type="text/javascript">
-	var ws;
-	window.onload = function(){
-	//	getRoom();
-		createRoom();
-		enterroom();
-	}
-
-/*	function getRoom(){
-		commonAjax('/getRoom',"", 'post', function(result){
-			createChatingRoom(result);
-		});
-	}*/
+document.addEventListener('DOMContentLoaded', function() {
 	
-	function createRoom(){ //createRoom
+	 $(document).ajaxSend(function(e, xhr, options) {
+		  xhr.setRequestHeader( "${_csrf.headerName}", "${_csrf.token}" );
+	  }); 
+
+	/// 계획 : 채팅할 user를 아이디로 검색해서 채팅하기 누르면 채팅방이 생성되게 만들껴!!!
+/*	function createRoom(){ 
 		$("#createRoom").click(function(){
-			var roomName = $("#roomName").val();
-			
+			var roomName = $("#roomName").val();		
 			if(roomName == null || roomName == ""){
 				alert("방이름을 입력하세요!");
 				return;
@@ -121,29 +114,10 @@
 			}); 		
 		});
 	}
+*/
 
-	function goRoom(number, name){
-		location.href="/moveChating?roomName="+name+"&"+"roomNumber="+number;
-	}
-
-	//채팅방만들기 
-	/*function createChatingRoom(res){
-		if(res != null){
-			var tag = "<tr><th class='num'>순서</th><th class='room'>방 이름</th><th class='go'></th></tr>";
-			res.forEach(function(d, idx){
-				var rn = d.roomName.trim();
-				var roomNumber = d.roomNumber;
-				tag += "<tr>"+
-							"<td class='num'>"+(idx+1)+"</td>"+
-							"<td class='room'>"+ rn +"</td>"+
-							"<td class='go'><button type='button' onclick='goRoom(\""+roomNumber+"\", \""+rn+"\")'>참여</button></td>" +
-						"</tr>";	
-			});
-			$("#roomList").empty().append(tag);
-		}
-	}*/
-
-	function commonAjax(url, parameter, type, calbak, contentType){
+/*	 에이작스 공통메소드같은데 나는 능력이안되니까.. 참고용으로 보자!!
+ 	function commonAjax(url, parameter, type, calbak, contentType){
 		$.ajax({
 			url: url,
 			data: parameter,
@@ -157,14 +131,12 @@
 				calbak(err);
 			}
 		});	
-		}
-	
-	function enterroom(){
+		}*/	
 		$("#enterroom1").click(function(){
 			window.location.href="<c:url value="/chat.do"/>"
-		});
+		});		
 		
-	}	
+ });		
 </script>
 <body>
 	<div class="container">
@@ -172,13 +144,13 @@
 	<div id="roomContainer" class="roomContainer">
 		<table id="roomList" class="roomList">
 			<tr>
-				<th>방 제목</th>
+				<th>이거 그냥 검색해서나온 user라고 치자</th>
 				<th><input name="roomName" id="roomName1" value="나중에" disabled /></th>
-				<th><button name="enterroom" id="enterroom1" >누르면바로채팅</button></th>
+				<th><button name="enterroom" id="enterroom1" >채팅하기</button></th>
 			</tr>
 			<tr>
 				<th>방 제목</th>
-				<th><input name="roomName" id="roomName2" value="사용자검색기능추가" disabled /></th>
+				<th><input name="roomName" id="roomName2" value="사용자검색기능추가해서" disabled /></th>
 				<th><button name="enterroom" id="enterroom2" >누르면바로채팅</button></th>
 			</tr>
 			<tr>
