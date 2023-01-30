@@ -6,7 +6,7 @@
 	<!--  DIET  -->
 	<insert id="dietInsert" parameterType="Map">
     	INSERT ALL
-		INTO diet VALUES(SEQ_DIET.NEXTVAL,'title', 0,0, SYSDATE, #{u_no})
+		INTO diet VALUES(SEQ_DIET.NEXTVAL,'title', 0,0, TO_DATE(#{d_date},'YYYY-MM-DD'), #{u_no})
 		INTO eat VALUES(SEQ_EAT.NEXTVAL,#{status},SEQ_DIET.CURRVAL)
 		SELECT * FROM DUAL
 		<selectKey resultType="int" keyProperty="eat_no" order="AFTER">

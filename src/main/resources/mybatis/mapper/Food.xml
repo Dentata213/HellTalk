@@ -27,7 +27,12 @@
 		JOIN Eat e on e.diet_no=d.diet_no
 		JOIN Eatlist el on el.eat_no= e.eat_no
 		JOIN Food f on f.food_cd=el.food_cd 
-		WHERE TO_CHAR(d.diet_date, 'YYYYMMDD') = '20230130' AND e.eat_status='breakfast'
+		<if test=" d_date == null">
+			WHERE TO_CHAR(d.diet_date, 'YYYY-MM-DD') = TO_CHAR(SYSDATE,'YYYY-MM-DD') AND e.eat_status='breakfast'
+		</if>
+		<if test=" d_date != null">
+			WHERE TO_CHAR(d.diet_date, 'YYYY-MM-DD') = #{d_date} AND e.eat_status='breakfast'
+		</if>
 	</select>
 	
 	<select id="selectListEatLunch" parameterType="Map" resultType="FoodDto">
@@ -36,7 +41,12 @@
 		JOIN Eat e on e.diet_no=d.diet_no
 		JOIN Eatlist el on el.eat_no= e.eat_no
 		JOIN Food f on f.food_cd=el.food_cd 
-		WHERE TO_CHAR(d.diet_date, 'YYYYMMDD') = '20230130' AND e.eat_status='lunch'
+		<if test=" d_date == null">
+			WHERE TO_CHAR(d.diet_date, 'YYYY-MM-DD') = TO_CHAR(SYSDATE,'YYYY-MM-DD') AND e.eat_status='lunch'
+		</if>
+		<if test=" d_date != null">
+			WHERE TO_CHAR(d.diet_date, 'YYYY-MM-DD') = #{d_date} AND e.eat_status='lunch'
+		</if>
 	</select>
 	
 	<select id="selectListEatDinner" parameterType="Map" resultType="FoodDto">
@@ -45,7 +55,12 @@
 		JOIN Eat e on e.diet_no=d.diet_no
 		JOIN Eatlist el on el.eat_no= e.eat_no
 		JOIN Food f on f.food_cd=el.food_cd 
-		WHERE TO_CHAR(d.diet_date, 'YYYYMMDD') = '20230130' AND e.eat_status='dinner'
+		<if test=" d_date == null">
+			WHERE TO_CHAR(d.diet_date, 'YYYY-MM-DD') = TO_CHAR(SYSDATE,'YYYY-MM-DD') AND e.eat_status='dinner'
+		</if>
+		<if test=" d_date != null">
+			WHERE TO_CHAR(d.diet_date, 'YYYY-MM-DD') = #{d_date} AND e.eat_status='dinner'
+		</if>
 	</select>
 	
 </mapper>

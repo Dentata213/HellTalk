@@ -71,6 +71,7 @@ public class DietController {
 		//저녁
 		List<FoodDTO> selectListEatDinner= foodService.selectListEatDinner(map);
 		model.addAttribute("selectListEatDinner", selectListEatDinner);
+		
 		return "challenge/diet/Diet";
 	}
 	
@@ -99,6 +100,12 @@ public class DietController {
 		}
 		else {
 			System.out.println("아점저 안 넘어옴");
+		}
+		
+		//d_date 저장
+		if(d_date != null) {
+			HttpSession session = req.getSession();
+			session.setAttribute("d_date", d_date);
 		}
 		
 		//뷰 반환
@@ -241,6 +248,7 @@ public class DietController {
 		String breakfast= req.getSession().getAttribute("breakfast") == null? null:req.getSession().getAttribute("breakfast").toString() ;
 		String lunch= req.getSession().getAttribute("lunch") == null? null:req.getSession().getAttribute("lunch").toString() ;
 		String dinner= req.getSession().getAttribute("dinner") == null? null:req.getSession().getAttribute("dinner").toString() ;
+		String d_date= req.getSession().getAttribute("d_date")== null? null: req.getSession().getAttribute("d_date").toString();
 		
 		//식사시간구분값을 가져오기 위해
 		HttpSession session= req.getSession();
@@ -278,6 +286,8 @@ public class DietController {
 		    }
 	    }
 	    System.out.println("status 넘어온 값: "+map.get("status"));
+	    
+	    map.put("d_date", d_date);
 	    
 	    //DB- 회원값(diet값) 저장
 	  	map.put("u_no", Integer.valueOf(8));//임시
