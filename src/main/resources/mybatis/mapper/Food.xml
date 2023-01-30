@@ -20,7 +20,33 @@
 		SELECT * FROM food WHERE food_cd=#{food_cd} 
 	</select>
 
-
-
+	<!-- 한끼 반환 -->
+	<select id="selectListEatBreakfast" parameterType="Map" resultType="FoodDto">
+		SELECT f.food_name, f.food_size, f.food_kcal
+		FROM Diet d
+		JOIN Eat e on e.diet_no=d.diet_no
+		JOIN Eatlist el on el.eat_no= e.eat_no
+		JOIN Food f on f.food_cd=el.food_cd 
+		WHERE TO_CHAR(d.diet_date, 'YYYYMMDD') = '20230130' AND e.eat_status='breakfast'
+	</select>
+	
+	<select id="selectListEatLunch" parameterType="Map" resultType="FoodDto">
+		SELECT f.food_name, f.food_size, f.food_kcal
+		FROM Diet d
+		JOIN Eat e on e.diet_no=d.diet_no
+		JOIN Eatlist el on el.eat_no= e.eat_no
+		JOIN Food f on f.food_cd=el.food_cd 
+		WHERE TO_CHAR(d.diet_date, 'YYYYMMDD') = '20230130' AND e.eat_status='lunch'
+	</select>
+	
+	<select id="selectListEatDinner" parameterType="Map" resultType="FoodDto">
+		SELECT f.food_name, f.food_size, f.food_kcal
+		FROM Diet d
+		JOIN Eat e on e.diet_no=d.diet_no
+		JOIN Eatlist el on el.eat_no= e.eat_no
+		JOIN Food f on f.food_cd=el.food_cd 
+		WHERE TO_CHAR(d.diet_date, 'YYYYMMDD') = '20230130' AND e.eat_status='dinner'
+	</select>
+	
 </mapper>
 <!-- LIKE '%' ||  #{food_name} || '%' -->	

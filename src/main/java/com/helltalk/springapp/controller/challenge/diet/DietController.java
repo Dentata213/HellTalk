@@ -41,6 +41,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.helltalk.springapp.models.DietDTO;
 import com.helltalk.springapp.models.FoodDTO;
 import com.helltalk.springapp.service.DietServiceImpl;
 import com.helltalk.springapp.service.FoodServiceImpl;
@@ -61,7 +62,15 @@ public class DietController {
 	//메인화면 이동(임시)
 	@RequestMapping(value= "/main.do")
 	public String searchList(@RequestParam Map map, HttpServletRequest req, Model model) throws Exception {
-		
+		//아침
+		List<FoodDTO> selectListEatBreakfast= foodService.selectListEatBreakfast(map);
+		model.addAttribute("selectListEatBreakfast", selectListEatBreakfast);
+		//점심
+		List<FoodDTO> selectListEatLunch= foodService.selectListEatLunch(map);
+		model.addAttribute("selectListEatLunch", selectListEatLunch);
+		//저녁
+		List<FoodDTO> selectListEatDinner= foodService.selectListEatDinner(map);
+		model.addAttribute("selectListEatDinner", selectListEatDinner);
 		return "challenge/diet/Diet";
 	}
 	
@@ -268,22 +277,34 @@ public class DietController {
 	    }
 	    System.out.println("status 넘어온 값: "+map.get("status"));
 	    
-	    //DB- Diet 값 저장
-	  	//map.put(,);
-	  	map.put("u_no", Integer.valueOf(7));
-	  		
-	  	//DB- Diet테이블 생성(insert) //diet_no
-	  	int insertDietAffected = dietService.insert(map);
-	  	System.out.println("diet_no : "+insertDietAffected);
-		
-		//DB- eatList관련 값 저장
+	    //DB- 회원값(diet값) 저장
+	  	map.put("u_no", Integer.valueOf(8));//임시
+	  	
+	  	//DB- eatList관련 값 저장
 	    map.put("food_cd", food_cd);
+	    //System.out.println("food_cd:"+food_cd);
+
+	  	//DB- diet, eat, eatlist 생성(insert)
+	  	int insertDietAffected = dietService.insert(map);
+	  	System.out.println("diet테이블 insert : "+insertDietAffected);
+	  	System.out.println("eat_no : "+map.get("eat_no"));
+	  	
+	  	int insertEatlistAffected= dietService.insertEatList(map);
+	  	System.out.println("eatlist테이블 insert:"+insertEatlistAffected);
 	    
-	    //eatList에 음식 저장
-	    int insertEatListAffected= dietService.insertEatList(map);
-	    System.out.println("insertEatListAffected : "+insertEatListAffected);
-	    
-	    
+	    //한끼마다 저장된 음식값 확인
+	  	if(map.get("status").equals("breakfast")) {
+	  		List<FoodDTO> selectListEatBreakfast= foodService.selectListEatBreakfast(map);
+	  		model.addAttribute("selectListEatBreakfast", selectListEatBreakfast);
+	  	}
+	  	else if(map.get("status").equals("lunch")) {
+	  		List<FoodDTO> selectListEatLunch= foodService.selectListEatLunch(map);
+	  		model.addAttribute("selectListEatLunch", selectListEatLunch);
+	  	}
+	  	else if(map.get("status").equals("dinner")) {
+	  		List<FoodDTO> selectListEatDinner= foodService.selectListEatDinner(map);
+	  		model.addAttribute("selectListEatDinner", selectListEatDinner);
+	  	}
 	    
 		return "challenge/diet/Diet";
 	}

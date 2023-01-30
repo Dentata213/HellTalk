@@ -5,21 +5,16 @@
 <mapper namespace="mybatis.mapper.Diet">
 	<!--  DIET  -->
 	<insert id="dietInsert" parameterType="Map">
-		<selectKey resultType="int" keyProperty="diet_no" order="BEFORE">
-	        SELECT SEQ_DIET.NEXTVAL FROM DUAL
-    	</selectKey>
     	INSERT ALL
-		INTO DIET VALUES(#{diet_no},'title', 0,0, SYSDATE, #{u_no})
-		INTO EAT VALUES(SEQ_eat.NEXTVAL,#{status},#{diet_no})
+		INTO diet VALUES(SEQ_DIET.NEXTVAL,'title', 0,0, SYSDATE, #{u_no})
+		INTO eat VALUES(SEQ_EAT.NEXTVAL,#{status},SEQ_DIET.CURRVAL)
 		SELECT * FROM DUAL
-	</insert>
-	
-	<insert id="eatListInsert" parameterType="Map">
-		<selectKey resultType="int" keyProperty="eat_no" order="BEFORE">
+		<selectKey resultType="int" keyProperty="eat_no" order="AFTER">
 	        SELECT SEQ_EAT.CURRVAL FROM DUAL
     	</selectKey>
-		INSERT INTO eatlist VALUES(#{food_cd},#{eat_no})
 	</insert>
-	
+	<insert id="eatListInsert" parameterType="Map">
+		INSERT INTO eatlist VALUES(#{eat_no},#{food_cd})
+	</insert>
 	
 </mapper>

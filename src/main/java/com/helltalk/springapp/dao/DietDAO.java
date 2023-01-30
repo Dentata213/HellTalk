@@ -36,10 +36,6 @@ public class DietDAO {
 			return template.delete("dietDelete",map);
 		}
 		
-		public int selectOneNo(Map map) {
-			return template.selectOne("selectOneNo",map);
-		}
-		
 
 		/* EAT */
 		public int insertEat(Map map) {
@@ -50,7 +46,9 @@ public class DietDAO {
 			return template.insert("eatListInsert",map);
 		}
 
-		
+		public int selectOneEat(Map map) {
+			return template.selectOne("selectOneEat",map);
+		}
 		
 		
 }

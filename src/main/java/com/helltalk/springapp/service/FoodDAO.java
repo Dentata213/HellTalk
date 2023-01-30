@@ -1,5 +1,6 @@
 package com.helltalk.springapp.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -28,11 +29,27 @@ public class FoodDAO {
 	public FoodDTO selectOne(FoodDTO dto) {
 		return template.selectOne("foodSelectOne",dto);
 	}
-
+	
+	//식사구분 한끼
 	public FoodDTO foodSelectOneByCd(Map map) {
 		return template.selectOne("foodSelectOneByCd",map);
 	}
 			
-			
+	//한끼 - 아침
+	public List selectListEatBreakfast(Map map) {
+		List<FoodDTO> records = template.selectList("selectListEatBreakfast",map);
+		return records;
+	}
+	
+	//한끼 - 점심
+	public List<FoodDTO> selectListEatLunch(Map map) {
+		List<FoodDTO> records = template.selectList("selectListEatLunch",map);
+		return records;
+	}
+
+	public List<FoodDTO> selectListEatDinner(Map map) {
+		List<FoodDTO> records = template.selectList("selectListEatDinner",map);
+		return records;
+	}		
 
 }

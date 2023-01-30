@@ -31,37 +31,25 @@
 
 				<thead>
 					<tr>
-						<th class="col-1">번호</th>
 						<th >음식 이름</th>
-						<th class="col-1">제조사명</th>
 						<th class="col-1">총내용량</th>
 						<th class="col-1">칼로리</th>
-						<th class="col-1">탄수화물</th>
-						<th class="col-1">단백질</th>
-						<th class="col-1">지방</th>
-						<th class="col-1">콜레스테롤</th>
-						<th class="col-1">나트륨</th>
 					</tr>
 				</thead>
 				<tbody class="table-sm down-file-body">
-					<c:if test="${empty selectFood }" var="isEmpty">
+					<c:if test="${empty selectListEatBreakfast }" var="isEmpty">
 						<tr>
 							<td colspan="10">${FailSelect }</td>
 						</tr>
 					</c:if>
 					<c:if test="${not isEmpty }">
-							<tr class="select">
-								<td>${selectFood.food_cd }</td>
-								<td>${selectFood.food_name }</td>
-								<td>${selectFood.food_maker }</td>
-								<td>${selectFood.food_size }</td>
-								<td>${selectFood.food_kcal }</td>
-								<td>${selectFood.food_tan }</td>
-								<td>${selectFood.food_dan }</td>
-								<td>${selectFood.food_fat }</td>
-								<td>${selectFood.food_col }</td>
-								<td>${selectFood.food_na }</td>
+						<c:forEach var="list" items="${selectListEatBreakfast}" varStatus="loop">
+							<tr>
+								<td>${list.food_name }</td>
+								<td>${list.food_size }</td>
+								<td>${list.food_kcal }</td>
 							</tr>
+						</c:forEach>
 					</c:if>
 
 				</tbody>
@@ -73,37 +61,25 @@
 
 				<thead>
 					<tr>
-						<th class="col-1">번호</th>
 						<th >음식 이름</th>
-						<th class="col-1">제조사명</th>
 						<th class="col-1">총내용량</th>
 						<th class="col-1">칼로리</th>
-						<th class="col-1">탄수화물</th>
-						<th class="col-1">단백질</th>
-						<th class="col-1">지방</th>
-						<th class="col-1">콜레스테롤</th>
-						<th class="col-1">나트륨</th>
 					</tr>
 				</thead>
 				<tbody class="table-sm down-file-body">
-					<c:if test="${empty selectFood }" var="isEmpty">
+					<c:if test="${empty selectListEatLunch }" var="isEmpty">
 						<tr>
 							<td colspan="10">${FailSelect }</td>
 						</tr>
 					</c:if>
 					<c:if test="${not isEmpty }">
-							<tr class="select">
-								<td>${selectFood.food_cd }</td>
-								<td>${selectFood.food_name }</td>
-								<td>${selectFood.food_maker }</td>
-								<td>${selectFood.food_size }</td>
-								<td>${selectFood.food_kcal }</td>
-								<td>${selectFood.food_tan }</td>
-								<td>${selectFood.food_dan }</td>
-								<td>${selectFood.food_fat }</td>
-								<td>${selectFood.food_col }</td>
-								<td>${selectFood.food_na }</td>
+						<c:forEach var="list" items="${selectListEatLunch}" varStatus="loop">
+							<tr>
+								<td>${list.food_name }</td>
+								<td>${list.food_size }</td>
+								<td>${list.food_kcal }</td>
 							</tr>
+						</c:forEach>
 					</c:if>
 
 				</tbody>
@@ -115,37 +91,25 @@
 
 				<thead>
 					<tr>
-						<th class="col-1">번호</th>
 						<th >음식 이름</th>
-						<th class="col-1">제조사명</th>
 						<th class="col-1">총내용량</th>
 						<th class="col-1">칼로리</th>
-						<th class="col-1">탄수화물</th>
-						<th class="col-1">단백질</th>
-						<th class="col-1">지방</th>
-						<th class="col-1">콜레스테롤</th>
-						<th class="col-1">나트륨</th>
 					</tr>
 				</thead>
 				<tbody class="table-sm down-file-body">
-					<c:if test="${empty selectFood }" var="isEmpty">
+					<c:if test="${empty selectListEatDinner }" var="isEmpty">
 						<tr>
 							<td colspan="10">${FailSelect }</td>
 						</tr>
 					</c:if>
 					<c:if test="${not isEmpty }">
-							<tr class="select">
-								<td>${selectFood.food_cd }</td>
-								<td>${selectFood.food_name }</td>
-								<td>${selectFood.food_maker }</td>
-								<td>${selectFood.food_size }</td>
-								<td>${selectFood.food_kcal }</td>
-								<td>${selectFood.food_tan }</td>
-								<td>${selectFood.food_dan }</td>
-								<td>${selectFood.food_fat }</td>
-								<td>${selectFood.food_col }</td>
-								<td>${selectFood.food_na }</td>
+						<c:forEach var="list" items="${selectListEatDinner}" varStatus="loop">
+							<tr>
+								<td>${list.food_name }</td>
+								<td>${list.food_size }</td>
+								<td>${list.food_kcal }</td>
 							</tr>
+						</c:forEach>
 					</c:if>
 
 				</tbody>

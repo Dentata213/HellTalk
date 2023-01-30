@@ -75,7 +75,21 @@ public class FoodServiceImpl implements DietService<FoodDTO>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	//한끼
+	public List<FoodDTO> selectListEatBreakfast(Map map) {
+		return dao.selectListEatBreakfast(map);
+	}
 
+
+	public List<FoodDTO> selectListEatLunch(Map map) {
+		return dao.selectListEatLunch(map);
+	}
+
+
+	public List<FoodDTO> selectListEatDinner(Map map) {
+		return dao.selectListEatDinner(map);
+	}	
 
 
 	

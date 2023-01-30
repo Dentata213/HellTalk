@@ -21,8 +21,7 @@ public class DietServiceImpl implements DietService<DietDTO>{
 	/*  DIET  */
 	@Override
 	public List<DietDTO> selectList(Map map, HttpServletRequest req) {
-		List lists= dao.selectList(map);
-		return null;
+		return dao.selectList(map);
 	}
 	
 	@Override
@@ -58,13 +57,6 @@ public class DietServiceImpl implements DietService<DietDTO>{
 	public int insertEatList(Map map) {
 		return dao.insertEatList(map);
 	}
-
-	//diet_no 가져오기
-	public int selectOneNo(Map map) {
-		return dao.selectOneNo(map);
-	}
-	
-	
 
 	
 	
