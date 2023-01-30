@@ -30,20 +30,17 @@
 
 <body>
 	<div class="container">
-		<form action='<c:url value="/diet/goFoodSearch.do"/>' method="post">
-			<input type="submit" class="btn btn-primary" value="breakfast"
-				name="breakfast" /> <input type="submit" class="btn btn-primary"
-				value="lunch" name="lunch" /> <input type="submit"
-				class="btn btn-primary" value="dinner" name="dinner" />
-		</form>
 		
 		<div class="mb-3">
 			<label for="html5-date-input" class="col-md-2 col-form-label">
-				<h4>생년월일</h4>
+				<h4>기록할 날짜 선택</h4>
 			</label>
-			<div class="col-md-10">
-				<input class="form-control" type="date" min="1950-01-01" max="9999-12-31" name="d_date" />
-			</div>
+			<form action='<c:url value="/diet/goFoodSearch.do"/>' method="post">
+				<input class="form-control col-mb-3" type="date" min="1950-01-01" max="9999-12-31" name="d_date" />
+				<input type="submit" class="btn btn-primary" value="breakfast" name="breakfast" /> 
+				<input type="submit" class="btn btn-primary" value="lunch" name="lunch" /> 
+				<input type="submit" class="btn btn-primary" value="dinner" name="dinner" />
+			</form>
 		</div>
 		
 		<div class="text-center mb-2">
