@@ -10,14 +10,14 @@ import lombok.Setter;
 @Repository
 public class ChatDto {
 	
-	private int roomNo;
-	private String roomName;
+	private int room_no;
+	private String room_name;
 	private String u_email;
 	private int u_no;
 	
 	@Override
 	public String toString() {
-		return "Room [roomNumber=" + roomNo + ", roomName=" + roomName + "]";
+		return "Room [roomNumber=" + room_no + ", roomName=" + room_name + "]";
 	}
 
 }

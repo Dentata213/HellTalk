@@ -1,5 +1,6 @@
 package com.helltalk.springapp.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -16,9 +17,13 @@ public class ChatDao {
 	@Autowired
 	private SqlSessionTemplate template;
 	
+	public List findAllchat(Map map) {		
+		return template.selectList("findAllchat",map);
+	}
+	
 	public int insert(Map map) {
 		template.insert("chatRoomInset",map);	
-		return Integer.parseInt(map.get("no").toString());
+		return Integer.parseInt(map.get("no").toString()); //방 번호로 selectone 함
 		
 	}
 

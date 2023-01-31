@@ -4,6 +4,14 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="mybatis.mapper.Chat">
  
+ <select id="findAllchat" parameterType="Map" resultType="ChatDto" >
+   	SELECT room_no,room_name,chatroom.u_no
+	FROM chatroom join users
+	ON chatroom.u_no=users.u_no
+ 	WHERE chatroom.u_no =
+  	(SELECT DISTINCT users.U_no FROM users left join chatroom ON chatroom.u_no=users.u_no WHERE u_email=#{uemail,jdbcType=VARCHAR})   
+ </select>
+ 
  <insert id="chatRoomInset" parameterType="Map">
 	<selectKey keyProperty="no" resultType="int" order="BEFORE">
 		SELECT SEQ_CHATROOM.NEXTVAL FROM DUAL
@@ -12,5 +20,6 @@
 		#{ROOM_NAME},
 		(SELECT DISTINCT users.U_no FROM users left join CHATROOM ON CHATROOM.u_no=users.u_no WHERE u_email=#{uemail,jdbcType=VARCHAR})
 </insert>
+ 
  
  </mapper>

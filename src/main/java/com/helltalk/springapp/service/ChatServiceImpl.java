@@ -9,19 +9,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.helltalk.springapp.dao.ChatDao;
-import com.helltalk.springapp.models.CalService;
 import com.helltalk.springapp.models.ChatDto;
+import com.helltalk.springapp.models.ChatService;
 
 @Service("chatService")
-public class ChatServiceImpl implements CalService<ChatDto> {
+public class ChatServiceImpl implements ChatService<ChatDto> {
 
 	@Autowired
 	private ChatDao dao;
 	
 	@Override
 	public List<ChatDto> selectList(Map map, HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		return null;
+		List<ChatDto> list = dao.findAllchat(map);
+		return list;
 	}
 
 	@Override
@@ -46,12 +46,6 @@ public class ChatServiceImpl implements CalService<ChatDto> {
 	public int update(Map map) {
 		// TODO Auto-generated method stub
 		return 0;
-	}
-
-	@Override
-	public String findUserByNo(Map map) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

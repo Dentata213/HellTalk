@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
     
 <!DOCTYPE html>
 <html>
@@ -132,9 +134,9 @@ document.addEventListener('DOMContentLoaded', function() {
 			}
 		});	
 		}*/	
-		$("#enterroom1").click(function(){
-			window.location.href="<c:url value="/chat.do"/>"
-		});		
+		/*$(".roomNo").click(function(){
+			window.location.href="<c:url value="/chat.do?no=1"/>"
+		});		*/
 		
  });		
 </script>
@@ -143,21 +145,16 @@ document.addEventListener('DOMContentLoaded', function() {
 		<h1>채팅방(임시)</h1>
 	<div id="roomContainer" class="roomContainer">
 		<table id="roomList" class="roomList">
+	<c:forEach var="chatroom" items="${chatList}" varStatus="loop">
 			<tr>
-				<th>이거 그냥 검색해서나온 user라고 치자</th>
-				<th><input name="roomName" id="roomName1" value="나중에" disabled /></th>
-				<th><button name="enterroom" id="enterroom1" >채팅하기</button></th>
+				<th>${chatroom.room_name}</th>
+				<th><input name="roomName" id="roomName1" value="나중에" disabled />
+					<input name="roomNo" id="roomNo1" value="${chatroom.room_no}" hidden />
+				</th>
+				<th><a href="<c:url value='/chat.do?no=${chatroom.room_no}'/>" ><button name="enterroom" id="enterroom1"  class="roomNo" >채팅하기</button></a></th>
 			</tr>
-			<tr>
-				<th>방 제목</th>
-				<th><input name="roomName" id="roomName2" value="사용자검색기능추가해서" disabled /></th>
-				<th><button name="enterroom" id="enterroom2" >누르면바로채팅</button></th>
-			</tr>
-			<tr>
-				<th>방 제목</th>
-				<th><input name="roomName" id="roomName3" value="1:1채팅으로만들거야" disabled /></th>
-				<th><button name="enterroom" id="enterroom3" >누르면바로채팅</button></th>
-			</tr>						
+	</c:forEach>		
+						
 		</table>
 	</div>		
 		<div>

@@ -1,31 +1,34 @@
 package com.helltalk.springapp.controller.webSocket;
 
-import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
+
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.helltalk.springapp.models.CalService;
 import com.helltalk.springapp.models.ChatDto;
+import com.helltalk.springapp.models.ChatService;
 
 
 @Controller
 public class ChatController {
 
 	@Autowired
-	public ChatDto roomDto;
-	
-	@Autowired
-	public CalService<ChatDto> chatService;
+	public ChatService<ChatDto> chatService;
 	
 	@RequestMapping("/chat.do")
 	public ModelAndView chat() {
@@ -34,6 +37,25 @@ public class ChatController {
 		mv.setViewName("community/chat/chat");
 		return mv;
 	}
+	
+	//목록처리
+	@RequestMapping(value="/list.do",method ={RequestMethod.GET,RequestMethod.POST})
+	public String list(
+			@RequestParam Map map,
+			HttpServletRequest req,
+			Model model,
+			Authentication auth ) {
+		
+		map.put("uemail",((UserDetails)auth.getPrincipal()).getUsername().toString());
+		
+		model.addAttribute("uemail",((UserDetails)auth.getPrincipal()).getUsername().toString());
+		List<ChatDto> chatList =chatService.selectList(map, req);		
+		model.addAttribute("chatList",chatList);
+		System.out.println("채팅방리스트:"+chatList);
+		return "community/chat/room";
+	}
+	
+	
 	
 	 //방 페이지
 	//채팅방목록으로 가기 
