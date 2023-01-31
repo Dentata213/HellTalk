@@ -2,7 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="https://code.jquery.com/jquery-3.6.3.slim.js" integrity="sha256-DKU1CmJ8kBuEwumaLuh9Tl/6ZB6jzGOBV/5YpNE2BWc=" crossorigin="anonymous"></script>
+<!-- iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
+
   <!-- main content -->
         <div class="main-content bg-white right-chat-active">
             
@@ -26,6 +29,7 @@
                                         <table class="table text-center">
                                             <thead class="bg-greyblue rounded-3">
                                                 <tr>
+                                                	<th class="border-0 p-4">선택</th>
                                                     <th class="border-0 p-4">&nbsp;</th>
                                                     <th class="border-0 p-4 text-left">Product</th>
                                                     <th class="border-0 p-4">Price</th>
@@ -38,6 +42,7 @@
                                             <c:forEach var="list" items="${lists}" varStatus="loop" >
                                            
                                                 <tr>
+                                                	<td><input type="checkbox"></td>
                                                     <td class="product-thumbnail text-left ps-0">
                                                         <img src="data:image/jpeg;base64,${list.product_img}" alt="Product Thumnail" class="w75 rounded-3">
                                                         
@@ -115,7 +120,7 @@
                                         </div>
                                         
                                     </div>
-                                    <a href="/payment/checkout" class="bg-dark float-right text-white fw-600 text-uppercase font-xsss border-dark border rounded-3 border-size-md d-inline-block w-100 p-3 text-center ls-3">결재하기</a>
+                                    <a id="iamport" class="bg-dark float-right text-white fw-600 text-uppercase font-xsss border-dark border rounded-3 border-size-md d-inline-block w-100 p-3 text-center ls-3">결제하기</a>
                                 </div>
                             </div>
                         </div>               
@@ -222,31 +227,65 @@
             
         });
 		
+		//결제 고유번호 만들기
+		var date = new Date();
+        var components = [
+            date.getFullYear(),
+            date.getMonth()+1,
+            date.getDate(),
+            date.getHours(),
+            date.getMinutes(),
+            date.getSeconds(),
+            date.getMilliseconds()
+        ];
+
+        var id = components.join("");
+		
+		//결제용
+		var IMP = window.IMP;   // 생략 가능
+        IMP.init("imp11666322");        
+
+        $('#iamport').on('click',function(){          
+			
+			var pay = parseInt($('#totalprice').text())
+            IMP.request_pay({
+                pg: "html5_inicis",
+                pay_method: "card",
+                merchant_uid: id ,   // 주문번호
+                name: "노르웨이 회전 의자",
+                amount: pay,                         // 숫자 타입
+                buyer_email: "gildong@gmail.com",
+                buyer_name: "홍길동",
+                buyer_tel: "010-4242-4242",
+                buyer_addr: "서울특별시 강남구 신사동"
+            }, function (rsp) { // callback
+            if (rsp.success) {
+                // 결제 성공 시 로직
+                // jQuery로 HTTP 요청
+                jQuery.ajax({
+                    url: "/payment/checkout", 
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    data: {
+                    imp_uid: rsp.imp_uid,            // 결제 고유번호
+                    merchant_uid: rsp.merchant_uid   // 주문번호
+                    }
+                }).done(function (data) {
+                // 가맹점 서버 결제 API 성공시 로직
+            })
+            } else {
+                // 결제 실패 시 로직
+                alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
+            }
+            })
+        });
+		
+		
 		
 		
 	});/////////
 </script>
     
-    <!--  
-부트페이 라이브러리
-<script src="https://js.bootpay.co.kr/bootpay-4.2.7.min.js" type="application/javascript"></script>
-단일결재호출 - 값들을 넘겨줘야함 application_id, id, name, total가격, ordername(상품명 연결, 일정길이 이상이면 추출후 ...으로 replace), orderid(임의로 생성)
-<script type="module" src="${path}/resources/js/payment.js" data-id="${id}" data-name="${name}" id="thisscript"></script>
- -->
- <!-- 혹은 단일결재 실행(단, 결재버튼 누를시에 실행되어야됨) 
- 	<script type="module">
- 		const response = await Bootpay.requestPayment({
-    	"application_id": "",
-    	"price": 1000,
-    	"order_name": "테스트결제품목",
-    	"order_id": "TEST_ORDER_ID000000000000001",
-    	"pg": "카카오",
-    	"user": {
-        	"id": id,
-        	"username": "회원이름"
-    	}
-    	})
- 	</script>
- -->
+
     <script src="${path}/resources/js/plugin.js"></script>
     <script src="${path}/resources/js/scripts.js"></script>
