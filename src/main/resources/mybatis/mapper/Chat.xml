@@ -8,7 +8,7 @@
 	<selectKey keyProperty="no" resultType="int" order="BEFORE">
 		SELECT SEQ_CHATROOM.NEXTVAL FROM DUAL
 	</selectKey>	
-		INSERT INTO CHATROOM VALUES(SEQ_CALDNO.NEXTVAL,
+		INSERT INTO CHATROOM VALUES(SEQ_CHATROOM.NEXTVAL,
 		#{ROOM_NAME},
 		(SELECT DISTINCT users.U_no FROM users left join CHATROOM ON CHATROOM.u_no=users.u_no WHERE u_email=#{uemail,jdbcType=VARCHAR})
 </insert>
