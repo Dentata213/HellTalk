@@ -2,6 +2,7 @@ package com.helltalk.springapp.controller.member;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
@@ -13,12 +14,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.helltalk.springapp.service.KakaoServiceImpl;
 import com.helltalk.springapp.service.MemberServiceImpl;
 
 @Controller
 @RequestMapping("/member/*")
 public class MemberController {
 	
+	@Autowired
+	private KakaoServiceImpl kakaoService;
 	@Autowired
 	private MemberServiceImpl service;
 	@Autowired
@@ -27,6 +31,32 @@ public class MemberController {
 	@RequestMapping("/Login.do")
 	public String Login() {
 		return "member/login/login";
+	}
+	
+	@RequestMapping("/KakaoLogin")
+	public void KakaoLogin(String code,Model model,HttpServletResponse response) throws Throwable {
+		System.out.println("인가코드:"+code);
+		
+		String access_Token = kakaoService.getAccessToken(code);
+		System.out.println("AccessToken:"+access_Token);
+		
+		HashMap<String, Object> userInfo = kakaoService.getUserInfo(access_Token);
+		System.out.println("###nickname#### : " + userInfo.get("nickname"));
+		System.out.println("###email#### : " + userInfo.get("email"));
+		Map map = new HashMap();
+		map.put("u_email", userInfo.get("email"));
+		int affectedEm = service.emailCheck(map);
+		if(affectedEm == 0) {
+			model.addAttribute("nickname",userInfo.get("nickname"));
+			model.addAttribute("email",userInfo.get("email"));
+			model.addAttribute("id",userInfo.get("id"));
+			PrintWriter w = response.getWriter();
+			response.setContentType("text/html; charset=utf-8");
+	        w.write("<script>alert('"+map.get("u_email")+"님에 대한 회원 정보가 없습니다. 회원가입 페이지로 이동합니다.');"
+	        		+ "location.href='/Helltalk/member/CreateUser.do'</script>");
+	       
+		}
+		
 	}
 	
 	@RequestMapping("/CreateUser.do")
@@ -39,6 +69,7 @@ public class MemberController {
 		return "member/register/success.helltalk";
 	}
 	
+	//접근금지 화면
 	@RequestMapping("/forbidden.do")
 	public String forbidden() {
 		return "member/forbidden/forbidden";
