@@ -1,5 +1,6 @@
 package com.helltalk.springapp.service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -93,15 +94,36 @@ public class PaymentServiceImpl implements PaymentService<PaymentDTO>{
 		int val=lists.size();
 		System.out.println(val);
 		int sum = 0;
+		
 		for(int i=0;i<lists.size();i++) {
-			PaymentDTO str = lists.get(i);
-			System.out.println(i+"번째 인덱스 값:"+str.getProduct_quantity());
-			System.out.println(i+"번째 인덱스 값:"+str.getProduct_price());
+			try {
+				System.out.println("for문 진입");
+				PaymentDTO str = lists.get(i);
+				int qty = Integer.parseInt(str.getProduct_quantity());
+				int price = Integer.parseInt(str.getProduct_price());
+				System.out.println("수량:"+qty);
+				System.out.println("가격:"+price);
+				System.out.println("상품번호:"+str.getProduct_no());
+				String[] test = new String[]{"13","16","17"};
+				for(int k=0;k<test.length;k++) {
+					String test1 = test[k];
+					System.out.println("test1값"+test1);
+					String proNum = str.getProduct_no();
+					
+					if(proNum.equals(test1)){
+						
+						System.out.println("번째 인덱스 값:"+str.getProduct_quantity());
+						System.out.println("번째 인덱스 값:"+str.getProduct_price());
+						
+						sum += qty*price;
+						System.out.println("if문 내부"+sum);
+					}
+				}
 
-			int qty = Integer.parseInt(str.getProduct_quantity());
-			int price = Integer.parseInt(str.getProduct_price());
-			sum += qty*price;
-			System.out.println(sum);
+				System.out.printf("for문 %s번째 순회중\n",i);
+			}
+			catch(Exception e){}
+			
 		}
 		System.out.println("for문 바깥 sum"+sum);
 		

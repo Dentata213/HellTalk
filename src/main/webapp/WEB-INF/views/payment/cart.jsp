@@ -29,7 +29,7 @@
                                         <table class="table text-center">
                                             <thead class="bg-greyblue rounded-3">
                                                 <tr>
-                                                	<th class="border-0 p-4">선택</th>
+                                                	<th class="border-0 p-4"><input type="checkbox" value="all"></th>
                                                     <th class="border-0 p-4">&nbsp;</th>
                                                     <th class="border-0 p-4 text-left">Product</th>
                                                     <th class="border-0 p-4">Price</th>
@@ -42,7 +42,7 @@
                                             <c:forEach var="list" items="${lists}" varStatus="loop" >
                                            
                                                 <tr>
-                                                	<td><input type="checkbox"></td>
+                                                	<td><input type="checkbox" value="${list.product_no}"></td>
                                                     <td class="product-thumbnail text-left ps-0">
                                                         <img src="data:image/jpeg;base64,${list.product_img}" alt="Product Thumnail" class="w75 rounded-3">
                                                         
@@ -226,6 +226,38 @@
 			});		
             
         });
+		
+        //체크박스 선택및 해제
+        var itemLength=$(':checkbox').slice(1).length;
+        $(":checkbox").click(function(){
+        	var checkedItems = []
+			console.log($(":checkbox"))
+            if($(this).val()==='all'){
+	            if($(this).prop('checked')) 
+	            	$(':checkbox').slice(1).prop('checked',true);
+	            else 
+	            	$(':checkbox').slice(1).prop('checked',false);
+	        }	
+            else{
+                if($(this).prop('checked')){
+                    if(itemLength===$(':checkbox:checked').length){
+                        $(':checkbox:first').prop('checked',true)
+                    }
+                    else
+                    	$(':checkbox:first').prop('checked',false)
+                }
+            }
+			
+			//체크된 상품번호 가져오기
+			$(':checkbox:checked').each(function(){
+                console.log($(this).next().val());
+                checkedItems.push($(this).next().val());
+                
+            });
+   		});
+		
+		
+		
 		
 		//결제 고유번호 만들기
 		var date = new Date();
