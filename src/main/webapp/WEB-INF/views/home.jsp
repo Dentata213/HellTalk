@@ -132,15 +132,24 @@
         }
 
         .not-container .section:nth-child(1) {
-            background: url("${path}/resources/images/chall.png") center;
+            background: url("${path}/resources/images/chall.png");
+            background-size: cover; 
+			background-repeat: no-repeat;
+			background-position: center;
         }
 
         .not-container .section:nth-child(2) {
-            background: url("${path}/resources/images/mypage.jpg") center;
+            background: url("${path}/resources/images/mypage.jpg");
+            background-size: cover; 
+			background-repeat: no-repeat;
+			background-position: center;
         }
 
         .not-container .section:nth-child(3) {
-            background: url("${path}/resources/images/commu.jpg") center;
+            background: url("${path}/resources/images/commu.jpg");
+            background-size: cover; 
+			background-repeat: no-repeat;
+			background-position: center;
         }
 		     
 /*않이.... 왜 안돼....*/  
