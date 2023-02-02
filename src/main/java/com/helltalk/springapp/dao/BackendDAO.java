@@ -53,6 +53,10 @@ public class BackendDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public MemberDTO isUser(Map map) {
+		return template.selectOne("isUser", map);
+	}
 
 	
 	

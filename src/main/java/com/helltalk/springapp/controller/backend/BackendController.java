@@ -8,12 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.helltalk.springapp.models.PaymentDTO;
 import com.helltalk.springapp.service.BBSDto;
@@ -120,12 +124,7 @@ public class BackendController {
 	
 	
 	
-	
-	
-	
-	
-	
-	
+
 	@RequestMapping("/design")
 	public String design() {
 		return "/backend/member/register";
