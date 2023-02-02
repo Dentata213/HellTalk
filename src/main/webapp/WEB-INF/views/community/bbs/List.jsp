@@ -361,7 +361,7 @@
 		$('#editmodal').html(text)
 	})
 	
-	
+	  
 	</script>
 
 	<script src="${path}/resources/js/plugin.js"></script>
