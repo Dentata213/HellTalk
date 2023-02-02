@@ -62,7 +62,7 @@ public class BBSController {
 	}
 	
 	//게시물 수정
-	@RequestMapping("/edit")
+	@RequestMapping(value = "/edit", produces = "application/josn")
 	public String edit(@RequestParam Map map) throws Exception{
 		service.editBBS(map);
 		return "community/bbs/Edit.helltalk";
