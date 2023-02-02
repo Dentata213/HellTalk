@@ -22,14 +22,10 @@
 	</context-param>
 	<!-- 스프링 씨큐리티를 자바코드로 설정한 클래스를 컨텍스트 초기화 파라미터로 등록-->
 	<!-- -->
-	
-	
-	
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>com.helltalk.springapp.config.SecurityConfig</param-value>
 	</context-param>
-	 
 	<!-- 스프링 씨큐리티용 필터 등록  (필터명은 반드시 springSecurityFilterChain으로) -->
 	<!-- -->
 
@@ -41,6 +37,10 @@
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	
+	 
+	
 
 	<!--POST방식일때 한글 깨지는 거 처리  -->
 	<filter>
