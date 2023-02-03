@@ -42,7 +42,7 @@
                                             <c:forEach var="list" items="${lists}" varStatus="loop" >
                                            
                                                 <tr>
-                                                	<td><input type="checkbox" value="${list.product_no}"></td>
+                                                	<td><input type="checkbox"><input value="${list.product_no}" hidden="hidden"/></td>
                                                     <td class="product-thumbnail text-left ps-0">
                                                         <img src="data:image/jpeg;base64,${list.product_img}" alt="Product Thumnail" class="w75 rounded-3">
                                                         
@@ -178,7 +178,14 @@
 
 				console.log(${list.product_price});
 				
-				var data = {"CART_QUANTITY":newval,"PRO_NO":product_no,"totalprice":onePrice};
+				var checkedItems = []
+				
+				$(':checkbox:checked').each(function(){
+	                console.log($(this).next().val());
+	                checkedItems.push($(this).next().val());               
+	            });
+				
+				var data = {"CART_QUANTITY":newval,"PRO_NO":product_no,"totalprice":onePrice,"checkedItems":checkedItems};
 				$.ajax({
 					type: "GET",
 		   			url:"<c:url value="/Shop/quantityUpdate"/>",
@@ -251,9 +258,25 @@
 			//체크된 상품번호 가져오기
 			$(':checkbox:checked').each(function(){
                 console.log($(this).next().val());
-                checkedItems.push($(this).next().val());
-                
+                checkedItems.push($(this).next().val());               
             });
+			console.log(checkedItems);
+			var data = JSON.stringify(checkedItems);
+			
+			$.ajax({
+				type: "GET",
+	   			url:"<c:url value="/Shop/itemCheck"/>",
+	   			async:false,
+	   			data: {"checkedItems":data},
+	   			dataType:'json'
+			})		
+			.done(function(){         																
+				console.log('성공');	
+				
+			}).fail(function(error){		
+				console.log('에러발생'+error);
+				
+			});		
    		});
 		
 		

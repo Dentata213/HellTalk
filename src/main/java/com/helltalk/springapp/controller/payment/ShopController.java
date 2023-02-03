@@ -62,6 +62,29 @@ public class ShopController {
 	}
 	
 	
+	@RequestMapping(value = "/itemCheck",produces = "text/plain; charset=UTF-8",method = {RequestMethod.GET,RequestMethod.POST})
+	@ResponseBody
+	public String checkedUpdate(@RequestParam Map map,Model model) throws JsonProcessingException {		
+		
+		System.out.println("컨트롤러실행");	
+		System.out.println(map);
+		
+		PaymentDAO dao = new PaymentDAO();
+		
+		List<PaymentDTO> lists = service.selectCartList(map);
+		
+		int sum = service.calcCart(map);
+		
+		model.addAttribute("lists", lists);
+		
+		ObjectMapper mapper = new ObjectMapper();
+	
+		map.put("sum", sum);
+		
+		return mapper.writeValueAsString(map);
+
+	}
+	
 	@RequestMapping(value = "/itemDelete",produces = "text/plain; charset=UTF-8")
 	@ResponseBody
 	public String itemDelete(@RequestParam Map map) throws JsonProcessingException {
