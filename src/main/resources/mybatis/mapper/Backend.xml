@@ -55,4 +55,7 @@
 	<delete id="removeOne" parameterType="Map">
 		DELETE BBS WHERE P_NO=#{p_no}
 	</delete>
+	<select id="isUser" parameterType="Map" resultType="MemberDTO">
+		SELECT * FROM USERS WHERE u_email=#{userId}
+	</select>
 </mapper>

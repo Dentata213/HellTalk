@@ -20,6 +20,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
@@ -70,12 +71,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		filter.setForceEncoding(true);
 		http.addFilterBefore(filter, CsrfFilter.class);
 		http.headers().frameOptions().disable(); //ifram 차단해제
-		
+		http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 		http
 			//인증설정
 			.authorizeRequests()
 			//https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/util/AntPathMatcher.html
-			.antMatchers("/","/resources/**","/SuccessLoginHome.do","/member/Login.do","/member/CreateUser.do","/member/register.do","/member/Success.do").permitAll()
+			.antMatchers("/","/resources/**","/SuccessLoginHome.do","/member/Login.do","/member/CreateUser.do","/member/register.do","/member/Success.do","/Android/**").permitAll()
 			.antMatchers("/model/shop-1.do","/model/routine.do","/model/ocr.do","/home.do","/cal/List.do","/chat1.do","/diet/**","/exercise.do","/model/**","/exercise/**").hasAnyRole("USER","TN","ADMIN")//유저와 트레이너 권한이 있어야 열람할수 있는 페이지, ROLE_는 반드시 생략.자동으로 추가됨으로
 			.antMatchers("/backend/*").hasRole("ADMIN")//어드민 권한이 있어야 가능
 			.and()//HttpSecurity 반환
