@@ -11,7 +11,7 @@
 				        <h2 class="mt-5">Q & A</h2>
 				
 				        <div class="text-right mb-2">
-				            <a href="#" class="btn btn-danger">글등록</a>
+				            <a href="<c:url value="/qna/Write.do"/>" class="btn btn-danger">글등록</a>
 				        </div>
 				        <table class="table table-hover text-center">
 				
