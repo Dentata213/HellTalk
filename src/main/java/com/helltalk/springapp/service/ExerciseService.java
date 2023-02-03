@@ -20,11 +20,23 @@ public interface ExerciseService<T> {
 	int updateExercise(Map map);
 	int deleteExercise(Map map);
 	
-	//운동루틴 조회 및 저장
-	List selectExerciseRoutine(Map map);
-	int insertExerciseRoutine(Map map);
-	int updateExerciseRoutine(Map map);
-	int deleteExerciseRoutine(Map map);
+	//루틴 조회 및 저장
+	List selectRoutine(Map map);
+	int insertRoutine(Map map);
+	int updateRoutine(Map map);
+	int deleteRoutine(Map map);
+	
+	//데이루틴 조회 및 저장
+	List selectDayRoutine(Map map);
+	int insertDayRoutine(Map map);
+	int updateDayRoutine(Map map);
+	int deleteDayRoutine(Map map);
+	
+	//운동리스트 조회 및 저장
+	List selectExerList(Map map);
+	int insertExerList(Map map);
+	int updateExerList(Map map);
+	int deleteExerList(Map map);
 	
 	//챌린지 조회 및 저장
 	T selectOneChallenge(Map map);

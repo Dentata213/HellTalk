@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.helltalk.springapp.service.CalcServiceImpl;
 import com.helltalk.springapp.service.ExerciseDTO;
 import com.helltalk.springapp.service.ExerciseServiceImpl;
 
@@ -27,73 +28,81 @@ public class RoutineController {
 	@Autowired
 	private ExerciseServiceImpl exerService;
 	
+	@Autowired
+	private CalcServiceImpl calcSevice;
+	
 	@PostMapping("/routine.do")
 	public ModelAndView insertExerciseRoutine(@RequestParam Map map,Model model) {
 		System.out.println("루틴컨트롤러");
 		
 		
 		
-		//List<Map<String, String>> list =new ArrayList<Map<String,String>>();
+		//총 운동 시간 구하기
+		int rout_time=0;//총 운동시간
 		for(int i=1;i<=7;i++) {
-			//Map<String, String> dayi=new HashMap<String, String>();
-			String day="";
-			
 			for(int k=1;k<=3;k++) {
-				if(map.get("selecBox"+i+"_"+k).toString().equals("운동 선택")) { 
-					day+="";
-				} 
-				else{
-					day+=map.get("selecBox"+i+"_"+k)+","; 
-				} 
+				if(map.get("time"+i+"_"+k).toString().equals("시간 선택")) { 
+					rout_time+=0;
+				}
+				else {
+					rout_time+=Integer.parseInt(map.get("time"+i+"_"+k).toString()) ;
+				}
+				
 			}
-			/*마지막 , 업애기*/
-			if(day.length()>=1) { 
-				day=day.substring(0, day.length()-1); 
-			}
-			//dayi.put("day"+i, day);
-			//list.add(dayi);
-			map.put("day"+i, day);
 		}
 		
-		//System.out.println(list);
-		//map.put("list", list);
+		map.put("rout_time", rout_time);
 		
-		//System.out.println("u_id"+map.get("u_id"));
+		//루틴 테이블 생성
+		int rout_no =exerService.insertRoutine(map);
+		System.out.println("rout_no"+rout_no);
 		
-		int newRoutNo = exerService.insertExerciseRoutine(map);
-		//System.out.println("newRoutNo"+newRoutNo);
-		//model.addAttribute("newRoutNo", newRoutNo);
+		//데이 루틴 테이블 생성
+		for(int i=1;i<=7;i++) {
+			//일차의 첫번째 운동이 운동선택일 때는 dayloutine 테이블 저장x
+			if(!map.get("selecBox"+i+"_1").toString().equals("운동 선택")) { 
+				System.out.println("????");
+				map.put("day", i);
+				System.out.println("map.get('day')"+map.get("day"));
+				int dr_no=exerService.insertDayRoutine(map);
+			}
+			//운동리스트 테이블 생성
+			for(int k=1;k<=3;k++) {
+				//운동당 시간
+				if(!map.get("selecBox"+i+"_"+k).toString().equals("운동 선택")) {
+					map.put("e_no",map.get("selecBox"+i+"_1"));
+					map.put("el_dayno", k);
+					map.put("el_time", Integer.parseInt(map.get("time"+i+"_"+k).toString()));
+					System.out.println("map.get(\"e_no\")"+map.get("e_no"));
+					System.out.println("map.get(\"el_dayno\")"+map.get("el_dayno"));
+					System.out.println("map.get(\"el_time\")"+map.get("el_time"));
+					exerService.insertExerList(map);
+				}
+				
+			}
+		}
 		
-		//return "#";
-		/*
-		 * String day1= "";
-		 * 
-		 * String day3= ""; String day4= ""; String day5= ""; String day6= ""; String
-		 * day7= "";
-		 * 
-		 * 
-		 * for(int i=1;i<=3;i++) {
-		 * if(map.get("selecBox1_"+i).toString().equals("운동 선택")) { day1+=""; } else{
-		 * day1+=map.get("selecBox1_"+i)+","; } } if(day1.length()>=1) {
-		 * day1=day1.substring(0, day1.length()-1); } System.out.println(day1);
-		 * 
-		 * String day2= ""; for(int i=1;i<=3;i++) {
-		 * if(map.get("selecBox1_"+i).toString().equals("운동 선택")) { day2+=""; } else{
-		 * day2+=map.get("selecBox1_"+i)+","; } } if(day2.length()>=1) {
-		 * day2=day2.substring(0, day2.length()-1); } System.out.println(day2);
-		 */
 		
-		//int newRoutNo = exerService.insertExerciseRoutine(map);
-		//
+		//rout_no로 calcheck테이블 값 select
+		Map oneCalc=calcSevice.selectOneCalcnoByRoutno(map);
+		
+		
+		//map에 담긴 값 확인
+		Set keys= map.keySet();
+		for(Object key:keys) {
+			Object value=map.get(key);
+			System.out.println(String.format("%s : %s",key,value));
+		}
 		
 		
 		ModelAndView mav = new ModelAndView();
-		RedirectView view = new RedirectView();
-		mav.addObject("newRoutNo", newRoutNo);
+		RedirectView view = new RedirectView();		
+		mav.addObject("newRoutNo", oneCalc);
 		view.setUrl("/cal/List.do");
 		view.setContextRelative(true);///ViewResolver/Continues.do를 상대주소로 설정 
 		mav.setView(view);
 		return mav;
+		
 		
 	}
 

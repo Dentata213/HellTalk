@@ -58,20 +58,21 @@ public class ExerciseDTO {
 	private String rout_enddate;
 	//공개여부
 	private String rout_display;
-	//1일차
-	private String day1;
-	//2일차
-	private String day2;
-	//3일차
-	private String day3;
-	//4일차
-	private String day4;
-	//5일차
-	private String day5;
-	//6일차
-	private String day6;
-	//7일차
-	private String day7;
+
+	//DAYROUTINE
+	//데이루틴번호
+	private String dr_no;
+	//데이
+	private String day;
+	
+	//EXERCISELIST
+	//운동루틴번호
+	private String el_dayno;
+	//운동시간
+	private String el_time;
+	//운동 총 칼로리
+	private String el_totalkcal;
+	
 	
 	//맴버 DTO
 	//nickname

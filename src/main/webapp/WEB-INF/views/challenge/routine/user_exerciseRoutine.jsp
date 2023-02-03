@@ -16,6 +16,8 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 <!-- <link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css"/> 
 <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script> -->
 <!-- <link href="//cdn.datatables.net/1.10.18/css/dataTables.bootstrap.css" rel="stylesheet" />
@@ -113,6 +115,12 @@ legend{
 	cursor:pointer;
 } 
 
+/* 타임피커 */
+.timepicker{
+	width: 70px;
+	height: 19px;
+}
+
 </style>   
 </head>
 <body>
@@ -149,7 +157,15 @@ legend{
 									<select class="selecBox" id="selecBox${loop.index}_${loop2.index}" name="selecBox${loop.index}_${loop2.index}">
 									<option class="option">운동 선택</option>
 									</select>
+									
+									<select class="time-select" id="time${loop.index}_${loop2.index}" name="time${loop.index}_${loop2.index}">
+									<option class="time-select">시간 선택</option>
+										<c:forEach var="j" begin="5" end="60" step="5" varStatus="loop3">
+										<option class="time-select">${loop3.index}</option>
+										</c:forEach>
+									</select>
 								</li>
+								
 								
 								</c:forEach>
 							</ol>
@@ -188,16 +204,6 @@ legend{
 									<option class="body-contents">하</option>
 									<option class="body-contents">중</option>
 									<option class="body-contents">상</option>
-								</select>
-								<select class="body-contents" id="rout_time" name="rout_time">
-									<option class="body-contents">총 운동시간</option>
-									<option class="body-contents">10분</option>
-									<option class="body-contents">20분</option>
-									<option class="body-contents">30분</option>
-									<option class="body-contents">40분</option>
-									<option class="body-contents">50분</option>
-									<option class="body-contents">60분</option>
-									
 								</select>
 								</legend>
 								<legend>운동 모드</br>
@@ -368,7 +374,7 @@ $(document).on('click','.listExerKind',function(e){
 						+"	<td style='display: none;'></td>\r\n"
 						+"	<td style='display: none;'></td>\r\n" 
 						+"</tr>";   
-					option+="<option value='"+item.e_name+"'>"+item.e_name+"</option>"
+					option+="<option value='"+item.e_no+"'>"+item.e_name+"</option>"
 					//console.log(tr);
 					
 					$('#exercise-list').append(tr);
@@ -471,6 +477,50 @@ $(document).on('click','#cancel',function(e){
 	
 })
 
+/*  타임피커  */
+/*
+for(var i=1;i<=7;i++){
+	for(var k=1;k<=3;k++){
+		$("#time"+i+"_"+k).timepicker({
+            timeFormat: 'h:mm',
+            interval: 1,
+            //minMinutes: '0',
+            minHour: '0' 
+            maxHour: '1',
+            //maxMinutes:59,
+            dynamic: true,
+            dropdown: true,
+            scrollbar: true
+        });
+		
+		
+	}
+}
+
+	for(var i=1;i<=7;i++){
+		for(var k=1;k<=3;k++){
+			 $('#time'+i+'_'+k).click(function(time) {
+			            // the input field
+			            //var element = $(this), text;
+			            // get access to this Timepicker instance
+			            //var timepicker = element.timepicker();
+			            //text = 'Selected time is: ' + timepicker.format(time);
+			            //element.siblings('span.help-line').text(text);
+			            console.log(time)
+			            console.log($(this).val)
+			            $('#time'+i+'_'+k).change(function(time) {
+			            	 console.log(time)
+			            }) 
+			        
+			    });
+			
+			
+		}
+	}
+
+*/
+
+/* 시간 선택 */
 
 
 /* 모달 */

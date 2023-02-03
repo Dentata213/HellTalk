@@ -29,23 +29,40 @@
 		INSERT into routine VALUES(SEQ_routine.CURRVAL,#{u_no},#{rout_name},#{rout_content},#{rout_level},#{rout_effect},#{rout_gender},#{rout_time},#{rout_mode},#{start},#{end},#{rout_display},#{day1},#{day2},#{day3},#{day4},#{day5},#{day6},#{day7})
 	</insert> -->
 	
-	<insert id="insertExerciseRoutine" parameterType="Map">
-		<selectKey keyProperty="calcno" resultType="int" order="BEFORE">
-		SELECT SEQ_CALCNO.NEXTVAL FROM DUAL
+	<!-- 루틴, 캘린더 insert  -->
+	<insert id="insertRoutine" parameterType="Map">
+		<selectKey keyProperty="rout_no" resultType="int" order="BEFORE">
+		SELECT SEQ_routine.NEXTVAL FROM DUAL
 		</selectKey>
 		  INSERT ALL	  
 		  INTO ROUTINE
-		  values(SEQ_routine.NEXTVAL,(SELECT DISTINCT users.U_no FROM users WHERE u_email=#{u_email}),#{rout_name},#{rout_content},#{rout_level},#{rout_effect},#{rout_gender},#{rout_time},#{rout_mode},#{start},#{end},#{rout_display},#{day1},#{day2},#{day3},#{day4},#{day5},#{day6},#{day7})
+		  values(SEQ_routine.CURRVAL,(SELECT DISTINCT users.U_no FROM users WHERE u_email=#{u_email}),#{rout_name},#{rout_content},#{rout_level},#{rout_effect},#{rout_gender},#{rout_time},#{rout_mode},#{start},#{end},#{rout_display})
 		  INTO CALCHECK 
-		  VALUES(SEQ_CALCNO.NEXTVAL,
+		  VALUES(SEQ_CALCHECKNO.NEXTVAL,
 		  (SELECT DISTINCT users.U_no FROM users WHERE u_email=#{u_email}), 
-		  SEQ_routine.NEXTVAL,'#F06595','N') 
+		  SEQ_routine.CURRVAL,'#F06595','N') 
 		  SELECT * FROM DUAL
 	</insert>
 	
 	<!-- 추천 운동 루틴 전체 조회 -->
-	<select id="selectExerciseRoutine" parameterType="Map" resultType="Map">
+	<select id="selectRoutine" parameterType="Map" resultType="Map">
 		SELECT r.*,u_nickname,u_gender FROM routine r JOIN users u ON r.u_no=u.u_no WHERE rout_display='Y'
 	</select>
+	
+	<!-- 데이루틴 insert -->
+	<insert id="insertDayRoutine">
+		<selectKey keyProperty="dr_no" resultType="int" order="BEFORE">
+		SELECT SEQ_DAYROUTINE.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO dayroutine VALUES(SEQ_DAYROUTINE.CURRVAL,#{rout_no},#{day})
+	</insert>
+	
+	<!-- 운동리스트 insert -->
+	<insert id="insertExerList" parameterType="Map" >
+		<selectKey keyProperty="el_totalkcal" resultType="int" order="BEFORE" >
+		select e_kcal*${el_time} as el_totalkcal FROM exercise WHERE e_no=#{e_no} 
+		</selectKey>
+		INSERT INTO exerciselist VALUES(#{dr_no},#{e_no},#{el_dayno},#{el_time},#{el_totalkcal})
+	</insert>
 	
 </mapper>

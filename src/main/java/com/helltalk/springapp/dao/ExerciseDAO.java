@@ -43,24 +43,37 @@ public class ExerciseDAO {
 		return listExer;
 	}
 
-	public int insertExerciseRoutine(Map map) {
+	public int insertRoutine(Map map) {
 		//SqlSession session= sqlMapper.openSession();
 		Set keys= map.keySet();
 		for(Object key:keys) {
 			Object value=map.get(key);
 			System.out.println(String.format("%s : %s",key,value));
 		}
+		template.insert("insertRoutine",map);
 		
 		//int routNo=(int) map.get("rout_no");
 		//System.out.println("newRoutNo"+newRoutNo);
 		//System.out.println("routNo"+routNo);
 		//session.close();
-		return template.insert("insertExerciseRoutine",map);
+		return Integer.parseInt(map.get("rout_no").toString());
 	}
 
-	public List<Map> selectExerciseRoutine(Map map) {
-		List<Map> recommendRoutList= template.selectList("selectExerciseRoutine",map);
+	public List<Map> selectRoutine(Map map) {
+		List<Map> recommendRoutList= template.selectList("selectRoutine",map);
 		return recommendRoutList;
+	}
+	
+	//데이루틴 insert
+	public int insertDayRoutine(Map map) {
+		template.insert("insertDayRoutine",map);
+		return Integer.parseInt(map.get("dr_no").toString());
+	}
+
+	//운동리스트 insert
+	public int insertExerList(Map map) {
+		System.out.println("운동리스트 sql 들어가기 전!!!");
+		return template.insert("insertExerList",map);
 	}
 
 }

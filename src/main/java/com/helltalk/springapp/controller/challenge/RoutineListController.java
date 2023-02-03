@@ -30,14 +30,14 @@ public class RoutineListController {
 	private MemberServiceImpl memberService;
 	
 	@RequestMapping("/List.do")
-	public String selectExerciseRoutine(@RequestParam Map map,Model model,Authentication auth) {
+	public String selectRoutine(@RequestParam Map map,Model model,Authentication auth) {
 		//로그인된 u_email을 map에 담음
 		map.put("u_email",((UserDetails)auth.getPrincipal()).getUsername().toString());
 		System.out.println("u_email"+map.get("u_email"));
 		MemberDTO member = memberService.selectOneByEmail(map);
 		model.addAttribute("member", member);
 		//추천루틴 select
-		List<Map> recommendRoutList= exerService.selectExerciseRoutine(map);
+		List<Map> recommendRoutList= exerService.selectRoutine(map);
 		System.out.println("recommendRoutList"+recommendRoutList);
 		//추천루틴에서 day1~7의 컬럼 데이터를 List<String[]>담아 각 day의 운동명을 split 하여 String[] 배열에 담음
 		List<String[]> day=new Vector();
