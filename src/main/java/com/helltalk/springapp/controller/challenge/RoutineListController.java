@@ -39,6 +39,16 @@ public class RoutineListController {
 		//추천루틴 select
 		List<Map> recommendRoutList= exerService.selectRoutine(map);
 		System.out.println("recommendRoutList"+recommendRoutList);
+		
+		
+		
+		//map에 담긴 값 확인
+		Set keys= map.keySet();
+		for(Object key:keys) {
+			Object value=map.get(key);
+			System.out.println(String.format("%s : %s",key,value));
+		}
+				
 		//추천루틴에서 day1~7의 컬럼 데이터를 List<String[]>담아 각 day의 운동명을 split 하여 String[] 배열에 담음
 		List<String[]> day=new Vector();
 		for(Map list:recommendRoutList) {
