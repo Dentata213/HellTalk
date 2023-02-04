@@ -20,22 +20,32 @@ public class ChatServiceImpl implements ChatService<ChatDto> {
 	
 	@Override
 	public List<ChatDto> selectList(Map map, HttpServletRequest req) {
-		List<ChatDto> list = dao.findAllchat(map);
+		List<ChatDto> list = dao.findAllchat(map);	
 		return list;
+	}
+	
+	@Override
+	public List<ChatDto> selectListMsg(Map map, HttpServletRequest req) {
+		List<ChatDto> allMsg =dao.findAllMsg(map);	
+		return allMsg;
 	}
 
 	@Override
 	public ChatDto selectOne(Map map) {
-		// TODO Auto-generated method stub
-		return null;
+		ChatDto oneno =dao.selectOne(map);
+		System.out.println("dao에서는?"+oneno);
+		return oneno;
 	}
 
 	@Override
 	public int insert(Map map) {
-		
-		return 0;
+		int mno=dao.insertMsg(map);
+		System.out.println("메시지번호가 필요할 까?"+mno);
+		return mno;
 	}
 
+	
+	
 	@Override
 	public int delete(Map map) {
 		// TODO Auto-generated method stub
@@ -47,5 +57,8 @@ public class ChatServiceImpl implements ChatService<ChatDto> {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	
+	
 
 }

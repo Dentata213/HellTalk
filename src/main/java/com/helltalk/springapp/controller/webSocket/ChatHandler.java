@@ -4,6 +4,8 @@ import java.util.HashMap;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
@@ -20,22 +22,21 @@ public class ChatHandler extends TextWebSocketHandler {
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		//소켓 연결, 연결된 클라이언트 추가
-		sessionMap.put(session.getId(), session);
+		System.out.println("세션"+session);
+		/*sessionMap.put(session.getId(),session);*/
 		System.out.println(session.getId()+"연결됨,여긴핸들러");
-		System.out.println("클라이언트.values()"+sessionMap.values());
 	}
 	
 	//클라이언트로 메시지 보내기 (메시지 보낼 때 마다 호출 됨)
 	@Override
 	public void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		//메시지 발송
-		System.out.println(session);
-		System.out.println("핸드쉐이크?:"+session.getHandshakeHeaders());  // 여기서 사용할 수 있는건 host=[192.168.0.29:8080] 요거..? 도필요 없을 것 같음
+		System.out.println("핸드셰이크 걍 잘 넘어가는지 확인용:"+session.getHandshakeHeaders());  // 여기서 사용할 수 있는건 host=[192.168.0.29:8080] 요거..? 도필요 없을 것 같음
 		String msg = message.getPayload();
-		System.out.println("세션에 저장된 아이디"+session.getId());  //계속 새로 생성됨 숫자로...
+		System.out.println("세션에 저장된 아이디"+session.getId());  //계속 새로 생성됨 숫자로...안돼...
 		for(String key : sessionMap.keySet()) {
 				WebSocketSession wss = sessionMap.get(key);
-				  System.out.println("wss이건 뭐냐 "+wss);
+				  System.out.println("웹소켓세션"+wss);
 		}
 		
 		for(WebSocketSession client:sessionMap.values()) {  
@@ -51,6 +52,7 @@ public class ChatHandler extends TextWebSocketHandler {
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		//소켓 종료
 		sessionMap.remove(session.getId());
+		sessionMap.remove(session.getUri());
 		super.afterConnectionClosed(session, status);
 		System.out.println("연결이 끊어졌습니다.");
 	}

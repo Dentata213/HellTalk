@@ -5,21 +5,49 @@
  <mapper namespace="mybatis.mapper.Chat">
  
  <select id="findAllchat" parameterType="Map" resultType="ChatDto" >
-   	SELECT room_no,room_name,chatroom.u_no
-	FROM chatroom join users
-	ON chatroom.u_no=users.u_no
- 	WHERE chatroom.u_no =
-  	(SELECT DISTINCT users.U_no FROM users left join chatroom ON chatroom.u_no=users.u_no WHERE u_email=#{uemail,jdbcType=VARCHAR})   
+	SELECT CHATROOM.*,chat_user.u_no FROM 
+    chat_user RIGHT join users ON chat_user.u_no=users.u_no
+    FULL OUTER JOIN CHATROOM ON CHATROOM.room_no=chat_user.room_no
+ 	WHERE chat_user.u_no=
+  	(SELECT DISTINCT users.U_no FROM users left join chat_user ON chat_user.u_no=users.u_no 
+    WHERE u_email=#{uemail,jdbcType=VARCHAR})  
  </select>
  
  <insert id="chatRoomInset" parameterType="Map">
 	<selectKey keyProperty="no" resultType="int" order="BEFORE">
 		SELECT SEQ_CHATROOM.NEXTVAL FROM DUAL
 	</selectKey>	
-		INSERT INTO CHATROOM VALUES(SEQ_CHATROOM.NEXTVAL,
-		#{ROOM_NAME},
-		(SELECT DISTINCT users.U_no FROM users left join CHATROOM ON CHATROOM.u_no=users.u_no WHERE u_email=#{uemail,jdbcType=VARCHAR})
+		INSERT ALL
+		INTO CHATROOM VALUES(SEQ_CHATROOM.NEXTVAL,#{ROOM_NAME})
+		INTO CHAT_USER VALUES((SELECT DISTINCT users.u_no FROM
+        	chat_user RIGHT join users ON chat_user.u_no=users.u_no
+        	FULL OUTER JOIN CHATROOM ON CHATROOM.room_no=chat_user.room_no 
+       		 WHERE u_email=#{uemail,jdbcType=VARCHAR}),SEQ_CHATROOM.CURRVAL)
+        INTO CHAT_USER VALUES((SELECT DISTINCT users.u_no FROM
+        	chat_user RIGHT join users ON chat_user.u_no=users.u_no
+         	FULL OUTER JOIN CHATROOM ON CHATROOM.room_no=chat_user.room_no 
+        	WHERE u_email=#{FRIEND}),SEQ_CHATROOM.CURRVAL)
+		SELECT * FROM dual
 </insert>
+ <!-- 
+ <select id="findchatRoomno" parameterType="Map" resultType="ChatDto" >
+	 SELECT room_no,room_name FROM chatroom WHERE room_no=#{room_no,jdbcType=VARCHAR}
+ </select>
+  -->
+ <insert id="sendMessage" parameterType="Map">
+ 	<selectKey keyProperty="mno" resultType="int" order="BEFORE">
+		SELECT SEQ_MESSAGE_NO.NEXTVAL FROM DUAL
+	</selectKey>
+      insert into messageROOM VALUES(SEQ_MESSAGEROOM.NEXTVAL,
+		#{MESSAGE},#{TIME},
+		(SELECT DISTINCT users.U_no FROM users left join messageROOM ON messageROOM.u_no=users.u_no
+   		WHERE u_email=#{uemail,jdbcType=VARCHAR},room_no=#{room_no})
+ </insert>
  
+ <select id="findAllMsg" parameterType="Map" resultType="ChatDto">
+ 	select messageROOM.*,users.u_email,users.u_nickname from messageROOM 
+   	RIGHT join users ON messageROOM.u_no=users.u_no
+ 	where room_no=#{roomno} order by mno desc
+ </select>
  
  </mapper>

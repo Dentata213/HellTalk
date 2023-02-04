@@ -16,4 +16,6 @@ List<T> selectList(Map map,HttpServletRequest req);
 	int delete(Map map);
 	int update(Map map);
 
+	List<ChatDto> selectListMsg(Map map, HttpServletRequest req);
+
 }
