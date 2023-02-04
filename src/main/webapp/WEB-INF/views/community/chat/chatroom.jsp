@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
+ <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+ <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
  
   <!-- main content -->
  <div class="main-content right-chat-active">     
@@ -13,34 +15,45 @@
          <div  class="chat-body p-3 " >
              <div id="chatArea"   class="messages-content pb-5" >                                            
                
+  <!--여기가 받은메시지-->
+               <c:forEach var="chatmsg" items="${chatList}" varStatus="loop">
+        		<c:if test="${uemail != chatmsg.u_email}">
                  <div class="message-item" id="chatMessage" >
+                 <input name="mno" class="mno" value="${chatmsg.mno}" hidden />
                      <div class="message-user" >
                          <figure class="avatar">
                              <img src="https://via.placeholder.com/50x50.png" alt="image">
                          </figure>
-                         <div  >
-                             <h5>닉네임</h5>
-                             <div class="time">01:35 PM</div>
+                         <div >           
+                             <h5>${chatmsg.u_nickname}</h5>
+                             <div class="time">${chatmsg.time}</div>
                          </div>
                      </div>
-                     <div class="message-wrap" >왜안돼!!!!</div>
+                     <div class="message-wrap" >${chatmsg.message}</div>
                  	</div>
+        			</c:if>      
+           	</c:forEach>     
         
+ <!-- 여기가 보내는 메시지 -->
+        <c:forEach var="chatmsg" items="${chatList}" varStatus="loop">
+        <c:if test="${ uemail == chatmsg.u_email}">
                  <div class="message-item outgoing-message" >
+                 <input name="mno" class="mno" value="${chatmsg.mno}" hidden />
                      <div class="message-user">
                          <figure class="avatar">
                              <img src="https://via.placeholder.com/50x50.png" alt="image">
                          </figure>
                          <div>
-                             <h5>닉네임2</h5>
-                             <div class="time">01:35 PM<i class="ti-double-check text-info"></i></div>
+                             <h5>${chatmsg.u_nickname}</h5>
+                             <div class="time">${chatmsg.time}<i class="ti-double-check text-info"></i></div>
                          </div>
                      </div>
-                     <div class="message-wrap">I want those files for you. I want you to send 1 PDF and 1 image file.</div>
+                     <div class="message-wrap">${chatmsg.message}</div>
                  </div>       
-               
-                
-                 <div class="clearfix"></div>
+        </c:if>      
+           </c:forEach>     
+                 <div class="clearfix">요밑으로 잡아야겟군</div>
+             
              </div>
        </div>
    </div>
@@ -54,7 +67,6 @@
             </div> 
                              
         </div>
-        <input class="btn btn-info" type="button" id="enterBtn" value="입장임시버튼">
   	 			<input class="btn btn-danger" type="button" id="exitBtn" value="퇴장임시버튼">  
 	
     </div>
@@ -69,8 +81,7 @@
        float: left;
        margin: 0 5px;
        position: relative;
-       }
-    
+       } 
        
      </style>
  
@@ -87,8 +98,10 @@
 	//닉 네임 저장용
 	var nickname;
 	//입장버튼 클릭 시 -서버와 연결된 웹소켓 클라이언트 생성
-	$('#enterBtn').on('click',function(){  //one 한 번만 입장해야 하니까
-		wsocket = new WebSocket("ws://192.168.0.14:8080<c:url value="/chat-ws.do"/>"); //wss 는 보안이 강화된것 얘는 443포트를 사용
+	//$('#enterBtn').on('click',function(){  //one 한 번만 입장해야 하니까
+		if(true){
+			console.log(${roomno})
+		wsocket = new WebSocket("ws://${pageContext.request.serverName}:${pageContext.request.serverPort}<c:url value="/chating.do?roomno=${roomno}"/>"); //wss 는 보안이 강화된것 얘는 443포트를 사용
 		console.log('wsocket:',wsocket);
 		//서버와 연결된 웹 소켓에 이벤트 등록(함수들은 밑으로 다 빼놓음)
 		wsocket.onopen = open;  //   open()들어가면 호출하는거여
@@ -99,7 +112,8 @@
 		wsocket.onerror=function(e){
 			console.log('에러발생:',e)
 		}
-	});
+	};	
+//	});
 		//서버에 연결되었을 때 호출되는 콜백함수
 		function open(){
 			//서버로 연결한 사람의 정보(닉네임) 전송
