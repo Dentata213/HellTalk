@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-    
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-
+  <c:set var="path" value="${pageContext.request.contextPath}"/>  
+   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
  <style>
 	p {
 	  color: whitesmoke;
@@ -56,7 +55,9 @@
 			<h4>대화내용</h4>
 			<div id="chatArea">
 				<div id="chatMessage"  
-					style="height: 300px; border: 1px gray solid; overflow:auto;"></div>
+					style="height: 300px; border: 1px gray solid; overflow:auto;">
+					
+					</div>
 			</div>
 		</div>
 
@@ -70,6 +71,32 @@
 </div>  
   
   <script>
+  document.addEventListener('DOMContentLoaded', function() {
+  
+	/*$("#enterBtn").click(function(){
+				
+				var roomno = $("#roomNo").val();
+				var obj ={"room_no": roomno};
+			 	JSON.stringify(obj);
+			 	console.log(roomno)
+		
+		$.ajax({
+			url:"<c:url value="/enterroom.do"/>",
+			method:"POST",
+			data:JSON.stringify(obj),
+			type:'json',
+			contentType:"application/json; charset=utf-8"
+		})
+		.done(function(data){         
+					
+			}).
+			fail(function(jqXHR, textStatus, errorThrown){
+				console.log(jqXHR)
+		        console.log(textStatus)
+		        console.log(errorThrown);
+				}); 	
+
+		});*/
 	/*
 	채팅 테스트
 	localhost를 아이피로 변경(192.168.0.14) 소스 및 브라우저 URL도 변경
@@ -79,7 +106,7 @@
 	채팅 말풍선
 	https://codepen.io/beumsk/pen/mmEzrE
 	 */
-
+	//////한곳에다가 몰아넣어야해 include 시켜야겠음!!!
 	//웹소켓 객체 저장용(전역변수로 빼야 함수로 가능)
 	var wsocket;
 	//닉 네임 저장용
@@ -87,7 +114,9 @@
 	//연결하는것도 함수로 만들어 놓고 여기저기서 사용 할 수 있게 변경	
 	//입장버튼 클릭 시 -서버와 연결된 웹소켓 클라이언트 생성  ==> 채팅방 들어가는 이벤트로 변경예정...
 	$('#enterBtn').on('click',function(){
-		wsocket = new WebSocket("ws://${pageContext.request.serverName}:${pageContext.request.serverPort}<c:url value='/chating.do?no=1'/>"); //wss 는 보안이 강화된것 얘는 443포트를 사용
+		console.log(${roomno})
+		wsocket = new WebSocket("ws://${pageContext.request.serverName}:${pageContext.request.serverPort}<c:url value="/chating.do?no=${roomno}"/>"); //wss 는 보안이 강화된것 얘는 443포트를 사용
+		
 		console.log('wsocket:',wsocket);
 		//서버와 연결된 웹 소켓에 이벤트 등록(함수들은 밑으로 다 빼놓음)
 		wsocket.onopen = open;  //   open()들어가면 호출하는거여
@@ -117,7 +146,7 @@
 	})
 	
 	//퇴장버튼 클릭 시
-	$('#exitBtn').on('click',function(){	
+	$('#exitBtn').on('click',function(){
 		wsocket.send('msg:'+nickname+'가(이) 퇴장했어요');
 		wsocket.close();
 	});
@@ -156,5 +185,5 @@
 		//get(0)이거 자바스크립트로 바꾸는거였지...scrollTop랑 .scrollHeight는 스크롤바를계속 올리는 공식임 
 	}
 	
-	
+  });
 	</script>
