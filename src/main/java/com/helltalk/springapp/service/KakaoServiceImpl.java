@@ -10,6 +10,8 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -17,7 +19,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 @Service
+@PropertySource({"classpath:config/database.properties"})
 public class KakaoServiceImpl {//https://makeaplayground.tistory.com/158
+	
+	@Value("${kakaoClient_id}")
+	private String client_id;
+	@Value("${kakaoRedirect_url}")
+	private String kakaoUrl;
 
 
 	public String getAccessToken(String authorize_code) throws Exception {
@@ -39,8 +47,8 @@ public class KakaoServiceImpl {//https://makeaplayground.tistory.com/158
 			StringBuilder sb = new StringBuilder();
 			sb.append("grant_type=authorization_code");
 
-			sb.append("&client_id=727a4501d45144645c588c2c32a86e16"); // REST_API키 본인이 발급받은 key 넣어주기
-			sb.append("&redirect_uri=http://localhost:8080/Helltalk/member/KakaoLogin"); // REDIRECT_URI 본인이 설정한 주소 넣어주기
+			sb.append("&client_id="+client_id+""); // REST_API키 본인이 발급받은 key 넣어주기
+			sb.append("&redirect_uri="+kakaoUrl+""); // REDIRECT_URI 본인이 설정한 주소 넣어주기
 
 			sb.append("&code=" + authorize_code);
 			bw.write(sb.toString());

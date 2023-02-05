@@ -34,7 +34,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/KakaoLogin")
-	public void KakaoLogin(String code,Model model,HttpServletResponse response) throws Throwable {
+	public String KakaoLogin(String code,Model model,HttpServletResponse response) throws Throwable {
 		System.out.println("인가코드:"+code);
 		
 		String access_Token = kakaoService.getAccessToken(code);
@@ -52,10 +52,16 @@ public class MemberController {
 			model.addAttribute("id",userInfo.get("id"));
 			PrintWriter w = response.getWriter();
 			response.setContentType("text/html; charset=utf-8");
-	        w.write("<script>alert('"+map.get("u_email")+"님에 대한 회원 정보가 없습니다. 회원가입 페이지로 이동합니다.');"
-	        		+ "location.href='/Helltalk/member/CreateUser.do'</script>");
-	       
+	        w.write("<script>alert('"+map.get("u_email")+" 님에 대한 회원 정보가 없습니다."
+	        		+ "추가정보 입력을 위해 회원가입 페이지로 이동합니다.');"
+	        		+ "</script>");
+	        w.flush();
+	        return "forward:/member/CreateUser.do";
 		}
+		else {
+			
+		}
+		return "";
 		
 	}
 	
@@ -83,15 +89,25 @@ public class MemberController {
 		int affectedName = service.nicknameCheck(map);
 		String nickname="";
 		String email="";
+		String rawPassword =map.get("u_pwd");
 		if(affectedEm + affectedName == 0 ) {
-			String rawPassword = map.get("u_pwd");
-			String encodedPassword = passwordEncoder.encode(rawPassword); //비밀번호 암호화
-			System.out.println("암호화된 비번:"+encodedPassword);
-			map.put("u_pwd", encodedPassword);
-			service.insertUser(map);
-			nickname = map.get("u_nickname");
-			model.addAttribute("nickname",nickname);
-			return "forward:/member/Success.do";
+			if(rawPassword !=null) {
+				String encodedPassword = passwordEncoder.encode(rawPassword); //비밀번호 암호화
+				System.out.println("암호화된 비번:"+encodedPassword);
+				map.put("u_pwd", encodedPassword);
+				service.insertUser(map);
+				nickname = map.get("u_nickname");
+				model.addAttribute("nickname",nickname);
+				return "forward:/member/Success.do";
+			}
+			else {
+				service.insertSoicalUser(map);
+				nickname = map.get("u_nickname");
+				model.addAttribute("nickname",nickname);
+				return "forward:/member/Success.do";
+			}
+			 
+			
 			
 		}else if(affectedEm != 0){
 			email = map.get("u_email");

@@ -147,7 +147,7 @@
                             
                             <h6 class="mb-0 d-inline-block bg-white fw-500 font-xsss text-grey-500 mb-3">Or, Sign in with your social account </h6>
                             <div class="form-group mb-1">
-                            	<a href="https://kauth.kakao.com/oauth/authorize?client_id=727a4501d45144645c588c2c32a86e16&redirect_uri=http://localhost:9090${path}/member/KakaoLogin&response_type=code" 
+                            	<a href="https://kauth.kakao.com/oauth/authorize?client_id=727a4501d45144645c588c2c32a86e16&redirect_uri=http://localhost:8080${path}/member/KakaoLogin&response_type=code" 
                             		class="form-control text-left style2-input text-kakao fw-600 bg-kakao border-0 p-0 mb-2">
                             		<img src="${path}/resources/images/kakao_login.png" alt="icon" class="ms-2 w40 mb-1 me-5">Sign in with Kakao
                             	</a>

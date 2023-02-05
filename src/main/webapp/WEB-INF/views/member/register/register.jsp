@@ -118,6 +118,7 @@
 		                        </div>
 		                    </div>
 		                    <div class="second " style="display:none">
+		                    <c:if test="${id == null}">
 		                    	<div class="form-group form-floating">
 			                        <input type="text" class="form-control" name="u_email" placeholder="예:helltalk@email.com" aria-describedby="emailError" value="${email}"/>
 			                        <label for="userEmail"><i class="font-sm ti-email text-grey-500 pe-0"></i>&nbsp;&nbsp;이메일</label>
@@ -133,7 +134,7 @@
 			                        <label for="userName"><i class="font-sm bx bx-face text-grey-500 pe-0"></i>&nbsp;&nbsp;닉네임</label>
 			                        <div id="nicknameError" class="form-text" style="color: red;"></div>
 			                    </div>
-			       			
+			       			</c:if>
 			                    <div class="form-group form-floating">
 			                        <input type="text" class="form-control" name="u_phoneno" placeholder="예:010-1234-1234" aria-describedby="phoneError"/>
 			                        <label for="userPhone"><i class="font-sm bx bx-phone text-grey-500 pe-0"></i>&nbsp;&nbsp;전화번호</label>
@@ -159,6 +160,9 @@
 		                            	
 		                            </div>
 		                            <input type="hidden" name="u_status" value="1">
+		                            <input type="hidden" name="u_email" value="${email}">
+		                            <input type="hidden" name="u_nickname" value="${nickname}">
+		                            <input type="hidden" name="u_kakao" value="${id}">
 		                    		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		                            <h6 class="text-grey-500 font-xsss fw-500 mt-0 mb-0 lh-32">Already have account <a href="<c:url value="/member/Login.do"/>" class="fw-700 ms-1">Login</a></h6>
 		                        </div>
