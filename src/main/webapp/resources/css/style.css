@@ -139,6 +139,10 @@
   color: #fff !important;
 }
 
+.bg-kakao {
+  background-color: #FAE100 !important;
+}
+
 .bg-facebook {
   background-color: #0d66ff !important;
 }
@@ -237,6 +241,10 @@
 
 .text-yellow {
   color: #ffde00 !important;
+}
+
+.text-kakao {
+  color: #371D1E !important;
 }
 
 .bg-black-08 {

@@ -31,6 +31,13 @@
 		#{u_height},#{u_weight},DEFAULT,#{u_status},#{u_kind},null)
 	</insert>
 	
+	<insert id="insertSoicalUser" parameterType="Map">
+		INSERT INTO USERS VALUES(
+		SEQ_USERNO.NEXTVAL,null,#{u_nickname},#{u_gender},
+		#{u_phoneno},#{u_email},#{u_birth},
+		#{u_height},#{u_weight},DEFAULT,#{u_status},#{u_kind},#{u_kakao})
+	</insert>
+	
 	<delete id="userDelete" parameterType="Map">
 		DELETE FROM USERS WHERE U_NO=${u_no}
 	</delete>

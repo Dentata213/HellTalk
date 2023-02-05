@@ -35,6 +35,10 @@ public class MemberDAO {
 		return template.insert("userInsert",map);
 	}
 	
+	public int insertSoical(Map map) {		
+		return template.insert("insertSoicalUser",map);
+	}
+	
 	public int delete(Map map) {		
 		return template.delete("userDelete",map);
 	}

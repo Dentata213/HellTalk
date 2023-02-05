@@ -36,6 +36,11 @@ public class MemberServiceImpl implements MemberService<MemberDTO>{
 	public int insertUser(Map map) {
 		return dao.insert(map);
 	}
+	
+	@Override
+	public int insertSoicalUser(Map map) {
+		return dao.insertSoical(map);
+	}
 
 	@Override
 	public int updateUser(Map map) {//회원의 닉네임,키,몸무게 수정가능하게 함
