@@ -108,17 +108,20 @@ public class PaymentServiceImpl implements PaymentService<PaymentDTO>{
 				System.out.println("상품번호:"+str.getProduct_no());
 				
 				String[] test = new String[map.get("checkedItems").toString().split(",").length];
-				test[i]=(String) map.get("checkedItems").toString().split(",")[i];
-				System.out.printf("test[%s번째방]:::::::%s",i,test[i]);
-				System.out.println("test크기-------"+test.length);
+				
 				for(int k=0;k<test.length;k++) {
-					String test1 = test[k];					
-					String proNum = str.getProduct_no();
+					test[k]=(String) map.get("checkedItems").toString().split(",")[k];
+					System.out.printf("test[%s번째방]:::::::%s",i,test[k]);
+					System.out.println("test크기-------"+test.length);
 					
+					String test1 = test[k].replace("\"","").replace("[", "").replace("]", "");					
+					String proNum = str.getProduct_no();
+					System.out.println("proNum-------"+proNum);
+					System.out.println("test1-------"+test1);
 					if(proNum.equals(test1)){
-						
-						//System.out.println("번째 인덱스 값:"+str.getProduct_quantity());
-						//System.out.println("번째 인덱스 값:"+str.getProduct_price());
+						System.out.println("if문 진입~~!!!!!!!!!!!!");
+						System.out.println("번째 인덱스 값:"+str.getProduct_quantity());
+						System.out.println("번째 인덱스 값:"+str.getProduct_price());
 						
 						sum += qty*price;
 						System.out.println("if문 내부"+sum);

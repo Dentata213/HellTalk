@@ -29,7 +29,7 @@
                                         <table class="table text-center">
                                             <thead class="bg-greyblue rounded-3">
                                                 <tr>
-                                                	<th class="border-0 p-4"><input type="checkbox" value="all"></th>
+                                                	<th class="border-0 p-4"><input type="checkbox"><input value="all" hidden="hidden"/></th>
                                                     <th class="border-0 p-4">&nbsp;</th>
                                                     <th class="border-0 p-4 text-left">Product</th>
                                                     <th class="border-0 p-4">Price</th>
@@ -184,8 +184,9 @@
 	                console.log($(this).next().val());
 	                checkedItems.push($(this).next().val());               
 	            });
+				var checkedItemsed=JSON.stringify(checkedItems);
 				
-				var data = {"CART_QUANTITY":newval,"PRO_NO":product_no,"totalprice":onePrice,"checkedItems":checkedItems};
+				var data = {"CART_QUANTITY":newval,"PRO_NO":product_no,"totalprice":onePrice,"checkedItems":checkedItemsed};
 				$.ajax({
 					type: "GET",
 		   			url:"<c:url value="/Shop/quantityUpdate"/>",
@@ -196,7 +197,7 @@
 				.done(function(data){         													
 					
 					newPrice(data);
-					console.log(data);
+					console.log(data.sum);
 					console.log('성공');
 					$('#totalprice').text(data.sum)//총 결제금액
 					
@@ -239,7 +240,7 @@
         $(":checkbox").click(function(){
         	var checkedItems = []
 			console.log($(":checkbox"))
-            if($(this).val()==='all'){
+            if($(this).next().val()==='all'){
 	            if($(this).prop('checked')) 
 	            	$(':checkbox').slice(1).prop('checked',true);
 	            else 
@@ -270,9 +271,11 @@
 	   			data: {"checkedItems":data},
 	   			dataType:'json'
 			})		
-			.done(function(){         																
-				console.log('성공');	
-				
+			.done(function(data){         																
+				console.log('성공');
+				console.log(data);	
+				console.log(data.json);	
+				$('#totalprice').text(data.sum)//총 결제금액
 			}).fail(function(error){		
 				console.log('에러발생'+error);
 				
