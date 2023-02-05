@@ -284,6 +284,37 @@ document.addEventListener('DOMContentLoaded', function() {
                             <div class="chat-wrapper p-3 w-100 position-relative scroll-bar bg-white theme-dark-bg">
                                 <ul class="email-message">
                                    
+                                   
+                                   <!-- 이거 지울꺼 -->
+                                    <li class="enterroom"  name="enterroom" value="no">
+                                  
+                                        <a  class="rounded-3 bg-lightblue theme-light-bg">
+  											<input name="roomNo" class="roomNo" value="no" hidden />
+                                            <div class="email-user">
+                                                <span class="btn-round-xss ms-0 bg-success me-2"></span>
+                                                <img src="https://via.placeholder.com/50x50.png" alt="user" class="w35 me-2">  
+                                                <h6 class="font-xs text-grey-900 text-grey-900 mb-0 mt-0 fw-700">여기 user2</h6>
+                                            </div>
+                                            <div class="email-subject text-grey-900 text-dark fw-600 font-xs">
+                                                <i class="feather-star font-m text-warning me-2"></i>
+                                               		채팅방이름(임시)
+                                            </div>
+                                            <div class="email-text text-grey-500 fw-600 font-xss">
+                                              최신 메시지를여기다가 뿌려야하나
+                                            </div>
+                                            <span class="email-file">
+                                                <i class="feather-paperclip font-s btn-round-sm text-grey-500 me-2 p-0"></i>
+                                            </span>
+                                            <div class="email-time text-grey-500 fw-600">뭘넣을까</div>
+                                        </a>
+                                    </li>
+                                   
+                                   
+                                   
+                                   
+                                   
+                                   
+                                   
                                 <c:forEach var="chatroom" items="${chatList}" varStatus="loop">	  
                                     <li class="enterroom"  name="enterroom" value="${chatroom.room_no}">
                                   
