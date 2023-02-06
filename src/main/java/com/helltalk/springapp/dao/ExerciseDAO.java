@@ -76,4 +76,10 @@ public class ExerciseDAO {
 		return template.insert("insertExerList",map);
 	}
 
+	//ajax-rout_no로 dayroutine select
+	public List<ExerciseDTO> selectDayRoutine(Map map) {
+		List<ExerciseDTO> listDayRoutine= template.selectList("selectDayRoutine",map);
+		return listDayRoutine;
+	}
+
 }

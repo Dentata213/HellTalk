@@ -109,10 +109,11 @@ public class ExerciseServiceImpl implements ExerciseService<ExerciseDTO>{
 		return 0;
 	}
 
+	//rout_no로 dayroutine select
 	@Override
 	public List selectDayRoutine(Map map) {
-		// TODO Auto-generated method stub
-		return null;
+		List<ExerciseDTO> listDayRoutine=dao.selectDayRoutine(map);
+		return listDayRoutine;
 	}
 
 	@Override

@@ -1,16 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script crossorigin  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <base href="https://www.w3.org/WAI/ARIA/apg/patterns/tabs/examples/tabs-manual/">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <title>Insert title here</title>
 <style>
 
@@ -96,14 +99,20 @@
 		<div id="accordion">
 			<c:forEach var="record" items="${recommendRoutList }" >
 			  <div class="card">
-			    <div class="card-header" id="heading${record.ROUT_NO }">
+			  
+			    <div class="card-header" id="heading${record.ROUT_NO }" title="${record.ROUT_NO }">
+			      
 			      <h5 class="mb-0">
-			        <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapse${record.ROUT_NO }" aria-expanded="false" aria-controls="collapse${record.ROUT_NO }">
+			        <button type="button"  class="btn btn-link" data-toggle="collapse" data-target="#collapse${record.ROUT_NO }" aria-expanded="false" aria-controls="collapse${record.ROUT_NO }">
 			          ${record.ROUT_NAME }
+			          <form action="<c:url value="#"/>" method="post">
+			          	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+			          </form>
 			        </button>
+			        
 			      </h5>
 			    </div>
-			
+				
 			    <div id="collapse${record.ROUT_NO }" class="collapse in" aria-labelledby="heading${record.ROUT_NO }" data-parent="#accordion">
 			      <div class="card-body">
 
@@ -118,8 +127,8 @@
 			      	
 			      	<!-- day 운동 -->
 			      	 <div class="tabs">
-					  <h3 id="tablist-1">${record.ROUT_CONTENT } </h3>
-					  <div role="tablist" aria-labelledby="tablist-1" class="manual">
+					  <h3 id="tablist-${record.ROUT_NO }">${record.ROUT_CONTENT } </h3>
+					  <div role="tablist" aria-labelledby="tablist-${record.ROUT_NO }" class="manual">
 					    <button id="tab-1" type="button" role="tab" aria-selected="true" aria-controls="tabpanel-1">
 					      <span class="focus">Maria Ahlefeldt</span>
 					    </button>
@@ -181,6 +190,34 @@
 </body>
 </html>
 <script>
+/* 운동루티 버튼 이벤트 */
+ $('.card-header').click(function(){
+ 
+	var rout_no=$(this).attr('title');
+	console.log("rout_no",rout_no)
+
+	$.ajax({
+			url:'http://localhost:8080<c:url value="/dayroutine.do"/>',
+			data:{"rout_no": rout_no,"${_csrf.parameterName}":"${_csrf.token}"},
+			dataType:'json',
+			type:'post'
+			
+	})
+	.done(function(data){
+		console.log('서버로부터 받은 데이타:',data);	
+		
+		
+		
+	})
+	.fail(function( request, status, error ){
+		console.log("status : " + request.status + ", message : " + request.responseText + ", error : " + error);
+	});
+	
+
+	
+}); 
+
+
 
 /*
  *   This content is licensed according to the W3C Software License at
@@ -195,7 +232,7 @@
 
 class TabsManual {
   constructor(groupNode) {
-	  console.log("groupNode",groupNode)//<div role="tablist" aria-labelledby="tablist-1" class="manual">
+	  //console.log("groupNode",groupNode)//<div role="tablist" aria-labelledby="tablist-1" class="manual">
     this.tablistNode = groupNode;
     this.tabs = [];
 
@@ -203,14 +240,14 @@ class TabsManual {
     this.lastTab = null;
 
     this.tabs = Array.from(this.tablistNode.querySelectorAll('[role=tab]'));
-    console.log("this.tabs",this.tabs)//[button#tab-1, button#tab-2, button#tab-3, button#tab-4]
+    //console.log("this.tabs",this.tabs)//[button#tab-1, button#tab-2, button#tab-3, button#tab-4]
     this.tabpanels = [];
 
     for (var i = 0; i < this.tabs.length; i += 1) {
       var tab = this.tabs[i];
-      console.log("tab",tab)//<button id="tab-1" type="button" role="tab" aria-selected="true" aria-controls="tabpanel-1">
+      //console.log("tab",tab)//<button id="tab-1" type="button" role="tab" aria-selected="true" aria-controls="tabpanel-1">
       var tabpanel = document.getElementById(tab.getAttribute('aria-controls'));
-      console.log("tabpanel",tabpanel)//<div id="tabpanel-1" role="tabpanel" aria-labelledby="tab-1">
+      //console.log("tabpanel",tabpanel)//<div id="tabpanel-1" role="tabpanel" aria-labelledby="tab-1">
 
       tab.tabIndex = -1;
       tab.setAttribute('aria-selected', 'false');
@@ -317,7 +354,7 @@ class TabsManual {
 
 window.addEventListener('load', function () {
   var tablists = document.querySelectorAll('[role=tablist].manual');
-  console.log("tablists.length",tablists.length)
+  //console.log("tablists.length",tablists.length)
   for (var i = 0; i < tablists.length; i++) {
     new TabsManual(tablists[i]);
   }

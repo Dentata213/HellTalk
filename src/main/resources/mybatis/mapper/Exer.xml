@@ -65,4 +65,13 @@
 		INSERT INTO exerciselist VALUES(#{dr_no},#{e_no},#{el_dayno},#{el_time},#{el_totalkcal})
 	</insert>
 	
+	<!-- 데이루틴 select -->
+	<select id="selectDayRoutine" parameterType="Map" resultType="ExerciseDTO">
+		select dr.day,e.e_no,el_dayno,el_time,el_totalkcal,e_name,e_kcal,e_description,e_url from dayroutine dr
+		join exerciselist el on dr.dr_no=el.dr_no
+		JOIN exercise e on el.e_no=e.e_no
+		where dr.rout_no=${rout_no}
+	</select>
+	
+	
 </mapper>

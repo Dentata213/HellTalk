@@ -43,14 +43,15 @@ public class RoutineListController {
 		
 		
 		//map에 담긴 값 확인
+		/*
 		Set keys= map.keySet();
 		for(Object key:keys) {
 			Object value=map.get(key);
 			System.out.println(String.format("%s : %s",key,value));
-		}
+		}*/
 				
 		//추천루틴에서 day1~7의 컬럼 데이터를 List<String[]>담아 각 day의 운동명을 split 하여 String[] 배열에 담음
-		List<String[]> day=new Vector();
+		/*List<String[]> day=new Vector();
 		for(Map list:recommendRoutList) {
 			for(int i=1;i<=7;i++) {
 				if((String)list.get("DAY"+i)!=null){
@@ -65,11 +66,11 @@ public class RoutineListController {
 		// String[] 배열에 담겼는지 확인
 		for(String[] list:day) {
 			System.out.println(Arrays.toString(list));
-		}
+		}*/
 		//System.out.println("recommendRoutList"+recommendRoutList);
 		
 		model.addAttribute("recommendRoutList", recommendRoutList);
-		model.addAttribute("routine-exercise", day);
+		//model.addAttribute("routine-exercise", day);
 		return "challenge/routine/recommend_exerciseRoutine";
 	}
 
