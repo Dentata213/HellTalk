@@ -52,7 +52,8 @@ public class MemberController {
 			model.addAttribute("id",userInfo.get("id"));
 			PrintWriter w = response.getWriter();
 			response.setContentType("text/html; charset=utf-8");
-	        w.write("<script>alert('"+map.get("u_email")+" 님에 대한 회원 정보가 없습니다."
+	        w.write("<script>"
+	        		+ "alert('"+map.get("u_email")+" 님에 대한 회원정보가 없습니다.\\n"
 	        		+ "추가정보 입력을 위해 회원가입 페이지로 이동합니다.');"
 	        		+ "</script>");
 	        w.flush();

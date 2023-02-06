@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
+<spring:eval expression="@commonProperties['kakaoClient_id']" var="kakaoClient_id"/>
+<spring:eval expression="@commonProperties['kakaoRedirect_url']" var="kakaoRedirect_url"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -116,7 +118,8 @@
 						-->
 						<c:if test="${! empty LoginFailMessage}">
 	                		<font color="red">
-							  <strong>로그인 실패!!</strong> <br>${LoginFailMessage}
+							  <strong>로그인 실패!!</strong><br>
+							  ${LoginFailMessage}
 							</font>
 						</c:if>
                         <h2 class="fw-700 display1-size display2-md-size mb-3">Login into <br>your account</h2>
@@ -147,7 +150,7 @@
                             
                             <h6 class="mb-0 d-inline-block bg-white fw-500 font-xsss text-grey-500 mb-3">Or, Sign in with your social account </h6>
                             <div class="form-group mb-1">
-                            	<a href="https://kauth.kakao.com/oauth/authorize?client_id=727a4501d45144645c588c2c32a86e16&redirect_uri=http://localhost:8080${path}/member/KakaoLogin&response_type=code" 
+                            	<a href="https://kauth.kakao.com/oauth/authorize?client_id=${kakaoClient_id}&redirect_uri=${kakaoRedirect_url}&response_type=code" 
                             		class="form-control text-left style2-input text-kakao fw-600 bg-kakao border-0 p-0 mb-2">
                             		<img src="${path}/resources/images/kakao_login.png" alt="icon" class="ms-2 w40 mb-1 me-5">Sign in with Kakao
                             	</a>
@@ -158,6 +161,7 @@
                         </div>
                         </form>
                     </div>
+                     
                 </div> 
             </div>
         </div>
