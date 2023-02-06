@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -164,5 +165,26 @@ public class PaymentController {
 		//결제정보 가져오기 성공//
 		
 		return null;
+	}
+	
+	@RequestMapping("/orderInfo")
+	@ResponseBody
+	public String orderInfo(@RequestParam Map map, Model model) {
+		
+		System.out.println("map에 담겨있는 데이타"+map);
+		
+		String items=(String) map.get("checkedItems");
+		String uNo=(String) map.get("uNo");
+		String sum=(String) map.get("sum");
+		System.out.println("items정보"+items);
+		System.out.println("uNo정보"+uNo);
+		System.out.println("sum정보"+sum);
+		
+		model.addAttribute("items",items);
+		model.addAttribute("uNo",uNo);
+		model.addAttribute("sum",sum);
+		
+		
+		return "payment/checkout.helltalk";
 	}
 }

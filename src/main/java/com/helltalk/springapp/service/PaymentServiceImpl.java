@@ -92,43 +92,30 @@ public class PaymentServiceImpl implements PaymentService<PaymentDTO>{
 		
 		List<PaymentDTO> lists = selectCartList(map);
 		int val=lists.size();
-		System.out.println(val);
-		int sum = 0;
-		System.out.println("map의정보:"+map);
-		
+		int sum = 0;		
 		
 		for(int i=0;i<lists.size();i++) {
 			try {
-				System.out.println("for문 진입");
+				
 				PaymentDTO str = lists.get(i);
 				int qty = Integer.parseInt(str.getProduct_quantity());
 				int price = Integer.parseInt(str.getProduct_price());
-				System.out.println("수량:"+qty);
-				System.out.println("가격:"+price);
-				System.out.println("상품번호:"+str.getProduct_no());
 				
-				String[] test = new String[map.get("checkedItems").toString().split(",").length];
+				String[] checkedItems = new String[map.get("checkedItems").toString().split(",").length];
 				
-				for(int k=0;k<test.length;k++) {
-					test[k]=(String) map.get("checkedItems").toString().split(",")[k];
-					System.out.printf("test[%s번째방]:::::::%s",i,test[k]);
-					System.out.println("test크기-------"+test.length);
+				for(int k=0;k<checkedItems.length;k++) {
+					checkedItems[k]=(String) map.get("checkedItems").toString().split(",")[k];
 					
-					String test1 = test[k].replace("\"","").replace("[", "").replace("]", "");					
+					String oneItem = checkedItems[k].replace("\"","").replace("[", "").replace("]", "");					
 					String proNum = str.getProduct_no();
-					System.out.println("proNum-------"+proNum);
-					System.out.println("test1-------"+test1);
-					if(proNum.equals(test1)){
-						System.out.println("if문 진입~~!!!!!!!!!!!!");
-						System.out.println("번째 인덱스 값:"+str.getProduct_quantity());
-						System.out.println("번째 인덱스 값:"+str.getProduct_price());
+					
+					if(proNum.equals(oneItem)){
 						
 						sum += qty*price;
 						System.out.println("if문 내부"+sum);
 					}
 				}
 
-				System.out.printf("for문 %s번째 순회중\n",i);
 			}
 			catch(Exception e){}
 			

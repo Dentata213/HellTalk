@@ -29,7 +29,7 @@
                                         <table class="table text-center">
                                             <thead class="bg-greyblue rounded-3">
                                                 <tr>
-                                                	<th class="border-0 p-4"><input type="checkbox"><input value="all" hidden="hidden"/></th>
+                                                	<th class="border-0 p-4"><input value="1" hidden="hidden" id="uno"/><input type="checkbox"><input value="all" hidden="hidden" id="all"/></th>
                                                     <th class="border-0 p-4">&nbsp;</th>
                                                     <th class="border-0 p-4 text-left">Product</th>
                                                     <th class="border-0 p-4">Price</th>
@@ -83,18 +83,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <!--table>
-									<c:forEach var="list" items="${lists}" varStatus="loop">
-										<tr>
-											<td>ProductImg:${list.product_img}/</td>
-											<td>ProductName:${list.product_name}/</td>
-											<td>${list.product_no}</td>
-											<td>Price:${list.product_price}/</td>
-											<td>Quantity:${list.product_quantity}/</td>
-											<td>Total:${list.product_price*list.product_quantity}
-										</tr>
-									</c:forEach>
-									</table-->
+                                  
                                     <a href="#" class="update-cart bg-dark float-right text-white fw-600 text-uppercase font-xssss border-dark border rounded-3 border-size-md d-inline-block w175 p-3 text-center ls-3">Update Cart</a>
                                 </div>
                                 <div class="col-lg-4">
@@ -120,7 +109,7 @@
                                         </div>
                                         
                                     </div>
-                                    <a id="iamport" class="bg-dark float-right text-white fw-600 text-uppercase font-xsss border-dark border rounded-3 border-size-md d-inline-block w-100 p-3 text-center ls-3">결제하기</a>
+                                    <a id="payinfo" class="bg-dark float-right text-white fw-600 text-uppercase font-xsss border-dark border rounded-3 border-size-md d-inline-block w-100 p-3 text-center ls-3">결제하기</a>
                                 </div>
                             </div>
                         </div>               
@@ -239,7 +228,7 @@
         var itemLength=$(':checkbox').slice(1).length;
         $(":checkbox").click(function(){
         	var checkedItems = []
-			console.log($(":checkbox"))
+		
             if($(this).next().val()==='all'){
 	            if($(this).prop('checked')) 
 	            	$(':checkbox').slice(1).prop('checked',true);
@@ -248,11 +237,12 @@
 	        }	
             else{
                 if($(this).prop('checked')){
+                	
                     if(itemLength===$(':checkbox:checked').length){
-                        $(':checkbox:first').prop('checked',true)
+                        $('#all').prop('checked',true);                      
                     }
                     else
-                    	$(':checkbox:first').prop('checked',false)
+                    	$('#all').prop('checked',false);
                 }
             }
 			
@@ -273,8 +263,6 @@
 			})		
 			.done(function(data){         																
 				console.log('성공');
-				console.log(data);	
-				console.log(data.json);	
 				$('#totalprice').text(data.sum)//총 결제금액
 			}).fail(function(error){		
 				console.log('에러발생'+error);
@@ -282,65 +270,41 @@
 			});		
    		});
 		
-		
-		
-		
-		//결제 고유번호 만들기
-		var date = new Date();
-        var components = [
-            date.getFullYear(),
-            date.getMonth()+1,
-            date.getDate(),
-            date.getHours(),
-            date.getMinutes(),
-            date.getSeconds(),
-            date.getMilliseconds()
-        ];
-
-        var id = components.join("");
-		
-		//결제용
-		var IMP = window.IMP;   // 생략 가능
-        IMP.init("imp11666322");        
-
-        $('#iamport').on('click',function(){          
+        
+        //클릭된 상품과 가격정보를가지고 페이지이동
+        $("#payinfo").click(function(){
+        	var checkedItems = []
+        	var uNo=$('#uno').val();
+        	var sum=$('#totalprice').text();
+        	//체크된 상품번호 가져오기
+			$(':checkbox:checked').each(function(){
+                checkedItems.push($(this).next().val());               
+            });
+			console.log(checkedItems);
 			
-			var pay = parseInt($('#totalprice').text())
-            IMP.request_pay({
-                pg: "html5_inicis",
-                pay_method: "card",
-                merchant_uid: id ,   // 주문번호
-                name: "노르웨이 회전 의자",
-                amount: pay,                         // 숫자 타입
-                buyer_email: "gildong@gmail.com",
-                buyer_name: "홍길동",
-                buyer_tel: "010-4242-4242",
-                buyer_addr: "서울특별시 강남구 신사동"
-            }, function (rsp) { // callback
-            if (rsp.success) {
-                // 결제 성공 시 로직
-                // jQuery로 HTTP 요청
-                jQuery.ajax({
-                    url: "/payment/checkout", 
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    data: {
-                    imp_uid: rsp.imp_uid,            // 결제 고유번호
-                    merchant_uid: rsp.merchant_uid   // 주문번호
-                    }
-                }).done(function (data) {
-                // 가맹점 서버 결제 API 성공시 로직
-            })
-            } else {
-                // 결제 실패 시 로직
-                alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
-            }
-            })
+			var items = JSON.stringify(checkedItems);
+			
+        	var data = {"checkedItems":items,"uNo":uNo,"sum":sum};
+        	var item =  JSON.stringify(data);
+        	
+        	$.ajax({
+				type: "GET",
+	   			url:"<c:url value='/payment/orderInfo'/>",
+	   			async:false,
+	   			data: item,
+	   			dataType:'json'
+			})		
+			.done(function(data){
+				
+				console.log('성공');
+			}).fail(function(error){		
+				console.log('에러발생'+error);			
+			});		
+        	
         });
-		
-		
-		
-		
+        
+        
+        
 	});/////////
 </script>
     
