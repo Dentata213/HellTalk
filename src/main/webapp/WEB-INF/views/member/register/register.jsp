@@ -52,7 +52,7 @@
 	
 </head>
 
-<body class="color-theme-blue">
+<body class="color-theme-orange">
 
     <div class="preloader"></div>
 

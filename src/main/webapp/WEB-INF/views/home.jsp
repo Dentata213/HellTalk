@@ -184,7 +184,7 @@
 <style>
 
 </style>
-<body class="color-theme-blue mont-font">
+<body class="color-theme-orange mont-font theme-dark">
 	
     <div class="preloader"></div>
 
@@ -250,7 +250,7 @@
                     <ul>
                         <li>
                             <label class="item-radio item-content">
-                                <input type="radio" name="color-radio" value="red" checked=""><i class="ti-check"></i>
+                                <input type="radio" name="color-radio" value="red"><i class="ti-check"></i>
                                 <span class="circle-color bg-red" style="background-color: #ff3b30;"></span>
                             </label>
                         </li>
@@ -262,7 +262,7 @@
                         </li>
                         <li>
                             <label class="item-radio item-content">
-                                <input type="radio" name="color-radio" value="blue" checked=""><i class="ti-check"></i>
+                                <input type="radio" name="color-radio" value="blue" ><i class="ti-check"></i>
                                 <span class="circle-color bg-blue" style="background-color: #132977;"></span>
                             </label>
                         </li>
@@ -280,7 +280,7 @@
                         </li>
                         <li>
                             <label class="item-radio item-content">
-                                <input type="radio" name="color-radio" value="orange"><i class="ti-check"></i>
+                                <input type="radio" name="color-radio" value="orange" checked=""><i class="ti-check"></i>
                                 <span class="circle-color bg-orange" style="background-color: #ff9500;"></span>
                             </label>
                         </li>
@@ -338,7 +338,7 @@
                     <div class="card bg-transparent-card border-0 d-block mt-3">
                         <h4 class="d-inline font-xssss mont-font fw-700">Dark Mode</h4>
                         <div class="d-inline float-right mt-1">
-                            <label class="toggle toggle-dark"><input type="checkbox"><span class="toggle-icon"></span></label>
+                            <label class="toggle toggle-dark"><input type="checkbox" checked="checked"><span class="toggle-icon"></span></label>
                         </div>
                     </div>
                     
@@ -408,7 +408,7 @@
 		        </div>
 		    </section>
 		</div>
-   
+   	</div>
    
 
 
