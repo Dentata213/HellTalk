@@ -12,19 +12,19 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class QnADto {
-	public String Q_NO;
+	private String Q_NO;
 
-	public String Q_TITLE;
+	private String Q_TITLE;
 
-	public String Q_CONTENT;
+	private String Q_CONTENT;
 
-	public int Q_VIEW;
+	private int Q_VIEW;
 
-	public String Q_POSTDATE;
+	private String Q_POSTDATE;
 
-	public String Q_ADATE;
+	private String Q_ADATE;
 
-	public String Q_ANSWER;
+	private String Q_ANSWER;
 
 	@Override
 	public String toString() {
@@ -32,7 +32,8 @@ public class QnADto {
 				+ ", Q_POSTDATE=" + Q_POSTDATE + ", Q_ADATE=" + Q_ADATE + ", Q_ANSWER=" + Q_ANSWER + "]";
 	}
 	
-	
+	//작성자 출력용
+	private String U_EMAIL;
 
 
 }
