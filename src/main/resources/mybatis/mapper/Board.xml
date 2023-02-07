@@ -39,7 +39,7 @@
 	
 	<!-- 게시글 삭제 -->
 	<delete id="deleteBBS" parameterType="Map">
-		DELETE BBS WHERE P_no=#{no}
+		DELETE FROM BBS WHERE P_NO=#{no}
 	</delete>
 	<!-- 좋아요 수 증가 -->
 	<insert id="likeBBS" parameterType="Map">

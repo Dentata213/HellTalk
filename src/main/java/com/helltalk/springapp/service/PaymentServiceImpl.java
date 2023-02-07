@@ -1,5 +1,6 @@
 package com.helltalk.springapp.service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -91,17 +92,33 @@ public class PaymentServiceImpl implements PaymentService<PaymentDTO>{
 		
 		List<PaymentDTO> lists = selectCartList(map);
 		int val=lists.size();
-		System.out.println(val);
-		int sum = 0;
+		int sum = 0;		
+		
 		for(int i=0;i<lists.size();i++) {
-			PaymentDTO str = lists.get(i);
-			System.out.println(i+"번째 인덱스 값:"+str.getProduct_quantity());
-			System.out.println(i+"번째 인덱스 값:"+str.getProduct_price());
+			try {
+				
+				PaymentDTO str = lists.get(i);
+				int qty = Integer.parseInt(str.getProduct_quantity());
+				int price = Integer.parseInt(str.getProduct_price());
+				
+				String[] checkedItems = new String[map.get("checkedItems").toString().split(",").length];
+				
+				for(int k=0;k<checkedItems.length;k++) {
+					checkedItems[k]=(String) map.get("checkedItems").toString().split(",")[k];
+					
+					String oneItem = checkedItems[k].replace("\"","").replace("[", "").replace("]", "");					
+					String proNum = str.getProduct_no();
+					
+					if(proNum.equals(oneItem)){
+						
+						sum += qty*price;
+						System.out.println("if문 내부"+sum);
+					}
+				}
 
-			int qty = Integer.parseInt(str.getProduct_quantity());
-			int price = Integer.parseInt(str.getProduct_price());
-			sum += qty*price;
-			System.out.println(sum);
+			}
+			catch(Exception e){}
+			
 		}
 		System.out.println("for문 바깥 sum"+sum);
 		

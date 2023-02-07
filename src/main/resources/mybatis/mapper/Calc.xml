@@ -48,6 +48,11 @@
 	JOIN ROUTINE R ON C.Rout_no=R.Rout_no
 	WHERE users.u_email=#{uemail,jdbcType=VARCHAR}
  </select>
+ 
+ <select id="selectOneCalcnoByRoutno" parameterType="Map" resultType="Map">
+ 	select * from calcheck c join routine r on r.rout_no=c.rout_no 
+	where r.rout_no=#{rout_no}
+ </select>
 
   
 </mapper>

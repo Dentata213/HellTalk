@@ -11,6 +11,7 @@ import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.config.PropertiesFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
@@ -87,5 +88,12 @@ public class DatabaseConfig {
 		return transactionTemplate;
 	}
 	
+	//jsp 페이지에서 properties 값 불러오기
+	@Bean
+	public PropertiesFactoryBean commonProperties() {
+		PropertiesFactoryBean bean = new PropertiesFactoryBean();
+		bean.setLocation(new ClassPathResource("config/database.properties"));
+		return bean;
+	}
 	
 }

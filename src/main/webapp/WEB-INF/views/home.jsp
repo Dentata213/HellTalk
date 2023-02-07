@@ -132,15 +132,30 @@
         }
 
         .not-container .section:nth-child(1) {
-            background: url("${path}/resources/images/chall.png") center;
+            background: url("${path}/resources/images/chall.png");
+            background-size: cover; 
+			background-repeat: no-repeat;
+			background-position: center;
         }
 
         .not-container .section:nth-child(2) {
-            background: url("${path}/resources/images/mypage.jpg") center;
+            background: url("${path}/resources/images/mypage.jpg");
+            background-size: cover; 
+			background-repeat: no-repeat;
+			background-position: center;
         }
 
         .not-container .section:nth-child(3) {
-            background: url("${path}/resources/images/commu.jpg") center;
+            background: url("${path}/resources/images/commu.jpg");
+            background-size: cover; 
+			background-repeat: no-repeat;
+			background-position: center;
+        }
+        .favicon{
+        	margin: 0px;
+        	width: 50px;
+        	height: 50px;
+        	margin-right: 12px;
         }
 		     
 /*않이.... 왜 안돼....*/  
@@ -169,7 +184,7 @@
 <style>
 
 </style>
-<body class="color-theme-blue mont-font">
+<body class="color-theme-orange mont-font theme-dark">
 	
     <div class="preloader"></div>
 
@@ -179,7 +194,7 @@
         <!-- navigation top-->
         <div class="nav-header bg-white shadow-xs border-0">
             <div class="nav-top">
-                <a href="<c:url value="/"/>"><i class="feather-zap text-success display1-size me-2 ms-0"></i><span class="d-inline-block fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">HellTalk </span> </a>
+                <a href="<c:url value="/"/>"><img src="${path}/resources/images/favicon.png" class="favicon"><span class="d-inline-block fredoka-font ls-3600-400 text-current font-xxl logo-text mb-0">HellTalk</span></a>
                 <a href="#" class="mob-menu ms-auto me-2 chat-active-btn"><i class="feather-message-circle text-grey-900 font-sm btn-round-md bg-greylight"></i></a>
                 <a href="default-video.html" class="mob-menu me-2"><i class="feather-video text-grey-900 font-sm btn-round-md bg-greylight"></i></a>
                 <a href="#" class="me-2 menu-search-icon mob-menu"><i class="feather-search text-grey-900 font-sm btn-round-md bg-greylight"></i></a>
@@ -235,7 +250,7 @@
                     <ul>
                         <li>
                             <label class="item-radio item-content">
-                                <input type="radio" name="color-radio" value="red" checked=""><i class="ti-check"></i>
+                                <input type="radio" name="color-radio" value="red"><i class="ti-check"></i>
                                 <span class="circle-color bg-red" style="background-color: #ff3b30;"></span>
                             </label>
                         </li>
@@ -247,7 +262,7 @@
                         </li>
                         <li>
                             <label class="item-radio item-content">
-                                <input type="radio" name="color-radio" value="blue" checked=""><i class="ti-check"></i>
+                                <input type="radio" name="color-radio" value="blue" ><i class="ti-check"></i>
                                 <span class="circle-color bg-blue" style="background-color: #132977;"></span>
                             </label>
                         </li>
@@ -265,7 +280,7 @@
                         </li>
                         <li>
                             <label class="item-radio item-content">
-                                <input type="radio" name="color-radio" value="orange"><i class="ti-check"></i>
+                                <input type="radio" name="color-radio" value="orange" checked=""><i class="ti-check"></i>
                                 <span class="circle-color bg-orange" style="background-color: #ff9500;"></span>
                             </label>
                         </li>
@@ -323,7 +338,7 @@
                     <div class="card bg-transparent-card border-0 d-block mt-3">
                         <h4 class="d-inline font-xssss mont-font fw-700">Dark Mode</h4>
                         <div class="d-inline float-right mt-1">
-                            <label class="toggle toggle-dark"><input type="checkbox"><span class="toggle-icon"></span></label>
+                            <label class="toggle toggle-dark"><input type="checkbox" checked="checked"><span class="toggle-icon"></span></label>
                         </div>
                     </div>
                     
@@ -366,7 +381,7 @@
 					   		<a href="<c:url value="/community/bbs/list"/>" >함병완-게시판</a>
 					   		<a href="<c:url value="/community/bbs/mypage"/>" >함병완-마이페이지</a>
 					   		<a href="<c:url value="/backend/admin"/>" >김동진-어드민</a>
-					   		<a href="<c:url value="/room.do"/>" >최도원채팅임시</a>
+					   		<a href="<c:url value="/list.do"/>" >최도원채팅임시</a>
 
 					   		<a href="<c:url value="/teachable/gameResult.do"/>" >조주희-확인용(게임결과 페이지)</a>
 
@@ -393,7 +408,7 @@
 		        </div>
 		    </section>
 		</div>
-   
+   	</div>
    
 
 

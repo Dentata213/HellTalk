@@ -2,7 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="https://code.jquery.com/jquery-3.6.3.slim.js" integrity="sha256-DKU1CmJ8kBuEwumaLuh9Tl/6ZB6jzGOBV/5YpNE2BWc=" crossorigin="anonymous"></script>
+<!-- iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
+
   <!-- main content -->
         <div class="main-content bg-white right-chat-active">
             
@@ -26,6 +29,7 @@
                                         <table class="table text-center">
                                             <thead class="bg-greyblue rounded-3">
                                                 <tr>
+                                                	<th class="border-0 p-4"><input value="1" hidden="hidden" id="uno"/><input type="checkbox"><input value="all" hidden="hidden" id="all"/></th>
                                                     <th class="border-0 p-4">&nbsp;</th>
                                                     <th class="border-0 p-4 text-left">Product</th>
                                                     <th class="border-0 p-4">Price</th>
@@ -38,6 +42,7 @@
                                             <c:forEach var="list" items="${lists}" varStatus="loop" >
                                            
                                                 <tr>
+                                                	<td><input type="checkbox"><input value="${list.product_no}" hidden="hidden"/></td>
                                                     <td class="product-thumbnail text-left ps-0">
                                                         <img src="data:image/jpeg;base64,${list.product_img}" alt="Product Thumnail" class="w75 rounded-3">
                                                         
@@ -78,18 +83,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <!--table>
-									<c:forEach var="list" items="${lists}" varStatus="loop">
-										<tr>
-											<td>ProductImg:${list.product_img}/</td>
-											<td>ProductName:${list.product_name}/</td>
-											<td>${list.product_no}</td>
-											<td>Price:${list.product_price}/</td>
-											<td>Quantity:${list.product_quantity}/</td>
-											<td>Total:${list.product_price*list.product_quantity}
-										</tr>
-									</c:forEach>
-									</table-->
+                                  
                                     <a href="#" class="update-cart bg-dark float-right text-white fw-600 text-uppercase font-xssss border-dark border rounded-3 border-size-md d-inline-block w175 p-3 text-center ls-3">Update Cart</a>
                                 </div>
                                 <div class="col-lg-4">
@@ -115,7 +109,10 @@
                                         </div>
                                         
                                     </div>
-                                    <a href="/payment/checkout" class="bg-dark float-right text-white fw-600 text-uppercase font-xsss border-dark border rounded-3 border-size-md d-inline-block w-100 p-3 text-center ls-3">결재하기</a>
+                                    <form action="<c:url value="/payment/order.do"/>" id="payinfo" onsubmit="">
+                                    	<button class="bg-dark float-right text-white fw-600 text-uppercase font-xsss border-dark border rounded-3 border-size-md d-inline-block w-100 p-3 text-center ls-3">결제하기</button>
+                                    	<input hidden="hidden" id="hiddenInfo" value="">
+                                    </form>
                                 </div>
                             </div>
                         </div>               
@@ -173,7 +170,15 @@
 
 				console.log(${list.product_price});
 				
-				var data = {"CART_QUANTITY":newval,"PRO_NO":product_no,"totalprice":onePrice};
+				var checkedItems = []
+				
+				$(':checkbox:checked').each(function(){
+	                console.log($(this).next().val());
+	                checkedItems.push($(this).next().val());               
+	            });
+				var checkedItemsed=JSON.stringify(checkedItems);
+				
+				var data = {"CART_QUANTITY":newval,"PRO_NO":product_no,"totalprice":onePrice,"checkedItems":checkedItemsed};
 				$.ajax({
 					type: "GET",
 		   			url:"<c:url value="/Shop/quantityUpdate"/>",
@@ -184,7 +189,7 @@
 				.done(function(data){         													
 					
 					newPrice(data);
-					console.log(data);
+					console.log(data.sum);
 					console.log('성공');
 					$('#totalprice').text(data.sum)//총 결제금액
 					
@@ -222,31 +227,60 @@
             
         });
 		
+        //체크박스 선택및 해제
+        var itemLength=$(':checkbox').slice(1).length;
+        $(":checkbox").click(function(){
+        	var checkedItems = []
 		
+            if($(this).next().val()==='all'){
+	            if($(this).prop('checked')) 
+	            	$(':checkbox').slice(1).prop('checked',true);
+	            else 
+	            	$(':checkbox').slice(1).prop('checked',false);
+	        }	
+            else{
+                if($(this).prop('checked')){
+                	
+                    if(itemLength===$(':checkbox:checked').length){
+                        $('#all').prop('checked',true);                      
+                    }
+                    else
+                    	$('#all').prop('checked',false);
+                }
+            }
+			
+			//체크된 상품번호 가져오기
+			$(':checkbox:checked').each(function(){
+                console.log($(this).next().val());
+                checkedItems.push($(this).next().val());               
+            });
+			console.log(checkedItems);
+			var data = JSON.stringify(checkedItems);
+			
+			$.ajax({
+				type: "GET",
+	   			url:"<c:url value="/Shop/itemCheck"/>",
+	   			async:false,
+	   			data: {"checkedItems":data},
+	   			dataType:'json'
+			})		
+			.done(function(data){         																
+				console.log('성공');
+				$('#totalprice').text(data.sum)//총 결제금액
+			}).fail(function(error){		
+				console.log('에러발생'+error);
+				
+			});		
+   		});
 		
+        
+       
+        
+        
+        
 	});/////////
 </script>
     
-    <!--  
-부트페이 라이브러리
-<script src="https://js.bootpay.co.kr/bootpay-4.2.7.min.js" type="application/javascript"></script>
-단일결재호출 - 값들을 넘겨줘야함 application_id, id, name, total가격, ordername(상품명 연결, 일정길이 이상이면 추출후 ...으로 replace), orderid(임의로 생성)
-<script type="module" src="${path}/resources/js/payment.js" data-id="${id}" data-name="${name}" id="thisscript"></script>
- -->
- <!-- 혹은 단일결재 실행(단, 결재버튼 누를시에 실행되어야됨) 
- 	<script type="module">
- 		const response = await Bootpay.requestPayment({
-    	"application_id": "",
-    	"price": 1000,
-    	"order_name": "테스트결제품목",
-    	"order_id": "TEST_ORDER_ID000000000000001",
-    	"pg": "카카오",
-    	"user": {
-        	"id": id,
-        	"username": "회원이름"
-    	}
-    	})
- 	</script>
- -->
+
     <script src="${path}/resources/js/plugin.js"></script>
     <script src="${path}/resources/js/scripts.js"></script>

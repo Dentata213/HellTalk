@@ -25,7 +25,7 @@ public class WebSocketConfig implements WebSocketConfigurer {
 	
 	@Override
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-		registry.addHandler(chatHandler, "/chating"+"2"+".do")
+		registry.addHandler(chatHandler, "/chating.do")
 		.setAllowedOrigins("*")
 		.addInterceptors(new HttpSessionHandshakeInterceptor());
 		System.out.println("여긴 config");

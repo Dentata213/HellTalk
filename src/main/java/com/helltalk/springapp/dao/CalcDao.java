@@ -31,5 +31,11 @@ public class CalcDao {
 	public List<CalcDto> findStart(Map map) {	
 		return template.selectList("findStart",map);
 	}
+
+	/* 루틴no로 calcheck 테이블 정보 가져오기(진소희) */
+	public Map selectOneCalcnoByRoutno(Map map) {
+		Map oneCalc= template.selectOne("selectOneCalcnoByRoutno",map);
+		return oneCalc;
+	}
 	
 }

@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-    
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-
+  <c:set var="path" value="${pageContext.request.contextPath}"/>  
+   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
  <style>
 	p {
 	  color: whitesmoke;
@@ -44,7 +43,7 @@
 		
 		<form>
 		<div class="form-group">
-			<label><kbd class="lead">닉네임</kbd></label> 
+			<label><kbd class="lead">닉네임(이거 없앨꺼얌!!)</kbd></label> 
 			<input type="text" class="form-control" id="nickname" 
 			placeholder="닉네임을 입력하세요">
 		</div>
@@ -56,7 +55,9 @@
 			<h4>대화내용</h4>
 			<div id="chatArea">
 				<div id="chatMessage"  
-					style="height: 300px; border: 1px gray solid; overflow:auto;"></div>
+					style="height: 300px; border: 1px gray solid; overflow:auto;">
+					
+					</div>
 			</div>
 		</div>
 
@@ -70,59 +71,64 @@
 </div>  
   
   <script>
+  document.addEventListener('DOMContentLoaded', function() {
+  
+	/*$("#enterBtn").click(function(){
+				
+				var roomno = $("#roomNo").val();
+				var obj ={"room_no": roomno};
+			 	JSON.stringify(obj);
+			 	console.log(roomno)
+		
+		$.ajax({
+			url:"<c:url value="/enterroom.do"/>",
+			method:"POST",
+			data:JSON.stringify(obj),
+			type:'json',
+			contentType:"application/json; charset=utf-8"
+		})
+		.done(function(data){         
+					
+			}).
+			fail(function(jqXHR, textStatus, errorThrown){
+				console.log(jqXHR)
+		        console.log(textStatus)
+		        console.log(errorThrown);
+				}); 	
+
+		});*/
 	/*
 	채팅 테스트
 	localhost를 아이피로 변경(192.168.0.14) 소스 및 브라우저 URL도 변경
 	그리고 인바운드 규칙추가 8080
-	
+	192.168.0.29:8080
+	${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}
 	채팅 말풍선
 	https://codepen.io/beumsk/pen/mmEzrE
 	 */
-
-	//웹소켓 객체 저장용
+	//////한곳에다가 몰아넣어야해 include 시켜야겠음!!!
+	//웹소켓 객체 저장용(전역변수로 빼야 함수로 가능)
 	var wsocket;
 	//닉 네임 저장용
 	var nickname;
+	//연결하는것도 함수로 만들어 놓고 여기저기서 사용 할 수 있게 변경	
 	//입장버튼 클릭 시 -서버와 연결된 웹소켓 클라이언트 생성  ==> 채팅방 들어가는 이벤트로 변경예정...
-	$('#enterBtn').on('click',function(){  //one 한 번만 입장해야 하니까
-		wsocket = new WebSocket("ws://192.168.0.29:8080<c:url value='/chating"+"2"+".do'/>"); //wss 는 보안이 강화된것 얘는 443포트를 사용
+	$('#enterBtn').on('click',function(){
+		console.log(${roomno})
+		wsocket = new WebSocket("ws://${pageContext.request.serverName}:${pageContext.request.serverPort}<c:url value="/chating.do?no=${roomno}"/>"); //wss 는 보안이 강화된것 얘는 443포트를 사용
+		
 		console.log('wsocket:',wsocket);
 		//서버와 연결된 웹 소켓에 이벤트 등록(함수들은 밑으로 다 빼놓음)
 		wsocket.onopen = open;  //   open()들어가면 호출하는거여
-		wsocket.onclose=function(){
-			appendMessage("연결이 끊어 졌어요");
-		};
+		wsocket.onclose= close;
+
 		wsocket.onmessage=receive;
 		wsocket.onerror=function(e){
 			console.log('에러발생:',e)
 		}
 	});
 	
-	//서버에 연결되었을 때 호출되는 콜백함수
-	function open(){
-		//서버로 연결한 사람의 정보(닉네임) 전송
-		//msg:kim가(이) 입장했어요  <---이건 걍 내맘대로 만드는 규칙임
-		//사용자가 입력한 닉네임 저장
-		nickname = $('#nickname').val();
-		wsocket.send('msg:'+nickname+'가(이) 입장했어요');
-		appendMessage("연결이 되었어요");
-	}
-	//서버에서 메시지를 받을 때마다 호출되는 함수 
-	function receive(e){//e는 message이벤트 객체
-		//서버로부터 받은 데이타는 이벤트객체(e).data속성에 저장되어 있다
-		console.log('서버로부터받은 메시지:',e.data);
-		if(e.data.substring(0, 4) ==='msg:')
-			
-			appendMessage("<p class='int'><span>"+e.data.substring(4)+"</span></p>");//서버로부터 받은 메시지를 msg:부분을 제외하고 div에 출력
-	}
-	function appendMessage(msg){  //이건 여러군데 사용해서 메소드로 뺀거
-		//$('#chatMessage').append(msg+"<br/>");
-		
-		$('#chatMessage').append(msg);
-		$('#chatMessage').get(0).scrollTop = $('#chatMessage').get(0).scrollHeight; 
-		//get(0)이거 자바스크립트로 바꾸는거였지...scrollTop랑 .scrollHeight는 스크롤바를계속 올리는 공식임 
-	}
-	
+	//엔터 시 전송 이벤트
 	$('#message').on('keypress',function(e){
 		console.log('keypress이벤트 발생:',e.keyCode);
 		if(e.keyCode===13){//엔터 입력
@@ -140,8 +146,44 @@
 	})
 	
 	//퇴장버튼 클릭 시
-	$('#exitBtn').on('click',function(){	
+	$('#exitBtn').on('click',function(){
 		wsocket.send('msg:'+nickname+'가(이) 퇴장했어요');
 		wsocket.close();
 	});
+	
+///////////////////////////함수들	
+		
+	//
+	
+	//서버에 연결되었을 때 호출되는 콜백함수
+	function open(){
+		//서버로 연결한 사람의 정보(닉네임) 전송
+		//msg:kim가(이) 입장했어요  <---이건 걍 내맘대로 만드는 규칙임
+		//사용자가 입력한 닉네임 저장
+		nickname = $('#nickname').val();
+		wsocket.send('msg:'+nickname+'가(이) 입장했어요');
+		appendMessage("연결이 되었어요");
+	}
+	
+	function close(){
+		appendMessage("연결이 끊어 졌어요");		
+	}
+	
+	//서버에서 메시지를 받을 때마다 호출되는 함수 
+	function receive(e){//e는 message이벤트 객체
+		//서버로부터 받은 데이타는 이벤트객체(e).data속성에 저장되어 있다
+		console.log('서버로부터받은 메시지:',e.data);
+		if(e.data.substring(0, 4) ==='msg:')
+			
+			appendMessage("<p class='int'><span>"+e.data.substring(4)+"</span></p>");//서버로부터 받은 메시지를 msg:부분을 제외하고 div에 출력
+	}
+	function appendMessage(msg){  //이건 여러군데 사용해서 메소드로 뺀거
+		//$('#chatMessage').append(msg+"<br/>");
+		
+		$('#chatMessage').append(msg);
+		$('#chatMessage').get(0).scrollTop = $('#chatMessage').get(0).scrollHeight; 
+		//get(0)이거 자바스크립트로 바꾸는거였지...scrollTop랑 .scrollHeight는 스크롤바를계속 올리는 공식임 
+	}
+	
+  });
 	</script>

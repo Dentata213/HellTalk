@@ -41,11 +41,18 @@
   	background-color: #e1f4ce;
 }
 
+.favicon{
+   	margin: 0px;
+   	width: 50px;
+   	height: 50px;
+   	margin-right: 12px;
+}
+
 </style>
 	
 </head>
 
-<body class="color-theme-blue">
+<body class="color-theme-orange">
 
     <div class="preloader"></div>
 
@@ -53,7 +60,7 @@
 
         <div class="nav-header bg-transparent shadow-none border-0">
             <div class="nav-top">
-                <a href="<c:url value="/"/>"><i class="feather-zap text-success display1-size me-2 ms-0"></i><span class="d-inline-block fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">HellTalk </span> </a>
+                <a href="<c:url value="/"/>"><img src="${path}images/favicon.png" class="favicon"><span class="d-inline-block fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">HellTalk </span> </a>
                 <a href="#" class="mob-menu ms-auto me-2 chat-active-btn"><i class="feather-message-circle text-grey-900 font-sm btn-round-md bg-greylight"></i></a>
                 <a href="default-video.html" class="mob-menu me-2"><i class="feather-video text-grey-900 font-sm btn-round-md bg-greylight"></i></a>
                 <a href="#" class="me-2 menu-search-icon mob-menu"><i class="feather-search text-grey-900 font-sm btn-round-md bg-greylight"></i></a>
@@ -118,6 +125,7 @@
 		                        </div>
 		                    </div>
 		                    <div class="second " style="display:none">
+		                    <c:if test="${id == null}">
 		                    	<div class="form-group form-floating">
 			                        <input type="text" class="form-control" name="u_email" placeholder="예:helltalk@email.com" aria-describedby="emailError"/>
 			                        <label for="userEmail"><i class="font-sm ti-email text-grey-500 pe-0"></i>&nbsp;&nbsp;이메일</label>
@@ -133,7 +141,9 @@
 			                        <label for="userName"><i class="font-sm bx bx-face text-grey-500 pe-0"></i>&nbsp;&nbsp;닉네임</label>
 			                        <div id="nicknameError" class="form-text" style="color: red;"></div>
 			                    </div>
-			       
+			       			</c:if>
+			       			
+			       			
 			                    <div class="form-group form-floating">
 			                        <input type="text" class="form-control" name="u_phoneno" placeholder="예:010-1234-1234" aria-describedby="phoneError"/>
 			                        <label for="userPhone"><i class="font-sm bx bx-phone text-grey-500 pe-0"></i>&nbsp;&nbsp;전화번호</label>
@@ -158,7 +168,12 @@
 		                            	<div class="col" id="submitbtn"><input type="submit" class="btn form-control text-center style2-input text-white fw-600 bg-dark border-0 p-0 " value="회원가입"/></div>
 		                            	
 		                            </div>
-		                            <input type="hidden" name="u_status" value="1">
+		                            	<input type="hidden" name="u_status" value="1">
+		                           	<c:if test="${id != null}">
+			                            <input type="hidden" name="u_email" value="${email}">
+			                            <input type="hidden" name="u_nickname" value="${nickname}">
+		                            </c:if>
+		                            <input type="hidden" name="u_kakao" value="${id}">
 		                    		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		                            <h6 class="text-grey-500 font-xsss fw-500 mt-0 mb-0 lh-32">Already have account <a href="<c:url value="/member/Login.do"/>" class="fw-700 ms-1">Login</a></h6>
 		                        </div>

@@ -19,5 +19,7 @@ public interface CalService<T> {
 	int update(Map map);
 	//PK로 이름 찾는 메소드
 	String findUserByNo(Map map);
+	
+	
 
 }

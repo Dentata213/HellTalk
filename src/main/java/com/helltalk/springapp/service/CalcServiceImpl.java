@@ -120,6 +120,13 @@ public class CalcServiceImpl implements CalService<CalcDto> {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	/* 루틴no로 calcheck 테이블 정보 가져오기(진소희) */
+	
+	public Map selectOneCalcnoByRoutno(Map map) {
+		Map oneCalc=dao.selectOneCalcnoByRoutno(map);
+		return oneCalc;
+	}
 	
 	
 

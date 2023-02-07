@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.mapper.QnA">
+	<insert id="insertQnA" parameterType="Map">
+		INSERT INTO qna (q_title,q_content)
+		VALUES(#{q_title},#{q_content})
+	</insert>
+	<select id="selectQnA" parameterType="Map">
+		SELECT 
+		q_no,q_title,q_postdate,q_view
+		FROM
+		qna
+		where q_no = #{q_no}
+	</select>
+	<update id="editQnA" parameterType="Map">
+		UPDATE qna set q_title =#{q_title}, q_content =#{q_content}
+		WHERE q_no = #{q_no}
+	</update>
+	<delete id="deleteQnA" parameterType="Map">
+		delete from qna WHERE q_no = #{q_no}
+	</delete>
+	<select id="selectQnA" resultType="QnADto">
+		SELECT
+		q_no, q_title, q_content, q_postdate, q_view
+		FROM
+		qna
+		WHERE q_no > 0
+		ORDER BY q_no desc, q_postdate desc
+	</select>
+</mapper>

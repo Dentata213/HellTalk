@@ -61,25 +61,26 @@ public class ExerciseServiceImpl implements ExerciseService<ExerciseDTO>{
 	}
 
 	@Override
-	public List<Map> selectExerciseRoutine(Map map) {
-		List<Map> recommendRoutList=dao.selectExerciseRoutine(map);
+	public List<Map> selectRoutine(Map map) {
+		List<Map> recommendRoutList=dao.selectRoutine(map);
 		return recommendRoutList;
 	}
 
 	@Override
-	public int insertExerciseRoutine(Map map) {
-		int newRoutNo =dao.insertExerciseRoutine(map);
-		return newRoutNo;
+	public int insertRoutine(Map map) {
+		int rout_no =dao.insertRoutine(map);
+		System.out.println("새로 추가된 루틴 번호:"+rout_no);
+		return rout_no;
 	}
 
 	@Override
-	public int updateExerciseRoutine(Map map) {
+	public int updateRoutine(Map map) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int deleteExerciseRoutine(Map map) {
+	public int deleteRoutine(Map map) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -104,6 +105,55 @@ public class ExerciseServiceImpl implements ExerciseService<ExerciseDTO>{
 
 	@Override
 	public int deleteChallenge(Map map) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	//rout_no로 dayroutine select
+	@Override
+	public List selectDayRoutine(Map map) {
+		List<ExerciseDTO> listDayRoutine=dao.selectDayRoutine(map);
+		return listDayRoutine;
+	}
+
+	@Override
+	public int insertDayRoutine(Map map) {
+		int dr_no=dao.insertDayRoutine(map);
+		return dr_no;
+	}
+
+	@Override
+	public int updateDayRoutine(Map map) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteDayRoutine(Map map) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List selectExerList(Map map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int insertExerList(Map map) {
+		
+		return dao.insertExerList(map);
+	}
+
+	@Override
+	public int updateExerList(Map map) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteExerList(Map map) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

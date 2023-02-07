@@ -18,7 +18,9 @@ public interface MemberService<T> {
 	int insertUser(Map map);
 	int updateUser(Map map);
 	int deleteUser(Map map);
-
+	
+	//회원가입(소셜 로그인 전용)
+	int insertSoicalUser(Map map);
 	
 	
 	

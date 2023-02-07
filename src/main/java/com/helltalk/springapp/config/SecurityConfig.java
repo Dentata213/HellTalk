@@ -1,12 +1,5 @@
 package com.helltalk.springapp.config;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,11 +8,10 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
@@ -70,12 +62,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		filter.setForceEncoding(true);
 		http.addFilterBefore(filter, CsrfFilter.class);
 		http.headers().frameOptions().disable(); //ifram 차단해제
-		
+		http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 		http
 			//인증설정
 			.authorizeRequests()
 			//https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/util/AntPathMatcher.html
-			.antMatchers("/","/resources/**","/SuccessLoginHome.do","/member/Login.do","/member/CreateUser.do","/member/register.do","/member/Success.do").permitAll()
+			.antMatchers("/","/resources/**","/SuccessLoginHome.do","/member/Login.do","/member/CreateUser.do","/member/register.do","/member/Success.do","/Android/**").permitAll()
 			.antMatchers("/model/shop-1.do","/model/routine.do","/model/ocr.do","/home.do","/cal/List.do","/chat1.do","/diet/**","/exercise.do","/model/**","/exercise/**").hasAnyRole("USER","TN","ADMIN")//유저와 트레이너 권한이 있어야 열람할수 있는 페이지, ROLE_는 반드시 생략.자동으로 추가됨으로
 			.antMatchers("/backend/*").hasRole("ADMIN")//어드민 권한이 있어야 가능
 			.and()//HttpSecurity 반환
@@ -91,10 +83,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.passwordParameter("pwd")//로그인 폼 패스워드 입력 필드의 name 속성값. 기본값은 "password"
 			//.defaultSuccessUrl("/")//인증 성공후 이동할 URL설정.로그인 성공시 직전에 방문했던 페이지로 리다이렉트(기본값).true로 설정시 지정한 URL로 무조건 리다이렉트 즉 defaultSuccessUrl("/",true)
 			//.successHandler((request,response,authentication)->{//인증 성공후 이동할 URL설정.defaultSuccessUrl("/")보다 우선
-			//	authentication객체로 인증된 사용자 정보(아이디 혹은 권한등)를 파악할수 있다
-			//	response.sendRedirect(request.getContextPath());
+			//authentication객체로 인증된 사용자 정보(아이디 혹은 권한등)를 파악할수 있다
+			//response.sendRedirect(request.getContextPath());
 			//})
-			.and()		
+			.and()
 			//로그아웃 설정
 			.logout()//기본값은 "/logout" 즉 HTML태그에서 로그아웃 URL을 /logout으로.단,실제 로그아웃처리는 씨큐리티가 한다.(컨트롤러에서 로그아웃 처리 부분이 불필요)             
 			.logoutUrl("/member/Logout.do")//로그아웃 URL설정 변경시(오버라이딩).단,실제 로그아웃처리는 씨큐리티가 한다.(컨트롤러에서 로그아웃 처리 부분이 불필요)
@@ -134,6 +126,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.maximumSessions(1)//최대 허용 가능 중복 세션 수.(중복 로그인 방지하기 위해 1로 설정)
 			.maxSessionsPreventsLogin(false)//true설정시 기존에 로그인 했던 사용자 우선.기본값은 false로 새롭게 로그인한 사용자가 우선 즉 기존 사용자는 자동 로그아웃됨
 			.expiredUrl("/member/Login.do");//만기된 세션 즉 세션 유효시간이 경과 한 경우 이동할 URL(중복으로 인해 끊어진 경우도 해당함).
+			
 			
 	}
 	

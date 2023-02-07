@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-
+<spring:eval expression="@commonProperties['kakaoClient_id']" var="kakaoClient_id"/>
+<spring:eval expression="@commonProperties['kakaoRedirect_url']" var="kakaoRedirect_url"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,13 +84,18 @@
 	  width:100%;
 	  transition:800ms ease all;
 	}
-   
+   .favicon{
+        	margin: 0px;
+        	width: 50px;
+        	height: 50px;
+        	margin-right: 12px;
+        }
    
 </style>
 </head>
 
 
-<body class="color-theme-blue">
+<body class="color-theme-orange">
 
     <div class="preloader"></div>
 
@@ -96,7 +103,7 @@
 
         <div class="nav-header bg-transparent shadow-none border-0">
             <div class="nav-top">
-                <a href="${path}"><i class="feather-zap text-success display1-size me-2 ms-0"></i><span class="d-inline-block fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">HellTalk</span> </a>
+                <a href="${path}"><img src="${path}/resources/images/favicon.png" class="favicon"><span class="d-inline-block fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">HellTalk</span> </a>
             </div>
         </div>
 
@@ -116,7 +123,8 @@
 						-->
 						<c:if test="${! empty LoginFailMessage}">
 	                		<font color="red">
-							  <strong>로그인 실패!!</strong> <br>${LoginFailMessage}
+							  <strong>로그인 실패!!</strong><br>
+							  ${LoginFailMessage}
 							</font>
 						</c:if>
                         <h2 class="fw-700 display1-size display2-md-size mb-3">Login into <br>your account</h2>
@@ -137,7 +145,7 @@
                                 <a href="forgot.html" class="fw-600 font-xsss text-grey-700 mt-1 float-right">비밀번호를 있으셨나요?</a>
                             </div>
                            <button class="custom-btn btn-5" type="submit"><span>로그인</span></button>
-                        </form>
+                        
                          
                         <div class="col-sm-12 p-0 text-left">
                             <h6 class="text-grey-500 font-xsss fw-500 mt-0 mb-0 lh-32">계정이 아직 없으신가요? <a href="<c:url value="/member/CreateUser.do"/>" class="fw-700 ms-1">회원가입</a></h6>
@@ -146,10 +154,19 @@
                         <div class="col-sm-12 p-0 text-center mt-2">
                             
                             <h6 class="mb-0 d-inline-block bg-white fw-500 font-xsss text-grey-500 mb-3">Or, Sign in with your social account </h6>
+                            <div class="form-group mb-1">
+                            	<a href="https://kauth.kakao.com/oauth/authorize?client_id=${kakaoClient_id}&redirect_uri=${kakaoRedirect_url}&response_type=code" 
+                            		class="form-control text-left style2-input text-kakao fw-600 bg-kakao border-0 p-0 mb-2">
+                            		<img src="${path}/resources/images/kakao_login.png" alt="icon" class="ms-2 w40 mb-1 me-5">Sign in with Kakao
+                            	</a>
+                            </div>
+
                             <div class="form-group mb-1"><a href="#" class="form-control text-left style2-input text-white fw-600 bg-facebook border-0 p-0 mb-2"><img src="${path}/resources/images/icon-1.png" alt="icon" class="ms-2 w40 mb-1 me-5"> Sign in with Google</a></div>
                             <div class="form-group mb-1"><a href="#" class="form-control text-left style2-input text-white fw-600 bg-twiiter border-0 p-0 "><img src="${path}/resources/images/icon-3.png" alt="icon" class="ms-2 w40 mb-1 me-5"> Sign in with Facebook</a></div>
                         </div>
+                        </form>
                     </div>
+                     
                 </div> 
             </div>
         </div>

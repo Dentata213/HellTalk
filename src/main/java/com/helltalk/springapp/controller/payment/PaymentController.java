@@ -16,8 +16,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.helltalk.springapp.models.PaymentDTO;
 import com.helltalk.springapp.service.PaymentServiceImpl;
@@ -164,5 +168,35 @@ public class PaymentController {
 		//결제정보 가져오기 성공//
 		
 		return null;
+	}
+	
+	@RequestMapping("/orderInfo")
+	@ResponseBody
+	public String orderInfo(@RequestParam Map map) throws JsonProcessingException {
+		/*
+		System.out.println("map에 담겨있는 데이타"+map);
+		
+		String items=(String) map.get("checkedItems");
+		String uNo=(String) map.get("uNo");
+		String sum=(String) map.get("sum");
+		System.out.println("items정보"+items);
+		System.out.println("uNo정보"+uNo);
+		System.out.println("sum정보"+sum);
+		
+		model.addAttribute("items",items);
+		model.addAttribute("uNo",uNo);
+		model.addAttribute("sum",sum);*/
+		
+		//ObjectMapper mapper = new ObjectMapper();
+		//mapper.setVisibility(PropertyAccessor.FIELD,Visibility.ANY);
+		//String mapperData = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(map);	
+		
+		return "payment/checkout.helltalk";
+	}
+	
+	@RequestMapping("/order.do")
+	public String order() {
+		
+		return "payment/checkout.helltalk";
 	}
 }
