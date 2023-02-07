@@ -20,6 +20,18 @@
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="${path}/resources/css/style.css">
 
+
+<style>
+
+.favicon{
+  	margin: 0px;
+  	width: 50px;
+  	height: 50px;
+  	margin-right: 12px;
+}
+
+</style>
+
 </head>
 
 <body class="color-theme-blue mont-font">
@@ -32,7 +44,7 @@
         <!-- navigation top-->
         <div class="nav-header bg-white shadow-xs border-0">
             <div class="nav-top">
-                <a href="<c:url value="/"/>"><i class="feather-zap text-success display1-size me-2 ms-0"></i><span class="d-inline-block fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">HellTalk</span> </a>
+                <a href="<c:url value="/"/>"><img src="${path}/resources/images/favicon.png" class="favicon"><span class="d-inline-block fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">HellTalk</span> </a>
                 <a href="#" class="mob-menu ms-auto me-2 chat-active-btn"><i class="feather-message-circle text-grey-900 font-sm btn-round-md bg-greylight"></i></a>
                 <a href="default-video.html" class="mob-menu me-2"><i class="feather-video text-grey-900 font-sm btn-round-md bg-greylight"></i></a>
                 <a href="#" class="me-2 menu-search-icon mob-menu"><i class="feather-search text-grey-900 font-sm btn-round-md bg-greylight"></i></a>
