@@ -109,7 +109,10 @@
                                         </div>
                                         
                                     </div>
-                                    <a id="payinfo" class="bg-dark float-right text-white fw-600 text-uppercase font-xsss border-dark border rounded-3 border-size-md d-inline-block w-100 p-3 text-center ls-3">결제하기</a>
+                                    <form action="<c:url value="/payment/order.do"/>" id="payinfo" onsubmit="">
+                                    	<button class="bg-dark float-right text-white fw-600 text-uppercase font-xsss border-dark border rounded-3 border-size-md d-inline-block w-100 p-3 text-center ls-3">결제하기</button>
+                                    	<input hidden="hidden" id="hiddenInfo" value="">
+                                    </form>
                                 </div>
                             </div>
                         </div>               
@@ -271,37 +274,7 @@
    		});
 		
         
-        //클릭된 상품과 가격정보를가지고 페이지이동
-        $("#payinfo").click(function(){
-        	var checkedItems = []
-        	var uNo=$('#uno').val();
-        	var sum=$('#totalprice').text();
-        	//체크된 상품번호 가져오기
-			$(':checkbox:checked').each(function(){
-                checkedItems.push($(this).next().val());               
-            });
-			console.log(checkedItems);
-			
-			var items = JSON.stringify(checkedItems);
-			
-        	var data = {"checkedItems":items,"uNo":uNo,"sum":sum};
-        	var item =  JSON.stringify(data);
-        	
-        	$.ajax({
-				type: "GET",
-	   			url:"<c:url value='/payment/orderInfo'/>",
-	   			async:false,
-	   			data: item,
-	   			dataType:'json'
-			})		
-			.done(function(data){
-				
-				console.log('성공');
-			}).fail(function(error){		
-				console.log('에러발생'+error);			
-			});		
-        	
-        });
+       
         
         
         

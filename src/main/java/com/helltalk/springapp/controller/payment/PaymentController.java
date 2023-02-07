@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.helltalk.springapp.models.PaymentDTO;
 import com.helltalk.springapp.service.PaymentServiceImpl;
@@ -169,8 +172,8 @@ public class PaymentController {
 	
 	@RequestMapping("/orderInfo")
 	@ResponseBody
-	public String orderInfo(@RequestParam Map map, Model model) {
-		
+	public String orderInfo(@RequestParam Map map) throws JsonProcessingException {
+		/*
 		System.out.println("map에 담겨있는 데이타"+map);
 		
 		String items=(String) map.get("checkedItems");
@@ -182,8 +185,17 @@ public class PaymentController {
 		
 		model.addAttribute("items",items);
 		model.addAttribute("uNo",uNo);
-		model.addAttribute("sum",sum);
+		model.addAttribute("sum",sum);*/
 		
+		//ObjectMapper mapper = new ObjectMapper();
+		//mapper.setVisibility(PropertyAccessor.FIELD,Visibility.ANY);
+		//String mapperData = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(map);	
+		
+		return "payment/checkout.helltalk";
+	}
+	
+	@RequestMapping("/order.do")
+	public String order() {
 		
 		return "payment/checkout.helltalk";
 	}
