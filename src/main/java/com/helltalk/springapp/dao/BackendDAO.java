@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.helltalk.springapp.models.PaymentDTO;
 import com.helltalk.springapp.service.BBSDto;
 import com.helltalk.springapp.service.MemberDTO;
+import com.helltalk.springapp.service.QnADto;
 
 @Repository
 public class BackendDAO {
@@ -45,8 +46,8 @@ public class BackendDAO {
 	}
 
 	public int getTotalRecordCount(Map map) {
-		// TODO Auto-generated method stub
-		return 0;
+		System.out.println(map.get("value"));
+		return template.selectOne("recodeCount",map);
 	}
 
 	public List findAll(Map map) {
@@ -56,6 +57,11 @@ public class BackendDAO {
 	
 	public MemberDTO isUser(Map map) {
 		return template.selectOne("isUser", map);
+	}
+
+	public List findAllQnA(Map map) {
+		List<QnADto> list = template.selectList("selectAllQnA",map);
+		return list;
 	}
 
 	

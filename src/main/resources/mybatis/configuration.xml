@@ -14,6 +14,7 @@
 		<typeAlias type="com.helltalk.springapp.models.FoodDTO" alias="FoodDTO"/>
 		<typeAlias type="com.helltalk.springapp.models.DietDTO" alias="DietDTO"/>
 		<typeAlias type="com.helltalk.springapp.service.ExerciseDTO" alias="ExerciseDTO"/>
+		<typeAlias type="com.helltalk.springapp.service.QnADto" alias="QnADTO"/>
 		
 		<typeAlias type="com.helltalk.springapp.service.MemberDTO" alias="MemberDTO"/>
 		<typeAlias type="com.helltalk.springapp.service.BBSDto" alias="BBSDto"/>

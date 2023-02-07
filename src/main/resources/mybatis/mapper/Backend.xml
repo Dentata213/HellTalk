@@ -58,4 +58,10 @@
 	<select id="isUser" parameterType="Map" resultType="MemberDTO">
 		SELECT * FROM USERS WHERE u_email=#{userId}
 	</select>
+	<select id="recodeCount" parameterType="Map" resultType="int">
+		SELECT count(*) FROM ${value}
+	</select>
+	<select id="selectAllQnA" parameterType="Map" resultType="QnADTO">
+		SELECT q.*,u.U_EMAIL FROM QNA q INNER JOIN USERS u ON q.U_NO=u.U_NO
+	</select>
 </mapper>

@@ -54,9 +54,10 @@ public class BackendServiceImpl implements BackendService{
 	private int pageSize=15;
 	private int blockPage=3;
 	
-	public ListPagingData<BBSDto> selectList(Map map, HttpServletRequest req, int nowPage) {
+	public ListPagingData<BBSDto> selectList(Map map, int nowPage, HttpServletRequest req) {
 		//페이징을 위한 로직 시작]
 		//전체 레코드수	
+		map.put("select", "qna");
 		int totalRecordCount=dao.getTotalRecordCount(map);//검색시에도 페이징 해야 함으로 맵을 넘겨준다
 		//페이징을 위한 기본정보 설정
 		map.put(PagingUtil.PAGE_SIZE, pageSize);
@@ -87,6 +88,12 @@ public class BackendServiceImpl implements BackendService{
 													.pagingString(pagingString)//페이징 표시 문자열 설정
 													.build();
 		return listPagingData;
+	}
+
+	public List<QnADto> selectAllQnA(Map map) {
+			//글 전체 목록 얻기
+			List<QnADto> lists= dao.findAllQnA(map);
+			return lists;
 	}
 	
 	

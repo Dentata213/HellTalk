@@ -11,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,6 +25,8 @@ import com.helltalk.springapp.service.BBSDto;
 import com.helltalk.springapp.service.BackendServiceImpl;
 import com.helltalk.springapp.service.ListPagingData;
 import com.helltalk.springapp.service.MemberDTO;
+import com.helltalk.springapp.service.PagingUtil;
+import com.helltalk.springapp.service.QnADto;
 
 
 @Controller
@@ -124,15 +127,23 @@ public class BackendController {
 	
 	
 	
-
+	
 	@RequestMapping("/design")
 	public String design() {
 		return "/backend/member/register";
 	}
-	
-	@RequestMapping("/test")
-	public String test() {
-		return "/backend/default.helltalk";
+	@RequestMapping("/qna")
+	public @ResponseBody String getAdminqna() {
+		
+		return "backend/getqna";
+	}
+	@RequestMapping("/getqna")
+	public String test(Model model,@RequestParam Map map) {
+
+		List<QnADto> QnAlists = service.selectAllQnA(map);
+		model.addAttribute("QnAlists",QnAlists);
+		System.out.println(QnAlists);
+		return "/backend/qna/AdminQnA";
 	}
 	
 }
