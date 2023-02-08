@@ -32,6 +32,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -85,6 +86,10 @@ public class DietController {
 		String d_date= req.getParameter("d_date")==null? null: req.getParameter("d_date");
 		System.out.println("d_date : "+d_date);
 		
+		String delete = req.getParameter("delete")== null? null: req.getParameter("delete");
+		System.out.println("delete :"+ delete);
+		model.addAttribute("d_date",d_date);
+		
 		//eat- status 값 받아오기
 		if(breakfast != null) {
 			HttpSession session = req.getSession();
@@ -106,6 +111,12 @@ public class DietController {
 		if(d_date != null) {
 			HttpSession session = req.getSession();
 			session.setAttribute("d_date", d_date);
+		}
+		
+		//delete가 넘어왔을 경우 한끼에서 하나의 음식 삭제
+		if(delete != null) {
+			map.put("d_date", d_date);
+			int deleteSelectFoodAffeted= dietService.SelectFoodDelete(map);
 		}
 		
 		//뷰 반환
@@ -233,7 +244,7 @@ public class DietController {
 		if(selectFood != null)
 			model.addAttribute("selectFood", selectFood);
 		else {
-			model.addAttribute("FailSelect", "값을 가져오지 못했습니다");
+			model.addAttribute("FailSelect", "오늘 먹은 음식을 등록해보세요");
 		}
 		
 		//뷰 반환
@@ -242,7 +253,7 @@ public class DietController {
 	
 	//확인을 하면 eat테이블에 저장
 	@RequestMapping("/putFoodByNo.do")
-	public String putFoodByNo(@RequestParam Map map, HttpServletRequest req, Model model) {
+	public String putFoodByNo(@RequestParam Map map, HttpServletRequest req, Model model,Authentication auth) {
 		String food_cd = req.getParameter("food_cd")==null? null: req.getParameter("food_cd");
 		System.out.println("food_cd넘어왔나2 : " + food_cd);
 		String breakfast= req.getSession().getAttribute("breakfast") == null? null:req.getSession().getAttribute("breakfast").toString() ;
@@ -290,8 +301,10 @@ public class DietController {
 	    map.put("d_date", d_date);
 	    
 	    //DB- 회원값(diet값) 저장
-	  	map.put("u_no", Integer.valueOf(8));//임시
-	  	
+	  	//map.put("u_no", Integer.valueOf(8));//임시
+	    map.put("uemail",((UserDetails)auth.getPrincipal()).getUsername().toString());
+	    System.out.println("uemail :"+map.get("uemail"));
+	    
 	  	//DB- eatList관련 값 저장
 	    map.put("food_cd", food_cd);
 	    //System.out.println("food_cd:"+food_cd);

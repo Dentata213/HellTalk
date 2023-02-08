@@ -57,6 +57,11 @@ public class DietServiceImpl implements DietService<DietDTO>{
 	public int insertEatList(Map map) {
 		return dao.insertEatList(map);
 	}
+	
+	//한끼에서 음식 하나를 삭제
+	public int SelectFoodDelete(Map map) {
+		return dao.SelectFoodDelete(map);
+	}
 
 	
 	

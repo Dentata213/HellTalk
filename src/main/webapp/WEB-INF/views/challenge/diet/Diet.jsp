@@ -33,11 +33,11 @@
 		
 		<div class="mb-3">
 			<label for="html5-date-input" class="col-md-2 col-form-label">
-				<h4>기록할 날짜 선택</h4>
+				<h3>기록할 날짜 선택</h3>
 			</label>
 			<form action='<c:url value="/diet/goFoodSearch.do"/>' method="post">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-				<input class="form-control col-mb-3" type="date" min="1950-01-01" max="9999-12-31" name="d_date"/>
+				<input class="form-control col-mb-3" type="date" min="1950-01-01" max="9999-12-31" name="d_date" value="${d_date} "/>
 				<input type="submit" class="btn btn-primary" value="breakfast" name="breakfast" /> 
 				<input type="submit" class="btn btn-primary" value="lunch" name="lunch" /> 
 				<input type="submit" class="btn btn-primary" value="dinner" name="dinner" />
@@ -53,6 +53,7 @@
 						<th class="col-2">음식 이름</th>
 						<th class="col-1">총내용량</th>
 						<th class="col-1">칼로리</th>
+						<th class="col-1"></th>
 					</tr>
 				</thead>
 				<tbody class="table-sm down-file-body">
@@ -68,6 +69,7 @@
 								<td>${list.food_name }</td>
 								<td>${list.food_size }</td>
 								<td>${list.food_kcal }</td>
+								<td><input type="submit" class="btn btn-warning" value="delete" name="delete"/></td>
 							</tr>
 						</c:forEach>
 					</c:if>
@@ -84,6 +86,7 @@
 						<th class="col-2">음식 이름</th>
 						<th class="col-1">총내용량</th>
 						<th class="col-1">칼로리</th>
+						<th class="col-1"></th>
 					</tr>
 				</thead>
 				<tbody class="table-sm down-file-body">
@@ -99,6 +102,7 @@
 								<td>${list.food_name }</td>
 								<td>${list.food_size }</td>
 								<td>${list.food_kcal }</td>
+								<td><input type="submit" class="btn btn-warning" value="delete" name="delete"/></td>
 							</tr>
 						</c:forEach>
 					</c:if>
@@ -115,6 +119,7 @@
 						<th class="col-2">음식 이름</th>
 						<th class="col-1">총내용량</th>
 						<th class="col-1">칼로리</th>
+						<th class="col-1"></th>
 					</tr>
 				</thead>
 				<tbody class="table-sm down-file-body">
@@ -130,6 +135,7 @@
 								<td>${list.food_name }</td>
 								<td>${list.food_size }</td>
 								<td>${list.food_kcal }</td>
+								<td><input type="submit" class="btn btn-warning" value="delete" name="delete"/></td>
 							</tr>
 						</c:forEach>
 					</c:if>
