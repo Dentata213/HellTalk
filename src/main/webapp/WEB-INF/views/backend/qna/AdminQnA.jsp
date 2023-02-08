@@ -71,6 +71,8 @@
 
   <body>
     <!-- Layout wrapper -->
+    <meta name="_csrf_header" th:content="${_csrf.headerName}">
+    <meta name="_csrf" th:content="${_csrf.token}">
     <div class="layout-wrapper layout-content-navbar layout-without-menu">
       <div class="layout-container">
         <!-- Layout container -->
@@ -164,12 +166,18 @@
     <!-- ajax로 컨텐츠 로드해보기 -->
     <script type="text/javascript">
     	$(".no").click(function(e){
-    		console.log(e.target.id);
-    		var no=e.target.id;
+    		var no=e.target.parentElement.attr('id');
+    		console.log(no);
+    		var header = $("meta[name='_csrf_header']").attr('content');
+    		var token = $("meta[name='_csrf']").attr('content');
+    		
     		$.ajax({
 	        	url:"<c:url value='/backend/answerQnA'/>",
 	        	type:'post',
-	        	       	
+	        	data:{"no":no},
+	        	beforeSend: function(xhr){
+	        		xhr.setRequestHeader(header, token);
+	        	},	       	
 	        }).done(function(data){
 	        	console.log('구글서버로부터 받은 데이타:',data);
 	        });

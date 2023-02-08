@@ -1,6 +1,7 @@
 package com.helltalk.springapp.controller.backend;
 
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -152,4 +153,12 @@ public class BackendController {
 		return "/backend/qna/AdminQnA";
 	}
 	
+	@RequestMapping(value="/answerQnA",method = {RequestMethod.GET,RequestMethod.POST})
+	public QnADto answerQnA(@RequestParam int no,Authentication auth) {
+		Map map = new HashMap<>();
+		map.put("no", no);
+		QnADto dto = new QnADto();
+		dto=service.selectOneQnA(map);
+		return dto;
+	}
 }

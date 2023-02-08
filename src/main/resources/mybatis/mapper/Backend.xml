@@ -69,5 +69,10 @@
 		ORDER BY Q_NO DESC) T)
 		WHERE R BETWEEN #{start} AND #{end}		 
 	</select>
-	
+	<update id="updateAnswer" parameterType="Map">
+		UPDATE QNA SET Q_ADATE=sysdate,Q_ANSWER=#{answer} where U_NO=#{no}
+	</update>
+	<select id="selectOneQnA" parameterType="Map" resultType="QnADTO">
+		SELECT * FROM QNA WHERE Q_NO=#{no}
+	</select>
 </mapper>

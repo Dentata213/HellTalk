@@ -130,6 +130,16 @@ public class BackendServiceImpl implements BackendService{
 		return listPagingData;
 
 	}
+
+	public void updateQnAanswer(Map map) {
+		dao.updateQnAanswer(map);
+		
+	}
+
+	public QnADto selectOneQnA(Map map) {
+		return dao.selectOneQnA(map);
+		
+	}
 	
 	
 }

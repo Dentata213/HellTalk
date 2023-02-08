@@ -65,6 +65,14 @@ public class BackendDAO {
 		return list;
 	}
 
+	public void updateQnAanswer(Map map) {
+		template.update("updateAnswer",map);
+	}
+
+	public QnADto selectOneQnA(Map map) {
+		return template.selectOne("selectOneQnA",map);
+	}
+
 	
 	
 
