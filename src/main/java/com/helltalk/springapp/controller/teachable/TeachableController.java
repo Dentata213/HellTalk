@@ -13,11 +13,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/teachable")
 public class TeachableController {
 	
+	@RequestMapping("/aiFitnessTrainer.do")
+	public String Main(@RequestParam Map map, HttpServletRequest req, Model model) throws Exception{
+		
+		//뷰 반환
+		return "/teachable/AiFitnessTrainer";
+	}
+	
 	@RequestMapping("/gameResult.do")
 	public String gameResult(@RequestParam Map map, HttpServletRequest req, Model model) throws Exception {
 		
+		//뷰 반환
 		return "/teachable/ResultPage";
 	}
+	
 	
 	
 }
