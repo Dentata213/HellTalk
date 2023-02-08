@@ -96,15 +96,17 @@
                       </tr>
                     </thead>
                     <tbody>
-                    <c:if test="${empty QnAlists}" var="flag">
+                    <c:if test="${empty listPagingData.lists}" var="flag">
                     	<tr><td colspan="7">등록된 문의가 없습니다</td></tr>
                     </c:if>
                     <c:if test="${not flag}">
-                    <c:forEach var="list" items="${QnAlists}" varStatus="loop">
-                      <tr>
-                        <td>${fn:length(QnAlists)-loop.count+1}</td>
-                        
-                        <td>${QnADto.Q_CONTENT}</td>
+                    <c:forEach var="recode" items="${listPagingData.lists}" varStatus="loop">
+                      <tr class="no" id="${recode.q_no}">
+                        <td>${recode.r}</td>
+                        <td>아직없음</td>
+                        <td>${recode.q_title}</td>
+                        <td>${recode.q_postdate}</td>
+                        <td>${recode.q_adate==null?"미완료":"완료"}</td>
                         
                    
                         <td>
@@ -123,6 +125,7 @@
                      </c:if>
                     </tbody>
                   </table>
+                  <div>${listPagingData.pagingString}</div>;                                   
                 </div>
               </div>
               <!-- Bootstrap Table with Header - Footer -->
@@ -157,5 +160,20 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    
+    <!-- ajax로 컨텐츠 로드해보기 -->
+    <script type="text/javascript">
+    	$(".no").click(function(e){
+    		console.log(e.target.id);
+    		var no=e.target.id;
+    		$.ajax({
+	        	url:"<c:url value='/backend/answerQnA'/>",
+	        	type:'post',
+	        	       	
+	        }).done(function(data){
+	        	console.log('구글서버로부터 받은 데이타:',data);
+	        });
+    	});
+    </script>
   </body>
 </html>

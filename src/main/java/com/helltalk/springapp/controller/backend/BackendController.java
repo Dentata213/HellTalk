@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -137,12 +138,17 @@ public class BackendController {
 		
 		return "backend/getqna";
 	}
-	@RequestMapping("/getqna")
-	public String test(Model model,@RequestParam Map map) {
+	@RequestMapping(value="/getqna",method = {RequestMethod.GET,RequestMethod.POST})
+	public String list(Authentication auth,
+			    @RequestParam Map map,
+			    @RequestParam(required = false,defaultValue = "1") int nowPage,
+				HttpServletRequest req,
+				Model model) {
 
-		List<QnADto> QnAlists = service.selectAllQnA(map);
-		model.addAttribute("QnAlists",QnAlists);
-		System.out.println(QnAlists);
+		ListPagingData<QnADto> listPagingData=service.selectAllQnA(map, req, nowPage);
+
+		model.addAttribute("listPagingData",listPagingData);
+
 		return "/backend/qna/AdminQnA";
 	}
 	

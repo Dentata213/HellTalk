@@ -3,34 +3,25 @@ package com.helltalk.springapp.service;
 import java.sql.Date;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 public class QnADto {
-	private String Q_NO;
-	private String U_NO;
-	private String Q_TITLE;
-	private String Q_CONTENT;
-	private String Q_POSTDATE;
-	private String Q_ADATE;
-	private String Q_ANSWER;
-	private int Q_VIEW;
+	private String q_no;
+	private String u_no;
+	private String q_title;
+	private String q_content;
+	private java.sql.Date q_postdate;
+	private java.sql.Date q_adate;
+	private String q_answer;
+	private int q_view;
+	
 	
 	//작성자 출력용
-	private String U_EMAIL;
-	@Override
-	public String toString() {
-		return "QnADto [Q_NO=" + Q_NO + ", Q_TITLE=" + Q_TITLE + ", Q_CONTENT=" + Q_CONTENT + ", Q_VIEW=" + Q_VIEW
-				+ ", Q_POSTDATE=" + Q_POSTDATE + ", Q_ADATE=" + Q_ADATE + ", Q_ANSWER=" + Q_ANSWER + "]";
-	}
-	
-	
-
-
+	private String u_email;
+	private int r;
 }
 
