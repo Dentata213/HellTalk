@@ -54,6 +54,10 @@ public class MemberDAO {
 	public MemberDTO findUserByEail(Map map) {
 		return template.selectOne("findUserByEail", map);
 	}
+	
+	public MemberDTO soicalOne(String username) {
+		return template.selectOne("soicalOne", username);
+	}
 
 	
 	

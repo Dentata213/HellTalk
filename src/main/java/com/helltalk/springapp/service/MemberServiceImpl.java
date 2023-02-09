@@ -12,6 +12,7 @@ import com.helltalk.springapp.models.MemberService;
 @Service
 public class MemberServiceImpl implements MemberService<MemberDTO>{
 	
+
 	@Autowired
 	MemberDAO dao;
 
@@ -62,7 +63,10 @@ public class MemberServiceImpl implements MemberService<MemberDTO>{
 		return dao.nicknameCheck(map);
 	}
 	
-	
+	@Override
+	public MemberDTO soicalOne(String username) {
+		return dao.soicalOne(username);
+	}
 	
 	
 
