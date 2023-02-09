@@ -4,10 +4,14 @@
 <script src="https://code.jquery.com/jquery-3.6.3.slim.js" integrity="sha256-DKU1CmJ8kBuEwumaLuh9Tl/6ZB6jzGOBV/5YpNE2BWc=" crossorigin="anonymous"></script>
 <!-- iamport.payment.js -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
+
+<meta name="_csrf" content="${_csrf.token}">
+<meta name="_csrf_header" content="${_csrf.headerName}">
+
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
         <!-- main content -->
-       
+       <form>
         <div class="main-content bg-white right-chat-active">
             
             <div class="middle-sidebar-bottom">
@@ -138,6 +142,7 @@
 
                                         <div class="card shadow-none border-0">
                                             <a href="#" id="iamport" class="w-100 p-3 mt-3 font-xsss text-center text-white bg-current rounded-3 text-uppercase fw-600 ls-3">Place Order</a>    
+                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                         </div>
 
                                         
@@ -152,7 +157,7 @@
                  
             </div>            
         </div>
-       
+       </form>
         <!-- main content -->
         
     <script>
@@ -227,8 +232,10 @@
 		var IMP = window.IMP;   // 생략 가능
         IMP.init("imp11666322");        
 
-        $('#iamport').on('click',function(){          
-			
+        $('#iamport').on('click',function(e, xhr, options){    
+        	            
+           
+            
 			var pay = parseInt($('#totalprice').text())
             IMP.request_pay({
                 pg: "html5_inicis",
@@ -236,16 +243,19 @@
                 merchant_uid: id ,   // 주문번호
                 name: "노르웨이 회전 의자",
                 amount: 100,                         // 숫자 타입
-                buyer_email: "gildong@gmail.com",
+                buyer_email: "kunhyo204@nate.com",
                 buyer_name: "홍길동",
                 buyer_tel: "010-4242-4242",
                 buyer_addr: "서울특별시 강남구 신사동"
-            },function (rsp) { // callback
+            },function (rsp,xhr) { // callback
+            	  
+            	 xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+                
 	            if (rsp.success) {
 	                // 결제 성공 시 로직
 	                // jQuery로 HTTP 요청
 	                jQuery.ajax({
-	                    url: "/payment/successpaid", 
+	                	url : "<c:url value="/payment/verifyIamport/ + rsp.imp_uid"/>", 
 	                    method: "POST",
 	                    headers: { "Content-Type": "application/json" },
 	                    data: {
