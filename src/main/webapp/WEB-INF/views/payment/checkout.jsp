@@ -124,7 +124,7 @@
                                                     <tr class="order-total">
                                                         <th>Order Total</th>
                                                         <td class="text-right text-grey-700 font-xsss fw-700">
-                                                        	<span class="order-total-ammount">${sum}(총결제금액)${uNo}</span>
+                                                        	<span class="order-total-ammount">(총결제금액)</span>
                                                         	<input value="" hidden="hidden" id="uniqueNumber" class="hidden"/>
                                                         </td>
                                                     </tr>
@@ -157,7 +157,7 @@
         
     <script>
 
-    //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+    
     var themeObj = {
     bgColor: "#162525", //바탕 배경색
     searchBgColor: "#162525", //검색창 배경색
@@ -235,30 +235,45 @@
                 pay_method: "card",
                 merchant_uid: id ,   // 주문번호
                 name: "노르웨이 회전 의자",
-                amount: pay,                         // 숫자 타입
+                amount: 100,                         // 숫자 타입
                 buyer_email: "gildong@gmail.com",
                 buyer_name: "홍길동",
                 buyer_tel: "010-4242-4242",
                 buyer_addr: "서울특별시 강남구 신사동"
-            }, function (rsp) { // callback
-            if (rsp.success) {
-                // 결제 성공 시 로직
-                // jQuery로 HTTP 요청
-                jQuery.ajax({
-                    url: "/payment/checkout", 
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    data: {
-                    imp_uid: rsp.imp_uid,            // 결제 고유번호
-                    merchant_uid: rsp.merchant_uid   // 주문번호
-                    }
-                }).done(function (data) {
-                // 가맹점 서버 결제 API 성공시 로직
-            })
-            } else {
-                // 결제 실패 시 로직
-                alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
-            }
+            },function (rsp) { // callback
+	            if (rsp.success) {
+	                // 결제 성공 시 로직
+	                // jQuery로 HTTP 요청
+	                jQuery.ajax({
+	                    url: "/payment/successpaid", 
+	                    method: "POST",
+	                    headers: { "Content-Type": "application/json" },
+	                    data: {
+	                    imp_uid: rsp.imp_uid,            // 결제 고유번호
+	                    merchant_uid: rsp.merchant_uid   // 주문번호
+	                    }
+	                }).done(function (data) {
+	                // 가맹점 서버 결제 API 성공시 로직
+	                	console.log(data);
+	    	        	
+	                	
+	    	        	// 위의 rsp.paid_amount 와 data.response.amount를 비교한후 로직 실행 (import 서버검증)
+	    	        	if(rsp.paid_amount == data.response.amount){
+	    	        		var msg = '결제가 완료되었습니다.';
+		        			msg += '\n고유ID : ' + rsp.imp_uid;
+		        			msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+		        			msg += '\결제 금액 : ' + rsp.paid_amount;
+		        			msg += '카드 승인번호 : ' + rsp.apply_num;
+		        			
+	    		        	alert("결제 및 결제검증완료:",msg);
+	    	        	} else {
+	    	        		alert("결제 실패");
+	    	        	}
+	            })
+	            } else {
+	                // 결제 실패 시 로직
+	                alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
+	            }
             })
         });
         
