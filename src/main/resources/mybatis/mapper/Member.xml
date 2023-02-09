@@ -16,6 +16,10 @@
 			SELECT * FROM USERS WHERE U_EMAIL = #{u_email}
 	</select>
 	
+	<select id="soicalOne" parameterType="string" resultType="MemberDTO">
+			SELECT U_PW,U_EMAIL,U_STATUS,U_KIND FROM USERS WHERE U_EMAIL = #{username}
+	</select>
+	
 	<select id="emailCheck" parameterType="Map" resultType="int">
 		SELECT COUNT(*) FROM USERS WHERE U_EMAIL = #{u_email}
 	</select>
@@ -33,7 +37,7 @@
 	
 	<insert id="insertSoicalUser" parameterType="Map">
 		INSERT INTO USERS VALUES(
-		SEQ_USERNO.NEXTVAL,null,#{u_nickname},#{u_gender},
+		SEQ_USERNO.NEXTVAL,#{u_pwd},#{u_nickname},#{u_gender},
 		#{u_phoneno},#{u_email},#{u_birth},
 		#{u_height},#{u_weight},DEFAULT,#{u_status},#{u_kind},#{u_kakao})
 	</insert>
