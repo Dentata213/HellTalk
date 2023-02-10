@@ -28,15 +28,15 @@
 
     
     <div class="main-wrapper">
-  <sec:authorize access="isAnonymous()">
-            	<a href="<c:url value="/member/Login.do"/>" class="p-2 lh-20 w100 bg-primary-gradiant me-2 text-white text-center font-xssss fw-600 ls-1 rounded-xl">login</a>
-            </sec:authorize>
-            <sec:authorize access="isAuthenticated()">
-            	<form action="<c:url value="/member/Logout.do"/>" method="post">
-            		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-            		<button class="p-2 lh-20 w100 bg-primary-gradiant me-2 text-white text-center font-xssss fw-600 ls-1 rounded-xl">logout</button>
-            	</form>
-            </sec:authorize>
+	<sec:authorize access="isAnonymous()">
+	 	<a href="<c:url value="/member/Login.do"/>" class="p-2 lh-20 w100 bg-primary-gradiant me-2 text-white text-center font-xssss fw-600 ls-1 rounded-xl">login</a>
+	 </sec:authorize>
+	 <sec:authorize access="isAuthenticated()">
+	 	<form action="<c:url value="/member/Logout.do"/>" method="post">
+	 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+	 		<button class="p-2 lh-20 w100 bg-primary-gradiant me-2 text-white text-center font-xssss fw-600 ls-1 rounded-xl">logout</button>
+	 	</form>
+	 </sec:authorize>
 
         <!-- navigation top-->
         <div class="nav-header bg-white shadow-xs border-0">
@@ -234,7 +234,21 @@
             </div>
         </nav>
         <!-- navigation left -->
-        <!-- main content -->
+ <style>
+ 
+ .search-form-2 input {
+    height: 45px;
+    line-height: 45px;
+    padding-left: 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    width: 300px;
+}
+ 
+ </style>       
+        
+        
+         <!-- main content -->
         <div class="main-content right-chat-active">
             
             <div class="middle-sidebar-bottom">
@@ -243,162 +257,46 @@
                         <div class="col-xl-12">
                             <div class="card shadow-xss w-100 d-block d-flex border-0 p-4 mb-3">
                                 <div class="card-body d-flex align-items-center p-0">
-                                    <h2 class="fw-700 mb-0 mt-0 font-md text-grey-900">Friends</h2>
+                                    <h2 class="fw-700 mb-0 mt-0 font-md text-grey-900">친구찾기</h2>
                                     <div class="search-form-2 ms-auto">
                                         <i class="ti-search font-xss"></i>
-                                        <input type="text" class="form-control text-grey-500 mb-0 bg-greylight theme-dark-bg border-0" placeholder="Search here.">
+                                        <input type="text" class="form-control text-grey-500 mb-0 bg-greylight theme-dark-bg border-0" placeholder="찾는사람의 ID를 입력해 주세요">
                                     </div>
                                     <a href="#" class="btn-round-md ms-2 bg-greylight theme-dark-bg rounded-3"><i class="feather-filter font-xss text-grey-500"></i></a>
                                 </div>
                             </div>
 
                             <div class="row ps-2 pe-2">
+								
                                 <div class="col-md-3 col-sm-4 pe-2 ps-2">
                                     <div class="card d-block border-0 shadow-xss rounded-3 overflow-hidden mb-3">
                                         <div class="card-body d-block w-100 ps-3 pe-3 pb-4 text-center">
                                             <figure class="avatar ms-auto me-auto mb-0 position-relative w65 z-index-1"><img src="https://via.placeholder.com/50x50.png" alt="image" class="float-right p-0 bg-white rounded-circle w-100 shadow-xss"></figure>
+                                            <input name="roomNo" class="roomNo" value="" hidden />
                                             <div class="clearfix"></div>
-                                            <h4 class="fw-700 font-xsss mt-3 mb-1">Victor Exrixon </h4>
-                                            <p class="fw-500 font-xsssss text-grey-500 mt-0 mb-3">@macale343</p>
-                                            <a href="#" class="mt-0 btn pt-2 pb-2 ps-3 pe-3 lh-24 ms-1 ls-3 d-inline-block rounded-xl bg-success font-xsssss fw-700 ls-lg text-white">ADD FRIEND</a>
-                                        </div>
-                                    </div>
-                                </div> 
-
-                                <div class="col-md-3 col-sm-4 pe-2 ps-2">
-                                    <div class="card d-block border-0 shadow-xss rounded-3 overflow-hidden mb-3">
-                                        <div class="card-body d-block w-100 ps-3 pe-3 pb-4 text-center">
-                                            <figure class="avatar ms-auto me-auto mb-0 position-relative w65 z-index-1"><img src="https://via.placeholder.com/50x50.png" alt="image" class="float-right p-0 bg-white rounded-circle w-100 shadow-xss"></figure>
-                                            <div class="clearfix"></div>
-                                            <h4 class="fw-700 font-xsss mt-3 mb-1">Surfiya Zakir </h4>
-                                            <p class="fw-500 font-xsssss text-grey-500 mt-0 mb-3">@macale343</p>
-                                            <a href="#" class="mt-0 btn pt-2 pb-2 ps-3 pe-3 lh-24 ms-1 ls-3 d-inline-block rounded-xl bg-success font-xsssss fw-700 ls-lg text-white">ADD FRIEND</a>
-                                        </div>
-                                    </div>
-                                </div>                                 
-
-                                <div class="col-md-3 col-sm-4 pe-2 ps-2">
-                                    <div class="card d-block border-0 shadow-xss rounded-3 overflow-hidden mb-3">
-                                        <div class="card-body d-block w-100 ps-3 pe-3 pb-4 text-center">
-                                            <figure class="avatar ms-auto me-auto mb-0 position-relative w65 z-index-1"><img src="https://via.placeholder.com/50x50.png" alt="image" class="float-right p-0 bg-white rounded-circle w-100 shadow-xss"></figure>
-                                            <div class="clearfix"></div>
-                                            <h4 class="fw-700 font-xsss mt-3 mb-1">Goria Coast </h4>
-                                            <p class="fw-500 font-xsssss text-grey-500 mt-0 mb-3">@macale343</p>
-                                            <a href="#" class="mt-0 btn pt-2 pb-2 ps-3 pe-3 lh-24 ms-1 ls-3 d-inline-block rounded-xl bg-danger font-xsssss fw-700 ls-lg text-white">FRIEND</a>
-                                        </div>
-                                    </div>
-                                </div> 
-
-                                <div class="col-md-3 col-sm-4 pe-2 ps-2">
-                                    <div class="card d-block border-0 shadow-xss rounded-3 overflow-hidden mb-3">
-                                        <div class="card-body d-block w-100 ps-3 pe-3 pb-4 text-center">
-                                            <figure class="avatar ms-auto me-auto mb-0 position-relative w65 z-index-1"><img src="https://via.placeholder.com/50x50.png" alt="image" class="float-right p-0 bg-white rounded-circle w-100 shadow-xss"></figure>
-                                            <div class="clearfix"></div>
-                                            <h4 class="fw-700 font-xsss mt-3 mb-1">Hurin Seary </h4>
-                                            <p class="fw-500 font-xsssss text-grey-500 mt-0 mb-3">@macale343</p>
-                                            <a href="#" class="mt-0 btn pt-2 pb-2 ps-3 pe-3 lh-24 ms-1 ls-3 d-inline-block rounded-xl bg-success font-xsssss fw-700 ls-lg text-white">ADD FRIEND</a>
+                                            <h4 class="fw-700 font-xsss mt-3 mb-1 nickname" value="도원결의!!!!">헬헬헬</h4>
+                                            <p class="fw-500 font-xsssss text-grey-500 mt-0 mb-3 uemail" value="hell3@hell1234.com">hell2@aaa.com</p>                      
+                                            <a href="#" class="mt-0 btn pt-2 pb-2 ps-3 pe-3 lh-24 ms-1 ls-3 d-inline-block rounded-xl bg-success font-xsssss fw-700 ls-lg text-white">친구추가</a>
+                                            <a href="#" class="mt-0 btn pt-2 pb-2 ps-3 pe-3 lh-24 ms-1 ls-3 d-inline-block rounded-xl bg-success font-xsssss fw-700 ls-lg text-white"><span class="gochatroom">채팅하기</span></a>
                                         </div>
                                     </div>
                                 </div>
-
-
-                                <div class="col-md-3 col-sm-4 pe-2 ps-2">
-                                    <div class="card d-block border-0 shadow-xss rounded-3 overflow-hidden mb-3 mt-0">
-                                        <div class="card-body d-block w-100 ps-3 pe-3 pb-4 text-center">
-                                            <figure class="avatar ms-auto me-auto mb-0 position-relative w65 z-index-1"><img src="https://via.placeholder.com/50x50.png" alt="image" class="float-right p-0 bg-white rounded-circle w-100 shadow-xss"></figure>
-                                            <div class="clearfix"></div>
-                                            <h4 class="fw-700 font-xsss mt-3 mb-1">Victor Exrixon </h4>
-                                            <p class="fw-500 font-xsssss text-grey-500 mt-0 mb-3">@macale343</p>
-                                            <a href="#" class="mt-0 btn pt-2 pb-2 ps-3 pe-3 lh-24 ms-1 ls-3 d-inline-block rounded-xl bg-danger font-xsssss fw-700 ls-lg text-white">FRIEND</a>
-                                        </div>
-                                    </div>
-                                </div> 
+                                                              
 
                                 <div class="col-md-3 col-sm-4 pe-2 ps-2">
-                                    <div class="card d-block border-0 shadow-xss rounded-3 overflow-hidden mb-3 mt-0">
-                                        <div class="card-body d-block w-100 ps-3 pe-3 pb-4 text-center">
-                                            <figure class="avatar ms-auto me-auto mb-0 position-relative w65 z-index-1"><img src="https://via.placeholder.com/50x50.png" alt="image" class="float-right p-0 bg-white rounded-circle w-100 shadow-xss"></figure>
-                                            <div class="clearfix"></div>
-                                            <h4 class="fw-700 font-xsss mt-3 mb-1">Surfiya Zakir </h4>
-                                            <p class="fw-500 font-xsssss text-grey-500 mt-0 mb-3">@macale343</p>
-                                            <a href="#" class="mt-0 btn pt-2 pb-2 ps-3 pe-3 lh-24 ms-1 ls-3 d-inline-block rounded-xl bg-success font-xsssss fw-700 ls-lg text-white">ADD FRIEND</a>
-                                        </div>
-                                    </div>
-                                </div>                                 
-
-                                <div class="col-md-3 col-sm-4 pe-2 ps-2">
-                                    <div class="card d-block border-0 shadow-xss rounded-3 overflow-hidden mb-3 mt-0">
+                                    <div class="card d-block border-0 shadow-xss rounded-3 overflow-hidden mb-3">
                                         <div class="card-body d-block w-100 ps-3 pe-3 pb-4 text-center">
                                             <figure class="avatar ms-auto me-auto mb-0 position-relative w65 z-index-1"><img src="https://via.placeholder.com/50x50.png" alt="image" class="float-right p-0 bg-white rounded-circle w-100 shadow-xss"></figure>
                                             <div class="clearfix"></div>
                                             <h4 class="fw-700 font-xsss mt-3 mb-1">Goria Coast </h4>
                                             <p class="fw-500 font-xsssss text-grey-500 mt-0 mb-3">@macale343</p>
-                                            <a href="#" class="mt-0 btn pt-2 pb-2 ps-3 pe-3 lh-24 ms-1 ls-3 d-inline-block rounded-xl bg-success font-xsssss fw-700 ls-lg text-white">ADD FRIEND</a>
+                                            <a href="#" class="mt-0 btn pt-2 pb-2 ps-3 pe-3 lh-24 ms-1 ls-3 d-inline-block rounded-xl bg-danger font-xsssss fw-700 ls-lg text-white">친구끊기</a>
+                                            <a href="#" class="mt-0 btn pt-2 pb-2 ps-3 pe-3 lh-24 ms-1 ls-3 d-inline-block rounded-xl bg-success font-xsssss fw-700 ls-lg text-white">채팅하기</a>
                                         </div>
                                     </div>
                                 </div> 
-
-                                <div class="col-md-3 col-sm-4 pe-2 ps-2">
-                                    <div class="card d-block border-0 shadow-xss rounded-3 overflow-hidden mb-3 mt-0">
-                                        <div class="card-body d-block w-100 ps-3 pe-3 pb-4 text-center">
-                                            <figure class="avatar ms-auto me-auto mb-0 position-relative w65 z-index-1"><img src="https://via.placeholder.com/50x50.png" alt="image" class="float-right p-0 bg-white rounded-circle w-100 shadow-xss"></figure>
-                                            <div class="clearfix"></div>
-                                            <h4 class="fw-700 font-xsss mt-3 mb-1">Hurin Seary </h4>
-                                            <p class="fw-500 font-xsssss text-grey-500 mt-0 mb-3">@macale343</p>
-                                            <a href="#" class="mt-0 btn pt-2 pb-2 ps-3 pe-3 lh-24 ms-1 ls-3 d-inline-block rounded-xl bg-success font-xsssss fw-700 ls-lg text-white">ADD FRIEND</a>
-                                        </div>
-                                    </div>
-                                </div> 
-
-
-                                <div class="col-md-3 col-sm-4 pe-2 ps-2">
-                                    <div class="card d-block border-0 shadow-xss rounded-3 overflow-hidden mb-3 mt-0">
-                                        <div class="card-body d-block w-100 ps-3 pe-3 pb-4 text-center">
-                                            <figure class="avatar ms-auto me-auto mb-0 position-relative w65 z-index-1"><img src="https://via.placeholder.com/50x50.png" alt="image" class="float-right p-0 bg-white rounded-circle w-100 shadow-xss"></figure>
-                                            <div class="clearfix"></div>
-                                            <h4 class="fw-700 font-xsss mt-3 mb-1">Surfiya Zakir </h4>
-                                            <p class="fw-500 font-xsssss text-grey-500 mt-0 mb-3">@macale343</p>
-                                            <a href="#" class="mt-0 btn pt-2 pb-2 ps-3 pe-3 lh-24 ms-1 ls-3 d-inline-block rounded-xl bg-success font-xsssss fw-700 ls-lg text-white">ADD FRIEND</a>
-                                        </div>
-                                    </div>
-                                </div> 
-
-                                <div class="col-md-3 col-sm-4 pe-2 ps-2">
-                                    <div class="card d-block border-0 shadow-xss rounded-3 overflow-hidden mb-3 mt-0">
-                                        <div class="card-body d-block w-100 ps-3 pe-3 pb-4 text-center">
-                                            <figure class="avatar ms-auto me-auto mb-0 position-relative w65 z-index-1"><img src="https://via.placeholder.com/50x50.png" alt="image" class="float-right p-0 bg-white rounded-circle w-100 shadow-xss"></figure>
-                                            <div class="clearfix"></div>
-                                            <h4 class="fw-700 font-xsss mt-3 mb-1">Goria Coast </h4>
-                                            <p class="fw-500 font-xsssss text-grey-500 mt-0 mb-3">@macale343</p>
-                                            <a href="#" class="mt-0 btn pt-2 pb-2 ps-3 pe-3 lh-24 ms-1 ls-3 d-inline-block rounded-xl bg-success font-xsssss fw-700 ls-lg text-white">ADD FRIEND</a>
-                                        </div>
-                                    </div>
-                                </div>                                 
-
-                                <div class="col-md-3 col-sm-4 pe-2 ps-2">
-                                    <div class="card d-block border-0 shadow-xss rounded-3 overflow-hidden mb-3 mt-0">
-                                        <div class="card-body d-block w-100 ps-3 pe-3 pb-4 text-center">
-                                            <figure class="avatar ms-auto me-auto mb-0 position-relative w65 z-index-1"><img src="https://via.placeholder.com/50x50.png" alt="image" class="float-right p-0 bg-white rounded-circle w-100 shadow-xss"></figure>
-                                            <div class="clearfix"></div>
-                                            <h4 class="fw-700 font-xsss mt-3 mb-1">Hurin Seary </h4>
-                                            <p class="fw-500 font-xsssss text-grey-500 mt-0 mb-3">@macale343</p>
-                                            <a href="#" class="mt-0 btn pt-2 pb-2 ps-3 pe-3 lh-24 ms-1 ls-3 d-inline-block rounded-xl bg-success font-xsssss fw-700 ls-lg text-white">ADD FRIEND</a>
-                                        </div>
-                                    </div>
-                                </div> 
-
-                                <div class="col-md-3 col-sm-4 pe-2 ps-2">
-                                    <div class="card d-block border-0 shadow-xss rounded-3 overflow-hidden mb-3 mt-0">
-                                        <div class="card-body d-block w-100 ps-3 pe-3 pb-4 text-center">
-                                            <figure class="avatar ms-auto me-auto mb-0 position-relative w65 z-index-1"><img src="images/user-11.png" alt="image" class="float-right p-0 bg-white rounded-circle w-100 shadow-xss" style="opacity: 1;"></figure>
-                                            <div class="clearfix"></div>
-                                            <h4 class="fw-700 font-xsss mt-3 mb-1">Aliqa Macale </h4>
-                                            <p class="fw-500 font-xsssss text-grey-500 mt-0 mb-3">@macale343</p>
-                                            <a href="#" class="mt-0 btn pt-2 pb-2 ps-3 pe-3 lh-24 ms-1 ls-3 d-inline-block rounded-xl bg-success font-xsssss fw-700 ls-lg text-white">ADD FRIEND</a>
-                                        </div>
-                                    </div>
-                                </div> 
-                            </div>
+                            
+                            </div><!--요거가 묶는거 지움안댐-->
                         </div>               
                     </div>
                 </div>
@@ -406,6 +304,64 @@
             </div>            
         </div>
         <!-- main content -->
+        
+<script type="text/javascript">
+
+document.addEventListener('DOMContentLoaded', function() {
+	
+	$(document).ajaxSend(function(e, xhr, options) {
+		  xhr.setRequestHeader( "${_csrf.headerName}", "${_csrf.token}" );
+	  }); 
+
+	
+	$(".gochatroom").click(function(){	
+		//우선 값 넘기고 넘어온 결과값으로 만약 이미 만들어져 있는 채팅방이면 들어가고 아니면 생성하게 하기
+		var frienid=$(this).parent().prev().prev().html()
+		var nickname=$(this).parent().prev().prev().prev().html()
+		 
+		var obj={"friendid":frienid}
+		
+		console.log(nickname)
+		console.log(frienid)
+		$.ajax({
+			url:"<c:url value="/enterroom.do"/>",
+			method:"POST",
+			data:JSON.stringify(obj),
+			type:'json',
+			contentType:"application/json; charset=utf-8"
+		})
+		.done(function(data){
+			if(data == "list.do" ){
+				//검색기능 넣으면 param으로 넘길거 세팅하고 chat.do로 바꾸기! 
+				window.location.href="list.do";
+			}
+			else{			
+			
+				window.location.href="<c:url value='/createRoom.do?friendid="+frienid+"&nickname="+nickname+"'/>";	
+			}
+		}).
+		fail(function(jqXHR, textStatus, errorThrown){
+				console.log(jqXHR)
+		        console.log(textStatus)
+		        console.log(errorThrown);
+			}); 				
+	});
+
+	
+	
+
+
+
+});
+
+
+</script>        
+        
+        
+        
+        
+        
+        
 
         <!-- right chat -->
         <div class="right-chat nav-wrap mt-2 right-scroll-bar">

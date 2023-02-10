@@ -30,17 +30,26 @@ public class ChatServiceImpl implements ChatService<ChatDto> {
 		return allMsg;
 	}
 
+	//생성된 방인지 확인하기
 	@Override
-	public ChatDto selectOne(Map map) {
-		ChatDto oneno =dao.selectOne(map);
-		System.out.println("dao에서는?"+oneno);
-		return oneno;
+	public ChatDto selectOne(Map map) {		
+		System.out.println("uemail과 "+map);			
+		ChatDto oneno = dao.selectOne(map);	
+		System.out.println("생성된건지여부확인용"+dao.selectOne(map));		
+		return oneno ;
 	}
 
 	@Override
 	public int insert(Map map) {
 		int mno=dao.insertMsg(map);
-		System.out.println("메시지번호가 필요할 까?"+mno);
+		System.out.println("잘갔나확인"+mno);
+		return mno;
+	}
+	
+	@Override
+	public int insertNewRoom(Map map) {
+		int mno=dao.insertNewRoom(map);
+		System.out.println("생성된room번호"+mno);
 		return mno;
 	}
 

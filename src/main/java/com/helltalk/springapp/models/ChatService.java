@@ -18,4 +18,5 @@ List<T> selectList(Map map,HttpServletRequest req);
 
 	List<ChatDto> selectListMsg(Map map, HttpServletRequest req);
 
+	int insertNewRoom(Map map);
 }

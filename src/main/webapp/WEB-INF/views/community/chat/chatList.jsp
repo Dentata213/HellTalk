@@ -203,7 +203,8 @@
         <nav class="navigation scroll-bar">
             <div class="container ps-0 pe-0">
                 <div class="p-3 bg-white theme-dark-bg">
-                    <a href="#" class="bg-primary-gradiant p-3 w-100 btn-block border-0 rounded-3 text-white text-center fw-500 font-xsss"><i class="feather-edit me-2"></i> Find Friend</a>
+ 
+                    <a href="<c:url value="/findfriend.do"/>" class="bg-primary-gradiant p-3 w-100 btn-block border-0 rounded-3 text-white text-center fw-500 font-xsss"><i class="feather-edit me-2"></i> Find Friend</a>
                     <ul class="mt-3">
                         <li class="mt-1 mb-1"><a href="#" class="bg-white theme-dark-bg p-2 w-100 border-0 rounded-3 text-dark text-grey-900 text-left fw-600 font-xsss d-flex align-items-center"><i class="feather-mail font-md btn-round-sm me-2 p-0"></i> Inbox <span class="ms-auto font-xssss text-grey-500">233</span></a></li>
                         <li class="mt-1 mb-1"><a href="#" class="bg-white theme-dark-bg p-2 w-100 border-0 rounded-3 text-dark text-grey-600 text-left fw-600 font-xsss d-flex align-items-center"><i class="feather-star font-md btn-round-sm me-2 p-0"></i> Starred <span class="ms-auto font-xssss text-grey-500">1235</span></a></li>
@@ -323,14 +324,14 @@ document.addEventListener('DOMContentLoaded', function() {
                                             <div class="email-user">
                                                 <span class="btn-round-xss ms-0 bg-success me-2"></span>
                                                 <img src="https://via.placeholder.com/50x50.png" alt="user" class="w35 me-2">  
-                                                <h6 class="font-xs text-grey-900 text-grey-900 mb-0 mt-0 fw-700">여기 user2</h6>
+                                                <h6 class="font-xs text-grey-900 text-grey-900 mb-0 mt-0 fw-700">${chatroom.room_name}</h6>
                                             </div>
                                             <div class="email-subject text-grey-900 text-dark fw-600 font-xs">
                                                 <i class="feather-star font-m text-warning me-2"></i>
                                                		${chatroom.room_name}
                                             </div>
                                             <div class="email-text text-grey-500 fw-600 font-xss">
-                                              최신 메시지를여기다가 뿌려야하나
+                                                 최신 메시지를여기다가 뿌려야하나
                                             </div>
                                             <span class="email-file">
                                                 <i class="feather-paperclip font-s btn-round-sm text-grey-500 me-2 p-0"></i>
