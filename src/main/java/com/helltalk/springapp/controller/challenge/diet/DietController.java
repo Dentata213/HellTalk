@@ -73,7 +73,7 @@ public class DietController {
 		List<FoodDTO> selectListEatDinner= foodService.selectListEatDinner(map);
 		model.addAttribute("selectListEatDinner", selectListEatDinner);
 		
-		return "challenge/diet/Diet.helltalk";
+		return "challenge/diet/Diet";
 	}
 	
 	//음식 등록
@@ -245,7 +245,7 @@ public class DietController {
 		}
 		
 		//뷰 반환
-		return "challenge/diet/SelectFood.helltalk";
+		return "challenge/diet/SelectFood";
 	}
 	
 	//확인을 하면 eat테이블에 저장
