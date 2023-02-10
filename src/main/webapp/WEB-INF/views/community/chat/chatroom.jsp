@@ -15,8 +15,8 @@
 <div class="row">
 
 
-    <div class="col-lg-12 position-relative">
-     <div class="chat-wrapper pt-0 w-100 position-relative scroll-bar bg-white theme-dark-bg">
+    <div class="col-lg-12 position-relative" >
+     <div class="chat-wrapper pt-0 w-100 position-relative scroll-bar bg-white theme-dark-bg"  id="scroll" >
          <div  class="chat-body p-3 " >
              <div class="messages-content pb-5" >                                            
                
@@ -97,6 +97,8 @@
 			  xhr.setRequestHeader( "${_csrf.headerName}", "${_csrf.token}" );
 		});
 		
+
+			$('#scroll').scrollTop($('#scroll')[0].scrollHeight);
 	/*
 	채팅 테스트
 	웹소켓 주소를 ws://${pageContext.request.serverName}:${pageContext.request.serverPort}
@@ -145,11 +147,12 @@
 						+"<div class='message-wrap'>"+e.data+"</div></div>" );//서버로부터 받은 메시지를 div에 출력
 	
 		}
+		
 		function appendMessage(msg){  //이건 여러군데 사용해서 메소드로 뺀거
 			//$('#chatMessage').append(msg+"<br/>");
 			$('#chatMessage').append(msg);
-			$('#chatMessage').get(0).scrollTop = $('#chatMessage').get(0).scrollHeight;
-	
+		//	$('#scroll').get(0).scrollTop = $('#scroll').get(0).scrollHeight;
+			$('#scroll').scrollTop($('#scroll')[0].scrollHeight);
 			//get(0)이거 자바스크립트로 바꾸는거였지...scrollTop랑 .scrollHeight는 스크롤바를계속 올리는 공식임 
 		}
 		
@@ -175,8 +178,11 @@
 				$(this).val("");
 				//포커스 주기
 				$(this).focus();
-				$('#chatMessage').get(0).scrollTop = $('#chatMessage').get(0).scrollHeight;			
-			
+			//	$('#scroll').get(0).scrollTop = $('#scroll').get(0).scrollHeight;			
+				
+			$('#scroll').scrollTop($('#scroll')[0].scrollHeight);
+			console.log($('#scroll').get(0).scrollTop)
+				
 				console.log($('#sender').html())
 			var rno = ${roomno}
 				console.log(time)
@@ -224,8 +230,10 @@
 				appendMessage("연결이 끊어 졌어요");
 			};
 		});	
+	
 	 });	
 
+			
 </script>
     <script src="${path}/resources/js/plugin.js"></script>
     <script src="${path}/resources/js/scripts.js"></script>
