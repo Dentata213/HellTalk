@@ -87,7 +87,7 @@ public class ChatController {
 		dao.findAllchat(map);
 		model.addAttribute("chatList",chatList);
 		System.out.println("채팅방..."+model);
-		return "community/chat/chatList";
+		return "community/chat/chatList.helltalk";
 	}
 	
 	//친구찾기(검색기능-채팅방생성과 연결)
