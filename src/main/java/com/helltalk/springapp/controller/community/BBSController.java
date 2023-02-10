@@ -45,11 +45,11 @@ public class BBSController {
 	
 	//게시물 작성
 	@RequestMapping("/write")
-	public String write(@RequestParam("content") String content,Model model,HttpServletRequest req) throws Exception{
+	public String write(@RequestParam("content") String content,Model model,HttpServletRequest req, Authentication auth) throws Exception{
 		Map map = new HashMap();
 		HttpSession session = req.getSession();
-		//map.put("U_NO", session.getAttribute("U_NO"));
-		map.put("U_NO",2);
+		UserDetails authenticated=(UserDetails)auth.getPrincipal();
+		map.put("U_EMAIL",authenticated.getUsername());
 		map.put("P_CONTENT", content);
 		int a =service.insertBBS(map);
 		System.out.println("ㄴ리ㅏㅓㄴㅇㄹ="+a);

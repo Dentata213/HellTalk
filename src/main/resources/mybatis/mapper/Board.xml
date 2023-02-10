@@ -21,7 +21,7 @@
 		<selectKey resultType="int" keyProperty="P_NO" order="AFTER">
         	SELECT MAX(P_NO) FROM BBS 
     	</selectKey>
-		INSERT INTO BBS VALUES(SEQ_BBS.NEXTVAL,#{U_NO},'게시글종류',#{P_CONTENT},SYSDATE,null,null,0,0,
+		INSERT INTO BBS VALUES(SEQ_BBS.NEXTVAL,(SELECT U_NO FROM USERS WHERE U_EMAIL=#{U_EMAIL}),'게시글종류',#{P_CONTENT},SYSDATE,null,null,0,0,
 		<if test="img!=null">
 			#{img}
 		</if>
