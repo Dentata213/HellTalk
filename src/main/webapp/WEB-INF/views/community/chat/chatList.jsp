@@ -204,7 +204,7 @@
             <div class="container ps-0 pe-0">
                 <div class="p-3 bg-white theme-dark-bg">
  
-                    <a href="<c:url value="/findfriend.do"/>" class="bg-primary-gradiant p-3 w-100 btn-block border-0 rounded-3 text-white text-center fw-500 font-xsss"><i class="feather-edit me-2"></i> Find Friend</a>
+                    <a href="<c:url value="/findfriend.do"/>" class="bg-primary-gradiant p-3 w-100 btn-block border-0 rounded-3 text-white text-center fw-500 font-xsss"><i class="feather-edit me-2"></i>친구찾기!!!(검색기능 진행중..)</a>
                     <ul class="mt-3">
                         <li class="mt-1 mb-1"><a href="#" class="bg-white theme-dark-bg p-2 w-100 border-0 rounded-3 text-dark text-grey-900 text-left fw-600 font-xsss d-flex align-items-center"><i class="feather-mail font-md btn-round-sm me-2 p-0"></i> Inbox <span class="ms-auto font-xssss text-grey-500">233</span></a></li>
                         <li class="mt-1 mb-1"><a href="#" class="bg-white theme-dark-bg p-2 w-100 border-0 rounded-3 text-dark text-grey-600 text-left fw-600 font-xsss d-flex align-items-center"><i class="feather-star font-md btn-round-sm me-2 p-0"></i> Starred <span class="ms-auto font-xssss text-grey-500">1235</span></a></li>

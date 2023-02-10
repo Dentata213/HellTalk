@@ -275,7 +275,7 @@
                                             <input name="roomNo" class="roomNo" value="${friend.room_no}" hidden />
                                             <div class="clearfix"></div>
                                             <h4 class="fw-700 font-xsss mt-3 mb-1 nickname">${friend.u_nickname}</h4>
-                                            <p class="fw-500 font-xsssss text-grey-500 mt-0 mb-3 uemail" >${freind.u_email}</p>                      
+                                            <p class="fw-500 font-xsssss text-grey-500 mt-0 mb-3 uemail">${friend.u_email}</p>                      
                                             <a href="#" class="mt-0 btn pt-2 pb-2 ps-3 pe-3 lh-24 ms-1 ls-3 d-inline-block rounded-xl bg-success font-xsssss fw-700 ls-lg text-white">친구추가</a>
                                             <a href="#" class="mt-0 btn pt-2 pb-2 ps-3 pe-3 lh-24 ms-1 ls-3 d-inline-block rounded-xl bg-success font-xsssss fw-700 ls-lg text-white"><span class="gochatroom">채팅하기</span></a>
                                         </div>
@@ -310,7 +310,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 	
 	$(document).ajaxSend(function(e, xhr, options) {
-		  xhr.setRequestHeader( "${_csrf.headerName}", "${_csrf.token}" );
+		  xhr.setRequestHeader("${_csrf.headerName}","${_csrf.token}" );
 	  }); 
 
 	
@@ -331,14 +331,16 @@ document.addEventListener('DOMContentLoaded', function() {
 			contentType:"application/json; charset=utf-8"
 		})
 		.done(function(data){
-			if(data == "list.do" ){
+			if(data == "True" ){
 				//검색기능 넣으면 param으로 넘길거 세팅하고 chat.do로 바꾸기! 
 				window.location.href="list.do";
 			}
-			else{			
+			else if(data == "null"){			
 			
 				window.location.href="<c:url value='/createRoom.do?friendid="+frienid+"&nickname="+nickname+"'/>";	
 			}
+			else {console.log("뭔가실패!!")} 
+				
 		}).
 		fail(function(jqXHR, textStatus, errorThrown){
 				console.log(jqXHR)

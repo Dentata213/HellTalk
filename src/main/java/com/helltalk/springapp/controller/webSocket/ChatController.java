@@ -130,18 +130,18 @@ public class ChatController {
 			Authentication auth) {
 		map.put("uemail",((UserDetails)auth.getPrincipal()).getUsername().toString());	
 		
-		String forwardUrl = null;
+		String isexist = null;
 		ChatDto dto =chatService.selectOne(map);
 		
 		if(dto==null){
-			forwardUrl="createRoom.do";
+			isexist="null";
 		}
 		
 		else {
 			
-			forwardUrl= "list.do" ;
+			isexist= "True" ;
 		}
-		return forwardUrl ;
+		return isexist ;
 	}
 	
 	//채팅내용저장하기 insert
