@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.helltalk.springapp.dao.ChatDao;
 import com.helltalk.springapp.models.ChatDto;
 import com.helltalk.springapp.models.ChatService;
 
@@ -30,6 +31,9 @@ public class ChatController {
 
 	@Autowired
 	public ChatService<ChatDto> chatService;
+	
+	@Autowired
+	public ChatDao dao;
 	
 	//채팅방으로 들어가기 ok
 	@RequestMapping("/chat.do")
@@ -76,41 +80,70 @@ public class ChatController {
 			Authentication auth ) {	
 		map.put("uemail",((UserDetails)auth.getPrincipal()).getUsername().toString());	
 		model.addAttribute("uemail",((UserDetails)auth.getPrincipal()).getUsername().toString());
-		List<ChatDto> chatList =chatService.selectList(map, req);		
+		List<ChatDto> chatList =chatService.selectList(map, req);
+		
+		
+		dao.findAllchat(map);
 		model.addAttribute("chatList",chatList);
-		System.out.println(model);
+		System.out.println("채팅방..."+model);
 		return "community/chat/chatList";
 	}
 	
-	/*
-	 방 생성하기()
-	 */
-	@RequestMapping("/createRoom.do")
-	@ResponseBody
-	public Map createRoom(@RequestBody HashMap map){
-	int newroom	= chatService.insert(map);
-		map.put("no", newroom);
-		System.out.println("방번호?:"+map);
-		return map;	
+	//친구찾기(검색기능-채팅방생성과 연결)
+	@RequestMapping("/findfriend.do")
+	public String findfreind() {
+		return "community/chat/findFriend.helltalk";
 	}
 	
-	//채팅방들어가기==> 이거 안 씀 삭제예정
+	
+	
+	// 방 생성하기(친구검색-> room_name은 친구id로? 친구 id,내id 넘기기)
+	@RequestMapping(value="/createRoom.do", method= {RequestMethod.GET, RequestMethod.POST})
+//	@ResponseBody
+	public String createRoom(
+			@RequestParam Map map,
+			Authentication auth){
+		map.put("uemail",((UserDetails)auth.getPrincipal()).getUsername().toString());
+		System.out.println("받아온맵"+map);
+		
+		chatService.insertNewRoom(map);
+		return "community/chat/chatList" ;	
+	}
+	
+	//생성된방인지 확인여부
 	@RequestMapping("/enterroom.do")
 	@ResponseBody
-	public String view(@RequestParam Map map,Model model) {
-		ChatDto roomno = chatService.selectOne(map);
-		System.out.println("no가져와!!"+roomno);
-		model.addAttribute("roomno",roomno);
-		return "community/chat/chat ";
+	public String view(
+			@RequestBody Map map,
+			Model model,
+			Authentication auth) {
+		map.put("uemail",((UserDetails)auth.getPrincipal()).getUsername().toString());	
+		
+		String forwardUrl = null;
+		ChatDto dto =chatService.selectOne(map);
+		
+		if(dto==null){
+			forwardUrl="createRoom.do";
+		}
+		
+		else {
+			
+			forwardUrl= "list.do" ;
+		}
+		return forwardUrl ;
 	}
 	
 	//채팅내용저장하기 insert
-	@PostMapping("/sendMag.do")
+	@RequestMapping("/sendMag.do")
 	@ResponseBody
-	public Map write(@RequestBody Map map) {
-		//이건 나중에 필요하면 map에 넣어서 쓰기
-		int mno=chatService.insert(map);
-//		map.put("mno", mno);
+	public Map write(
+			@RequestBody Map map,
+			Authentication auth) {
+		
+		map.put("uemail",((UserDetails)auth.getPrincipal()).getUsername().toString());	
+		System.out.println("채팅내용저장하기"+map);
+		int msg=chatService.insert(map);
+		
 		return map;
 	}
 		

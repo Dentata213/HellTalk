@@ -6,7 +6,8 @@
 <c:set var="today" value="<%=new Date() %>"/>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
- 
+ <meta name="_csrf" th:content="${_csrf.token}">
+<meta name="_csrf_header" th:content="${_csrf.headerName}">
   <!-- main content -->
  <div class="main-content right-chat-active">     
 <div class="middle-sidebar-bottom">
@@ -14,8 +15,8 @@
 <div class="row">
 
 
-    <div class="col-lg-12 position-relative">
-     <div class="chat-wrapper pt-0 w-100 position-relative scroll-bar bg-white theme-dark-bg">
+    <div class="col-lg-12 position-relative" >
+     <div class="chat-wrapper pt-0 w-100 position-relative scroll-bar bg-white theme-dark-bg"  id="scroll" >
          <div  class="chat-body p-3 " >
              <div class="messages-content pb-5" >                                            
                
@@ -23,26 +24,27 @@
             <c:forEach var="chatmsg" items="${chatList}" varStatus="loop">
         	<c:if test="${uemail != chatmsg.u_email}">
                  <div class="message-item"  >  <!-- 우선 요거가 다름 -->
+                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                  <input name="mno" class="mno" value="${chatmsg.mno}" hidden />
                      <div class="message-user" >
                          <div >           
-                             <h5>${chatmsg.u_nickname}</h5>
+                             <h5><span id="friend">${chatmsg.u_nickname}</span></h5>
                              <div class="time">${chatmsg.time}</div>
                          </div>
                      </div>
                      <div class="message-wrap" >${chatmsg.message}</div>
                  </div>
         	</c:if>      
-           	</c:forEach>     
-        
+           
  <!-- 여기가 보내는 메시지 -->
-        <c:forEach var="chatmsg" items="${chatList}" varStatus="loop">
+   
         <c:if test="${ uemail == chatmsg.u_email}">
          <div class="message-item outgoing-message" >   <!-- 우선 요거가 다름 -->
+         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
          <input name="mno" class="mno" value="${chatmsg.mno}" hidden />
              <div class="message-user">      
                  <div>
-                     <h5>${chatmsg.u_nickname}</h5>
+                     <h5><span id="sender">${chatmsg.u_nickname}</span></h5>
                      <div class="time">${chatmsg.time}</div>
                  </div>
              </div>
@@ -90,6 +92,13 @@
 
 <script>
 	 document.addEventListener('DOMContentLoaded', function() {
+		
+		 $(document).ajaxSend(function(e, xhr, options) {
+			  xhr.setRequestHeader( "${_csrf.headerName}", "${_csrf.token}" );
+		});
+		
+
+			$('#scroll').scrollTop($('#scroll')[0].scrollHeight);
 	/*
 	채팅 테스트
 	웹소켓 주소를 ws://${pageContext.request.serverName}:${pageContext.request.serverPort}
@@ -98,8 +107,11 @@
 	 */
 	//웹소켓 객체 저장용
 	var wsocket;
-	//닉 네임 저장용
-	var nickname;
+	//메시지 저장용
+	var message
+	//메시지 보낸 시간 저장용
+	var date = new Date().toTimeString().split(' ')[0];	
+	var time = date.split(':').slice(0,2).join(":").toString();
 	
 		if(true){  //페이지 이동하면 무조건 연결시킴
 			console.log(${roomno})
@@ -131,36 +143,77 @@
 			if(true)			
 				appendMessage(
 						"<div class='message-item'><div class='message-user'><div>"
-						+"<h5>"+"상대방이름"+"</h5><div class='time'>"+"상대방시간"+"</div></div></div>"
+						+"<h5>"+$('#friend').html()+"</h5><div class='time'>"+time+"</div></div></div>"
 						+"<div class='message-wrap'>"+e.data+"</div></div>" );//서버로부터 받은 메시지를 div에 출력
-			}
+	
+		}
+		
 		function appendMessage(msg){  //이건 여러군데 사용해서 메소드로 뺀거
 			//$('#chatMessage').append(msg+"<br/>");
 			$('#chatMessage').append(msg);
-			$('#chatMessage').get(0).scrollTop = $('#chatMessage').get(0).scrollHeight;
-	
+		//	$('#scroll').get(0).scrollTop = $('#scroll').get(0).scrollHeight;
+			$('#scroll').scrollTop($('#scroll')[0].scrollHeight);
 			//get(0)이거 자바스크립트로 바꾸는거였지...scrollTop랑 .scrollHeight는 스크롤바를계속 올리는 공식임 
 		}
 		
+	
 		
 		//메시지 보낼 때 (insert넣기!!)
 		$('#message').on('keypress',function(e){
-			console.log('keypress이벤트 발생:',e.keyCode);
+			console.log('keypress이벤트 발생:',e.keyCode);$(document).ajaxSend(function(e, xhr, options) {
+				  xhr.setRequestHeader( "${_csrf.headerName}", "${_csrf.token}" );
+			});
+			
 			if(e.keyCode===13){//엔터 입력
 				//서버로 메시지 전송 요건 그냥 두고
 				wsocket.send(	
-						$(this).val());
+					message	= $(this).val());  
 				//DIV(대화영역)에 메시지 출력			        
 				appendMessage(  //여기를 변수처리하자!
 						"<div class='message-item outgoing-message'><div class='message-user'><div>"
-						+"<h5>"+"여긴내 정보"+"</h5>"+
-						"<div class='time'>"+"내가보낸시간"+"</div></div></div><div class='message-wrap'>"
+						+"<h5>"+$('#sender').html()+"</h5>"+
+						"<div class='time'>"+time+"</div></div></div><div class='message-wrap'>"
 						+$(this).val()+"</div></div>" );
 				//기존 메시지 클리어		
 				$(this).val("");
 				//포커스 주기
 				$(this).focus();
-				$('#chatMessage').get(0).scrollTop = $('#chatMessage').get(0).scrollHeight;			
+			//	$('#scroll').get(0).scrollTop = $('#scroll').get(0).scrollHeight;			
+				
+			$('#scroll').scrollTop($('#scroll')[0].scrollHeight);
+			console.log($('#scroll').get(0).scrollTop)
+				
+				console.log($('#sender').html())
+			var rno = ${roomno}
+				console.log(time)
+				
+				
+			var me = {
+					"message": message,
+					"time" : time,
+					"roomno": ${roomno},
+				//	"${_csrf.parameterName}":"${_csrf.token}"
+					}
+			var msg = JSON.stringify(me);
+			
+			//전송한 메시지 db에 저장하기
+				$.ajax({
+					url:"<c:url value="/sendMag.do"/>",
+					method:"POST",
+					data:msg,
+					contentType:"application/json; charset=utf-8"
+				})
+				.done(function(data){
+				 
+				 	console.log(data)
+				})
+				.fail(function(jqXHR, textStatus, errorThrown){
+      				console.log(jqXHR)
+      		        console.log(textStatus)
+      		        console.log(errorThrown);
+    			}); 
+			
+			
 			}				
 		})	
 		
@@ -171,14 +224,16 @@
 		})
 		//퇴장버튼 클릭 시
 		$('#exitBtn').on('click',function(){
-			wsocket.send('msg:'+nickname+'가(이) 퇴장했어요');
+			wsocket.send('상대방이 퇴장했어요');
 			wsocket.close();
 			wsocket.onclose=function(){
 				appendMessage("연결이 끊어 졌어요");
 			};
 		});	
+	
 	 });	
 
+			
 </script>
     <script src="${path}/resources/js/plugin.js"></script>
     <script src="${path}/resources/js/scripts.js"></script>

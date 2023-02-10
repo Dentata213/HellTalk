@@ -139,13 +139,14 @@
                                 <input type="Password" class="style2-input ps-5 form-control text-grey-900 font-xss ls-3" placeholder="비밀번호 입력" name="pwd">
                                 <i class="font-sm ti-lock text-grey-500 pe-0"></i>
                             </div>
+                        
                             <div class="form-check text-left mb-3">
                                 <input type="checkbox" class="form-check-input mt-2" id="exampleCheck1">
                                 <label class="form-check-label font-xsss text-grey-500" for="exampleCheck1">아이디 저장</label>
                                 <a href="forgot.html" class="fw-600 font-xsss text-grey-700 mt-1 float-right">비밀번호를 있으셨나요?</a>
                             </div>
                            <button class="custom-btn btn-5" type="submit"><span>로그인</span></button>
-                        
+                         </form>
                          
                         <div class="col-sm-12 p-0 text-left">
                             <h6 class="text-grey-500 font-xsss fw-500 mt-0 mb-0 lh-32">계정이 아직 없으신가요? <a href="<c:url value="/member/CreateUser.do"/>" class="fw-700 ms-1">회원가입</a></h6>
@@ -164,7 +165,7 @@
                             <div class="form-group mb-1"><a href="#" class="form-control text-left style2-input text-white fw-600 bg-facebook border-0 p-0 mb-2"><img src="${path}/resources/images/icon-1.png" alt="icon" class="ms-2 w40 mb-1 me-5"> Sign in with Google</a></div>
                             <div class="form-group mb-1"><a href="#" class="form-control text-left style2-input text-white fw-600 bg-twiiter border-0 p-0 "><img src="${path}/resources/images/icon-3.png" alt="icon" class="ms-2 w40 mb-1 me-5"> Sign in with Facebook</a></div>
                         </div>
-                        </form>
+                        
                     </div>
                      
                 </div> 

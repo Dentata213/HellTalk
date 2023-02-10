@@ -2,6 +2,7 @@ package com.helltalk.springapp.models;
 
 import java.util.List;
 import java.util.Map;
+import com.helltalk.springapp.service.MemberDTO;
 
 public interface MemberService<T> {
 	
@@ -21,7 +22,7 @@ public interface MemberService<T> {
 	
 	//회원가입(소셜 로그인 전용)
 	int insertSoicalUser(Map map);
-	
+	MemberDTO soicalOne(String username);
 	
 	
 }

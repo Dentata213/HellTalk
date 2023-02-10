@@ -172,6 +172,8 @@
 		                           	<c:if test="${id != null}">
 			                            <input type="hidden" name="u_email" value="${email}">
 			                            <input type="hidden" name="u_nickname" value="${nickname}">
+			                            <input type="hidden" name="u_pwd" value="${id}">
+			                            <input type="hidden" name="u_soical" value="soical">
 		                            </c:if>
 		                            <input type="hidden" name="u_kakao" value="${id}">
 		                    		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

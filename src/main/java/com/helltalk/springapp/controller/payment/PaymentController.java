@@ -3,8 +3,11 @@ package com.helltalk.springapp.controller.payment;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Vector;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,6 +17,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,8 +27,13 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.helltalk.springapp.models.PaidDTO;
 import com.helltalk.springapp.models.PaymentDTO;
 import com.helltalk.springapp.service.PaymentServiceImpl;
+import com.siot.IamportRestClient.IamportClient;
+import com.siot.IamportRestClient.exception.IamportResponseException;
+import com.siot.IamportRestClient.response.IamportResponse;
+import com.siot.IamportRestClient.response.Payment;
 
 @Controller
 @RequestMapping("/payment")
@@ -34,11 +43,31 @@ public class PaymentController {
 	private String application_id;
 	@Value("${private_key}")//properties 설정한 private_key 가져오기
 	private String private_key;
+	
+	
+	private IamportClient api;
 
 	@Autowired
 	private RestTemplate restTemplate;
 	@Autowired
 	private PaymentServiceImpl service;
+	
+	
+	public PaymentController() {
+    	// REST API , REST API secret 
+		this.api = new IamportClient("8227160814101237","dZjeciN091QASwnLXi6NpOch3z1HFFgeJlYuzCz8vciOaVjYYnbYxuQichYS8V5N9aKeqLHfJxoBmTKm");
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/verifyIamport/{imp_uid}")
+	public IamportResponse<Payment> paymentByImpUid(
+			Model model
+			, Locale locale
+			, HttpSession session
+			, @PathVariable(value= "imp_uid") String imp_uid) throws IamportResponseException, IOException{	
+			
+		return api.paymentByImpUid(imp_uid);
+	}
 	
 	
 	@RequestMapping("/mycart")

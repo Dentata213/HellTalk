@@ -2,7 +2,7 @@ package com.helltalk.springapp.service;
 
 import java.sql.Date;
 
-public class MemberDTO {
+public class MemberDTO{
 
 	private int u_no;
 	private String u_id;
