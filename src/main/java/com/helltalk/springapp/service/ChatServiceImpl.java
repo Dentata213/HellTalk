@@ -67,7 +67,15 @@ public class ChatServiceImpl implements ChatService<ChatDto> {
 		return 0;
 	}
 
-	
+	@Override
+	public List<ChatDto> findfriend(Map map) {
+		List members = dao.findAllMember(map);
+		
+		for(int i=0 ; i<members.size();i++) {
+			System.out.println(members.get(i));
+		}
+		return members;
+	}
 	
 
 }

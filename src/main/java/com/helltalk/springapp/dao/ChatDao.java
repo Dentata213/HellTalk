@@ -54,4 +54,8 @@ public class ChatDao {
 		return template.selectOne("findNickbyemail",map);
 	}
 	
+	public List findAllMember(Map map) {
+		return template.selectList("findAllMember",map);
+	}
+	
 }

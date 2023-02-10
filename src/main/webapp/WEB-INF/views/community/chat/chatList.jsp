@@ -311,9 +311,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     </li>
                                    
                                    
-                                   
-                                   
-                                   
+                                  
                                    
                                    
                                 <c:forEach var="chatroom" items="${chatList}" varStatus="loop">	  

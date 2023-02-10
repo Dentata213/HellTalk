@@ -54,10 +54,10 @@
         </c:if>      
         </c:forEach> 
                  
-		<div class="container">
-	 		<div class="message-user"> 
-              <div class="clearfix" id="chatMessage"></div>
-            </div>
+		<div class="container" id="chatMessage">
+	 	
+            
+          
         </div>
 		
              </div>
@@ -115,6 +115,7 @@
 	
 		if(true){  //페이지 이동하면 무조건 연결시킴
 			console.log(${roomno})
+			console.log(${chatList})
 			wsocket = new WebSocket("ws://${pageContext.request.serverName}:${pageContext.request.serverPort}<c:url value="/chating.do?roomno=${roomno}"/>"); //wss 는 보안이 강화된것 얘는 443포트를 사용
 			console.log('wsocket:',wsocket);
 			//서버와 연결된 웹 소켓에 이벤트 등록(함수들은 밑으로 다 빼놓음)
@@ -132,7 +133,7 @@
 		function open(){
 			//send랑 appendMessage랑 뭐가 다른거지
 			//send에 입력된건 상대방에게 보여지는 메시지 , append는 나한테 보여지는 메시지!
-			wsocket.send('입장했어요');  //이건 안되네
+	//		wsocket.send('입장했어요');  //이건 안되네
 			appendMessage("여기까지 읽었습니다."); //이건 굳이 사용 안할 것 같지만 혹시모르니 남겨두자
 		
 		}
@@ -181,9 +182,7 @@
 			//	$('#scroll').get(0).scrollTop = $('#scroll').get(0).scrollHeight;			
 				
 			$('#scroll').scrollTop($('#scroll')[0].scrollHeight);
-			console.log($('#scroll').get(0).scrollTop)
 				
-				console.log($('#sender').html())
 			var rno = ${roomno}
 				console.log(time)
 				
@@ -224,7 +223,7 @@
 		})
 		//퇴장버튼 클릭 시
 		$('#exitBtn').on('click',function(){
-			wsocket.send('상대방이 퇴장했어요');
+	//		wsocket.send('상대방이 퇴장했어요');
 			wsocket.close();
 			wsocket.onclose=function(){
 				appendMessage("연결이 끊어 졌어요");
