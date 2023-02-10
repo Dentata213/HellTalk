@@ -76,11 +76,12 @@ public class MemberController {
 		String email = (String) map.put("u_email", flashMap.get("u_email"));
 		String nickname =(String)map.put("nickname", flashMap.get("nickname"));
 		String id =(String)map.put("id", flashMap.get("id"));
-		
 		int affectedEm = service.emailCheck(map);
 			if(affectedEm == 0) {
-				model.addAttribute("nickname",email);
-				model.addAttribute("email",nickname);
+				
+				
+				model.addAttribute("nickname",nickname);
+				model.addAttribute("email",email);
 				model.addAttribute("id",id);
 				PrintWriter w = response.getWriter();
 				response.setContentType("text/html; charset=utf-8");
@@ -98,7 +99,7 @@ public class MemberController {
 					userDetails.getPassword(),
 					userDetails.getAuthorities());
 			        SecurityContextHolder.getContext().setAuthentication(authentication);
-					return "redirect:/";
+					return "home";
 					
 				
 				}
