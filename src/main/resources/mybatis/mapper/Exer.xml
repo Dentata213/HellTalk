@@ -67,10 +67,17 @@
 	
 	<!-- 데이루틴 select -->
 	<select id="selectDayRoutine" parameterType="Map" resultType="ExerciseDTO">
-		select dr.day,e.e_no,el_dayno,el_time,el_totalkcal,e_name,e_kcal,e_description,e_url from dayroutine dr
-		join exerciselist el on dr.dr_no=el.dr_no
-		JOIN exercise e on el.e_no=e.e_no
-		where dr.rout_no=${rout_no}
+		select dr_no,d.rout_no,day,u_no,rout_name,rout_content,rout_level,rout_effect,rout_gender,rout_time,rout_mode,rout_display from dayroutine d 
+		join routine r on d.rout_no=r.rout_no
+		WHERE d.rout_no=${rout_no}
+	</select>
+	
+	<select id="selectExerList" parameterType="Map" resultType="ExerciseDTO">
+		SELECT day,el_dayno,el_totalkcal,e_name,e_equipment,e_kcal,e_count,e_description,e_url,el_time from exerciselist el
+		JOIN exercise e on e.e_no=el.e_no
+		JOIN dayroutine d on d.dr_no=el.dr_no
+		WHERE el.dr_no=${dr_no}
+	
 	</select>
 	
 	

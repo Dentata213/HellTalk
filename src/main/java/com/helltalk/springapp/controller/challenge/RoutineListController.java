@@ -40,8 +40,7 @@ public class RoutineListController {
 		List<Map> recommendRoutList= exerService.selectRoutine(map);
 		System.out.println("recommendRoutList"+recommendRoutList);
 		
-		
-		
+				
 		//map에 담긴 값 확인
 		/*
 		Set keys= map.keySet();

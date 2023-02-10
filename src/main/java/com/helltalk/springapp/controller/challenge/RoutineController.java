@@ -70,7 +70,7 @@ public class RoutineController {
 			for(int k=1;k<=3;k++) {
 				//운동당 시간
 				if(!map.get("selecBox"+i+"_"+k).toString().equals("운동 선택")) {
-					map.put("e_no",map.get("selecBox"+i+"_1"));
+					map.put("e_no",map.get("selecBox"+i+"_"+k));
 					map.put("el_dayno", k);
 					map.put("el_time", Integer.parseInt(map.get("time"+i+"_"+k).toString()));
 					System.out.println("map.get(\"e_no\")"+map.get("e_no"));

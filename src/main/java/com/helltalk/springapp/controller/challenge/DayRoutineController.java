@@ -28,13 +28,8 @@ public class DayRoutineController {
 	public List<ExerciseDTO> exercise(@RequestParam Map map) {
 		List<ExerciseDTO> listDayRoutine;
 		System.out.println("dayroutine컨트롤러");
-		//test
-		int rout_no=1;
-		map.put("rout_no", rout_no);
-		//System.out.println("map.get(\"rout_no\")"+map.get("rout_no"));
-		//int rout_no=Integer.parseInt((String) map.get("rout_no"));
 
-		System.out.println("rout_no"+rout_no);
+		System.out.println("map.get(\"rout_no\")"+map.get("rout_no"));
 		listDayRoutine= exerService.selectDayRoutine(map);
 		
 		for(int i=0;i<listDayRoutine.size();i++) {
@@ -44,6 +39,25 @@ public class DayRoutineController {
 		
 
 		return listDayRoutine;
+		
+	}
+	
+	@RequestMapping(value="/dayExercise.do")
+	@CrossOrigin(origins = "*", methods = RequestMethod.POST) 	
+	public List<ExerciseDTO> dayExercise(@RequestParam Map map) {
+		List<ExerciseDTO> listDayExer;
+		System.out.println("dayroutine컨트롤러");
+
+		//System.out.println("map.get(\"rout_no\")"+map.get("rout_no"));
+		listDayExer= exerService.selectExerList(map);
+		
+		for(int i=0;i<listDayExer.size();i++) {
+			System.out.println("listDayExer.get(i).toString() "+listDayExer.get(i).toString());
+		}
+		
+		
+
+		return listDayExer;
 		
 	}
 	

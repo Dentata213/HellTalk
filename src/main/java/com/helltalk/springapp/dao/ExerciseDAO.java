@@ -82,4 +82,9 @@ public class ExerciseDAO {
 		return listDayRoutine;
 	}
 
+	public List<ExerciseDTO> selectExerList(Map map) {
+		List<ExerciseDTO> listDayExer= template.selectList("selectExerList",map);
+		return listDayExer;
+	}
+
 }

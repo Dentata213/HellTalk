@@ -107,7 +107,7 @@ legend{
 }  
 
 .show {
-	display:table-row;
+	display:table-row!important;
 }  
 
 .item{
