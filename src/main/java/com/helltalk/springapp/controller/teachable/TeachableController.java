@@ -3,6 +3,7 @@ package com.helltalk.springapp.controller.teachable;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,14 +16,33 @@ public class TeachableController {
 	
 	@RequestMapping("/aiFitnessTrainer.do")
 	public String Main(@RequestParam Map map, HttpServletRequest req, Model model) throws Exception{
-		
 		//뷰 반환
-		return "/teachable/AiFitnessTrainer";
+		return "/teachable/AiFitnessTrainer.helltalk";
+	}
+	
+	//스쿼트
+	@RequestMapping("/Squat.do")
+	public String Squat(@RequestParam Map map, HttpServletRequest req, Model model) throws Exception {
+		//뷰 반환
+		return "/teachable/Squat.helltalk";
+	}
+	
+	//런지
+	@RequestMapping("/Lunge.do")
+	public String Lunge(@RequestParam Map map, HttpServletRequest req, Model model) throws Exception {
+		//뷰 반환
+		return "/teachable/Lunge";
+	}
+	
+	//버피
+	@RequestMapping("/Burpee.do")
+	public String Burpee(@RequestParam Map map, HttpServletRequest req, Model model) throws Exception {
+		//뷰 반환
+		return "/teachable/Burpee";
 	}
 	
 	@RequestMapping("/gameResult.do")
 	public String gameResult(@RequestParam Map map, HttpServletRequest req, Model model) throws Exception {
-		
 		//뷰 반환
 		return "/teachable/ResultPage";
 	}

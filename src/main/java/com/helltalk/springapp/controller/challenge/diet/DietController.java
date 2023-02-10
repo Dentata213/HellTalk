@@ -73,7 +73,7 @@ public class DietController {
 		List<FoodDTO> selectListEatDinner= foodService.selectListEatDinner(map);
 		model.addAttribute("selectListEatDinner", selectListEatDinner);
 		
-		return "challenge/diet/Diet";
+		return "challenge/diet/Diet.helltalk";
 	}
 	
 	//음식 등록
@@ -102,9 +102,6 @@ public class DietController {
 		else if(dinner != null) {
 			HttpSession session = req.getSession();
 			session.setAttribute("dinner", dinner);
-		}
-		else {
-			System.out.println("아점저 안 넘어옴");
 		}
 		
 		//d_date 저장
@@ -248,7 +245,7 @@ public class DietController {
 		}
 		
 		//뷰 반환
-		return "challenge/diet/SelectFood";
+		return "challenge/diet/SelectFood.helltalk";
 	}
 	
 	//확인을 하면 eat테이블에 저장
@@ -328,7 +325,7 @@ public class DietController {
 	  	List<FoodDTO> selectListEatDinner= foodService.selectListEatDinner(map);
 	  	model.addAttribute("selectListEatDinner", selectListEatDinner);
 	    
-		return "challenge/diet/Diet";
+		return "challenge/diet/Diet.helltalk";
 	}
 
 }
