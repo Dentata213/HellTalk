@@ -177,6 +177,11 @@
 
     window.addEventListener('DOMContentLoaded',function(){
     	
+    	$(document).ajaxSend(function(e, xhr, options) {
+   		  xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}" );
+ 		});
+    	
+    	
     	//우편번호 검색함수
         $('#sample4_detailAddress').click(function postCode() {
             new daum.Postcode({
@@ -205,8 +210,7 @@
 
                     // 우편번호와 주소 정보를 해당 필드에 넣는다.
                     document.getElementById('sample4_postcode').value = data.zonecode;
-                    document.getElementById("sample4_roadAddress").value = roadAddr;
-                    
+                    document.getElementById("sample4_roadAddress").value = roadAddr;                    
                   
                 }
             }).open();
@@ -233,9 +237,7 @@
         IMP.init("imp11666322");        
 
         $('#iamport').on('click',function(e, xhr, options){    
-        	            
-           
-            
+   
 			var pay = parseInt($('#totalprice').text())
             IMP.request_pay({
                 pg: "html5_inicis",
@@ -246,16 +248,18 @@
                 buyer_email: "kunhyo204@nate.com",
                 buyer_name: "홍길동",
                 buyer_tel: "010-4242-4242",
-                buyer_addr: "서울특별시 강남구 신사동"
-            },function (rsp,xhr) { // callback
-            	  
-            	 xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+                buyer_addr: "서울특별시 강남구 신사동",
                 
+            },function (rsp,xhr) { // callback            	  
+            	console.log('rsp.paid_amount값 :'+ rsp.paid_amount)
 	            if (rsp.success) {
 	                // 결제 성공 시 로직
 	                // jQuery로 HTTP 요청
+	               	console.log('rsp.success 들어옴')
+	               	console.log('rsp.imp_uid값 :'+ rsp.imp_uid)
+	               	console.log('rsp.merchant_uid값 :'+ rsp.merchant_uid)
 	                jQuery.ajax({
-	                	url : "<c:url value="/payment/verifyIamport/ + rsp.imp_uid"/>", 
+	                	url : '<c:url value="/payment/verifyIamport/ + rsp.imp_uid"/>', 
 	                    method: "POST",
 	                    headers: { "Content-Type": "application/json" },
 	                    data: {
@@ -264,9 +268,9 @@
 	                    }
 	                }).done(function (data) {
 	                // 가맹점 서버 결제 API 성공시 로직
+	                	console.log('성공함수 데이타 들어옴')
 	                	console.log(data);
-	    	        	
-	                	
+	    	        		                	
 	    	        	// 위의 rsp.paid_amount 와 data.response.amount를 비교한후 로직 실행 (import 서버검증)
 	    	        	if(rsp.paid_amount == data.response.amount){
 	    	        		var msg = '결제가 완료되었습니다.';
