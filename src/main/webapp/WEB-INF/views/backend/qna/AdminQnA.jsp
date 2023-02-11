@@ -67,12 +67,13 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="${path}assets/js/config.js"></script>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <meta name="_csrf" th:content="${_csrf.token}">
   </head>
 
   <body>
     <!-- Layout wrapper -->
-    <meta name="_csrf_header" th:content="${_csrf.headerName}">
-    <meta name="_csrf" th:content="${_csrf.token}">
+    
     <div class="layout-wrapper layout-content-navbar layout-without-menu">
       <div class="layout-container">
         <!-- Layout container -->
@@ -162,26 +163,87 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-    
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- ajax로 컨텐츠 로드해보기 -->
     <script type="text/javascript">
     	$(".no").click(function(e){
-    		var no=e.target.parentElement.attr('id');
-    		console.log(no);
-    		var header = $("meta[name='_csrf_header']").attr('content');
-    		var token = $("meta[name='_csrf']").attr('content');
-    		
-    		$.ajax({
-	        	url:"<c:url value='/backend/answerQnA'/>",
-	        	type:'post',
-	        	data:{"no":no},
-	        	beforeSend: function(xhr){
-	        		xhr.setRequestHeader(header, token);
-	        	},	       	
-	        }).done(function(data){
-	        	console.log('구글서버로부터 받은 데이타:',data);
-	        });
+    		console.log(e.target.nodeName);
+    		if(e.target.nodeName=="TD"){
+	    		console.log(e.target.parentElement)
+	    		var no=(e.target.parentElement).id;
+	    		console.log(no);
+	    		//var header = $("meta[name='_csrf_header']").attr('content');
+	    		//var token = $("meta[name='_csrf']").attr('content');
+	    		
+	    		$.ajax({
+		        	url:"<c:url value='/backend/answerQnA'/>",
+		        	type:'post',
+		        	data:'no='+no,
+		        	dataType:'text',
+		        	/*
+		        	beforeSend: function(xhr){
+		        		xhr.setRequestHeader(header, token);
+		        	},	 
+		        	*/      	
+		        }).done(function(data){
+		        	console.log(' 받은 데이타:',data);
+		        });
+    		}
     	});
+    	
+    	
+ 
+      	$('.dropdown-item').on('click',function(e){
+
+      		var number = this.parentElement.parentElement.parentElement.parentElement.id;
+      		console.log('number='+number);
+      		
+      		var status;
+      		if(e.target.innerText.trim()=='Edit'){
+    			status="수정";
+      		}else if(e.target.innerText.trim()=='Delete'){
+      			status="삭제";
+      		}
+      		const swalWithBootstrapButtons = Swal.mixin({
+    	  		  customClass: {
+    	  		    confirmButton: 'btn btn-success',
+    	  		    cancelButton: 'btn btn-danger'
+    	  		  },
+    	  		  buttonsStyling: false
+    	  		})
+    	
+    	  		swalWithBootstrapButtons.fire({
+    	  		  title: '해당 Q&A를 '+status+' 하시겠습니까?',
+    	  		  icon: 'warning',
+    	  		  showCancelButton: true,
+    	  		  confirmButtonText: status, 
+    	  		  cancelButtonText: '취소',
+    	  		  reverseButtons: true,
+    	  		  allowOutsideClick: false
+    	  		}).then((result) => {
+    	  		  if (result.isConfirmed) {
+    				$.ajax({
+    					url:'<c:url value="/backend/updateQnA"/>',
+    					data:'number='+number+'&status='+status,
+    					dataType:'text'
+    				}).done(function(data){
+    					e.target.remove(number);
+    					console.log(data);
+    				})
+
+    	  		  } else if (
+    	  		    /* Read more about handling dismissals below */
+    	  		    result.dismiss === Swal.DismissReason.cancel
+    	  		  ) {
+    	  		    swalWithBootstrapButtons.fire(
+    	  		      '',
+    	  		      '취소되었습니다',
+    	  		      'error'
+    	  		    )
+    	  		  }
+    	  		})
+
+      	})
     </script>
   </body>
 </html>

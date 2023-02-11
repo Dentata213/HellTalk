@@ -73,6 +73,10 @@ public class BackendDAO {
 		return template.selectOne("selectOneQnA",map);
 	}
 
+	public void deleteQnA(int number) {
+		template.delete("deleteOneQnA",number);
+	}
+
 	
 	
 

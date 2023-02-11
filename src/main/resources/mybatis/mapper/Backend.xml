@@ -75,4 +75,7 @@
 	<select id="selectOneQnA" parameterType="Map" resultType="QnADTO">
 		SELECT * FROM QNA WHERE Q_NO=#{no}
 	</select>
+	<delete id="deleteOneQnA" parameterType="int">
+		DELETE QNA WHERE Q_NO=#{number}
+	</delete>
 </mapper>

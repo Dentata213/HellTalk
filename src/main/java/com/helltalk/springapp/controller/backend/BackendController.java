@@ -154,11 +154,19 @@ public class BackendController {
 	}
 	
 	@RequestMapping(value="/answerQnA",method = {RequestMethod.GET,RequestMethod.POST})
-	public QnADto answerQnA(@RequestParam int no,Authentication auth) {
+	public QnADto answerQnA(@RequestParam int no) {
 		Map map = new HashMap<>();
 		map.put("no", no);
 		QnADto dto = new QnADto();
 		dto=service.selectOneQnA(map);
 		return dto;
+	}
+	@RequestMapping(value="/updateQnA",method = {RequestMethod.GET})
+	public void deleteQnA(@RequestParam int number,@RequestParam String status) {
+		if(status.equals("삭제")) {
+			service.deleteQnA(number);
+		}else {
+			
+		}
 	}
 }

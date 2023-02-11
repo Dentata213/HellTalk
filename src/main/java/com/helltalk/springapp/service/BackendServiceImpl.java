@@ -140,6 +140,10 @@ public class BackendServiceImpl implements BackendService{
 		return dao.selectOneQnA(map);
 		
 	}
+
+	public void deleteQnA(int number) {
+		dao.deleteQnA(number);
+	}
 	
 	
 }

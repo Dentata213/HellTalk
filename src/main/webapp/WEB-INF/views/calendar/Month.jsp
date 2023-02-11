@@ -12,27 +12,20 @@
 <script src="https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js"></script>
 
 <style>
-
   body {
-    margin: 40px 10px;
-    padding: 0;
+  
+    background-color: gray !important;
     font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
     font-size: 14px;
   }
-
   #calendar {
+    
     max-width: 1100px;
     margin: 0 auto;
   }
   
-  /*사이드추가*/
-    body {
-    margin-top: 40px;
-    font-size: 14px;
-    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-  }
-
   #external-events {
+
     position: fixed;
     left: 20px;
     top: 100px;
@@ -42,33 +35,27 @@
     background: #eee;
     text-align: center;
   }
-
   #external-events h4 {
     font-size: 16px;
     margin-top: 0;
-    padding-top: 1em;
+    padding-top: 20px;
   }
-
   #external-events .fc-event {
     margin: 3px 0;
     cursor: move;
   }
-
   #external-events p {
     margin: 1.5em 0;
     font-size: 11px;
     color: #666;
   }
-
   #external-events p input {
     margin: 0;
     vertical-align: middle;
   }
-
   #calendar-wrap {
     margin-left: 100px;
   }
-
  .fc-event-time{
  	font-size: 0px;
  }
@@ -200,13 +187,11 @@
 <script src='${path}/resources/fullcalendar-5.11.3/lib/main.js'></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-
   $(document).ajaxSend(function(e, xhr, options) {
 	  xhr.setRequestHeader( "${_csrf.headerName}", "${_csrf.token}" );
   }); 
 	  
     var calendarEl = document.getElementById('calendar');
-
     var calendar = new FullCalendar.Calendar(calendarEl, {
     	nowIndicator: true,
     	initialView: 'dayGridMonth',
@@ -224,7 +209,6 @@ document.addEventListener('DOMContentLoaded', function() {
       
       
       eventClick: function() {
-
     	  //닫기 누르면 새로고침 해줘야 함...
     		$(document).on('click','#viewModalClose',function(){
     			location.reload();  			
@@ -259,7 +243,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			}).fail(function(error){
 				console.log('글조회오류!!');
 			});		   			
-    })   	      	            	        
+    	})   	      	            	        
         	$('#calendarModalView').modal('show');    
     	  
         }, 
@@ -357,7 +341,6 @@ document.addEventListener('DOMContentLoaded', function() {
               		        console.log(textStatus)
               		        console.log(errorThrown);
             			});  
-
                   });////modal안
               }///
           }////추가버튼 밖
@@ -471,7 +454,6 @@ document.addEventListener('DOMContentLoaded', function() {
               		        console.log(errorThrown);
             			});                      
 				  });  
-
 	  
  				 });
 	  
@@ -508,4 +490,3 @@ document.addEventListener('DOMContentLoaded', function() {
 	  });
 	  
 </script>
-

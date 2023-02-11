@@ -51,7 +51,7 @@ public class CalcController {
 		map.put("uemail",((UserDetails)auth.getPrincipal()).getUsername().toString());
 		System.out.println("넘어오는 map"+map);
 		
-		Map list = calcSevice1.selectOneR(map);
+		Map list = calcSevice1.selectOneR(null);
 		System.out.println("no가져오기"+list);
 	//	model.addAttribute("list",list);
 		
