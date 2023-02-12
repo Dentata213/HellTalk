@@ -21,30 +21,30 @@ public class TeachableController {
 	}
 	
 	//스쿼트
-	@RequestMapping("/Squat.do")
+	@RequestMapping("/squat.do")
 	public String Squat(@RequestParam Map map, HttpServletRequest req, Model model) throws Exception {
 		//뷰 반환
 		return "/teachable/Squat.helltalk";
 	}
 	
 	//런지
-	@RequestMapping("/Lunge.do")
+	@RequestMapping("/lunge.do")
 	public String Lunge(@RequestParam Map map, HttpServletRequest req, Model model) throws Exception {
 		//뷰 반환
-		return "/teachable/Lunge";
+		return "/teachable/Lunge.helltalk";
 	}
 	
 	//버피
-	@RequestMapping("/Burpee.do")
+	@RequestMapping("/burpee.do")
 	public String Burpee(@RequestParam Map map, HttpServletRequest req, Model model) throws Exception {
 		//뷰 반환
-		return "/teachable/Burpee";
+		return "/teachable/Burpee.helltalk";
 	}
 	
 	@RequestMapping("/gameResult.do")
 	public String gameResult(@RequestParam Map map, HttpServletRequest req, Model model) throws Exception {
 		//뷰 반환
-		return "/teachable/ResultPage";
+		return "/teachable/ResultPage.helltalk";
 	}
 	
 	

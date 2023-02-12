@@ -13,6 +13,7 @@
 	        SELECT SEQ_EAT.CURRVAL FROM DUAL
     	</selectKey>
 	</insert>
+	
 	<insert id="eatListInsert" parameterType="Map">                                                                                                 
 		INSERT INTO eatlist VALUES(#{eat_no},#{food_cd})
 	</insert>

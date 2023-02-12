@@ -296,6 +296,7 @@ public class DietController {
 	    System.out.println("status 넘어온 값: "+map.get("status"));
 	    
 	    map.put("d_date", d_date);
+	    session.removeAttribute(d_date);
 	    
 	    //DB- 회원값(diet값) 저장
 	  	//map.put("u_no", Integer.valueOf(8));//임시
