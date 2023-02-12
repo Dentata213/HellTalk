@@ -38,6 +38,8 @@ public class QnAServiceImpl implements QnAService<QnADto> {
 		return dao.editQnA(map);
 	}
 
-
+	public List<QnADto> selectQnAMe(Map map){
+		return dao.selectQnAMe(map);
+	}
 	
 }

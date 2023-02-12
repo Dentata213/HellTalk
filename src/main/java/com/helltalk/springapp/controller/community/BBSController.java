@@ -27,6 +27,9 @@ import com.helltalk.springapp.service.BBSServiceImpl;
 import com.helltalk.springapp.service.CalcServiceImpl;
 import com.helltalk.springapp.service.MemberDTO;
 import com.helltalk.springapp.service.MemberServiceImpl;
+import com.helltalk.springapp.service.QnADto;
+import com.helltalk.springapp.service.QnAService;
+import com.helltalk.springapp.service.QnAServiceImpl;
 
 @Controller
 @RequestMapping("/community/bbs")
@@ -36,7 +39,12 @@ public class BBSController {
 	private BBSServiceImpl service;
 	
 	@Autowired
+	private QnAServiceImpl QnAService;
+	
+	@Autowired
 	private MemberServiceImpl memberService;
+	
+	
 
 	// 게시판 목록 조회
 	@RequestMapping("/list")
@@ -87,6 +95,8 @@ public class BBSController {
 		map.put("u_email", authenticated.getUsername());
 		List<BBSDto> lists = service.selectBBS(map);
 		MemberDTO member = memberService.selectOneByEmail(map);
+		List<QnADto> Qlists=QnAService.selectQnAMe(map);
+		model.addAttribute("QnAlist",Qlists);
 		model.addAttribute("member", member);
 		model.addAttribute("lists", lists);
 		return "community/bbs/user-page.helltalk";

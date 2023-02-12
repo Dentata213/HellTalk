@@ -102,15 +102,23 @@
                                 </div>
 
                                 <div class="card-body d-block w-100 shadow-none mb-0 p-0 border-top-xs">
-                                    <ul class="nav nav-tabs h55 d-flex product-info-tab border-bottom-0 ps-4" id="pills-tab" role="tablist">
-                                        <li class="active list-inline-item me-5"><a class="fw-700 font-xssss text-grey-500 pt-3 pb-3 ls-1 d-inline-block active" href="#navtabs1" data-toggle="tab">About</a></li>
-                                        <li class="list-inline-item me-5"><a class="fw-700 font-xssss text-grey-500 pt-3 pb-3 ls-1 d-inline-block" href="#navtabs2" data-toggle="tab">Membership</a></li>
-                                        <li class="list-inline-item me-5"><a class="fw-700 font-xssss text-grey-500 pt-3 pb-3 ls-1 d-inline-block" href="#navtabs3" data-toggle="tab">Discussion</a></li>
-                                        <li class="list-inline-item me-5"><a class="fw-700 font-xssss text-grey-500 pt-3 pb-3 ls-1 d-inline-block" href="#navtabs4" data-toggle="tab">Video</a></li>
-                                        <li class="list-inline-item me-5"><a class="fw-700 font-xssss text-grey-500 pt-3 pb-3 ls-1 d-inline-block" href="#navtabs3" data-toggle="tab">Group</a></li>
-                                        <li class="list-inline-item me-5"><a class="fw-700 font-xssss text-grey-500 pt-3 pb-3 ls-1 d-inline-block" href="#navtabs1" data-toggle="tab">Events</a></li>
-                                        <li class="list-inline-item me-5"><a class="fw-700 me-sm-5 font-xssss text-grey-500 pt-3 pb-3 ls-1 d-inline-block" href="#navtabs7" data-toggle="tab">Media</a></li>
-                                    </ul>
+                                    
+                                       <nav class="navbar navbar-expand-sm bg-dark navbar-dark">  
+										  <ul class="navbar-nav nav nav-tabs h55 d-flex product-info-tab border-bottom-0 ps-4" id="pills-tab" role="tablist">
+										    <li class="nav-item">
+										      <a class="nav-link" href="#section1">Section 1</a>
+										    </li>
+										    <li class="nav-item">
+										      <a class="nav-link" href="#section2">Section 2</a>
+										    </li>
+										    <li class="nav-item">
+										      <a class="nav-link" href="#section3">Section 3</a>
+										    </li>
+										    <li class="nav-item">
+										      <a class="nav-link" href="#section4">Section 4</a>
+										    </li>
+										  </ul>
+										</nav>
                                 </div>
                             </div>
                         </div>
@@ -118,9 +126,54 @@
 			                <div class="middle-sidebar-left">
 			                    <div class="row">
 			                        <div class="col-lg-12">
-                                       <div id='calendar-wrap'>
-									  		<iframe id="iframe" style="width:100%; height:800px; overflow: hidden" frameborder="0" crolling="no" frameborder="none" allowfullscreen="" src="<c:url value="/cal/List.do"/>"></iframe>
-									 	</div>   
+			                        	<div id="section1" class="container-fluid " >
+  										<h1>Section 1</h1>
+	                                       <div id='calendar-wrap'>
+										  		<iframe id="iframe" style="width:100%; height:600px; overflow: hidden" frameborder="0" crolling="no" frameborder="none" allowfullscreen="" src="<c:url value="/cal/List.do"/>"></iframe>
+										 	</div>   
+										 </div>
+										 <div id="section2" class="container-fluid bg-secondary" style="padding-top:70px;padding-bottom:70px">
+										  <h1>Section 2</h1>
+										  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+										  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+										</div>
+										 <div id="section3" class="container-fluid" >
+										  <h1>나의 QnA</h1>
+										  <table class="table text-center">
+										  
+											  <thead>
+							                      <tr>
+							                        <th>글번호</th>
+							                        <th>제목</th>
+							                        <th>작성일</th>
+							                        <th>응답</th>
+							                      </tr>
+							                   </thead>
+							                   <c:if test="${empty QnAlist}" var="flag">
+							                    	<tr>
+							                    		<td colspan="7">글이 없습니다</td>
+							                    	<tr>
+							                    </c:if>
+							                    <c:if test="${not flag}">
+												  <c:forEach var="qnAlist" items="${QnAlist}">
+												  	<tr>
+													  	<td>${qnAlist.q_no}</td>
+								                      	<td>${qnAlist.q_title}</td>
+								                      	<td>${qnAlist.q_postdate}</td>
+								                      	<td>${qnAlist.q_answer==null?"미응답":"답변완료"}</td>
+							                      	</tr>		
+												  </c:forEach>
+												</c:if>
+											</table>
+										</div>
+										
+										
+										<div id="section4" class="container-fluid bg-info" style="padding-top:70px;padding-bottom:70px">
+										  <h1>Section 4 Submenu 2</h1>
+										  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+										  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+										</div>
+										 
                                     </div>
                                 </div>
                             </div>

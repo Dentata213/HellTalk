@@ -50,6 +50,8 @@ public class BBSServiceImpl implements BBSService<BBSDto>{
 		// TODO Auto-generated method stub
 		 dao.likeBBS(map);
 	}
+
+	
 	
 	
 	

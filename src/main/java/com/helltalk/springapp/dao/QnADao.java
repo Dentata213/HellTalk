@@ -34,6 +34,9 @@ public class QnADao{
 		
 		return template.delete("deleteQnA",map);
 	}
+	public List<QnADto> selectQnAMe(Map map) {
+		return template.selectList("selectQnAMe",map);
+	}
 	
 	
 }/////////

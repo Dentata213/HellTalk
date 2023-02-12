@@ -35,6 +35,7 @@
 		<mapper resource="mybatis/mapper/Board.xml"/> 
 		<mapper resource="mybatis/mapper/Backend.xml"/>
 	 	<mapper resource="mybatis/mapper/Calc.xml"/>  
-	 	<mapper resource="mybatis/mapper/Chat.xml"/>    
+	 	<mapper resource="mybatis/mapper/Chat.xml"/>
+	 	<mapper resource="mybatis/mapper/QnA.xml"/>     
 	</mappers>
 </configuration>

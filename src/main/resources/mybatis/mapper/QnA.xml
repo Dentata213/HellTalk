@@ -7,26 +7,29 @@
 		INSERT INTO qna (q_title,q_content)
 		VALUES(#{q_title},#{q_content})
 	</insert>
-	<select id="selectQnA" parameterType="Map">
+	<select id="selectQnA22" parameterType="Map">
 		SELECT 
 		q_no,q_title,q_postdate,q_view
 		FROM
 		qna
 		where q_no = #{q_no}
 	</select>
-	<update id="editQnA" parameterType="Map">
+	<update id="editQnA22" parameterType="Map">
 		UPDATE qna set q_title =#{q_title}, q_content =#{q_content}
 		WHERE q_no = #{q_no}
 	</update>
-	<delete id="deleteQnA" parameterType="Map">
+	<delete id="deleteQnA22" parameterType="Map">
 		delete from qna WHERE q_no = #{q_no}
 	</delete>
-	<select id="selectQnA" resultType="QnADto">
+	<select id="selectQnA22" resultType="QnADTO">
 		SELECT
 		q_no, q_title, q_content, q_postdate, q_view
 		FROM
 		qna
 		WHERE q_no > 0
 		ORDER BY q_no desc, q_postdate desc
+	</select>
+	<select id="selectQnAMe" parameterType="Map" resultType="QnADTO">
+		SELECT q.* FROM QNA q INNER JOIN USERS u ON q.U_NO=u.U_NO WHERE U_EMAIL=#{u_email} 
 	</select>
 </mapper>

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.helltalk.springapp.service.BBSDto;
+import com.helltalk.springapp.service.QnADto;
 
 @Repository
 public class BBSDao{
@@ -42,5 +43,6 @@ public class BBSDao{
 		template.update("likeBBS",map);
 		
 	}
+	
 	
 }/////////
