@@ -14,7 +14,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,8 +26,6 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 import com.helltalk.springapp.models.CustomUserDetailsService;
 import com.helltalk.springapp.service.KakaoServiceImpl;
 import com.helltalk.springapp.service.MemberServiceImpl;
-
-import kr.co.bootpay.model.request.Authentication;
 
 @Controller
 @RequestMapping("/member/*")
@@ -78,8 +75,6 @@ public class MemberController {
 		String id =(String)map.put("id", flashMap.get("id"));
 		int affectedEm = service.emailCheck(map);
 			if(affectedEm == 0) {
-				
-				
 				model.addAttribute("nickname",nickname);
 				model.addAttribute("email",email);
 				model.addAttribute("id",id);
@@ -94,11 +89,20 @@ public class MemberController {
 			}
 			else {
 					UserDetails userDetails = userDetailsService.loadUserByUsername(email);
-					UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-					userDetails.getUsername(),
-					userDetails.getPassword(),
-					userDetails.getAuthorities());
-			        SecurityContextHolder.getContext().setAuthentication(authentication);
+					//userDetails를 principal 객체로 대입하여,기존에 사용하던 sec 태그에서도 principal. 으로 꺼내오기 가능
+					Object principal = userDetails;
+					System.out.println("principal++++++++++++++:"+principal);
+					System.out.println("userDetails.getAuthorities()++++++++++++++:"+userDetails.getAuthorities());
+					//비밀번호 값을 넘겨주지 않아서 삽질......
+					UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(principal,
+							userDetails.getPassword(),
+							userDetails.getAuthorities()
+							);
+					SecurityContext securityContext = SecurityContextHolder.getContext();
+					securityContext.setAuthentication(authentication);
+			        HttpSession session = request.getSession(true);
+			        System.out.println("authentication++++++++++++++++"+authentication);
+			        session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
 					return "home";
 					
 				

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="en">
@@ -373,14 +374,14 @@
 							<a href="<c:url value="/diet/main.do"/>" >조주희</a>
 							<a href="<c:url value="/home.do"/>" >김성우</a>
 							<a href="<c:url value="/cal/ifram.do"/>" >최도원</a>
-							<a href="<c:url value="/member/Login.do"/>" >최부건-로그인</a>
 					   		<a href="<c:url value="/qna/list"/>">위찬혁</a>
 					   		<a href="<c:url value="/convenience/Calculator"/>">신동현</a>
 							<!-- 추가이동경로 필요할경우 아래에 추가 -->
-					   		<a href="<c:url value="/member/CreateUser.do"/>" >최부건-회원가입</a>
 					   		<a href="<c:url value="/community/bbs/list"/>" >함병완-게시판</a>
 					   		<a href="<c:url value="/community/bbs/mypage"/>" >함병완-마이페이지</a>
+					   		<sec:authorize access="hasRole('ADMIN')">
 					   		<a href="<c:url value="/backend/admin"/>" >김동진-어드민</a>
+					   		</sec:authorize>
 					   		<a href="<c:url value="/list.do"/>" >최도원채팅임시</a>
 
 					   		<a href="<c:url value="/teachable/gameResult.do"/>" >조주희-확인용(게임결과 페이지)</a>
@@ -409,7 +410,15 @@
 		    </section>
 		</div>
    	</div>
-   
+   	<sec:authorize access="isAuthenticated()">
+	<ul>
+	  <li>principal(현재 접속한 계정의 타입 및 정보):<sec:authentication property="principal"/></li>
+	  <li>principal(현재 접속한 사람의 id):<sec:authentication property="principal.username"/></li> 
+	  <li>principal(현재 접속한 사람의 비밀번호):<sec:authentication property="principal.password"/></li>
+	  <li>principal.enabled(계정 활성화 상태 true:1 ,false:0) : <sec:authentication property="principal.enabled"/></li>
+	  <li>principal.authorities(현재 접속한 사람의 권한) : <sec:authentication property="principal.authorities"/></li>
+	</ul>
+	</sec:authorize>
 
 
 
