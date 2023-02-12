@@ -6,7 +6,7 @@
 	<!--  DIET  -->
 	<insert id="dietInsert" parameterType="Map">
     	INSERT ALL
-		INTO diet VALUES(SEQ_DIET.NEXTVAL,'title', 0,0, TO_DATE(#{d_date},'YYYY-MM-DD'), (SELECT DISTINCT users.U_no FROM users left join diet ON diet.u_no=users.u_no WHERE u_email=#{uemail,jdbcType=VARCHAR}))
+		INTO diet VALUES(SEQ_DIET.NEXTVAL,'title', 0,0, TO_DATE(#{d_date},'YYYY-MM-DD'), 0, (SELECT DISTINCT users.U_no FROM users left join diet ON diet.u_no=users.u_no WHERE u_email=#{uemail,jdbcType=VARCHAR}))
 		INTO eat VALUES(SEQ_EAT.NEXTVAL,#{status},SEQ_DIET.CURRVAL)
 		SELECT * FROM DUAL
 		<selectKey resultType="int" keyProperty="eat_no" order="AFTER">
