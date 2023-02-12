@@ -467,7 +467,7 @@
 					   		<a href="<c:url value="/community/bbs/list"/>" >함병완-게시판</a>
 					   		<a href="<c:url value="/community/bbs/mypage"/>" >함병완-마이페이지</a>
 					   		<sec:authorize access="hasRole('ADMIN')">
-					   		<a href="<c:url value="/backend/admin"/>" >김동진-어드민</a>
+					   			<a href="<c:url value="/backend/admin"/>" >김동진-어드민</a>
 					   		</sec:authorize>
 					   		<a href="<c:url value="/list.do"/>" >최도원채팅임시</a>
 
