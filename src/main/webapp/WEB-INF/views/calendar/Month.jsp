@@ -283,8 +283,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	  	{  		
           title:'${cald.cald_no}_${cald.cald_title}',
           start:'${cald.cald_startdate}',//T12:00붙이면 '.클래스값이 달라짐!!'
-   //     end:'${cald.cald_enddate}T12:00',
-        constraint:'availableForMeeting', // defined below
+          constraint:'availableForMeeting', // defined below
           color:'${cald.cald_color}' //'#257e4a'
         },
         </c:forEach>   
@@ -311,7 +310,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 	  var caldcontent = $("#caldcontent").val();
                       var caldstartdate = $("#caldstartdate").val();
                       var caldcolor = $("#caldcolor").val();
-					  var uemail = "${uemail}"; // $("#uemail").val();
+					  var uemail = "${uemail}"; //
                       
 					  console.log("이거!!!",uemail)
                       //내용 입력 여부 확인

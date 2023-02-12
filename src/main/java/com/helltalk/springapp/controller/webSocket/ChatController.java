@@ -40,8 +40,7 @@ public class ChatController {
 	@RequestMapping("/chat.do")
 	public String chat(@RequestParam Map map,
 			Model model,HttpServletRequest req,
-			Authentication auth) 
-		{
+			Authentication auth){
 		 model.addAttribute("roomno",map.get("roomno")); //쿼리스트링으로 넘어온 방번호(map)로 방번호구분(&웹소켓이랑 연결하기 위한 식별자번호로 사용)
 		
 		List<ChatDto> chatList =chatService.selectListMsg(map, req); //방번호로 이전의 채팅내용 가져와서 뿌려주자
@@ -49,6 +48,14 @@ public class ChatController {
 		System.out.println("가져오나용"+chatList);
 		model.addAttribute("chatList",chatList);
 		System.out.println("세션도필요해.."+model);
+		 
+		map.put("roomno",map.get("roomno"));
+		map.put("uemail",((UserDetails)auth.getPrincipal()).getUsername().toString());
+		ChatDto friendnick=dao.findnick(map);
+		model.addAttribute("friendnick",friendnick.getU_nickname());
+		System.out.println("친구닉네임?"+friendnick.getU_nickname());
+
+		
 		return "community/chat/chatroom.helltalk";
 	}
 	
@@ -62,13 +69,10 @@ public class ChatController {
 				Authentication auth
 				) {	
 			map.put("uemail",((UserDetails)auth.getPrincipal()).getUsername().toString());	
-			System.out.println("여기에 no 없어?"+map);
-			model.addAttribute("uemail",((UserDetails)auth.getPrincipal()).getUsername().toString());		
+			System.out.println("여기들어가는 map확인?"+map);
+			model.addAttribute("uemail",((UserDetails)auth.getPrincipal()).getUsername().toString());	
 			
-		//	List<ChatDto> chatList =chatService.selectListMsg(map, req);
-		//	model.addAttribute("chatList",chatList);
-		//	model.addAttribute("roomno",map.get("roomno"));
-		//	System.out.println("메시지내용"+model);	
+			
 			return "community/chat/chatroom.helltalk";
 		}
 	
@@ -83,10 +87,10 @@ public class ChatController {
 		model.addAttribute("uemail",((UserDetails)auth.getPrincipal()).getUsername().toString());
 		List<ChatDto> chatList =chatService.selectList(map, req);
 		
-		
 		dao.findAllchat(map);
 		model.addAttribute("chatList",chatList);
 		System.out.println("채팅방..."+model);
+	
 		return "community/chat/chatList.helltalk";
 	}
 	
@@ -110,15 +114,20 @@ public class ChatController {
 	
 	// 방 생성하기(친구검색-> room_name은 친구id로? 친구 id,내id 넘기기)
 	@RequestMapping(value="/createRoom.do", method= {RequestMethod.GET, RequestMethod.POST})
-//	@ResponseBody
+//	@ResponseBody // 이러면 서버로 반환됨! 뷰단으로 반환시키려면 빼야지..
 	public String createRoom(
 			@RequestParam Map map,
-			Authentication auth){
+			Authentication auth,
+		Model model){
 		map.put("uemail",((UserDetails)auth.getPrincipal()).getUsername().toString());
-		System.out.println("받아온맵"+map);
+		System.out.println("받아온맵"+map);		
+		int roomNO = chatService.insertNewRoom(map);
+	
+		map.put("roomNO", roomNO);		
 		
-		chatService.insertNewRoom(map);
-		return "community/chat/chatList" ;	
+		model.addAttribute("roomNO",roomNO);
+		
+		return "forward:/list.do";	
 	}
 	
 	//생성된방인지 확인여부
@@ -158,6 +167,8 @@ public class ChatController {
 		return map;
 	}
 		
+	
+	
 	
 }
 

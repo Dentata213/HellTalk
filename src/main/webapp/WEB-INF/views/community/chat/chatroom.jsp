@@ -6,10 +6,10 @@
 <c:set var="today" value="<%=new Date() %>"/>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
- <meta name="_csrf" th:content="${_csrf.token}">
+<meta name="_csrf" th:content="${_csrf.token}">
 <meta name="_csrf_header" th:content="${_csrf.headerName}">
   <!-- main content -->
- <div class="main-content right-chat-active">     
+<div class="main-content right-chat-active">     
 <div class="middle-sidebar-bottom">
     <div class="middle-sidebar-left ps-0 pe-lg-3 me-0 ms-0" style="max-width: 100%;">
 <div class="row">
@@ -21,6 +21,7 @@
              <div class="messages-content pb-5" >                                            
                
   <!--여기가 받은메시지-->
+  			
             <c:forEach var="chatmsg" items="${chatList}" varStatus="loop">
         	<c:if test="${uemail != chatmsg.u_email}">
                  <div class="message-item"  >  <!-- 우선 요거가 다름 -->
@@ -28,7 +29,7 @@
                  <input name="mno" class="mno" value="${chatmsg.mno}" hidden />
                      <div class="message-user" >
                          <div >           
-                             <h5><span id="friend">${chatmsg.u_nickname}</span></h5>
+                             <h5><span id="friend">${friendnick}</span></h5>
                              <div class="time">${chatmsg.time}</div>
                          </div>
                      </div>
@@ -55,10 +56,8 @@
         </c:forEach> 
                  
 		<div class="container flex-container" id="chatMessage" style="padding-left:0px;padding-right: 0px;margin-right: 0px;" >
-	 	
-            
-          
-        </div>
+		<input name="nickname" class="nickname" value="${friendnick}" hidden />
+		</div>
 		
              </div>
        </div>
@@ -115,10 +114,14 @@
 	//웹소켓 객체 저장용
 	var wsocket;
 	//메시지 저장용
-	var message
+	var message;
+	//친구 닉네임
+	var nickname;
+	
 	//메시지 보낸 시간 저장용
 	var date = new Date().toTimeString().split(' ')[0];	
 	var time = date.split(':').slice(0,2).join(":").toString();
+	
 	
 		if(true){  //페이지 이동하면 무조건 연결시킴
 			console.log(${roomno})
@@ -150,7 +153,7 @@
 			if(true)			
 				appendMessage(
 						"<div class='message-item'><div class='message-user'><div>"
-						+"<h5>"+$('#friend').html()+"</h5><div class='time'>"+time+"</div></div></div>"
+						+"<h5>"+$('.nickname').val()+"</h5><div class='time'>"+time+"</div></div></div>"
 						+"<div class='message-wrap' style='width:fit-content;float:left;' >"+e.data+"</div></div>" );//서버로부터 받은 메시지를 div에 출력
 	
 		}
@@ -194,11 +197,10 @@
 					"message": message,
 					"time" : time,
 					"roomno": ${roomno},
-				//	"${_csrf.parameterName}":"${_csrf.token}"
 					}
 			var msg = JSON.stringify(me);
 			
-			//전송한 메시지 db에 저장하기
+			 //전송한 메시지 db에 저장하기
 				$.ajax({
 					url:"<c:url value="/sendMag.do"/>",
 					method:"POST",

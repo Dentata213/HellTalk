@@ -274,7 +274,9 @@
                                             <figure class="avatar ms-auto me-auto mb-0 position-relative w65 z-index-1"><img src="https://via.placeholder.com/50x50.png" alt="image" class="float-right p-0 bg-white rounded-circle w-100 shadow-xss"></figure>
                                             <input name="roomNo" class="roomNo" value="${friend.room_no}" hidden />
                                             <div class="clearfix"></div>
-                                            <h4 class="fw-700 font-xsss mt-3 mb-1 nickname">${friend.u_nickname}</h4>
+                                            <h4 class="fw-700 font-xsss mt-3 mb-1 nickname">${friend.u_nickname} 
+                                            		<c:if test="${friend.u_kind == 'ROLE_TN'}">
+                                            		<img src="${path}/resources/images/star1.png" class="trainer" alt="trainer" title="trainer"  style="width:20px; height:20px" /></c:if></h4>                                      
                                             <p class="fw-500 font-xsssss text-grey-500 mt-0 mb-3 uemail">${friend.u_email}</p>                      
                                             <a href="#" class="mt-0 btn pt-2 pb-2 ps-3 pe-3 lh-24 ms-1 ls-3 d-inline-block rounded-xl bg-success font-xsssss fw-700 ls-lg text-white">친구추가</a>
                                             <a href="#" class="mt-0 btn pt-2 pb-2 ps-3 pe-3 lh-24 ms-1 ls-3 d-inline-block rounded-xl bg-success font-xsssss fw-700 ls-lg text-white"><span class="gochatroom">채팅하기</span></a>
@@ -358,12 +360,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 </script>        
-        
-        
-        
-        
-        
-        
+       
 
         <!-- right chat -->
         <div class="right-chat nav-wrap mt-2 right-scroll-bar">

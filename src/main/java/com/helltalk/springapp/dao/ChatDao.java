@@ -20,14 +20,14 @@ public class ChatDao {
 	private SqlSessionTemplate template;
 	
 	public List findAllchat(Map map) {
-		System.out.println("어떻게다가지고오나"+template);
+
 		return template.selectList("findAllchat",map);
 	}
 	
 	public int insertNewRoom(Map map) {
-		
-		return template.insert("chatRoomInset",map); //방 번호로 selectone 함
-		
+		 template.insert("chatRoomInset",map);
+	
+		return Integer.parseInt(map.get("newroomno").toString()); //새로 생성된 방번호를 반환
 	}
 	
 	public ChatDto selectemail(Map map) {
@@ -53,6 +53,13 @@ public class ChatDao {
 	public ChatDto findNickbyno(Map map) {
 		return template.selectOne("findNickbyemail",map);
 	}
+	
+	public ChatDto findnick(Map map) {
+		ChatDto n=template.selectOne("findNickbyno",map);
+		System.out.println("나와라쫌!!"+n);
+		return template.selectOne("findNickbyno",map);
+	}
+	
 	
 	public List findAllMember(Map map) {
 		return template.selectList("findAllMember",map);
