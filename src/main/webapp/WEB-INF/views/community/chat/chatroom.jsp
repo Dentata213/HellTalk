@@ -15,8 +15,8 @@
 <div class="row">
 
 
-    <div class="col-lg-12 position-relative" >
-     <div class="chat-wrapper pt-0 w-100 position-relative scroll-bar bg-white theme-dark-bg"  id="scroll" >
+    <div class="col-lg-12 position-relative"  >
+     <div id="scroll" class="chat-wrapper pt-0 w-100 position-relative scroll-bar bg-white theme-dark-bg" >
          <div  class="chat-body p-3 " >
              <div class="messages-content pb-5" >                                            
                
@@ -36,7 +36,7 @@
                  </div>
         	</c:if>      
            
- <!-- 여기가 보내는 메시지 -->
+ <!-- 여기가 보내는 메시지     <h5><span id="sender">${chatmsg.u_nickname}</span></h5> -->
    
         <c:if test="${ uemail == chatmsg.u_email}">
          <div class="message-item outgoing-message" >   <!-- 우선 요거가 다름 -->
@@ -44,7 +44,7 @@
          <input name="mno" class="mno" value="${chatmsg.mno}" hidden />
              <div class="message-user">      
                  <div>
-                     <h5><span id="sender">${chatmsg.u_nickname}</span></h5>
+                   
                      <div class="time">${chatmsg.time}</div>
                  </div>
              </div>
@@ -54,10 +54,10 @@
         </c:if>      
         </c:forEach> 
                  
-		<div class="container">
-	 		<div class="message-user"> 
-              <div class="clearfix" id="chatMessage"></div>
-            </div>
+		<div class="container flex-container" id="chatMessage" style="padding-left:0px;padding-right: 0px;margin-right: 0px;" >
+	 	
+            
+          
         </div>
 		
              </div>
@@ -87,6 +87,13 @@
        position: relative;
        } 
        
+       .flex-container {
+      display: flex;
+   /*   justify-content: center;*/
+ /*     align-items: center;*/
+      flex-direction: column;
+    }
+       
      </style>
  
 
@@ -97,7 +104,7 @@
 			  xhr.setRequestHeader( "${_csrf.headerName}", "${_csrf.token}" );
 		});
 		
-
+		// $('#scroll').get(0).scrollTop = $('#scroll').get(0).scrollHeight;			
 			$('#scroll').scrollTop($('#scroll')[0].scrollHeight);
 	/*
 	채팅 테스트
@@ -144,7 +151,7 @@
 				appendMessage(
 						"<div class='message-item'><div class='message-user'><div>"
 						+"<h5>"+$('#friend').html()+"</h5><div class='time'>"+time+"</div></div></div>"
-						+"<div class='message-wrap'>"+e.data+"</div></div>" );//서버로부터 받은 메시지를 div에 출력
+						+"<div class='message-wrap' style='width:fit-content;float:left;' >"+e.data+"</div></div>" );//서버로부터 받은 메시지를 div에 출력
 	
 		}
 		
@@ -155,8 +162,6 @@
 			$('#scroll').scrollTop($('#scroll')[0].scrollHeight);
 			//get(0)이거 자바스크립트로 바꾸는거였지...scrollTop랑 .scrollHeight는 스크롤바를계속 올리는 공식임 
 		}
-		
-	
 		
 		//메시지 보낼 때 (insert넣기!!)
 		$('#message').on('keypress',function(e){
@@ -169,21 +174,18 @@
 				wsocket.send(	
 					message	= $(this).val());  
 				//DIV(대화영역)에 메시지 출력			        
-				appendMessage(  //여기를 변수처리하자!
-						"<div class='message-item outgoing-message'><div class='message-user'><div>"
-						+"<h5>"+$('#sender').html()+"</h5>"+
-						"<div class='time'>"+time+"</div></div></div><div class='message-wrap'>"
-						+$(this).val()+"</div></div>" );
+				appendMessage(  //여기를 변수처리하자! "<h5>"+$('#sender').html()+"</h5>"
+						"<div class='message-item outgoing-message flex-container'><div class='message-user'><div>"
+						+"<div class='time'>"+time+"</div></div></div><div class='message-wrap' style='width:fit-content;float: right;'>"
+						+$(this).val()+"</div></div></div>" );
 				//기존 메시지 클리어		
 				$(this).val("");
 				//포커스 주기
 				$(this).focus();
-			//	$('#scroll').get(0).scrollTop = $('#scroll').get(0).scrollHeight;			
+		//		$('#scroll').get(0).scrollTop = $('#scroll').get(0).scrollHeight;			
 				
-			$('#scroll').scrollTop($('#scroll')[0].scrollHeight);
-			console.log($('#scroll').get(0).scrollTop)
+				$('#scroll').scrollTop($('#scroll')[0].scrollHeight);
 				
-				console.log($('#sender').html())
 			var rno = ${roomno}
 				console.log(time)
 				

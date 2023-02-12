@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.tiles.autotag.core.runtime.annotation.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -86,12 +87,22 @@ public class ChatController {
 		dao.findAllchat(map);
 		model.addAttribute("chatList",chatList);
 		System.out.println("채팅방..."+model);
-		return "community/chat/chatList";
+		return "community/chat/chatList.helltalk";
 	}
 	
 	//친구찾기(검색기능-채팅방생성과 연결)
 	@RequestMapping("/findfriend.do")
-	public String findfreind() {
+	public String findfreind(
+			@Parameter Map map,
+			HttpServletRequest req,
+			Authentication auth,
+			Model model ) {
+		map.put("uemail",((UserDetails)auth.getPrincipal()).getUsername().toString());	
+		
+		List<ChatDto> friends =chatService.findfriend(map);
+		
+		model.addAttribute("friends",friends);
+		System.out.println("친구찾기뿌려주기"+model);
 		return "community/chat/findFriend.helltalk";
 	}
 	
@@ -119,18 +130,18 @@ public class ChatController {
 			Authentication auth) {
 		map.put("uemail",((UserDetails)auth.getPrincipal()).getUsername().toString());	
 		
-		String forwardUrl = null;
+		String isexist = null;
 		ChatDto dto =chatService.selectOne(map);
 		
 		if(dto==null){
-			forwardUrl="createRoom.do";
+			isexist="null";
 		}
 		
 		else {
 			
-			forwardUrl= "list.do" ;
+			isexist= "True" ;
 		}
-		return forwardUrl ;
+		return isexist ;
 	}
 	
 	//채팅내용저장하기 insert

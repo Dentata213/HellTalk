@@ -72,4 +72,11 @@
  
  </select>
  
+ <select id="findAllMember" parameterType="Map" resultType="ChatDto">
+ 	select  DISTINCT  users.* from users 
+    left join  chat_user on users.u_no=chat_user.u_no
+    where users.u_email not in(#{uemail,jdbcType=VARCHAR})
+
+ </select>
+ 
  </mapper>
