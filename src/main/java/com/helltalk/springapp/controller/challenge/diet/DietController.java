@@ -39,6 +39,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -66,13 +67,7 @@ public class DietController {
 	//식단 등록
 	@RequestMapping(value= "/main.do")
 	public String searchList(@RequestParam Map map, HttpServletRequest req, Model model) throws Exception {
-		
-		Date nowDate = new Date();
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일"); 
-        	//원하는 데이터 포맷 지정
-		String strNowDate = simpleDateFormat.format(nowDate); 
-		model.addAttribute("nowDate", strNowDate);
-		
+		/*
 		//아침
 		List<FoodDTO> selectListEatBreakfast= foodService.selectListEatBreakfast(map);
 		model.addAttribute("selectListEatBreakfast", selectListEatBreakfast);
@@ -82,20 +77,28 @@ public class DietController {
 		//저녁
 		List<FoodDTO> selectListEatDinner= foodService.selectListEatDinner(map);
 		model.addAttribute("selectListEatDinner", selectListEatDinner);
-		
-		return "challenge/diet/Diet";
+		*/
+		return "challenge/diet/Diet.helltalk";
 	}
 	
-	/*
 	//날짜-ajax
-	@RequestMapping(value= "/selectDate.do", produces="text/plan:charset=UTF-8")
+	@RequestMapping("/selectDate.do")
 	@ResponseBody
-	public String selectDate(@RequestParam Map map) throws Exception {
-		Date d_date= (Date) map.get("d_date");
-		System.out.println("d_date : "+d_date);
+	public Map selectDate(@RequestBody Map map) throws Exception {
 		
-		return null;
-	}*/
+		//한끼마다 저장된 음식값 확인
+	  	//아침
+	  	List<FoodDTO> selectListEatBreakfast= foodService.selectListEatBreakfast(map);
+	  	map.put("selectListEatBreakfast", selectListEatBreakfast);
+	  	//점심
+	  	List<FoodDTO> selectListEatLunch= foodService.selectListEatLunch(map);
+	  	map.put("selectListEatLunch", selectListEatLunch);
+	  	//저녁
+	  	List<FoodDTO> selectListEatDinner= foodService.selectListEatDinner(map);
+	  	map.put("selectListEatDinner", selectListEatDinner);
+		
+		return map;
+	}
 	
 	
 	//음식 등록
@@ -110,7 +113,6 @@ public class DietController {
 		
 		String delete = req.getParameter("delete")== null? null: req.getParameter("delete");
 		System.out.println("delete :"+ delete);
-		model.addAttribute("d_date",d_date);
 		
 		//eat- status 값 받아오기
 		if(breakfast != null) {

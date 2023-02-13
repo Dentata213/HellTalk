@@ -32,6 +32,7 @@ public class DietServiceImpl implements DietService<DietDTO>{
 	
 	@Override
 	public int insert(Map map) {
+		System.out.println("map.get(uemail):"+map.get("uemail"));
 		return dao.insert(map);
 	}
 
