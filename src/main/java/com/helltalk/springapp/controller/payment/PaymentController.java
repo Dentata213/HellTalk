@@ -1,12 +1,18 @@
 package com.helltalk.springapp.controller.payment;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Vector;
 
+import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +23,10 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,6 +36,8 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.helltalk.springapp.models.PaidDTO;
 import com.helltalk.springapp.models.PaymentDTO;
 import com.helltalk.springapp.service.PaymentServiceImpl;
@@ -34,6 +45,7 @@ import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.response.IamportResponse;
 import com.siot.IamportRestClient.response.Payment;
+
 
 @Controller
 @RequestMapping("/payment")
@@ -43,31 +55,51 @@ public class PaymentController {
 	private String application_id;
 	@Value("${private_key}")//properties 설정한 private_key 가져오기
 	private String private_key;
-	
-	
-	private IamportClient api;
 
 	@Autowired
 	private RestTemplate restTemplate;
 	@Autowired
 	private PaymentServiceImpl service;
 	
+	//아임포트 키값
+	private IamportClient api;
 	
-	public PaymentController() {
-    	// REST API , REST API secret 
-		this.api = new IamportClient("8227160814101237","dZjeciN091QASwnLXi6NpOch3z1HFFgeJlYuzCz8vciOaVjYYnbYxuQichYS8V5N9aKeqLHfJxoBmTKm");
-	}
+	@Value("${imp_key}")
+	private String imp_key;
+
+	@Value("${imp_secret}")
+	private String imp_secret;
+		
 	
 	@ResponseBody
-	@RequestMapping(value="/verifyIamport/{imp_uid}")
+	@RequestMapping(value="/verifyIamport")
 	public IamportResponse<Payment> paymentByImpUid(
 			Model model
 			, Locale locale
 			, HttpSession session
-			, @PathVariable(value= "imp_uid") String imp_uid) throws IamportResponseException, IOException{	
+			,@RequestBody Map map) throws IamportResponseException, IOException{	
+		
+		System.out.println("locale에 담긴 정보:"+locale);
+		System.out.println("session에 담긴 정보:"+session);
+		System.out.println("Map에 담긴 정보"+map);
+		System.out.println("Map에 담긴 정보imp_uid :"+map.get("imp_uid"));
+		System.out.println("Map에 담긴 정보merchant_uid :"+map.get("merchant_uid"));
+		
+		String imp_uid = (String)map.get("imp_uid");
+		
+		PaymentController payment = new PaymentController();
+		
+		api = new IamportClient(imp_key,imp_secret);
+		
+		String token=service.getToken();
+		
+		System.out.println("token값 :"+token);
+		System.out.println("api값 :"+ api);
 			
 		return api.paymentByImpUid(imp_uid);
 	}
+	
+	
 	
 	
 	@RequestMapping("/mycart")

@@ -5,10 +5,11 @@
  <mapper namespace="mybatis.mapper.Chat">
  
  <select id="findAllchat" parameterType="Map" resultType="ChatDto" >
-	SELECT CHATROOM.*,O.u_no No1,t.u_no No2 FROM 
-    chat_user O RIGHT join users ON O.u_no=users.u_no
-    FULL OUTER JOIN CHATROOM ON CHATROOM.room_no=O.room_no
-    join chat_user T on O.room_no=T.room_no
+	SELECT CHATROOM.*,O.u_no No1,t.u_no No2,users.u_nickname FROM 
+    chat_user T RIGHT 
+    join users ON T.u_no=users.u_no
+    FULL OUTER JOIN CHATROOM ON CHATROOM.room_no=T.room_no
+    join chat_user O on O.room_no=T.room_no
  	WHERE O.u_no=
   	(SELECT DISTINCT users.U_no FROM users left join chat_user O ON O.u_no=users.u_no 
     WHERE u_email=#{uemail,jdbcType=VARCHAR}) 
@@ -17,8 +18,11 @@
  </select>
  
  <insert id="chatRoomInset" parameterType="Map">
+ 	<selectKey keyProperty="newroomno" resultType="int" order="BEFORE">
+		SELECT SEQ_CHATROOM.NEXTVAL FROM DUAL
+	</selectKey>	
 		INSERT ALL
-		INTO CHATROOM VALUES(SEQ_CHATROOM.NEXTVAL,#{nickname})
+		INTO CHATROOM VALUES(SEQ_CHATROOM.CURRVAL,#{nickname})
 		INTO CHAT_USER VALUES((SELECT DISTINCT users.u_no FROM
         	chat_user RIGHT join users ON chat_user.u_no=users.u_no
         	FULL OUTER JOIN CHATROOM ON CHATROOM.room_no=chat_user.room_no 
@@ -63,6 +67,20 @@
  	 select DISTINCT users.u_email from users
      join chat_user on users.u_no=chat_user.u_no
      where chat_user.u_no=#{friendid}
+ </select>
+ 
+  <select id="findNickbyno" parameterType="Map" resultType="ChatDto">
+ 	  select DISTINCT users.u_nickname from users
+     join chat_user on users.u_no=chat_user.u_no
+     where chat_user.u_no=
+     (select DISTINCT O.u_no NO1
+    from chat_user O
+    join chat_user T on O.room_no= T.room_no
+    where O.room_no=#{roomno} and T.u_no=
+    (select DISTINCT chat_user.u_no from chat_user
+     join users on users.u_no=chat_user.u_no
+     where users.u_email=#{uemail,jdbcType=VARCHAR})
+     AND O.U_NO != T.U_NO)
  </select>
  
  <select id="findNickbyemail" parameterType="Map" resultType="ChatDto" >

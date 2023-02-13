@@ -18,10 +18,11 @@ public class ChatDto {
 	private String time;
 	private int mno;
 	private String u_nickname;
+	private String u_kind;
 	
 	@Override
 	public String toString() {
-		return "roomNno="+room_no+",roomName="+ room_name+",uemail="+u_email+",uno="+u_no+",time="+time+",mno="+mno+",message="+message+",nickname="+u_nickname+"";
+		return "roomNno="+room_no+",roomName="+ room_name+",uemail="+u_email+",uno="+u_no+",time="+time+",mno="+mno+",message="+message+",nickname="+u_nickname+",ukind="+u_kind;
 	}
 
 }

@@ -21,22 +21,12 @@ document.addEventListener('DOMContentLoaded', function() {
 				console.log(roomNO)
 			var obj={"roomno":roomNO}
 				console.log(obj)				
-	/*		var wsocket;	
-			wsocket = new WebSocket("ws://${pageContext.request.serverName}:${pageContext.request.serverPort}<c:url value='/chating.do?no="+roomNO+"'/>"); //wss 는 보안이 강화된것 얘는 443포트를 사용		
-			console.log('wsocket:',wsocket);
-			//서버와 연결된 웹 소켓에 이벤트 등록(함수들은 밑으로 다 빼놓음)
-			wsocket.onopen = open;  //   open()들어가면 호출하는거여
-		//	wsocket.onclose= close;
-
-			wsocket.onerror=function(e){
-				console.log('에러발생:',e)
-			}	
-	*/					
+						
 			$.ajax({
 				url:"<c:url value="/viewMsg.do"/>",
 				method:"POST",
 				data:JSON.stringify(obj),
-			//	type:'json',
+
 				contentType:"application/json; charset=utf-8"
 			})
 			.done(function(){         
@@ -106,11 +96,11 @@ document.addEventListener('DOMContentLoaded', function() {
                                             <div class="email-user">
                                                 <span class="btn-round-xss ms-0 bg-success me-2"></span>
                                                 <img src="https://via.placeholder.com/50x50.png" alt="user" class="w35 me-2">  
-                                                <h6 class="font-xs text-grey-900 text-grey-900 mb-0 mt-0 fw-700">${chatroom.room_name}</h6>
+                                                <h6 class="font-xs text-grey-900 text-grey-900 mb-0 mt-0 fw-700">${chatroom.u_nickname}</h6>
                                             </div>
                                             <div class="email-subject text-grey-900 text-dark fw-600 font-xs">
                                                 <i class="feather-star font-m text-warning me-2"></i>
-                                               		${chatroom.room_name}
+                                               		${chatroom.u_nickname}
                                             </div>
                                             <div class="email-text text-grey-500 fw-600 font-xss">
                                                  최신 메시지를여기다가 뿌려야하나
@@ -118,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                             <span class="email-file">
                                                 <i class="feather-paperclip font-s btn-round-sm text-grey-500 me-2 p-0"></i>
                                             </span>
-                                            <div class="email-time text-grey-500 fw-600">뭘넣을까</div>
+                                            <div class="email-time text-grey-500 fw-600"><button>나가기</button></div>
                                         </a>
                                     </li>
 							</c:forEach>	
