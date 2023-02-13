@@ -29,9 +29,7 @@
 }
 
 .table {
-	color: #ffffff;
-	!
-	important
+	color: #ffffff; !important
 }
 
 h1 {
@@ -51,9 +49,8 @@ h1 {
 		<div>
 			<h1>기록할 날짜 선택</h1>
 			<form action='<c:url value="/diet/goFoodSearch.do"/>' method="post">
-				<input type="hidden" name="${_csrf.parameterName}"
-					value="${_csrf.token}" /> <input class="form-control" type="date"
-					min="1950-01-01" max="9999-12-31" id="select_date" name="d_date" />
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
+				<input class="form-control" type="date" min="1950-01-01" max="9999-12-31" id="select_date" name="d_date" />
 				<!-- 아래 음식 추가는 이미지로 변경  -->
 				<input type="submit" class="btn" value="breakfast" name="breakfast" />
 				<input type="submit" class="btn" value="lunch" name="lunch" /> <input
@@ -73,7 +70,11 @@ h1 {
 						<th class="col-1"></th>
 					</tr>
 				</thead>
-				<tbody class="table-sm down-file-body">
+				<tbody class="table-sm down-file-body" id="breakfast">
+					<tr>
+					
+					</tr>
+				<!-- 
 					<c:if test="${empty selectListEatBreakfast }" var="isEmpty">
 						<tr>
 							<td colspan="10">${FailSelect }</td>
@@ -86,13 +87,11 @@ h1 {
 								<td>${list.food_name }</td>
 								<td>${list.food_size }</td>
 								<td>${list.food_kcal }</td>
-								<!-- delete버튼 이미지로 변경 -->
-								<td><input type="submit" class="btn btn-warning"
-									value="delete" name="delete" /></td>
+								<td><input type="submit" class="btn btn-warning" value="delete" name="delete" id="delete"/></td>
 							</tr>
 						</c:forEach>
 					</c:if>
-
+ 				-->
 				</tbody>
 			</table>
 		</div>
@@ -122,7 +121,7 @@ h1 {
 								<td>${list.food_size }</td>
 								<td>${list.food_kcal }</td>
 								<td><input type="submit" class="btn btn-warning"
-									value="delete" name="delete" /></td>
+									value="delete" name="delete" id="delete" /></td>
 							</tr>
 						</c:forEach>
 					</c:if>
@@ -156,7 +155,7 @@ h1 {
 								<td>${list.food_size }</td>
 								<td>${list.food_kcal }</td>
 								<td><input type="submit" class="btn btn-warning"
-									value="delete" name="delete" /></td>
+									value="delete" name="delete" id="delete"/></td>
 							</tr>
 						</c:forEach>
 					</c:if>
@@ -169,58 +168,71 @@ h1 {
 <!-- main content -->
 
 <script>
+	
 	//날짜를 선택하지 않았을 경우 - 기본
 	document.getElementById('select_date').valueAsDate = new Date();
 	console.log('날짜값:', $('#select_date').val());
 
+	/*
 	$(document).ajaxSend(function(e, xhr, options) {
 		xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-	});
+	});*/
 
 	$(document).on('change', $('#select_date'), function(e) {
-
 		//날짜를 선택했을 경우
 		var test = $('#select_date').val();
 		console.log('선택한 날짜 :', test);
-		var select_date = {
-			"d_date" : test
-		};
+		var select_date = { "d_date" : test };
 		var selectdate = JSON.stringify(select_date);
 		$.ajax({
 			url : '<c:url value="/diet/selectDate.do"/>',
 			method : "POST",
-			data : selectdate,
-			dataType:'json',
-			contentType : "application/json; charset=utf-8"
+			data : {"d_date": test  , "${_csrf.headerName}" : "${_csrf.token}"},
+			//contentType : "application/json; charset=utf-8"
 		}).done(function(data) {
-			console.log(data)
-		}).fail(function(jqXHR, textStatus, errorThrown) {
-			console.log(jqXHR)
-			console.log(textStatus)
-			console.log(errorThrown);
-		})
+			//$('#select_date').val()
+			
+			$(data.selectListEatBreakfast).each(function(i) {
+				console.log('data.selectListEatBreakfast[i].food_name : ',data.selectListEatBreakfast[i].food_name);
+				var breakfast = "<tr>"
+				+ "<td>" + data.selectListEatBreakfast[i].food_name + "</td>"
+				+ "<td>" + data.selectListEatBreakfast[i].food_size + "</td>"
+				+ "<td>" + data.selectListEatBreakfast[i].food_kcal + "</td>"
+				+ "<td>" + '<input type="submit" class="btn btn-warning" value="delete" name="delete" id="delete"/>'+ "</td>"
+				+ "</tr>";
+				$("#breakfast").append(breakfast);
+			})
+			
+			
+			}).fail(function(jqXHR, textStatus, errorThrown) {
+				console.log(jqXHR)
+				console.log(textStatus)
+				console.log(errorThrown);
+			})
+		
 	});/////////////////////////////
-	/*
-	$('#select_date').click(function(e){
-	
-	$.ajax({
-	url: "<c:url value="/diet/selectDate.do"/>",
-	method: "POST",
-	data: 'd_date='+$('#select_date').val() ,
-	contentType: "application/json; charset=utf-8"
-	})
-	.done(function(data){
-	
-	console.log(data)
-	})
-	.fail(function(jqXHR, textStatus, errorThrown){
-		console.log(jqXHR)
-	    console.log(textStatus)
-	    console.log(errorThrown);
-	}); 
-	
-	});///////////////
-	 */
+
+	//음식 삭제
+	$('#delete').on(
+			'click',
+			function(e) {
+
+				$.ajax(
+						{
+							url : '<c:url value="/diet/deleteFood.do"/>',
+							method : "POST",
+							dataType : "text",
+							data : 'delete=' + $('#delete').val() + '&d_date='
+									+ $('#select_date').val(),
+							contentType : "application/json; charset=utf-8"
+						}).done(function(data) {
+					console.log(data)
+				}).fail(function(jqXHR, textStatus, errorThrown) {
+					console.log(jqXHR)
+					console.log(textStatus)
+					console.log(errorThrown);
+				})
+			});////////////////////////
 </script>
 
 <script src="${path}/resources/js/plugin.js"></script>

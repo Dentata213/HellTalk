@@ -23,6 +23,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
@@ -85,21 +86,38 @@ public class DietController {
 	@RequestMapping("/selectDate.do")
 	@ResponseBody
 	public Map selectDate(@RequestBody Map map) throws Exception {
+		System.out.println("map 날짜 :"+map.get("d_date"));
+		
+		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
 		//한끼마다 저장된 음식값 확인
 	  	//아침
 	  	List<FoodDTO> selectListEatBreakfast= foodService.selectListEatBreakfast(map);
-	  	map.put("selectListEatBreakfast", selectListEatBreakfast);
+	  	returnMap.put("selectListEatBreakfast", selectListEatBreakfast);
 	  	//점심
 	  	List<FoodDTO> selectListEatLunch= foodService.selectListEatLunch(map);
-	  	map.put("selectListEatLunch", selectListEatLunch);
+	  	returnMap.put("selectListEatLunch", selectListEatLunch);
 	  	//저녁
 	  	List<FoodDTO> selectListEatDinner= foodService.selectListEatDinner(map);
-	  	map.put("selectListEatDinner", selectListEatDinner);
+	  	returnMap.put("selectListEatDinner", selectListEatDinner);
 		
-		return map;
+		return returnMap;
 	}
 	
+	//삭제-ajax
+	@RequestMapping("/deleteFood.do")
+	@ResponseBody
+	public void deleteFood(@RequestBody Map map, HttpServletResponse resp) throws Exception {
+		
+		//String delete = req.getParameter("delete")== null? null: req.getParameter("delete");
+		//System.out.println("delete :"+ delete);
+		System.out.println("음식 삭제");
+		
+		// delete가 넘어왔을 경우 한끼에서 하나의 음식 삭제
+		if (map.get("delete") != null) {
+			int deleteSelectFoodAffeted = dietService.SelectFoodDelete(map);
+		}
+	}
 	
 	//음식 등록
 	@PostMapping("/goFoodSearch.do")
@@ -110,9 +128,6 @@ public class DietController {
 		System.out.printf("아침:%s, 점심:%s, 저녁:%s",breakfast,lunch,dinner);
 		String d_date= req.getParameter("d_date")==null? null: req.getParameter("d_date");
 		System.out.println("d_date : "+d_date);
-		
-		String delete = req.getParameter("delete")== null? null: req.getParameter("delete");
-		System.out.println("delete :"+ delete);
 		
 		//eat- status 값 받아오기
 		if(breakfast != null) {
@@ -134,14 +149,8 @@ public class DietController {
 			session.setAttribute("d_date", d_date);
 		}
 		
-		//delete가 넘어왔을 경우 한끼에서 하나의 음식 삭제
-		if(delete != null) {
-			map.put("d_date", d_date);
-			int deleteSelectFoodAffeted= dietService.SelectFoodDelete(map);
-		}
-		
 		//뷰 반환
-		return "challenge/diet/SearchFood";
+		return "challenge/diet/SearchFood.helltalk";
 	}//////////////////////////////////////////goFoodSearch
 
 	
@@ -246,7 +255,7 @@ public class DietController {
 		model.addAttribute("searchList",list);
 		
 		//뷰 정보 반환
-		return "challenge/diet/SearchFood";
+		return "challenge/diet/SearchFood.helltalk";
 		
 	}//////////searchFoodList()
 	
@@ -269,7 +278,7 @@ public class DietController {
 		}
 		
 		//뷰 반환
-		return "challenge/diet/SelectFood";
+		return "challenge/diet/SelectFood.helltalk";
 	}
 	
 	//확인을 하면 eat테이블에 저장
@@ -330,10 +339,27 @@ public class DietController {
 	  	//DB- eatList관련 값 저장
 	    map.put("food_cd", food_cd);
 	    //System.out.println("food_cd:"+food_cd);
-
-	  	//DB- diet, eat, eatlist 생성(insert)
-	  	int insertDietAffected = dietService.insert(map);
-	  	System.out.println("diet테이블 insert : "+insertDietAffected);
+	    
+	    //diet_no count(*)
+	    int selectCountByNo= dietService.selectCountByNo(map);
+	    System.out.println("selectCountByNo : "+selectCountByNo);
+	    
+	    if(selectCountByNo < 1) {
+	    	//DB- diet 생성(insert)
+		  	int insertDietAffected = dietService.insert(map);
+		  	System.out.println("diet테이블 insert : "+insertDietAffected);
+	    }
+	    else {
+	    	//diet_no
+	    	int selectDietNo= dietService.selectDietNo(map);
+	    	map.put("diet_no", selectDietNo);
+	    }
+	    
+	    //diet_no 확인
+	    System.out.println("diet_no : "+map.get("diet_no"));
+	    
+	    //eat테이블 생성
+	  	int insertEatAffected= dietService.insertEat(map);
 	  	System.out.println("eat_no : "+map.get("eat_no"));
 	  	
 	  	int insertEatlistAffected= dietService.insertEatList(map);

@@ -35,7 +35,12 @@ public class DietServiceImpl implements DietService<DietDTO>{
 		System.out.println("map.get(uemail):"+map.get("uemail"));
 		return dao.insert(map);
 	}
-
+	
+	//식단 No 있는지 확인
+	public int selectCountByNo(Map map) {
+		return dao.selectCountByNo(map);
+	}
+	
 	@Override
 	public int delete(Map map) {
 		// TODO Auto-generated method stub
@@ -63,6 +68,12 @@ public class DietServiceImpl implements DietService<DietDTO>{
 	public int SelectFoodDelete(Map map) {
 		return dao.SelectFoodDelete(map);
 	}
+
+	public int selectDietNo(Map map) {
+		return dao.selectDietNo(map);
+	}
+	
+	
 
 	
 	

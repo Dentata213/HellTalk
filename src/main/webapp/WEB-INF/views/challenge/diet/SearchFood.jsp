@@ -3,25 +3,28 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Search Food</title>
-
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 <!-- https://developers.google.com/fonts/docs/material_icons -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 
-</head>
+<link rel="stylesheet" href="${path}/resources/css/lightbox.css">
 
-<body>
+<style>
+	.table {
+		color: #ffffff; !important
+	}
+	
+	h1 {
+		margin-top: 50px;
+		margin-bottom: 20px;
+	}
+</style>
+
+<div class="main-content">
 	<div class="container">
 		<div>
 			<form action="<c:url value="/diet/foodSearch.do"/>" method="post">
@@ -77,7 +80,7 @@
 			</table>
 		</div>
 	</div>
-</body>
+</div>
 
 <script>
 		$('.select').click(function(){
@@ -88,4 +91,6 @@
 		
 		});
 </script>
-</html>
+<script src="${path}/resources/js/plugin.js"></script>
+<script src="${path}/resources/js/lightbox.js"></script>
+<script src="${path}/resources/js/scripts.js"></script>
