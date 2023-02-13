@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 
+
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
@@ -47,7 +48,7 @@ h1 {
 	<div class="container">
 
 		<div>
-			<h1>기록할 날짜 선택</h1>
+			<h1>잊지 않고 식단 기록하기</h1>
 			<form action='<c:url value="/diet/goFoodSearch.do"/>' method="post">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
 				<input class="form-control" type="date" min="1950-01-01" max="9999-12-31" id="select_date" name="d_date" />
@@ -71,16 +72,8 @@ h1 {
 					</tr>
 				</thead>
 				<tbody class="table-sm down-file-body" id="breakfast">
-					<tr>
 					
-					</tr>
-				<!-- 
-					<c:if test="${empty selectListEatBreakfast }" var="isEmpty">
-						<tr>
-							<td colspan="10">${FailSelect }</td>
-						</tr>
-					</c:if>
-					<c:if test="${not isEmpty }">
+					<c:if test="${!empty selectListEatBreakfast }">
 						<c:forEach var="list" items="${selectListEatBreakfast}"
 							varStatus="loop">
 							<tr>
@@ -91,7 +84,6 @@ h1 {
 							</tr>
 						</c:forEach>
 					</c:if>
- 				-->
 				</tbody>
 			</table>
 		</div>
@@ -107,11 +99,9 @@ h1 {
 						<th class="col-1"></th>
 					</tr>
 				</thead>
-				<tbody class="table-sm down-file-body">
+				<tbody class="table-sm down-file-body" id="lunch">
 					<c:if test="${empty selectListEatLunch }" var="isEmpty">
-						<tr>
-							<td colspan="10">${FailSelect }</td>
-						</tr>
+						
 					</c:if>
 					<c:if test="${not isEmpty }">
 						<c:forEach var="list" items="${selectListEatLunch}"
@@ -141,11 +131,9 @@ h1 {
 						<th class="col-1"></th>
 					</tr>
 				</thead>
-				<tbody class="table-sm down-file-body">
+				<tbody class="table-sm down-file-body" id="dinner">
 					<c:if test="${empty selectListEatDinner }" var="isEmpty">
-						<tr>
-							<td colspan="10">${FailSelect }</td>
-						</tr>
+						
 					</c:if>
 					<c:if test="${not isEmpty }">
 						<c:forEach var="list" items="${selectListEatDinner}"
@@ -168,48 +156,105 @@ h1 {
 <!-- main content -->
 
 <script>
-	
+
 	//날짜를 선택하지 않았을 경우 - 기본
 	document.getElementById('select_date').valueAsDate = new Date();
 	console.log('날짜값:', $('#select_date').val());
-
-	/*
+	
 	$(document).ajaxSend(function(e, xhr, options) {
-		xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-	});*/
-
+		  xhr.setRequestHeader( "${_csrf.headerName}", "${_csrf.token}" );
+	});
+	
+	//날짜를 선택했을 경우
 	$(document).on('change', $('#select_date'), function(e) {
-		//날짜를 선택했을 경우
+		
 		var test = $('#select_date').val();
 		console.log('선택한 날짜 :', test);
+		//console.log('선택한 날짜 타입 :', typeof test);//string
 		var select_date = { "d_date" : test };
 		var selectdate = JSON.stringify(select_date);
 		$.ajax({
-			url : '<c:url value="/diet/selectDate.do"/>',
-			method : "POST",
-			data : {"d_date": test  , "${_csrf.headerName}" : "${_csrf.token}"},
-			//contentType : "application/json; charset=utf-8"
+			url : 'http://localhost:8080<c:url value="/diet/selectDate.do"/>',
+			//method : "POST",
+			type: "post",
+			data : selectdate,
+			//data : {selectdate  ,"${_csrf.parameterName}":"${_csrf.token}"},
+			contentType : "application/json; charset=utf-8",
+			//contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+			dataType: "json"
 		}).done(function(data) {
 			//$('#select_date').val()
+			//console.log(data);
+			//console.log(data.selectListEatDinner[0]);
+			//console.log(data.selectListEatDinner[0].food_name);
 			
-			$(data.selectListEatBreakfast).each(function(i) {
-				console.log('data.selectListEatBreakfast[i].food_name : ',data.selectListEatBreakfast[i].food_name);
-				var breakfast = "<tr>"
-				+ "<td>" + data.selectListEatBreakfast[i].food_name + "</td>"
-				+ "<td>" + data.selectListEatBreakfast[i].food_size + "</td>"
-				+ "<td>" + data.selectListEatBreakfast[i].food_kcal + "</td>"
-				+ "<td>" + '<input type="submit" class="btn btn-warning" value="delete" name="delete" id="delete"/>'+ "</td>"
-				+ "</tr>";
+			//날짜 바꿀 경우 초기화
+			var breakfastTbody= document.getElementById("breakfast");
+			var lunchTbody= document.getElementById("lunch");
+			var dinnerTbody= document.getElementById("dinner");
+			
+			breakfastTbody.replaceChildren();
+			lunchTbody.replaceChildren();
+			dinnerTbody.replaceChildren();
+			
+			
+			var breakfast="";
+			var lunch="";
+			var dinner="";
+			
+			//console.log('data.selectListEatBreakfast.length: ',data.selectListEatBreakfast.length);
+			
+			if(data.selectListBreakfast.length > 0){
+				//console.log('breakfast 들어오나');
+				
+				for(var i=0; i < data.selectListBreakfast.length; i++){
+					console.log('breakfast for문 들어오나')
+					//아침
+					console.log('data.selectListBreakfast[i].food_name : ',data.selectListBreakfast[i].food_name);
+					breakfast += "<tr>"
+					+ "<td>" + data.selectListBreakfast[i].food_name + "</td>"
+					+ "<td>" + data.selectListBreakfast[i].food_size + "</td>"
+					+ "<td>" + data.selectListBreakfast[i].food_kcal + "</td>"
+					+ "<td>" + '<input type="submit" class="btn btn-warning" value="delete" name="delete" id="delete"/>'+ "</td>"
+					+ "</tr>" ;
+				}
+				console.log(breakfast);
 				$("#breakfast").append(breakfast);
-			})
+			}
 			
+			if(data.selectListLunch.length > 0){
+				for(var i=0; i < data.selectListLunch.length; i++){
+					console.log('lunch for문 들어오나')
+					//점심
+					lunch += "<tr>"
+					+ "<td>" + data.selectListLunch[i].food_name + "</td>"
+					+ "<td>" + data.selectListLunch[i].food_size + "</td>"
+					+ "<td>" + data.selectListLunch[i].food_kcal + "</td>"
+					+ "<td>" + '<input type="submit" class="btn btn-warning" value="delete" name="delete" id="delete"/>'+ "</td>"
+					+ "</tr>" ;
+				}
+				$("#lunch").append(lunch);
+			}
 			
-			}).fail(function(jqXHR, textStatus, errorThrown) {
-				console.log(jqXHR)
-				console.log(textStatus)
-				console.log(errorThrown);
-			})
-		
+			if(data.selectListDinner.length > 0){
+				//저녁
+				for(var i=0; i < data.selectListDinner.length ; i++){
+					console.log('dinner for문 들어오나')
+					dinner += "<tr>"
+					+ "<td>" + data.selectListDinner[i].food_name + "</td>"
+					+ "<td>" + data.selectListDinner[i].food_size + "</td>"
+					+ "<td>" + data.selectListDinner[i].food_kcal + "</td>"
+					+ "<td>" + '<input type="submit" class="btn btn-warning" value="delete" name="delete" id="delete"/>'+ "</td>"
+					+ "</tr>" ;
+				}
+				$("#dinner").append(dinner);
+			}
+			
+		}).fail(function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR)
+			console.log(textStatus)
+			console.log(errorThrown);
+		});	
 	});/////////////////////////////
 
 	//음식 삭제

@@ -68,24 +68,27 @@ public class DietController {
 	//식단 등록
 	@RequestMapping(value= "/main.do")
 	public String searchList(@RequestParam Map map, HttpServletRequest req, Model model) throws Exception {
-		/*
-		//아침
-		List<FoodDTO> selectListEatBreakfast= foodService.selectListEatBreakfast(map);
-		model.addAttribute("selectListEatBreakfast", selectListEatBreakfast);
-		//점심
-		List<FoodDTO> selectListEatLunch= foodService.selectListEatLunch(map);
-		model.addAttribute("selectListEatLunch", selectListEatLunch);
-		//저녁
-		List<FoodDTO> selectListEatDinner= foodService.selectListEatDinner(map);
-		model.addAttribute("selectListEatDinner", selectListEatDinner);
-		*/
+		
+		//한끼마다 저장된 음식값 확인
+	  	//아침
+	  	List<FoodDTO> selectListEatBreakfast= foodService.selectListEatBreakfast(map);
+	  	model.addAttribute("selectListEatBreakfast", selectListEatBreakfast);
+	  	//점심
+	  	List<FoodDTO> selectListEatLunch= foodService.selectListEatLunch(map);
+	  	model.addAttribute("selectListEatLunch", selectListEatLunch);
+	  	//저녁
+	  	List<FoodDTO> selectListEatDinner= foodService.selectListEatDinner(map);
+	  	model.addAttribute("selectListEatDinner", selectListEatDinner);
+	    
+		
+		//뷰 반환
 		return "challenge/diet/Diet.helltalk";
 	}
 	
 	//날짜-ajax
-	@RequestMapping("/selectDate.do")
+	@RequestMapping(value= "/selectDate.do")
 	@ResponseBody
-	public Map selectDate(@RequestBody Map map) throws Exception {
+	public Map<String, Object> selectDate(@RequestBody Map map) throws Exception {
 		System.out.println("map 날짜 :"+map.get("d_date"));
 		
 		Map<String, Object> returnMap = new HashMap<String, Object>();
@@ -93,13 +96,13 @@ public class DietController {
 		//한끼마다 저장된 음식값 확인
 	  	//아침
 	  	List<FoodDTO> selectListEatBreakfast= foodService.selectListEatBreakfast(map);
-	  	returnMap.put("selectListEatBreakfast", selectListEatBreakfast);
+	  	returnMap.put("selectListBreakfast", selectListEatBreakfast);
 	  	//점심
 	  	List<FoodDTO> selectListEatLunch= foodService.selectListEatLunch(map);
-	  	returnMap.put("selectListEatLunch", selectListEatLunch);
+	  	returnMap.put("selectListLunch", selectListEatLunch);
 	  	//저녁
 	  	List<FoodDTO> selectListEatDinner= foodService.selectListEatDinner(map);
-	  	returnMap.put("selectListEatDinner", selectListEatDinner);
+	  	returnMap.put("selectListDinner", selectListEatDinner);
 		
 		return returnMap;
 	}
@@ -216,7 +219,7 @@ public class DietController {
 					
 					//dto를 통해 음식DB에 값 저장
 					int selectFoodAffected= foodService.selectFoodAffected(dto);
-					System.out.println("selectFoodAffected-"+i+" :"+selectFoodAffected);
+					//System.out.println("selectFoodAffected-"+i+" :"+selectFoodAffected);
 					if(selectFoodAffected == 0) {
 						//DB에 음식이 없을 경우 새로 저장
 						int insertFoodAffected= foodService.insert(dto);
