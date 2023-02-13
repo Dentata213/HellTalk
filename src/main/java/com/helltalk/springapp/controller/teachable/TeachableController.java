@@ -41,8 +41,8 @@ public class TeachableController {
 		return "/teachable/Burpee.helltalk";
 	}
 	
-	@RequestMapping("/gameResult.do")
-	public String gameResult(@RequestParam Map map, HttpServletRequest req, Model model) throws Exception {
+	@RequestMapping("/Result.do")
+	public String Result(@RequestParam Map map, HttpServletRequest req, Model model) throws Exception {
 		//뷰 반환
 		return "/teachable/ResultPage.helltalk";
 	}
