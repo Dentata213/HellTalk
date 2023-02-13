@@ -37,7 +37,8 @@
 				</label>
 				<form action='<c:url value="/diet/goFoodSearch.do"/>' method="post">
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-					<input class="form-control" type="date" min="1950-01-01" max="9999-12-31" name="d_date" value="${d_date} "/>
+						<input class="form-control" type="date" min="1950-01-01" max="9999-12-31"/>
+					<!-- 아래 음식 추가는 이미지로 변경  -->
 					<input type="submit" class="btn" value="breakfast" name="breakfast" /> 
 					<input type="submit" class="btn" value="lunch" name="lunch" /> 
 					<input type="submit" class="btn" value="dinner" name="dinner" />
@@ -69,6 +70,7 @@
 									<td>${list.food_name }</td>
 									<td>${list.food_size }</td>
 									<td>${list.food_kcal }</td>
+									<!-- delete버튼 이미지로 변경 -->
 									<td><input type="submit" class="btn btn-warning" value="delete" name="delete"/></td>
 								</tr>
 							</c:forEach>
@@ -146,6 +148,35 @@
 		</div>
 	</div>
 	<!-- main content -->
+	
+	<script>
+	console.log('input type=date value값: ',$('input[type=date]').val())
+	
+		var msg = JSON.stringify(me);
+		$('.form-control').click(function(e){
+			
+			$.ajax({
+				url: "<c:url value="/diet/selectDate.do"/>",
+				method: "POST",
+				data: 'd_date='+$('input[type=date]').val() ,
+				contentType: "application/json; charset=utf-8"
+			})
+			.done(function(data){
+			 
+			 	console.log(data)
+			})
+			.fail(function(jqXHR, textStatus, errorThrown){
+					console.log(jqXHR)
+			        console.log(textStatus)
+			        console.log(errorThrown);
+			}); 
+			
+		});///////////////
+		
+		
+	
+	</script>
+	
 	<script src="${path}/resources/js/plugin.js"></script>
 	<script src="${path}/resources/js/lightbox.js"></script>
 	<script src="${path}/resources/js/scripts.js"></script>

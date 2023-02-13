@@ -7,9 +7,11 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -40,6 +42,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.helltalk.springapp.models.DietDTO;
@@ -60,9 +63,16 @@ public class DietController {
 	@Autowired
 	private FoodServiceImpl foodService;
 	
-	//메인화면 이동(임시)
+	//식단 등록
 	@RequestMapping(value= "/main.do")
 	public String searchList(@RequestParam Map map, HttpServletRequest req, Model model) throws Exception {
+		
+		Date nowDate = new Date();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일"); 
+        	//원하는 데이터 포맷 지정
+		String strNowDate = simpleDateFormat.format(nowDate); 
+		model.addAttribute("nowDate", strNowDate);
+		
 		//아침
 		List<FoodDTO> selectListEatBreakfast= foodService.selectListEatBreakfast(map);
 		model.addAttribute("selectListEatBreakfast", selectListEatBreakfast);
@@ -75,6 +85,18 @@ public class DietController {
 		
 		return "challenge/diet/Diet";
 	}
+	
+	/*
+	//날짜-ajax
+	@RequestMapping(value= "/selectDate.do", produces="text/plan:charset=UTF-8")
+	@ResponseBody
+	public String selectDate(@RequestParam Map map) throws Exception {
+		Date d_date= (Date) map.get("d_date");
+		System.out.println("d_date : "+d_date);
+		
+		return null;
+	}*/
+	
 	
 	//음식 등록
 	@PostMapping("/goFoodSearch.do")
