@@ -267,6 +267,8 @@
                             </div>
 
                             <div class="row ps-2 pe-2">
+                            
+                            	<!-- 데이터베이스 
 							<c:forEach var="friend" items="${friends}" varStatus="loop">	 	
                                 <div class="col-md-3 col-sm-4 pe-2 ps-2">
                                     <div class="card d-block border-0 shadow-xss rounded-3 overflow-hidden mb-3">
@@ -283,20 +285,82 @@
                                         </div>
                                     </div>
                                 </div>
-                             </c:forEach>	                               
-
+                             </c:forEach>	  
+                             -->       
+                  
+                  
+                             
+                             <!-- 하드코딩 -->
+                             
                                 <div class="col-md-3 col-sm-4 pe-2 ps-2">
                                     <div class="card d-block border-0 shadow-xss rounded-3 overflow-hidden mb-3">
                                         <div class="card-body d-block w-100 ps-3 pe-3 pb-4 text-center">
-                                            <figure class="avatar ms-auto me-auto mb-0 position-relative w65 z-index-1"><img src="https://via.placeholder.com/50x50.png" alt="image" class="float-right p-0 bg-white rounded-circle w-100 shadow-xss"></figure>
+                                            <figure class="avatar ms-auto me-auto mb-0 position-relative w65 z-index-1"><img src="${path}/resources/images/dowongulyi.png" alt="image" class="float-right p-0 bg-white rounded-circle w-100 shadow-xss"></figure>
                                             <div class="clearfix"></div>
-                                            <h4 class="fw-700 font-xsss mt-3 mb-1">테스트용</h4>
-                                            <p class="fw-500 font-xsssss text-grey-500 mt-0 mb-3">@macale343</p>
+                                            <h4 class="fw-700 font-xsss mt-3 mb-1">도원결의</h4>
+                                            <p class="fw-500 font-xsssss text-grey-500 mt-0 mb-3">peaches@hell.com</p>
+                                           <a href="#" class="mt-0 btn pt-2 pb-2 ps-3 pe-3 lh-24 ms-1 ls-3 d-inline-block rounded-xl bg-success font-xsssss fw-700 ls-lg text-white">친구추가</a>
+                                            <a href="#" class="mt-0 btn pt-2 pb-2 ps-3 pe-3 lh-24 ms-1 ls-3 d-inline-block rounded-xl bg-success font-xsssss fw-700 ls-lg text-white">채팅하기</a>
+                                        </div>
+                                    </div>
+                                </div> 
+                                
+                                <div class="col-md-3 col-sm-4 pe-2 ps-2">
+                                    <div class="card d-block border-0 shadow-xss rounded-3 overflow-hidden mb-3">
+                                        <div class="card-body d-block w-100 ps-3 pe-3 pb-4 text-center">
+                                            <figure class="avatar ms-auto me-auto mb-0 position-relative w65 z-index-1"><img src="${path}/resources/images/yubi.png" alt="image" class="float-right p-0 bg-white rounded-circle w-100 shadow-xss"></figure>
+                                            <div class="clearfix"></div>
+                                            <h4 class="fw-700 font-xsss mt-3 mb-1">유비</h4>
+                                            <p class="fw-500 font-xsssss text-grey-500 mt-0 mb-3">profailer@hell.com</p>
                                             <a href="#" class="mt-0 btn pt-2 pb-2 ps-3 pe-3 lh-24 ms-1 ls-3 d-inline-block rounded-xl bg-danger font-xsssss fw-700 ls-lg text-white">친구끊기</a>
                                             <a href="#" class="mt-0 btn pt-2 pb-2 ps-3 pe-3 lh-24 ms-1 ls-3 d-inline-block rounded-xl bg-success font-xsssss fw-700 ls-lg text-white">채팅하기</a>
                                         </div>
                                     </div>
                                 </div> 
+                                
+                                <div class="col-md-3 col-sm-4 pe-2 ps-2">
+                                    <div class="card d-block border-0 shadow-xss rounded-3 overflow-hidden mb-3">
+                                        <div class="card-body d-block w-100 ps-3 pe-3 pb-4 text-center">
+                                            <figure class="avatar ms-auto me-auto mb-0 position-relative w65 z-index-1"><img src="${path}/resources/images/guanwoo.png" alt="image" class="float-right p-0 bg-white rounded-circle w-100 shadow-xss"></figure>
+                                            <div class="clearfix"></div>
+                                            <h4 class="fw-700 font-xsss mt-3 mb-1">관우
+                            <img src="${path}/resources/images/star1.png" class="trainer" alt="trainer" title="trainer"  style="width:20px; height:20px" /></h4>  
+                                            <p class="fw-500 font-xsssss text-grey-500 mt-0 mb-3">longbarba@hell.com</p>
+                                            <a href="#" class="mt-0 btn pt-2 pb-2 ps-3 pe-3 lh-24 ms-1 ls-3 d-inline-block rounded-xl bg-danger font-xsssss fw-700 ls-lg text-white">친구끊기</a>
+                                            <a href="#" class="mt-0 btn pt-2 pb-2 ps-3 pe-3 lh-24 ms-1 ls-3 d-inline-block rounded-xl bg-success font-xsssss fw-700 ls-lg text-white">채팅하기</a>
+                                        </div>
+                                    </div>
+                                </div> 
+                                
+                                <div class="col-md-3 col-sm-4 pe-2 ps-2">
+                                    <div class="card d-block border-0 shadow-xss rounded-3 overflow-hidden mb-3">   
+                                        <div class="card-body d-block w-100 ps-3 pe-3 pb-4 text-center">
+                                            <figure class="avatar ms-auto me-auto mb-0 position-relative w65 z-index-1"><img src="${path}/resources/images/jangbi.png" alt="image" class="float-right p-0 bg-white rounded-circle w-100 shadow-xss"></figure>
+                                            <div class="clearfix"></div>
+                                            <h4 class="fw-700 font-xsss mt-3 mb-1">장비</h4>
+                                            <p class="fw-500 font-xsssss text-grey-500 mt-0 mb-3">drunken@hell.com</p>
+                                            <a href="#" class="mt-0 btn pt-2 pb-2 ps-3 pe-3 lh-24 ms-1 ls-3 d-inline-block rounded-xl bg-success font-xsssss fw-700 ls-lg text-white">친구추가</a>
+                                            <a href="#" class="mt-0 btn pt-2 pb-2 ps-3 pe-3 lh-24 ms-1 ls-3 d-inline-block rounded-xl bg-success font-xsssss fw-700 ls-lg text-white">채팅하기</a>
+                                        </div>
+                                    </div>
+                                </div> 
+                             
+                             
+                                <div class="col-md-3 col-sm-4 pe-2 ps-2">
+                                    <div class="card d-block border-0 shadow-xss rounded-3 overflow-hidden mb-3">
+                                        <div class="card-body d-block w-100 ps-3 pe-3 pb-4 text-center">
+                                            <figure class="avatar ms-auto me-auto mb-0 position-relative w65 z-index-1"><img src="${path}/resources/images/jojalyong.png" alt="image" class="float-right p-0 bg-white rounded-circle w-100 shadow-xss"></figure>
+                                            <div class="clearfix"></div>
+                                            <h4 class="fw-700 font-xsss mt-3 mb-1">조자룡
+                                           <img src="${path}/resources/images/star1.png" class="trainer" alt="trainer" title="trainer"  style="width:20px; height:20px" /> </h4>
+                                            <p class="fw-500 font-xsssss text-grey-500 mt-0 mb-3">saveADU@hell.com</p>
+                                            <a href="#" class="mt-0 btn pt-2 pb-2 ps-3 pe-3 lh-24 ms-1 ls-3 d-inline-block rounded-xl bg-danger font-xsssss fw-700 ls-lg text-white">친구끊기</a>
+                                            <a href="#" class="mt-0 btn pt-2 pb-2 ps-3 pe-3 lh-24 ms-1 ls-3 d-inline-block rounded-xl bg-success font-xsssss fw-700 ls-lg text-white">채팅하기</a>
+                                        </div>
+                                    </div>
+                                </div> 
+                             
+  
                             
                             </div><!--요거가 묶는거 지움안댐-->
                         </div>               
