@@ -1,5 +1,7 @@
 package com.helltalk.springapp.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -143,6 +145,17 @@ public class BackendServiceImpl implements BackendService{
 
 	public void deleteQnA(int number) {
 		dao.deleteQnA(number);
+	}
+
+	public List selectJoinMember() {
+		return dao.selectJoinMember();
+	}
+
+	public Map selectGenderMember() {
+		Map map = new HashMap();
+		map.put("user", dao.selectGenderMember("ROLE_USER"));
+		map.put("tn", dao.selectGenderMember("ROLE_TN"));
+		return map;
 	}
 	
 	

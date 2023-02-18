@@ -77,7 +77,13 @@ public class BackendDAO {
 		template.delete("deleteOneQnA",number);
 	}
 
-	
+	public List selectJoinMember() {
+		return template.selectList("selectJoinMember");
+	}
+
+	public int selectGenderMember(String kind) {
+		return template.selectOne("selectGenderMember",kind);
+	}
 	
 
 }

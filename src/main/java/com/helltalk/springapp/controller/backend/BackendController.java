@@ -1,6 +1,7 @@
 package com.helltalk.springapp.controller.backend;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -168,5 +169,21 @@ public class BackendController {
 		}else {
 			
 		}
+	}
+	
+	@ResponseBody
+	@RequestMapping("/selectJoinMember")
+	public List selectJoinMember() {
+		List list = new ArrayList<>();
+		list=service.selectJoinMember();
+		return list;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/selectGenderMember")
+	public Map selectGenderMember() {
+		//List list = new ArrayList<>();
+		//list.add("gender", );
+		return service.selectGenderMember();
 	}
 }

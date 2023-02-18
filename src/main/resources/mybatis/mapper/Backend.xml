@@ -78,4 +78,11 @@
 	<delete id="deleteOneQnA" parameterType="int">
 		DELETE QNA WHERE Q_NO=#{number}
 	</delete>
+	<select id="selectJoinMember" resultType="Map">
+		SELECT * from (SELECT  u_enterdate,count(u_enterdate) as enter FROM (select TO_CHAR(u_enterdate,'YYYY/MM/DD') as u_enterdate from USERS) 
+		group by u_enterdate having u_enterdate >= TO_CHAR(SYSDATE-10,'YYYY/MM/DD')) order by u_enterdate desc
+	</select>
+	<select id="selectGenderMember" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM USERS WHERE U_KIND=#{kind}
+	</select>
 </mapper>
