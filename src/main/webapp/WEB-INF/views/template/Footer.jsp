@@ -193,12 +193,12 @@
             navigator.geolocation.getCurrentPosition(function(position){
 
                 const API = {
-                    key: "d2b2c5f06c9917777af462a1075caa96",
+                    key: "",
                     url: "https://api.openweathermap.org/data/2.5/",
                     loc: "seoul"
                 };
                 
-                fetch(`${"https://api.openweathermap.org/data/2.5/"}weather?q=${"seoul"}&units=metric&APPID=${"d2b2c5f06c9917777af462a1075caa96"}`).then(function (weather) {
+                fetch(`${"https://api.openweathermap.org/data/2.5/"}weather?q=${"seoul"}&units=metric&APPID=${""}`).then(function (weather) {
                             return weather.json();
                         }).then(displayResults);      
 
