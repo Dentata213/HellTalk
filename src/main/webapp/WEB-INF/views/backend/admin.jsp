@@ -31,11 +31,17 @@
 				height: 83vh;
 			}
 		}
+		.favicon{
+        	margin: 0px;
+        	width: 50px;
+        	height: 50px;
+        	margin-right: 12px;
+        }
 	</style>
 
 </head>
 
-<body class="color-theme-blue mont-font stop-scrolling" id="body">
+<body class="color-theme-orange mont-font stop-scrolling" id="body">
     <div class="preloader"></div>
 
     
@@ -44,7 +50,7 @@
         <!-- navigation top-->
         <div class="nav-header bg-white shadow-xs border-0">
             <div class="nav-top"  style="justify-content: space-between;">
-                <a href="<c:url value="/"/>"><i class="feather-zap text-success display1-size me-2 ms-0"></i><span class="d-inline-block fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">HellTalk </span> </a>
+                <a href="<c:url value="/"/>"><img src="${path}/resources/images/favicon.png" class="favicon"><span class="d-inline-block fredoka-font ls-3600-400 text-current font-xxl logo-text mb-0">HellTalk</span></a>
                 <button class="nav-menu me-0 ms-2"></button>
             </div>
 
