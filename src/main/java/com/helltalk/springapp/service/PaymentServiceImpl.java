@@ -105,36 +105,25 @@ public class PaymentServiceImpl implements PaymentService<PaymentDTO>{
 	
 	
 	public String getToken() throws IOException {
-
 	    HttpsURLConnection conn = null;
-
 	    URL url = new URL("https://api.iamport.kr/users/getToken");
-
 	    conn = (HttpsURLConnection) url.openConnection();
-
 	    conn.setRequestMethod("POST");
 	    conn.setRequestProperty("Content-type", "application/json");
 	    conn.setRequestProperty("Accept", "application/json");
 	    conn.setDoOutput(true);
+	   
 	    JsonObject json = new JsonObject();
-
 	    json.addProperty("imp_key", imp_key);
 	    json.addProperty("imp_secret", imp_secret);
 
 	    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
-
 	    bw.write(json.toString());
 	    bw.flush();
 	    bw.close();
 
 	    BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
-
-	    Gson gson = new Gson();
-
-	    String response = gson.fromJson(br.readLine(), Map.class).get("response").toString();
-
-	    System.out.println("response : " + response);
-
+	    Gson gson = new Gson();	    String response = gson.fromJson(br.readLine(), Map.class).get("response").toString();
 	    String token = gson.fromJson(response, Map.class).get("access_token").toString();
 
 	    br.close();
@@ -167,20 +156,17 @@ public class PaymentServiceImpl implements PaymentService<PaymentDTO>{
 				String[] checkedItems = new String[map.get("checkedItems").toString().split(",").length];
 				
 				for(int k=0;k<checkedItems.length;k++) {
-					checkedItems[k]=(String) map.get("checkedItems").toString().split(",")[k];
-					
+					checkedItems[k]=(String) map.get("checkedItems").toString().split(",")[k];				
 					String oneItem = checkedItems[k].replace("\"","").replace("[", "").replace("]", "");					
 					String proNum = str.getProduct_no();
 					
-					if(proNum.equals(oneItem)){
-						
+					if(proNum.equals(oneItem)){						
 						sum += qty*price;
 						System.out.println("if문 내부"+sum);
 					}
 				}
-
 			}
-			catch(Exception e){}
+			catch(Exception e){e.printStackTrace();}
 			
 		}
 		System.out.println("for문 바깥 sum"+sum);
