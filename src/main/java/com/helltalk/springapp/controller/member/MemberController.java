@@ -20,8 +20,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.FlashMap;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.helltalk.springapp.models.CustomUserDetailsService;
 import com.helltalk.springapp.service.KakaoServiceImpl;
@@ -45,22 +47,20 @@ public class MemberController {
 		return "member/login/login";
 	}
 	
-	@RequestMapping("/oauto/Kakao")
+	@RequestMapping("/oauto/Kakao") // kakao RedirectUrl
 	public String kakaoLogin(String code,RedirectAttributes redirect,HttpServletRequest request) throws Throwable {
 		System.out.println("인가코드:"+code);
-		
-		String access_Token = kakaoService.getAccessToken(code);
+		String access_Token = kakaoService.getAccessToken(code); //인가코드 값을 매개변수로 전달하여 accessToken 값 요청
 		System.out.println("AccessToken:"+access_Token);
-		
-		HashMap<String, Object> userInfo = kakaoService.getUserInfo(access_Token);
-		String nickname= (String)userInfo.get("nickname");
-		String username= (String)userInfo.get("email");
-		System.out.println("###nickname#### : " + nickname);
-		System.out.println("###email#### : " + username);
+		HashMap<String, Object> userInfo = kakaoService.getUserInfo(access_Token);//accessToken 값으로 회원정보 요청
+		String nickname= userInfo.get("nickname").toString();
+		String username= userInfo.get("email").toString();
+		String thumbnail_image= userInfo.get("thumbnail_image").toString();
 		FlashMap fm = RequestContextUtils.getOutputFlashMap(request);
-		fm.put("nickname", userInfo.get("nickname"));
-		fm.put("u_email", userInfo.get("email"));
+		fm.put("nickname", nickname);
+		fm.put("u_email", username);
 		fm.put("id", userInfo.get("id"));
+		fm.put("thumbnail_image", thumbnail_image);
 		return "redirect:/member/SoicalLogin";
 	}
 	
@@ -68,11 +68,12 @@ public class MemberController {
 	//컨트롤러에서 redirect 방식으로 값 전달 하는 방법
 	
 	@RequestMapping("/SoicalLogin")
-	public String soicalLogin(Map map,Model model,HttpServletResponse response,HttpServletRequest request) throws Throwable {
+	public ModelAndView  soicalLogin(Map map,Model model,HttpServletResponse response,HttpServletRequest request) throws Throwable {
 		Map<String, ?> flashMap = RequestContextUtils.getInputFlashMap(request);
-		String email = (String) map.put("u_email", flashMap.get("u_email"));
-		String nickname =(String)map.put("nickname", flashMap.get("nickname"));
-		String id =(String)map.put("id", flashMap.get("id"));
+		String email = map.put("u_email", flashMap.get("u_email")).toString();
+		String nickname =map.put("nickname", flashMap.get("nickname")).toString();
+		String id =map.put("id", flashMap.get("id")).toString();
+		String thumbnail_image =map.put("id", flashMap.get("thumbnail_image")).toString();
 		int affectedEm = service.emailCheck(map);
 			if(affectedEm == 0) {
 				model.addAttribute("nickname",nickname);
@@ -85,25 +86,24 @@ public class MemberController {
 		        		+ "추가정보 입력을 위해 회원가입 페이지로 이동합니다.');"
 		        		+ "</script>");
 		        w.flush();
-		        return "forward:/member/CreateUser.do";
+		        return new ModelAndView("member/register/register");
 			}
 			else {
 					UserDetails userDetails = userDetailsService.loadUserByUsername(email);
-					//userDetails를 principal 객체로 대입하여,기존에 사용하던 sec 태그에서도 principal. 으로 꺼내오기 가능
+					//userDetails를 principal 객체로 대입하여,기존에 사용하던 sec 태그에서도 principal. 으로 꺼내오기
 					Object principal = userDetails;
-					System.out.println("principal++++++++++++++:"+principal);
-					System.out.println("userDetails.getAuthorities()++++++++++++++:"+userDetails.getAuthorities());
 					//비밀번호 값을 넘겨주지 않아서 삽질......
 					UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(principal,
 							userDetails.getPassword(),
-							userDetails.getAuthorities()
-							);
+							userDetails.getAuthorities());
 					SecurityContext securityContext = SecurityContextHolder.getContext();
 					securityContext.setAuthentication(authentication);
 			        HttpSession session = request.getSession(true);
-			        System.out.println("authentication++++++++++++++++"+authentication);
 			        session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
-					return "home";
+			        session.setAttribute("thumbnail_image", thumbnail_image);
+			        RedirectView rv = new RedirectView("/Helltalk");
+			        rv.setExposeModelAttributes(false);
+			        return new ModelAndView(rv);
 					
 				
 				}
@@ -167,7 +167,7 @@ public class MemberController {
 	        w.write("<script>alert('"+email+"는 현재 사용중인 이메일 입니다.');history.back();</script>");
 	        w.close();
 	        
-		}else if (affectedName != 0) {
+		}else {
 			nickname = map.get("u_nickname");
 			response.setContentType("text/html; charset=utf-8");
 	        PrintWriter w = response.getWriter();

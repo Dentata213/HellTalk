@@ -94,7 +94,7 @@
                     <i class="input-icon">
                         <ion-icon name="search-outline" role="img" class="md hydrated" aria-label="search outline"></ion-icon>
                     </i>
-                    <a href="#" class="ms-1 mt-1 d-inline-block close searchbox-close">
+                    <a href="#" class="ms-1 mt-1 d-inline-block close searchbox-close"> 
                         <i class="ti-close font-xs"></i>
                     </a>
                 </div>

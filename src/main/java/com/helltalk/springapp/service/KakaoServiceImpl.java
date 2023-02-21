@@ -132,12 +132,14 @@ public class KakaoServiceImpl {//https://makeaplayground.tistory.com/158
 				// System.out.println(kakao_account.get("email"));
 				
 				String nickname = properties.get("nickname").toString();
+				String thumbnail_image = properties.get("thumbnail_image").toString();
 				String email = kakao_account.get("email").toString();
 				String id = jsonMap.get("id").toString();
 				
 				userInfo.put("nickname", nickname);
 				userInfo.put("email", email);
 				userInfo.put("id", id);
+				userInfo.put("thumbnail_image", thumbnail_image);
 
 			} catch (Exception e) {
 				e.printStackTrace();

@@ -439,6 +439,7 @@
             	<form action="<c:url value="/member/Logout.do"/>" method="post">
             		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
             		<button class="p-2 lh-20 w100 bg-primary-gradiant me-2 text-white text-center font-xssss fw-600 ls-1 rounded-xl">logout</button>
+            		<img src="${sessionScope.thumbnail_image}" style="width: 70px; height: 70px" />
             	</form>
             </sec:authorize>
             
@@ -499,7 +500,7 @@
    	</div>
    	<footer class="new_footer_area theme-dark" style="border-style:inset; border-color: #333333; border-top-width: 5px">
             <div class="new_footer_top">
-            <a href="<c:url value="/"/>"><img src="${path}/resources/images/favicon.png" class="favicon"><span class="d-inline-block fredoka-font ls-3600-400 text-current font-xl logo-text mb-0">HellTalk</span></a>
+            <span class="d-inline-block fredoka-font ls-3600-400 text-current font-xl logo-text mb-0" style="margin-left: 10px">HellTalk</span>
                 <div class="footer_bg" >
                     <div class="footer_bg_one"></div>
                     <div class="footer_bg_two"></div>
