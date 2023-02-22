@@ -62,15 +62,11 @@ public class PaymentController {
 	private PaymentServiceImpl service;
 	
 	//아임포트 키값
-	private IamportClient api;
-	
+	private IamportClient api;	
 	@Value("${imp_key}")
 	private String imp_key;
-
 	@Value("${imp_secret}")
-	private String imp_secret;
-		
-	
+	private String imp_secret;			
 	@ResponseBody
 	@RequestMapping(value="/verifyIamport")
 	public IamportResponse<Payment> paymentByImpUid(
@@ -79,23 +75,11 @@ public class PaymentController {
 			, HttpSession session
 			,@RequestBody Map map) throws IamportResponseException, IOException{	
 		
-		System.out.println("locale에 담긴 정보:"+locale);
-		System.out.println("session에 담긴 정보:"+session);
-		System.out.println("Map에 담긴 정보"+map);
-		System.out.println("Map에 담긴 정보imp_uid :"+map.get("imp_uid"));
-		System.out.println("Map에 담긴 정보merchant_uid :"+map.get("merchant_uid"));
-		
-		String imp_uid = (String)map.get("imp_uid");
-		
-		PaymentController payment = new PaymentController();
-		
-		api = new IamportClient(imp_key,imp_secret);
-		
+		String imp_uid = (String)map.get("imp_uid");		
+		PaymentController payment = new PaymentController();		
+		api = new IamportClient(imp_key,imp_secret);		
 		String token=service.getToken();
 		
-		System.out.println("token값 :"+token);
-		System.out.println("api값 :"+ api);
-			
 		return api.paymentByImpUid(imp_uid);
 	}
 	

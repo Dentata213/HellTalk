@@ -52,7 +52,6 @@ public class ShopController {
 		int sum = service.calcCart(map);
 		
 		model.addAttribute("lists", lists);
-
 		
 		ObjectMapper mapper = new ObjectMapper();
 	

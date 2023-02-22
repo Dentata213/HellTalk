@@ -22,7 +22,7 @@
                                 <div class="col-lg-12 mb-3">
                                     <div class="card p-lg-5 p-4 bg-primary-gradiant rounded-3 shadow-xss bg-pattern border-0 overflow-hidden">
                                         <div class="bg-pattern-div"></div>
-                                        <h2 class="display2-size display2-md-size fw-700 text-white mb-0 mt-0">Checkout  </h2>
+                                        <h2 class="display2-size display2-md-size fw-700 text-white mb-0 mt-0">주문정보  </h2>
                                     </div>
                                 </div>                                 
                             </div>
@@ -41,7 +41,7 @@
                                                 <div class="col-lg-6 mb-3">
                                                     <div class="form-gorup">
                                                         <label class="mont-font fw-600 font-xssss">이름</label>
-                                                        <input type="text" name="comment-name" class="form-control" id="username" value="${list.u_nickname}">
+                                                        <input type="text" name="comment-name" class="form-control" id="username" value="">
                                                     </div>        
                                                 </div>                                               
                                             </div>
@@ -50,14 +50,14 @@
                                                 <div class="col-lg-6 mb-3">
                                                     <div class="form-gorup">
                                                         <label class="mont-font fw-600 font-xssss">Email</label>
-                                                        <input type="text" name="comment-name" class="form-control" id="email" value="${list.u_email}">
+                                                        <input type="text" name="comment-name" class="form-control" id="email" value="">
                                                     </div>        
                                                 </div>
 
                                                 <div class="col-lg-6 mb-3">
                                                     <div class="form-gorup">
                                                         <label class="mont-font fw-600 font-xssss">전화번호</label>
-                                                        <input type="text" name="comment-name" class="form-control" id="phone" value="${list.u_phoneno}">
+                                                        <input type="text" name="comment-name" class="form-control" id="phone" value="">
                                                     </div>        
                                                 </div>
                                             </div>
@@ -101,12 +101,12 @@
                                 </div>
                                 <div class="col-xl-5 offset-xl-1 col-lg-6">
                                      <div class="order-details">
-                                         <h4 class="mont-font fw-600 font-md mb-5">Order Details</h4>
+                                         <h4 class="mont-font fw-600 font-md mb-5">주문정보</h4>
                                          <div class="table-content table-responsive mb-5 card border-0 bg-greyblue p-lg-5 p-4">
                                             <table class="table order-table order-table-2 mb-0">
                                                 <thead>
                                                     <tr>
-                                                        <th class="border-0">Product</th>
+                                                        <th class="border-0">상품</th>
                                                         <th class="text-right border-0">Total</th>
                                                     </tr>
                                                 </thead>
@@ -116,7 +116,19 @@
                                                     <c:forEach var="list" items="${lists}" varStatus="loop">
                                                         <tr>
                                                             <th class="text-grey-500 fw-500 font-xsss" id="itemname">Aliquam lobortis est 
-                                                                <strong><span>✕</span>${list.product_quantity}</strong>
+                                                                <strong><span>✕</span>2</strong>
+                                                            </th>
+                                                            <td class="text-right text-grey-500 fw-500 font-xsss">36,000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="text-grey-500 fw-500 font-xsss" id="itemname">Aliquam lobortis est 
+                                                                <strong><span>✕</span>1</strong>
+                                                            </th>
+                                                            <td class="text-right text-grey-500 fw-500 font-xsss"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="text-grey-500 fw-500 font-xsss" id="itemname">Aliquam lobortis est 
+                                                                <strong><span>✕</span>3</strong>
                                                             </th>
                                                             <td class="text-right text-grey-500 fw-500 font-xsss">$80.00(한개가격)</td>
                                                         </tr>
@@ -228,8 +240,7 @@
             date.getMinutes(),
             date.getSeconds(),
             date.getMilliseconds()
-        ];
-        
+        ];        
         var id = components.join("");
 		
       //결제용
@@ -248,8 +259,6 @@
 			var addr2 = $('#addr').val();
 			var addr = addr1+','+addr2;
 			
-			
-			
 			console.log(orderTotal);
 			
             IMP.request_pay({
@@ -258,36 +267,24 @@
                 merchant_uid: id ,   // 주문번호
                 name: itemName,
                 amount: orderTotal,    
-                buyer_email: "kunhyo204@nate.com",
-                buyer_name: "홍길동",
-                buyer_tel: "010-4242-4242",
-                buyer_addr: "서울특별시 강남구 신사동",
+                buyer_email: memberEmail,
+                buyer_name: memberName,
+                buyer_tel: memberPhone,
+                buyer_addr: addr,
                 
-            },function (rsp) { // callback            	  
-            	console.log('rsp.paid_amount값 :'+ rsp.paid_amount);
+            },function (rsp) {          	  
             
             	var jsonData = {"imp_uid": rsp.imp_uid,"merchant_uid": rsp.merchant_uid};
 	            var data = JSON.stringify(jsonData);
 	            
             	if (rsp.success) {
-	                // 결제 성공 시 로직
-	                // jQuery로 HTTP 요청
-	               	console.log('rsp.success 들어옴')
-	               	console.log('rsp.imp_uid값 :'+ rsp.imp_uid)
-	               	console.log('rsp.merchant_uid값 :'+ rsp.merchant_uid)
 	                $.ajax({
 	                	url : "<c:url value="/payment/verifyIamport/"/>",  
 	                    method: "POST",
 	                    headers: { "Content-Type": "application/json" },
 	                    data: data
 	                }).done(function (data,rsp) {
-	                // 가맹점 서버 결제 API 성공시 로직
-	                	console.log('성공함수 데이타 들어옴')
-	                	console.log(data);
-	                	console.log('data.response.amount:'+data.response.amount);
-	                	console.log('rsp.paid_amount:'+rsp.paid_amount);
-	    	        		                	
-	    	        	// 위의 rsp.paid_amount 와 data.response.amount를 비교한후 로직 실행 (import 서버검증)
+	               
 	    	        	if(rsp.paid_amount == data.response.amount){
 	    	        		var msg = '결제가 완료되었습니다.';
 		        			msg += '\n고유ID : ' + rsp.imp_uid;
