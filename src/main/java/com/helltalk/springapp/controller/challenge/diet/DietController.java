@@ -7,9 +7,11 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -21,6 +23,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
@@ -32,13 +35,16 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.helltalk.springapp.models.DietDTO;
@@ -59,20 +65,60 @@ public class DietController {
 	@Autowired
 	private FoodServiceImpl foodService;
 	
-	//메인화면 이동(임시)
+	//식단 등록
 	@RequestMapping(value= "/main.do")
 	public String searchList(@RequestParam Map map, HttpServletRequest req, Model model) throws Exception {
-		//아침
-		List<FoodDTO> selectListEatBreakfast= foodService.selectListEatBreakfast(map);
-		model.addAttribute("selectListEatBreakfast", selectListEatBreakfast);
-		//점심
-		List<FoodDTO> selectListEatLunch= foodService.selectListEatLunch(map);
-		model.addAttribute("selectListEatLunch", selectListEatLunch);
-		//저녁
-		List<FoodDTO> selectListEatDinner= foodService.selectListEatDinner(map);
-		model.addAttribute("selectListEatDinner", selectListEatDinner);
 		
-		return "challenge/diet/Diet";
+		//한끼마다 저장된 음식값 확인
+	  	//아침
+	  	List<FoodDTO> selectListEatBreakfast= foodService.selectListEatBreakfast(map);
+	  	model.addAttribute("selectListEatBreakfast", selectListEatBreakfast);
+	  	//점심
+	  	List<FoodDTO> selectListEatLunch= foodService.selectListEatLunch(map);
+	  	model.addAttribute("selectListEatLunch", selectListEatLunch);
+	  	//저녁
+	  	List<FoodDTO> selectListEatDinner= foodService.selectListEatDinner(map);
+	  	model.addAttribute("selectListEatDinner", selectListEatDinner);
+	    
+		
+		//뷰 반환
+		return "challenge/diet/Diet.helltalk";
+	}
+	
+	//날짜-ajax
+	@RequestMapping(value= "/selectDate.do")
+	@ResponseBody
+	public Map<String, Object> selectDate(@RequestBody Map map) throws Exception {
+		System.out.println("map 날짜 :"+map.get("d_date"));
+		
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		//한끼마다 저장된 음식값 확인
+	  	//아침
+	  	List<FoodDTO> selectListEatBreakfast= foodService.selectListEatBreakfast(map);
+	  	returnMap.put("selectListBreakfast", selectListEatBreakfast);
+	  	//점심
+	  	List<FoodDTO> selectListEatLunch= foodService.selectListEatLunch(map);
+	  	returnMap.put("selectListLunch", selectListEatLunch);
+	  	//저녁
+	  	List<FoodDTO> selectListEatDinner= foodService.selectListEatDinner(map);
+	  	returnMap.put("selectListDinner", selectListEatDinner);
+		
+		return returnMap;
+	}
+	
+	//삭제-ajax
+	@RequestMapping("/deleteFood.do")
+	@ResponseBody
+	public void deleteFood(@RequestBody Map map) throws Exception {
+		System.out.println("받은 delete:"+map.get("delete"));
+		System.out.println("받은 날짜: "+map.get("d_date"));
+		
+		// delete가 넘어왔을 경우 한끼에서 하나의 음식 삭제
+		if (map.get("delete") != null) {
+			int deleteFoodAffeted = foodService.delete(map);
+			System.out.println("삭제된 행의 수: "+deleteFoodAffeted);
+		}
 	}
 	
 	//음식 등록
@@ -98,9 +144,6 @@ public class DietController {
 			HttpSession session = req.getSession();
 			session.setAttribute("dinner", dinner);
 		}
-		else {
-			System.out.println("아점저 안 넘어옴");
-		}
 		
 		//d_date 저장
 		if(d_date != null) {
@@ -109,7 +152,7 @@ public class DietController {
 		}
 		
 		//뷰 반환
-		return "challenge/diet/SearchFood";
+		return "challenge/diet/SearchFood.helltalk";
 	}//////////////////////////////////////////goFoodSearch
 
 	
@@ -128,25 +171,18 @@ public class DietController {
 			String encodeFood = URLEncoder.encode(search, "UTF-8");
 			
 			URL url = new URL("https://openapi.foodsafetykorea.go.kr/api/"+foodSafetyService_Key+"/I2790/json/1/1000/DESC_KOR=%22" + encodeFood + "%22");
-			//19edad5b93f84a0184ce
 			
 			HttpURLConnection con = (HttpURLConnection)url.openConnection();
 			Object obj = JSONValue.parse(new InputStreamReader(con.getInputStream()));
 			
 			JSONObject result = (JSONObject)obj;
-			
 			JSONObject all = (JSONObject)result.get("I2790");
-			//System.out.println("all: "+all);
-			
 			String totalCnt = (String)all.get("total_count");
-			//System.out.println("totalCnt: "+totalCnt);
-			
 			JSONArray row = (JSONArray)all.get("row");
-			//System.out.println("row: "+row);
-			
 			
 			if(Integer.parseInt(totalCnt) != 0) {
 				for(int i = 0; i < row.size(); i++) {
+					//식품DTO 생성
 					FoodDTO dto= new FoodDTO();
 					
 					JSONObject item = (JSONObject)row.get(i);
@@ -175,7 +211,7 @@ public class DietController {
 					
 					//dto를 통해 음식DB에 값 저장
 					int selectFoodAffected= foodService.selectFoodAffected(dto);
-					System.out.println("selectFoodAffected-"+i+" :"+selectFoodAffected);
+					//System.out.println("selectFoodAffected-"+i+" :"+selectFoodAffected);
 					if(selectFoodAffected == 0) {
 						//DB에 음식이 없을 경우 새로 저장
 						int insertFoodAffected= foodService.insert(dto);
@@ -214,7 +250,7 @@ public class DietController {
 		model.addAttribute("searchList",list);
 		
 		//뷰 정보 반환
-		return "challenge/diet/SearchFood";
+		return "challenge/diet/SearchFood.helltalk";
 		
 	}//////////searchFoodList()
 	
@@ -233,16 +269,16 @@ public class DietController {
 		if(selectFood != null)
 			model.addAttribute("selectFood", selectFood);
 		else {
-			model.addAttribute("FailSelect", "값을 가져오지 못했습니다");
+			model.addAttribute("FailSelect", "오늘 먹은 음식을 등록해보세요");
 		}
 		
 		//뷰 반환
-		return "challenge/diet/SelectFood";
+		return "challenge/diet/SelectFood.helltalk";
 	}
 	
 	//확인을 하면 eat테이블에 저장
 	@RequestMapping("/putFoodByNo.do")
-	public String putFoodByNo(@RequestParam Map map, HttpServletRequest req, Model model) {
+	public String putFoodByNo(@RequestParam Map map, HttpServletRequest req, Model model,Authentication auth) {
 		String food_cd = req.getParameter("food_cd")==null? null: req.getParameter("food_cd");
 		System.out.println("food_cd넘어왔나2 : " + food_cd);
 		String breakfast= req.getSession().getAttribute("breakfast") == null? null:req.getSession().getAttribute("breakfast").toString() ;
@@ -288,17 +324,37 @@ public class DietController {
 	    System.out.println("status 넘어온 값: "+map.get("status"));
 	    
 	    map.put("d_date", d_date);
+	    session.removeAttribute(d_date);
 	    
 	    //DB- 회원값(diet값) 저장
-	  	map.put("u_no", Integer.valueOf(8));//임시
-	  	
+	  	//map.put("u_no", Integer.valueOf(8));//임시
+	    map.put("uemail",((UserDetails)auth.getPrincipal()).getUsername().toString());
+	    System.out.println("uemail :"+map.get("uemail"));
+	    
 	  	//DB- eatList관련 값 저장
 	    map.put("food_cd", food_cd);
 	    //System.out.println("food_cd:"+food_cd);
-
-	  	//DB- diet, eat, eatlist 생성(insert)
-	  	int insertDietAffected = dietService.insert(map);
-	  	System.out.println("diet테이블 insert : "+insertDietAffected);
+	    
+	    //diet_no count(*)
+	    int selectCountByNo= dietService.selectCountByNo(map);
+	    System.out.println("selectCountByNo : "+selectCountByNo);
+	    
+	    if(selectCountByNo < 1) {
+	    	//DB- diet 생성(insert)
+		  	int insertDietAffected = dietService.insert(map);
+		  	System.out.println("diet테이블 insert : "+insertDietAffected);
+	    }
+	    else {
+	    	//diet_no
+	    	int selectDietNo= dietService.selectDietNo(map);
+	    	map.put("diet_no", selectDietNo);
+	    }
+	    
+	    //diet_no 확인
+	    System.out.println("diet_no : "+map.get("diet_no"));
+	    
+	    //eat테이블 생성
+	  	int insertEatAffected= dietService.insertEat(map);
 	  	System.out.println("eat_no : "+map.get("eat_no"));
 	  	
 	  	int insertEatlistAffected= dietService.insertEatList(map);
@@ -315,7 +371,7 @@ public class DietController {
 	  	List<FoodDTO> selectListEatDinner= foodService.selectListEatDinner(map);
 	  	model.addAttribute("selectListEatDinner", selectListEatDinner);
 	    
-		return "challenge/diet/Diet";
+		return "challenge/diet/Diet.helltalk";
 	}
 
 }

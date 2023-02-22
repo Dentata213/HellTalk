@@ -49,6 +49,18 @@ public class DietDAO {
 		public int selectOneEat(Map map) {
 			return template.selectOne("selectOneEat",map);
 		}
+
+		public int SelectFoodDelete(Map map) {
+			return template.selectOne("SelectFoodDelete",map);
+		}
+
+		public int selectCountByNo(Map map) {
+			return template.selectOne("selectCountByNo",map);
+		}
+
+		public int selectDietNo(Map map) {
+			return template.selectOne("selectDietNo",map);
+		}
 		
 		
 }

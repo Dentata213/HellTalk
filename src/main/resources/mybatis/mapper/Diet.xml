@@ -4,17 +4,46 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.mapper.Diet">
 	<!--  DIET  -->
+	<!-- 
 	<insert id="dietInsert" parameterType="Map">
     	INSERT ALL
-		INTO diet VALUES(SEQ_DIET.NEXTVAL,'title', 0,0, TO_DATE(#{d_date},'YYYY-MM-DD'), #{u_no})
+		INTO diet VALUES(SEQ_DIET.NEXTVAL,'title', 0,0, TO_DATE(#{d_date},'YYYY-MM-DD'), 0, (SELECT DISTINCT users.U_no FROM users left join diet ON diet.u_no=users.u_no WHERE u_email=#{uemail,jdbcType=VARCHAR}))
 		INTO eat VALUES(SEQ_EAT.NEXTVAL,#{status},SEQ_DIET.CURRVAL)
 		SELECT * FROM DUAL
 		<selectKey resultType="int" keyProperty="eat_no" order="AFTER">
 	        SELECT SEQ_EAT.CURRVAL FROM DUAL
     	</selectKey>
 	</insert>
-	<insert id="eatListInsert" parameterType="Map">
+	 -->
+	 <select id="selectCountByNo" parameterType="Map" resultType="int">
+	 	SELECT COUNT(*) FROM diet WHERE diet_date = #{d_date}
+	 </select>
+	 
+	 <insert id="dietInsert" parameterType="Map">
+	 	INSERT INTO diet VALUES(SEQ_DIET.NEXTVAL,'title', 0,0, TO_DATE(#{d_date},'YYYY-MM-DD'), 0, (SELECT DISTINCT users.U_no FROM users left join diet ON diet.u_no=users.u_no WHERE u_email=#{uemail,jdbcType=VARCHAR}))
+	 	<selectKey resultType="int" keyProperty="diet_no" order="AFTER">
+	 		SELECT SEQ_DIET.CURRVAL FROM DUAL
+	 	</selectKey>
+	 </insert>
+	 
+	 <select id="selectDietNo" parameterType="Map" resultType="int">
+	 	SELECT diet_no FROM diet WHERE diet_date = #{d_date}
+	 </select>
+	 
+	 <insert id="eatInsert" parameterType="Map">
+	 	INSERT INTO eat VALUES(SEQ_EAT.NEXTVAL,#{status},#{diet_no})
+	 	<selectKey resultType="int" keyProperty="eat_no" order="AFTER">
+	 		SELECT SEQ_EAT.CURRVAL FROM DUAL
+	 	</selectKey>
+	 </insert>
+	 
+	<insert id="eatListInsert" parameterType="Map">                                                                                                 
 		INSERT INTO eatlist VALUES(#{eat_no},#{food_cd})
 	</insert>
 	
+	<!-- 
+	<delete id="SelectFoodDelete" parameterType="Map">
+		DELETE eat
+	</delete>
+	 -->
 </mapper>

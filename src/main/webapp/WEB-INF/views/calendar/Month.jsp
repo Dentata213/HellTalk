@@ -10,8 +10,12 @@
 <script src=https://cdn.jsdelivr.net/npm/fullcalendar@6.0.3/index.global.min.js></script>
 <script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
 <script src="https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js"></script>
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.0/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.min.js"></script>
 
 <style>
+
 
   body {
     margin: 40px 10px;
@@ -74,11 +78,13 @@
  }
 </style>                     
 
+
+
    <!-- 달력 -->
   <div id='calendar-wrap'>
   	<div id='calendar'></div>
  </div>  
-
+</body>
  <!--일정추가 modal 추가 -->
   <div class="modal fade" id="addcalendarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
       aria-hidden="true">
@@ -217,7 +223,7 @@ document.addEventListener('DOMContentLoaded', function() {
           center: 'title',
           right: 'prev,next'//dayGridMonth,timeGridWeek,timeGridDay,listWeek
         },
- //   navLinks: true, //// 일자 클릭 시 list로 이동 
+   //   navLinks: true, //// 일자 클릭 시 list로 이동 
       businessHours: true, // display business hours
       editable: true,
       selectable: true,  
@@ -242,6 +248,7 @@ document.addEventListener('DOMContentLoaded', function() {
     	 $(document).on('click','.fc-event-title-container',function(){
     		//	console.log('댓글번호1:',this.viewno());
     			var this_= $(this).children(); //클릭한 제이쿼리 객체
+    			console.log(this_)
     			var nos = this_.html().split("_")
     			var no = nos[0]
     			console.log("글번호:",no)   	  			       
@@ -269,26 +276,46 @@ document.addEventListener('DOMContentLoaded', function() {
     
     //calcked list 뿌리기 	 
     <c:forEach var="calc" items="${calcList}" varStatus="loop">
+    
      	  { 
      		  title:'${calc.rout_name}' ,
                start:'${calc.rout_startdate}', 
                end:'${calc.rout_enddate}',  
                color:'#ff9f89' , 
-           	   display:'background'         	 
+           	   display:'background',
+          
 	  	   },
 	  	 </c:forEach> 
   	   
 	//caldaily list 뿌리기
-	<c:forEach var="cald" items="${caldList}" varStatus="loop"> 			
+	<c:forEach var="cald" items="${caldList}" varStatus="loop"> 	
+	
 	  	{  		
-          title:'${cald.cald_no}_${cald.cald_title}',
+          title:'${cald.cald_title}',  //${cald.cald_no}_
           start:'${cald.cald_startdate}',//T12:00붙이면 '.클래스값이 달라짐!!'
           constraint:'availableForMeeting', // defined below
-          color:'${cald.cald_color}' //'#257e4a'
-        },
+          color:'${cald.cald_color}' ,//'#257e4a'
+          imageurl:'${cald.cald_no}'
+	  	},
         </c:forEach>   
         
-      ],
+        
+        {  		
+            title:'테스트',  
+            start:'2023-02-18',
+            constraint:'availableForMeeting', 
+            color:'red' ,
+            imageurl:'${path}/resources/images/star1.png'
+          },
+      ]
+        , eventRender:function(event, eventElement) {
+            if(event.imageurl) {
+            	  //   var icon  = '<div class="squre" style="width:15px; height:15px; background:blue;"></div>' 
+            	 //                $(element).find('.fc-event-title-container').append(icon); 
+               eventElement.find(".fc-event-main-frame").prepend("<center><img src='" + event.imageurl + "'><center>");
+            }
+        },
+        
         
        customButtons: {
           addEventButton: { // 추가한 버튼 설정

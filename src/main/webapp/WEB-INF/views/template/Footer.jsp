@@ -2,6 +2,20 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
+<style>
+ #weather{
+        font-family: fantasy;
+        background-image: url("${path}/resources/images/bg.jpg");
+        background-size: cover;
+        background-position: center;
+        border-top-left-radius: 15px 15px;
+        border-top-right-radius: 15px 15px;
+        border-bottom-left-radius: 15px 15px;
+        border-bottom-right-radius: 15px 15px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+</style>
 		<!-- right chat -->
         <div class="right-chat nav-wrap mt-2 right-scroll-bar">
             <div class="middle-sidebar-right-content bg-white shadow-xss rounded-xxl">
@@ -33,85 +47,28 @@
                         </div>
                     </div>
                 </div>
-                <!-- loader wrapper -->
+                <!-- loader wrapper 
 
-                <div class="section full pe-3 ps-4 pt-4 position-relative feed-body">
-                    <h4 class="font-xsssss text-grey-500 text-uppercase fw-700 ls-3">CONTACTS</h4>
-                    <ul class="list-group list-group-flush">
-                        <li class="bg-transparent list-group-item no-icon pe-0 ps-0 pt-2 pb-2 border-0 d-flex align-items-center">
-                            <figure class="avatar float-left mb-0 me-2">
-                                <img src="https://via.placeholder.com/50x50.png" alt="image" class="w35">
-                            </figure>
-                            <h3 class="fw-700 mb-0 mt-0">
-                                <a class="font-xssss text-grey-600 d-block text-dark model-popup-chat" href="#">Hurin Seary</a>
-                            </h3>
-                            <span class="badge badge-primary text-white badge-pill fw-500 mt-0">2</span>
-                        </li>
-                        <li class="bg-transparent list-group-item no-icon pe-0 ps-0 pt-2 pb-2 border-0 d-flex align-items-center">
-                            <figure class="avatar float-left mb-0 me-2">
-                                <img src="https://via.placeholder.com/50x50.png" alt="image" class="w35">
-                            </figure>
-                            <h3 class="fw-700 mb-0 mt-0">
-                                <a class="font-xssss text-grey-600 d-block text-dark model-popup-chat" href="#">Victor Exrixon</a>
-                            </h3>
-                            <span class="bg-success ms-auto btn-round-xss"></span>
-                        </li>
-                        <li class="bg-transparent list-group-item no-icon pe-0 ps-0 pt-2 pb-2 border-0 d-flex align-items-center">
-                            <figure class="avatar float-left mb-0 me-2">
-                                <img src="https://via.placeholder.com/50x50.png" alt="image" class="w35">
-                            </figure>
-                            <h3 class="fw-700 mb-0 mt-0">
-                                <a class="font-xssss text-grey-600 d-block text-dark model-popup-chat" href="#">Surfiya Zakir</a>
-                            </h3>
-                            <span class="bg-warning ms-auto btn-round-xss"></span>
-                        </li>
-                        <li class="bg-transparent list-group-item no-icon pe-0 ps-0 pt-2 pb-2 border-0 d-flex align-items-center">
-                            <figure class="avatar float-left mb-0 me-2">
-                                <img src="https://via.placeholder.com/50x50.png" alt="image" class="w35">
-                            </figure>
-                            <h3 class="fw-700 mb-0 mt-0">
-                                <a class="font-xssss text-grey-600 d-block text-dark model-popup-chat" href="#">Goria Coast</a>
-                            </h3>
-                            <span class="bg-success ms-auto btn-round-xss"></span>
-                        </li>
-                        <li class="bg-transparent list-group-item no-icon pe-0 ps-0 pt-2 pb-2 border-0 d-flex align-items-center">
-                            <figure class="avatar float-left mb-0 me-2">
-                                <img src="https://via.placeholder.com/50x50.png" alt="image" class="w35">
-                            </figure>
-                            <h3 class="fw-700 mb-0 mt-0">
-                                <a class="font-xssss text-grey-600 d-block text-dark model-popup-chat" href="#">Hurin Seary</a>
-                            </h3>
-                            <span class="badge mt-0 text-grey-500 badge-pill pe-0 font-xsssss">4:09 pm</span>
-                        </li>
-                        <li class="bg-transparent list-group-item no-icon pe-0 ps-0 pt-2 pb-2 border-0 d-flex align-items-center">
-                            <figure class="avatar float-left mb-0 me-2">
-                                <img src="https://via.placeholder.com/50x50.png" alt="image" class="w35">
-                            </figure>
-                            <h3 class="fw-700 mb-0 mt-0">
-                                <a class="font-xssss text-grey-600 d-block text-dark model-popup-chat" href="#">David Goria</a>
-                            </h3>
-                            <span class="badge mt-0 text-grey-500 badge-pill pe-0 font-xsssss">2 days</span>
-                        </li>
-                        <li class="bg-transparent list-group-item no-icon pe-0 ps-0 pt-2 pb-2 border-0 d-flex align-items-center">
-                            <figure class="avatar float-left mb-0 me-2">
-                                <img src="https://via.placeholder.com/50x50.png" alt="image" class="w35">
-                            </figure>
-                            <h3 class="fw-700 mb-0 mt-0">
-                                <a class="font-xssss text-grey-600 d-block text-dark model-popup-chat" href="#">Seary Victor</a>
-                            </h3>
-                            <span class="bg-success ms-auto btn-round-xss"></span>
-                        </li>
-                        <li class="bg-transparent list-group-item no-icon pe-0 ps-0 pt-2 pb-2 border-0 d-flex align-items-center">
-                            <figure class="avatar float-left mb-0 me-2">
-                                <img src="https://via.placeholder.com/50x50.png" alt="image" class="w35">
-                            </figure>
-                            <h3 class="fw-700 mb-0 mt-0">
-                                <a class="font-xssss text-grey-600 d-block text-dark model-popup-chat" href="#">Ana Seary</a>
-                            </h3>
-                            <span class="bg-success ms-auto btn-round-xss"></span>
-                        </li>
-                        
-                    </ul>
+               <li id="nbsp">&nbsp;</li>
+                <div class="section full pe-3 ps-4 pt-4 position-relative feed-body" id="weather">
+                    
+
+
+                    <section class="location">
+		                <div class="city">Where are you now?</div>
+		                <div class="date">How are you today?</div>
+		            </section>
+		            <div class="current">
+		                <div class="temp">? °C</div>
+		                <div class="weather">Weather</div>
+		                <div class="hi-low">Hi Temp °C / Low Temp °C</div>
+		            </div>
+
+
+
+
+
+
                 </div>
                 <div class="section full pe-3 ps-4 pt-4 pb-4 position-relative feed-body">
                     <h4 class="font-xsssss text-grey-500 text-uppercase fw-700 ls-3">GROUPS</h4>
@@ -167,7 +124,7 @@
 
             </div>
         </div>
-
+		-->
         
         <!-- right chat -->
       
@@ -225,4 +182,56 @@
     </div>
 
     </body>
+    
+    
+    <script>
+       
+    window.addEventListener('DOMContentLoaded',function(){
+        
+        if(navigator.geolocation){//브라우저의 geolocation 지원 여부 판단      
+            
+            navigator.geolocation.getCurrentPosition(function(position){
+
+                const API = {
+                    key: "",
+                    url: "https://api.openweathermap.org/data/2.5/",
+                    loc: "seoul"
+                };
+                
+                fetch(`${"https://api.openweathermap.org/data/2.5/"}weather?q=${"seoul"}&units=metric&APPID=${""}`).then(function (weather) {
+                            return weather.json();
+                        }).then(displayResults);      
+
+                function displayResults(weather) {
+                
+                    var city = document.querySelector(".location .city");
+                    city.innerText = `${weather.name}, ${weather.sys.country}`;
+
+                    var today = new Date();
+                    var date = document.querySelector(".location .date");
+                    date.innerText = today.toLocaleDateString();
+
+                    var temp = document.querySelector(".current .temp");
+                    temp.innerHTML = `${java.lang.Math.round(weather.main.temp)} <span>°C</span>`;
+
+                    var weatherC = document.querySelector(".current .weather");
+                    weatherC.innerText = weather.weather[0].description;
+
+                    var hiLow = document.querySelector(".hi-low");
+                    hiLow.innerText = `${weather.main.temp_min}°C / ${weather.main.temp_max}°C`;
+                }
+            });
+        }////////////////if
+
+    })   
+       
+ 
+    
+    
+</script>
+
+
+
+   
+ 
 </html>

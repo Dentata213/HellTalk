@@ -59,8 +59,7 @@ public class FoodServiceImpl implements DietService<FoodDTO>{
 	
 	@Override
 	public int delete(Map map) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.delete(map);
 	}
 
 	@Override
