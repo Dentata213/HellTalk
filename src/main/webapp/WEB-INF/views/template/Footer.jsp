@@ -33,7 +33,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- loader wrapper -->
+                <!-- loader wrapper 
 
                 <div class="section full pe-3 ps-4 pt-4 position-relative feed-body">
                     <h4 class="font-xsssss text-grey-500 text-uppercase fw-700 ls-3">CONTACTS</h4>
@@ -167,7 +167,7 @@
 
             </div>
         </div>
-
+		-->
         
         <!-- right chat -->
       

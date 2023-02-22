@@ -110,15 +110,14 @@ public class DietController {
 	//삭제-ajax
 	@RequestMapping("/deleteFood.do")
 	@ResponseBody
-	public void deleteFood(@RequestBody Map map, HttpServletResponse resp) throws Exception {
-		
-		//String delete = req.getParameter("delete")== null? null: req.getParameter("delete");
-		//System.out.println("delete :"+ delete);
-		System.out.println("음식 삭제");
+	public void deleteFood(@RequestBody Map map) throws Exception {
+		System.out.println("받은 delete:"+map.get("delete"));
+		System.out.println("받은 날짜: "+map.get("d_date"));
 		
 		// delete가 넘어왔을 경우 한끼에서 하나의 음식 삭제
 		if (map.get("delete") != null) {
-			int deleteSelectFoodAffeted = dietService.SelectFoodDelete(map);
+			int deleteFoodAffeted = foodService.delete(map);
+			System.out.println("삭제된 행의 수: "+deleteFoodAffeted);
 		}
 	}
 	
@@ -172,25 +171,18 @@ public class DietController {
 			String encodeFood = URLEncoder.encode(search, "UTF-8");
 			
 			URL url = new URL("https://openapi.foodsafetykorea.go.kr/api/"+foodSafetyService_Key+"/I2790/json/1/1000/DESC_KOR=%22" + encodeFood + "%22");
-			//19edad5b93f84a0184ce
 			
 			HttpURLConnection con = (HttpURLConnection)url.openConnection();
 			Object obj = JSONValue.parse(new InputStreamReader(con.getInputStream()));
 			
 			JSONObject result = (JSONObject)obj;
-			
 			JSONObject all = (JSONObject)result.get("I2790");
-			//System.out.println("all: "+all);
-			
 			String totalCnt = (String)all.get("total_count");
-			//System.out.println("totalCnt: "+totalCnt);
-			
 			JSONArray row = (JSONArray)all.get("row");
-			//System.out.println("row: "+row);
-			
 			
 			if(Integer.parseInt(totalCnt) != 0) {
 				for(int i = 0; i < row.size(); i++) {
+					//식품DTO 생성
 					FoodDTO dto= new FoodDTO();
 					
 					JSONObject item = (JSONObject)row.get(i);

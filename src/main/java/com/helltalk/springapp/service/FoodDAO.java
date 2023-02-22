@@ -21,6 +21,10 @@ public class FoodDAO {
 	public int insert(FoodDTO dto) {
 		return template.insert("foodInsert",dto);
 	}
+	
+	public int delete(Map map) {
+		return template.insert("foodDelete",map);
+	}	
 
 	public int selectFoodAffected(FoodDTO dto) {
 		return template.selectOne("foodSelectOneCount", dto);
@@ -50,6 +54,6 @@ public class FoodDAO {
 	public List<FoodDTO> selectListEatDinner(Map map) {
 		List<FoodDTO> records = template.selectList("selectListEatDinner",map);
 		return records;
-	}		
+	}
 
 }

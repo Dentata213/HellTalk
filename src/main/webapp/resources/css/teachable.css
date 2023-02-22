@@ -1,4 +1,4 @@
-body {
+#countCard {
 	font: 24px/30px 'Noto Sans CJK KR', Noto Sans KR, sans-serif
 }
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:600,400,300);
@@ -24,10 +24,7 @@ body {
 	 -moz-osx-font-smoothing: grayscale !important;
 }
  .center {
-	 position: absolute;
-	 top: 40%;
-	 left: 50%;
-	 transform: translate(-50%, -50%);
+	top: 50%;
 }
  .headline {
 	 font-weight: 600;
@@ -58,7 +55,7 @@ body {
  .circle-big .progress {
 	 fill: none;
 	 stroke-width: 10px;
-	 stroke: #27e1ae;
+	 stroke: #ffc107;
 	 stroke-linecap: round;
 	 stroke-dasharray: 326.56;
 	 stroke-dashoffset: 327;

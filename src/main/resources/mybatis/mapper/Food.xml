@@ -12,6 +12,12 @@
 		INSERT INTO food VALUES(#{food_cd},#{food_name},#{food_maker},#{food_size},#{food_kcal},#{food_tan},#{food_dan},#{food_fat},#{food_col},#{food_na})
 	</insert>
 	
+	<!-- 
+	<delete id="foodDelete" parameterType="Map">
+		DELETE eatlist WHERE d_date=#{d_date} AND food_cd=#{food_cd}
+	</delete>
+	 -->
+	
 	<select id="foodSelectOne" parameterType="FoodDto" resultType="FoodDto">
 		SELECT * FROM food WHERE food_cd=#{food_cd} 
 	</select>
@@ -27,10 +33,10 @@
 		JOIN Eat e on e.diet_no=d.diet_no
 		JOIN Eatlist el on el.eat_no= e.eat_no
 		JOIN Food f on f.food_cd=el.food_cd 
-		<if test=" d_date == null">
+		<if test="d_date == null">
 			WHERE TO_CHAR(d.diet_date, 'YYYY-MM-DD') = TO_CHAR(SYSDATE,'YYYY-MM-DD') AND e.eat_status='breakfast'
 		</if>
-		<if test=" d_date != null">
+		<if test="d_date != null">
 			WHERE TO_CHAR(d.diet_date, 'YYYY-MM-DD') = #{d_date} AND e.eat_status='breakfast'
 		</if>
 	</select>
@@ -41,10 +47,10 @@
 		JOIN Eat e on e.diet_no=d.diet_no
 		JOIN Eatlist el on el.eat_no= e.eat_no
 		JOIN Food f on f.food_cd=el.food_cd 
-		<if test=" d_date == null">
+		<if test="d_date == null">
 			WHERE TO_CHAR(d.diet_date, 'YYYY-MM-DD') = TO_CHAR(SYSDATE,'YYYY-MM-DD') AND e.eat_status='lunch'
 		</if>
-		<if test=" d_date != null">
+		<if test="d_date != null">
 			WHERE TO_CHAR(d.diet_date, 'YYYY-MM-DD') = #{d_date} AND e.eat_status='lunch'
 		</if>
 	</select>
@@ -55,10 +61,10 @@
 		JOIN Eat e on e.diet_no=d.diet_no
 		JOIN Eatlist el on el.eat_no= e.eat_no
 		JOIN Food f on f.food_cd=el.food_cd 
-		<if test=" d_date == null">
+		<if test="d_date == null">
 			WHERE TO_CHAR(d.diet_date, 'YYYY-MM-DD') = TO_CHAR(SYSDATE,'YYYY-MM-DD') AND e.eat_status='dinner'
 		</if>
-		<if test=" d_date != null">
+		<if test="d_date != null">
 			WHERE TO_CHAR(d.diet_date, 'YYYY-MM-DD') = #{d_date} AND e.eat_status='dinner'
 		</if>
 	</select>
