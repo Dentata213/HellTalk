@@ -5,6 +5,8 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <spring:eval expression="@commonProperties['kakaoClient_id']" var="kakaoClient_id"/>
 <spring:eval expression="@commonProperties['kakaoRedirect_url']" var="kakaoRedirect_url"/>
+<spring:eval expression="@commonProperties['googleClient_id']" var="googleClient_id"/>
+<spring:eval expression="@commonProperties['googleRedirect_url']" var="googleRedirect_url"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -162,7 +164,12 @@
                             	</a>
                             </div>
 
-                            <div class="form-group mb-1"><a href="#" class="form-control text-left style2-input text-white fw-600 bg-facebook border-0 p-0 mb-2"><img src="${path}/resources/images/icon-1.png" alt="icon" class="ms-2 w40 mb-1 me-5"> Sign in with Google</a></div>
+                            <div class="form-group mb-1">
+	                            <a href="https://accounts.google.com/o/oauth2/v2/auth?client_id=${googleClient_id}&redirect_uri=${googleRedirect_url}&scope=https://www.googleapis.com/auth/userinfo.email&https://www.googleapis.com/auth/userinfo.profile&https://www.googleapis.com/auth/userinfo.profile&include_granted_scopes=true&response_type=code" 
+	                            	class="form-control text-left style2-input text-white fw-600 bg-facebook border-0 p-0 mb-2">
+								<img src="${path}/resources/images/icon-1.png" alt="icon" class="ms-2 w40 mb-1 me-5"> Sign in with Google</a>
+							</div>
+							
                             <div class="form-group mb-1"><a href="#" class="form-control text-left style2-input text-white fw-600 bg-twiiter border-0 p-0 "><img src="${path}/resources/images/icon-3.png" alt="icon" class="ms-2 w40 mb-1 me-5"> Sign in with Facebook</a></div>
                         </div>
                         

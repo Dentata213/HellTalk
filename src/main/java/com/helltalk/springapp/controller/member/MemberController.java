@@ -64,6 +64,13 @@ public class MemberController {
 		return "redirect:/member/SoicalLogin";
 	}
 	
+	@RequestMapping("/oauto/Google") // google RedirectUrl
+	public String kakaoLogin(String code) throws Throwable {
+		System.out.println("인가코드:"+code);
+		
+		return "/home";
+	}
+	
 	//https://velog.io/@jakezo/%EC%8A%A4%ED%94%84%EB%A7%81-redirect-%ED%8C%8C%EB%9D%BC%EB%AF%B8%ED%84%B0-%EC%B2%98%EB%A6%AC
 	//컨트롤러에서 redirect 방식으로 값 전달 하는 방법
 	
