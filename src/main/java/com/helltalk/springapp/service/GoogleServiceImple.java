@@ -25,12 +25,14 @@ public class GoogleServiceImple {
 	private String client_id;
 	@Value("${googleRedirect_url}")
 	private String googleUrl;
+	@Value("${client_secret}")
+	private String client_secret;
 
 
 	public String getAccessToken(String authorize_code) throws Exception {
 		String access_Token = "";
-		String refresh_Token = "";
-		String reqURL = "https://kauth.kakao.com/oauth/token";
+		String id_token = "";
+		String reqURL = "https://oauth2.googleapis.com/token";
 
 		try {
 			URL url = new URL(reqURL);
@@ -45,11 +47,10 @@ public class GoogleServiceImple {
 			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
 			StringBuilder sb = new StringBuilder();
 			sb.append("grant_type=authorization_code");
-
 			sb.append("&client_id="+client_id+""); // REST_API키 본인이 발급받은 key 넣어주기
 			sb.append("&redirect_uri="+googleUrl+""); // REDIRECT_URI 본인이 설정한 주소 넣어주기
-
-			sb.append("&code=" + authorize_code);
+			sb.append("&client_secret="+client_secret+"");//client_secret
+			sb.append("&code=" + authorize_code);//인가코드
 			bw.write(sb.toString());
 			bw.flush();
 
@@ -74,23 +75,23 @@ public class GoogleServiceImple {
 			});
 
 			access_Token = jsonMap.get("access_token").toString();
-			refresh_Token = jsonMap.get("refresh_token").toString();
+			id_token = jsonMap.get("id_token").toString();
 
 			System.out.println("access_token : " + access_Token);
-			System.out.println("refresh_token : " + refresh_Token);
+			System.out.println("id_token : " + id_token);
 
 			br.close();
 			bw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return access_Token;
+		return id_token;
 	}
 	
-	public HashMap<String, Object> getUserInfo(String access_Token) throws Throwable {
+	public HashMap<String, Object> getUserInfo(String id_token) throws Throwable {
 		// 요청하는 클라이언트마다 가진 정보가 다를 수 있기에 HashMap타입으로 선언
 		HashMap<String, Object> userInfo = new HashMap<String, Object>();
-		String reqURL = "https://kapi.kakao.com/v2/user/me";
+		 String reqURL = "https://oauth2.googleapis.com/tokeninfo?id_token="+id_token;
 
 		try {
 			URL url = new URL(reqURL);
@@ -98,7 +99,7 @@ public class GoogleServiceImple {
 			conn.setRequestMethod("GET");
 
 			// 요청에 필요한 Header에 포함될 내용
-			conn.setRequestProperty("Authorization", "Bearer " + access_Token);
+			conn.setRequestProperty("Authorization", "Bearer " + id_token);
 
 			int responseCode = conn.getResponseCode();
 			System.out.println("responseCode : " + responseCode);

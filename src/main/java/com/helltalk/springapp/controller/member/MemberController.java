@@ -26,6 +26,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.helltalk.springapp.models.CustomUserDetailsService;
+import com.helltalk.springapp.service.GoogleServiceImple;
 import com.helltalk.springapp.service.KakaoServiceImpl;
 import com.helltalk.springapp.service.MemberServiceImpl;
 
@@ -35,6 +36,8 @@ public class MemberController {
 	
 	@Autowired
 	private KakaoServiceImpl kakaoService;
+	@Autowired
+	private GoogleServiceImple googleService;
 	@Autowired
 	private MemberServiceImpl service;
 	@Autowired
@@ -65,9 +68,11 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/oauto/Google") // google RedirectUrl
-	public String kakaoLogin(String code) throws Throwable {
+	public String googleLogin(String code) throws Throwable {
 		System.out.println("인가코드:"+code);
-		
+		String id_token = googleService.getAccessToken(code);
+		HashMap<String, Object> userInfo = googleService.getUserInfo(id_token);
+		System.out.println("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"+id_token);
 		return "/home";
 	}
 	
